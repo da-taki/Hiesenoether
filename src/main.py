@@ -33,8 +33,8 @@ def run_file(filepath: str):
 
 def repl():
     """Start an interactive REPL"""
-    from runtime import Runtime
-    from parser import parse
+    from src.runtime import Runtime
+    from src.parser import parse
     
     runtime = Runtime()
     print("Hiesenoether REPL")
