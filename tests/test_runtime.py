@@ -1,7 +1,7 @@
 import pytest
-from runtime import Runtime, run_program
-from parser import parse
-from values import UnstableValue, StableValue
+from src.runtime import Runtime, run_program
+from src.parser import parse
+from src.values import UnstableValue, StableValue
 
 
 def test_unstable_value_basic():

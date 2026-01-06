@@ -134,7 +134,7 @@ class Runtime:
             
             # Create escrow for unstable functions
             if stmt.is_unstable:
-                self.energy.create_escrow(stmt.name, is_unstable=True)
+                self.energy.create_escrow(stmt.name)
         
         elif isinstance(stmt, Return):
             if stmt.value is not None:
@@ -330,7 +330,7 @@ class Runtime:
 
 def run_program(source: str):
     """Parse and execute a Hiesenoether program"""
-    from parser import parse
+    from src.parser import parse
     
     try:
         ast = parse(source)
