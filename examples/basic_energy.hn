@@ -1,0 +1,25 @@
+energy[100]
+
+## Unstable by default
+x <- 10
+print x                    ## Might print 10
+print x                    ## Might print 11 (evolved!)
+
+## Need certainty? Stabilize it
+stabilize x                ## -5 energy, x frozen at current value
+print x                    ## Always prints same value now
+print x
+
+## Functions
+declare fn process(n) {    ## -3 energy
+    return n * 2
+}
+
+declare pure fn safe(n) {  ## -3 energy declaration
+    return n + 1          ## +4 energy after proof (net +1)
+}
+
+## Introspection
+inspect x                  ## -2 energy, shows exact state
+
+query energy              ## Check remaining budget
