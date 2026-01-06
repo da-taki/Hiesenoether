@@ -1,35 +1,135 @@
 ## Energy Model
 
+### Core Principle
+
 Energy is a finite runtime budget that represents how many guarantees
 a program can afford.
 
-Energy is conserved. It cannot increase unless guarantees are explicitly
-given up.
+Guarantees include certainty, invariants, and exact observation.
+Energy is conserved and cannot increase unless guarantees are explicitly
+weakened or removed.
 
-### Declaring Energy
+There are no free guarantees in the system.
 
-Each program begins with a fixed amount of energy:
+---
 
-energy 20
+## Initial Energy
 
-### What Costs Energy
+Each program begins with a fixed energy budget:
 
-- Stabilizing a value (making it reliable)
-- Declaring invariants or symmetry constraints
-- Performing exact observation or inspection
+energy 100
 
-If a program attempts to spend more energy than it has, execution fails.
+---
 
-### Gaining Energy
+## Energy Costs (Guarantees)
 
-Energy can only be gained by explicitly accepting uncertainty.
+### 1. Stabilizing a Value
+
+Stabilizing a value removes execution-order dependence and prevents
+further uncertainty.
+
+- Cost: −5 energy
+- Effect: The value remains consistent across accesses
+
+Stabilization may apply to:
+- Variables
+- Function outputs
+- Control constructs (future extensions)
+
+---
+
+### 2. Exact Introspection
+
+Observation is not free.
+
+- Approximate observation (e.g. print): 0 energy  
+  The value may still be uncertain.
+- Exact introspection: −2 energy  
+  Reveals the precise internal state and access history.
+
+---
+
+### 3. Declaring Invariants
+
+Invariants enforce symmetry across execution.
+
+- Cost: −10 energy
+- Effect: Declared property must hold throughout execution
+- Violation results in runtime failure
+
+Invariants reduce uncertainty but restrict execution freedom.
+
+---
+
+### 4. Stable Control Structures
+
+Control structures with guaranteed behavior.
 
 Examples:
-- Declaring values as unstable
-- Avoiding guarantees or invariants
-- Using simple, non-branching constructs
+- Stable conditionals
+- Stable loops
 
-### Conservation Rule
+- Cost: −3 energy per structure
 
-Total energy can never increase without a corresponding loss of guarantees.
-There are no free guarantees in the system.
+---
+
+## Energy Gains (Giving Up Guarantees)
+
+### 5. Unstable Values
+
+Declaring a value as unstable.
+
+- Gain: +2 energy
+- Effect: Value evolves on each access
+
+Unstable values are execution-order dependent.
+
+---
+
+### 6. Unstable Functions
+
+Functions without output stability guarantees.
+
+- Gain: +3 energy
+- Effect: Output may differ across calls even with identical inputs
+
+---
+
+### 7. Pure Functions
+
+Functions that:
+- Have no side effects
+- Do not mutate state
+- Do not inspect unstable values
+- Do not depend on execution order
+
+- Gain: +4 energy
+
+Pure functions reduce global uncertainty.
+
+---
+
+## Removing Capabilities
+
+Programs may permanently remove certain guarantees to increase the
+maximum allowable energy.
+
+Example:
+
+!remove invariants
+
+Effect:
+- Invariants can no longer be declared
+- Maximum energy increases by +20
+
+This operation is irreversible.
+
+---
+
+## Conservation Rule
+
+Energy cannot increase unless guarantees are explicitly weakened or removed.
+
+There is no regeneration.
+There is no passive gain.
+All trade-offs are explicit.
