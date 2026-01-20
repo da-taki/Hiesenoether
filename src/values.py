@@ -4,50 +4,43 @@ from typing import List, Any, Optional
 
 class UnstableValue:
     """
-    An unstable value evolves every time it is accessed.
-
-    The evolution is deterministic and depends on execution order.
-    Each access advances an internal counter.
+    An unstable value whose evolution accelerates under energy pressure.
     """
 
     def __init__(self, value):
         self.base_value = value
         self.access_count = 0
+        self.entropy = 1
         self.is_stable = False
 
-    def get(self):
-        """
-        Return the current value and advance internal state.
-        If stabilized, returns the frozen value.
-        """
+    def get(self, energy=None):
         if self.is_stable:
             return self.base_value
-        
-        current = self.base_value + self.access_count
-        self.access_count += 1
-        return current
-    
-    def stabilize(self):
-        """
-        Freeze the value at its current state.
-        Future accesses will return the same value.
-        """
-        if not self.is_stable:
-            # Stabilize at current computed value
-            self.base_value = self.base_value + self.access_count
-            self.is_stable = True
-    
-    def inspect(self) -> dict:
-        """
-        Return detailed internal state (costs energy)
-        """
-        return {
-            'base_value': self.base_value,
-            'access_count': self.access_count,
-            'is_stable': self.is_stable,
-            'current_value': self.base_value if self.is_stable else self.base_value + self.access_count
-        }
 
+        pressure = 1
+        if energy is not None:
+            pressure += max(0, (energy.max_energy - energy.current_energy) // 10)
+
+        drift = self.access_count * self.entropy * pressure
+        value = self.base_value + drift
+
+        self.access_count += 1
+        self.entropy += pressure * 0.1
+
+        return value
+
+    def stabilize(self):
+        if not self.is_stable:
+            self.base_value = self.get()
+            self.is_stable = True
+
+    def inspect(self):
+        return {
+            "base_value": self.base_value,
+            "access_count": self.access_count,
+            "entropy": round(self.entropy, 2),
+            "stable": self.is_stable
+        }
 
 class StableValue:
     """

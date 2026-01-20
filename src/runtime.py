@@ -57,15 +57,23 @@ class Runtime:
             self.locals_stack.pop()
     
     def check_invariants(self):
-        """Check all active invariants"""
         if not self.energy.has_capability('invariants'):
             return
-        
+
+        pressure = self.energy.pressure()
+
         for invariant in self.invariants:
+            # Under pressure, invariants randomly skip checks
+            if pressure > 0.5 and hash(str(invariant)) % 2 == 0:
+                continue
+
             result = self.eval_expr(invariant)
             if not result:
-                raise RuntimeError(f"Invariant violated: {invariant}")
-    
+                if pressure < 0.3:
+                    raise RuntimeError(f"Invariant violated: {invariant}")
+                else:
+                    print("## Invariant weakened under energy pressure")
+
     def run(self, program: Program):
         """Execute a program"""
         for stmt in program.statements:
@@ -148,11 +156,15 @@ class Runtime:
             print(value)
         
         elif isinstance(stmt, Inspect):
-            if not self.energy.spend('inspect'):
-                raise RuntimeError(f"Insufficient energy to inspect (need {self.energy.check_cost('inspect')})")
-            
             value = self.eval_expr(stmt.value)
-            
+
+            if not self.energy.spend('inspect'):
+                print("[INSPECT] Partial inspection (energy starved)")
+
+            # Inspection collapses uncertainty
+            if hasattr(value, "entropy"):
+                value.entropy += 1.5  # observing makes it worse
+
             if hasattr(value, 'inspect'):
                 print(f"[INSPECT] {value.inspect()}")
             else:
@@ -239,11 +251,14 @@ class Runtime:
         
         elif isinstance(expr, Identifier):
             var = self.get_var(expr.name)
-            
-            # Unwrap values
-            if isinstance(var, (UnstableValue, StableValue)):
+
+            if isinstance(var, StableValue):
+                if self.energy.pressure() > 0.7:
+                    # Stability leaks
+                    return var.value + 1
                 return var.get()
-            
+            if isinstance(var, UnstableValue):
+                return var.get(self.energy)
             return var
         
         elif isinstance(expr, BinaryOp):
@@ -283,47 +298,59 @@ class Runtime:
         
         elif isinstance(expr, FunctionCall):
             func = self.get_var(expr.name)
-            
+
             if not isinstance(func, Function):
                 raise RuntimeError(f"{expr.name} is not a function")
-            
+
             # Evaluate arguments
             args = [self.eval_expr(arg) for arg in expr.args]
-            
+
             if len(args) != len(func.params):
-                raise RuntimeError(f"Function {func.name} expects {len(func.params)} args, got {len(args)}")
-            
+                raise RuntimeError(
+                    f"Function {func.name} expects {len(func.params)} args, got {len(args)}"
+                )
+
+            # Check for cached result if pure
+            cache_key = None
+            if func.is_pure:
+                cache_key = tuple(args)
+                cache = getattr(func, "_cache", {})
+                if cache_key in cache:
+                    return cache[cache_key]
+
             # Create new scope
             self.push_scope()
-            
+
             # Bind parameters
             for param, arg in zip(func.params, args):
                 self.set_var(param, StableValue(arg), is_local=True)
-            
+
             # Execute body
             self.returning = False
             for stmt in func.body:
                 self.exec_stmt(stmt)
                 if self.returning:
                     break
-            
+
             result = self.return_value
             self.return_value = None
             self.returning = False
-            
+
             # Pop scope
             self.pop_scope()
-            
+            # Cache result for pure functions
+            if func.is_pure:
+                func._cache = getattr(func, "_cache", {})
+                func._cache[cache_key] = result
+
             # Handle escrow for unstable functions
             if func.is_unstable:
                 gained = self.energy.release_escrow(func.name, result)
-                if gained > 0:
-                    pass  # Energy gained silently
-                elif gained < 0:
-                    print(f"## Warning: {func.name} claimed to be unstable but acts stable! Penalty applied.")
-            
+                if gained < 0:
+                    print(f"## Warning: {func.name} lied about instability")
+
             return result if result is not None else 0
-        
+
         else:
             raise RuntimeError(f"Cannot evaluate: {type(expr)}")
 

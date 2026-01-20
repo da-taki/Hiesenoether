@@ -50,12 +50,23 @@ class EnergySystem:
     def set_initial_energy(self, amount: int) -> None:
         self.current_energy = amount
         self.max_energy = amount
+    def pressure(self) -> float:
+        """How starved the system is (0.0 → 1.0+)"""
+        if self.max_energy == 0:
+            return 1.0
+        return max(0.0, 1 - (self.current_energy / self.max_energy))
 
     def spend(self, operation: str) -> bool:
         cost = self.COSTS.get(operation, 0)
-        if self.current_energy < cost:
+
+        # Under pressure, costs inflate
+        inflated = int(cost * (1 + self.pressure()))
+        if self.current_energy < inflated:
+            # Soft failure — energy hits zero
+            self.current_energy = 0
             return False
-        self.current_energy -= cost
+
+        self.current_energy -= inflated
         return True
 
     def check_cost(self, operation: str) -> int:
