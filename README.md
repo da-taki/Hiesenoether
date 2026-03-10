@@ -9,7 +9,7 @@ enforce guarantees like stable values, symmetry (invariants), and exact
 introspection. When energy is scarce, uncertainty increases and execution
 order begins to matter.
 
-The language makes these trade-offs explicit rather than implicit.
+The language makes these trade offs explicit rather than implicit.
 
 ---
 
@@ -22,14 +22,14 @@ The language makes these trade-offs explicit rather than implicit.
 
 - **Deterministic Uncertainty**  
   Values are unstable by default. Each access evolves their state in a
-  deterministic but execution-order-dependent way. Reordering code can
+  deterministic but execution order dependent way. Reordering code can
   change program behavior.
 
 - **Symmetry and Conservation**  
   When programmers demand symmetry—such as stable values or invariants—the
   runtime enforces a conservation law by charging energy.
 
-- **Explicit Trade-offs**  
+- **Explicit Trade offs**  
   Developers must choose what deserves certainty and what can tolerate
   uncertainty.
 
@@ -47,7 +47,7 @@ print y
 
 ## Project Status
 
-This project is an early-stage prototype focused on language design and
+This project is an early stage prototype focused on language design and
 semantics rather than performance.
 
 **Currently implemented:**
@@ -56,7 +56,7 @@ semantics rather than performance.
 - Runtime interpreter
 - Energy system with conservation rules
 - Stable and unstable value semantics
-- Execution-order-dependent uncertainty
+- Execution order dependent uncertainty
 - Basic invariants, inspection, and control structures
 - Test suite covering core behavior
 - The design is intentionally minimal and experimental.
