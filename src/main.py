@@ -9,7 +9,7 @@ Usage:
 
 import sys
 from pathlib import Path
-from runtime import run_program
+from src.runtime import run_program
 
 
 def run_file(filepath: str):
