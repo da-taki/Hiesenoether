@@ -1,78 +1,146 @@
-# Hiesenoether
+# Hiesenoether - Ordered Chaos in Deterministic Computation
 
-Hiesenoether is an experimental programming language that explores how
-guarantees such as certainty, invariants, and debuggability become expensive
-as programs grow in complexity.
+## Overview
 
-Programs execute under a fixed energy budget. Energy must be spent to
-enforce guarantees like stable values, symmetry (invariants), and exact
-introspection. When energy is scarce, uncertainty increases and execution
-order begins to matter.
+Hiesenoether is a deterministic programming language designed to explore how **execution order and observation affect computation**.
 
-The language makes these trade offs explicit rather than implicit.
+Unlike traditional models where programs produce a single fixed output, Hiesenoether demonstrates that:
+
+> Deterministic programs can produce **structured output distributions** purely through execution-order-dependent state evolution, without any randomness.
 
 ---
 
-## Core Ideas
+## Core Idea
 
-- **Energy as Guarantees**  
-  Energy represents how many guarantees a program can afford. There are no
-  free guarantees, and energy is conserved unless guarantees are explicitly
-  weakened or removed.
+Hiesenoether introduces:
 
-- **Deterministic Uncertainty**  
-  Values are unstable by default. Each access evolves their state in a
-  deterministic but execution order dependent way. Reordering code can
-  change program behavior.
+* **Unstable values** that evolve on access
+* **Observation (`inspect`)** that modifies system state (entropy injection)
+* **Energy-bounded execution** controlling guarantees
 
-- **Symmetry and Conservation**  
-  When programmers demand symmetry—such as stable values or invariants—the
-  runtime enforces a conservation law by charging energy.
-
-- **Explicit Trade offs**  
-  Developers must choose what deserves certainty and what can tolerate
-  uncertainty.
+This makes **execution order a semantic parameter**, not just an implementation detail.
 
 ---
 
-## Example
-energy[100]
+## Key Finding
 
-x <- 10
-stable y <- 5
+Through **2,200,000 executions across 22 configurations**, we observe:
 
-print x
-print x
-print y
+> Deterministic programs exhibit **strong superadditive divergence**, where combined effects of observation, nonlinearity, and program length exceed the sum of individual effects by ~590×.
 
-## Project Status
+This divergence is:
 
-This project is an early stage prototype focused on language design and
-semantics rather than performance.
+* **Deterministic** (no randomness involved)
+* **Structured** (not noise)
+* **Amplified by nonlinearity**
+* **Driven by observation timing**
 
-**Currently implemented:**
+---
 
-- Lexer and parser
-- Runtime interpreter
-- Energy system with conservation rules
-- Stable and unstable value semantics
-- Execution order dependent uncertainty
-- Basic invariants, inspection, and control structures
-- Test suite covering core behavior
-- The design is intentionally minimal and experimental.
+## Experimental Results
 
-## Motivation
-In real systems, guarantees are not free:
+### Scale
 
-- Debugging changes behavior
-- Ordering effects emerge with complexity
-- Strong invariants restrict flexibility
+* 22 configurations
+* 100,000 runs per configuration
+* **2.2 million executions total**
+* Runtime: ~10 minutes (optimized in-process execution)
 
-Hiesenoether explores what happens when these costs are made explicit and
-enforced by the language itself.
+---
 
-## Disclaimer
+### Axes Explored
 
-Hiesenoether is not intended for production use.
-It is a research and educational project exploring alternative language
-semantics.
+1. **Observation multiplicity (inspect count)**
+2. **Nonlinearity depth (linear → extreme)**
+3. **Program length (3 → 20 steps)**
+4. **Interaction effects (combined factors)**
+
+---
+
+### Highlights
+
+* **Super-linear growth with observation**
+
+  * std increases **5.18×** from 1 → 5 inspects
+
+* **Exponential amplification via nonlinearity**
+
+  * log(range) scales linearly (R² ≈ 0.99)
+  * Semantic Lyapunov-like coefficient ≈ **2.79**
+
+* **No plateau in program length**
+
+  * divergence grows continuously with execution depth
+
+* **Superadditivity (core result)**
+
+  * Combined std: **8,209,836**
+  * Sum of isolated stds: **13,894**
+  * Ratio: **~590×**
+
+---
+
+## Repository Structure
+
+```
+src/                # Interpreter implementation
+docs/               # Language model and semantics
+tests/              # Runtime tests
+examples/           # Example programs
+
+run_experiments.py  # Full experiment pipeline
+
+results/
+  ├── summary.csv           # Per-configuration metrics
+  ├── A1/A2/A3/A4.csv       # Axis summaries
+  ├── raw_*.csv             # Full 100k outputs per config
+  ├── findings.txt          # Human-readable results
+  ├── findings.json         # Structured results
+  └── checkpoint.json       # Resume state
+```
+
+---
+
+## Reproducibility
+
+To reproduce all experiments:
+
+```bash
+python -m src.main examples/basic_energy.hn
+python run_experiments.py
+```
+
+All results are deterministic and reproducible.
+
+---
+
+## Research Direction
+
+This project investigates:
+
+* Execution-order-dependent semantics
+* Observation as a state-changing operation
+* Nonlinear amplification in deterministic systems
+* Emergent behavior from interacting computational factors
+
+---
+
+## Status
+
+* ✅ Interpreter complete
+* ✅ Experiment pipeline complete
+* ✅ 2.2M executions completed
+* ✅ Results analyzed
+* ⏳ Paper in progress
+
+---
+
+## Author
+
+Taknoor Singh (Taki)
+
+---
+
+## Note
+
+This project focuses on **measurable properties of deterministic computation**, not probabilistic or stochastic systems.
