@@ -1,0 +1,61 @@
+====================================================================
+  ORDERED CHAOS — KEY FINDINGS
+  Auto-generated from experimental results
+====================================================================
+
+FINDING 1 — Observation multiplicity (Axis A1)
+------------------------------------------------
+  0 inspect(s): std = 0.0000
+  1 inspect(s): std = 70.6351
+  2 inspect(s): std = 125.5293
+  3 inspect(s): std = 189.9506
+  4 inspect(s): std = 269.1300
+  5 inspect(s): std = 365.7408
+
+  std growth from 1→5 inspects: 5.18x
+  Growth is super-linear (expected: super-linear if chaotic).
+
+FINDING 2 — Semantic Lyapunov Exponent (Axis A2)
+------------------------------------------------
+  SLE (slope of log(range) per nonlinearity degree): 2.789129
+  R² of log-linear fit: 0.989479
+  Data points (config, log(range)):
+    A2_linear             : log(range) = 2.2618
+    A2_quadratic          : log(range) = 5.3482
+    A2_cubic              : log(range) = 8.5428
+    A2_extreme            : log(range) = 10.494
+
+  Interpretation: Slope of log(range) per nonlinearity degree = 2.7891 (R²=0.9895). Positive slope confirms exponential range growth with nonlinearity.
+
+  Raw ranges by nonlinearity level:
+    A2_linear             : range = 9.6
+    A2_quadratic          : range = 210.24
+    A2_cubic              : range = 5129.856
+    A2_extreme            : range = 36098.208
+
+FINDING 3 — Program length scaling (Axis A3)
+------------------------------------------------
+   3 add steps: std = 22.7408
+   6 add steps: std = 70.4405
+   9 add steps: std = 165.2084
+  12 add steps: std = 331.8286
+  15 add steps: std = 601.1108
+  20 add steps: std = 1382.2087
+
+  Marginal std increases are NON-DECREASING — no plateau detected.
+
+FINDING 4 — Interaction superadditivity (Axis A4)
+------------------------------------------------
+  std(combined high config) : 8209836.4097
+  std(max inspect only)     : 366.7845
+  std(max nonlin only)      : 12142.4115
+  std(max length only)      : 1384.8540
+  Sum of isolated stds      : 13894.0500
+  Ratio (combined/sum)      : 590.8886
+
+  Result: SUPERADDITIVE
+  std(combined)=8209836.4097 vs sum(isolated)=13894.0500 → ratio=590.8886. SUPERADDITIVE — factors compound beyond independent effects. This confirms multiplicative interaction between observation, nonlinearity, and program length.
+
+====================================================================
+  END OF FINDINGS
+====================================================================

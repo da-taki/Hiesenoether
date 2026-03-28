@@ -1,0 +1,35 @@
+{
+  "lyapunov": {
+    "sle": 2.789129,
+    "r_squared": 0.989479,
+    "data_points": [
+      [
+        "A2_linear",
+        2.2618
+      ],
+      [
+        "A2_quadratic",
+        5.3482
+      ],
+      [
+        "A2_cubic",
+        8.5428
+      ],
+      [
+        "A2_extreme",
+        10.494
+      ]
+    ],
+    "note": "Slope of log(range) per nonlinearity degree = 2.7891 (R\u00b2=0.9895). Positive slope confirms exponential range growth with nonlinearity."
+  },
+  "superadditivity": {
+    "superadditive": true,
+    "std_combined": 8209836.4097,
+    "std_sum_isolated": 13894.05,
+    "ratio": 590.8886,
+    "std_inspect_only": 366.7845,
+    "std_nonlin_only": 12142.4115,
+    "std_length_only": 1384.854,
+    "note": "std(combined)=8209836.4097 vs sum(isolated)=13894.0500 \u2192 ratio=590.8886. SUPERADDITIVE \u2014 factors compound beyond independent effects. This confirms multiplicative interaction between observation, nonlinearity, and program length."
+  }
+}
