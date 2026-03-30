@@ -1,0 +1,58 @@
+====================================================================
+  ORDERED CHAOS — PYTHON RUNTIME VALIDATION FINDINGS
+====================================================================
+
+FINDING 1 — Descriptor Access Drift (A1 Analogue)
+------------------------------------------------
+  obs=0 shuffled: std=0.0  range=0.0
+  obs=1 shuffled: std=135.9616  range=384.0
+  obs=2 shuffled: std=251.2661  range=948.0
+  obs=3 shuffled: std=384.3465  range=1692.0
+  obs=4 shuffled: std=539.1451  range=2616.0
+  obs=5 shuffled: std=718.3199  range=3720.0
+
+  obs=0 cached:   std=0.0  range=0.0
+  obs=1 cached:   std=0.0  range=0.0
+  obs=2 cached:   std=0.0  range=0.0
+  obs=3 cached:   std=0.0  range=0.0
+  obs=4 cached:   std=0.0  range=0.0
+  obs=5 cached:   std=0.0  range=0.0
+
+FINDING 2 — SLE on Python Substrate (A2 Analogue)
+------------------------------------------------
+  SLE = 2.860307  R² = 0.984208
+  linear      : range=15.0  log(range)=2.70805
+  quadratic   : range=384.0  log(range)=5.950643
+  cubic       : range=11097.6  log(range)=9.314484
+  extreme     : range=67584.0  log(range)=11.121127
+
+FINDING 3 — Program Length Scaling (A3 Analogue)
+------------------------------------------------
+  steps= 3: std=20.6744  range=50.7
+  steps= 6: std=135.6011  range=384.0
+  steps= 9: std=435.2845  range=1299.6
+  steps=12: std=1040.0657  range=3194.4
+  steps=15: std=2095.5147  range=6562.5
+  steps=20: std=5375.638  range=17100.0
+
+FINDING 4 — Cache Invalidation
+------------------------------------------------
+  manual_dict steps=0                : error%=9.9099
+  lru_cache steps=0                  : error%=9.9099
+  manual_dict steps=1                : error%=9.9099
+  lru_cache steps=1                  : error%=9.9099
+  manual_dict steps=2                : error%=9.9099
+  lru_cache steps=2                  : error%=9.9099
+  manual_dict steps=3                : error%=9.9099
+  lru_cache steps=3                  : error%=9.9099
+  manual_dict steps=5                : error%=9.9099
+  lru_cache steps=5                  : error%=9.9099
+  manual_dict steps=10               : error%=9.9099
+  lru_cache steps=10                 : error%=9.9099
+  manual_dict steps=20               : error%=9.9099
+  lru_cache steps=20                 : error%=9.9099
+  observe_invalidation steps=None    : error%=17.3554
+
+====================================================================
+  END OF FINDINGS
+====================================================================

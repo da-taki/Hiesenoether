@@ -1,0 +1,16 @@
+cache_error,cache_error_pct,cached_result,case_type,observe_count,steps_between,true_result
+2.2,9.9099,20.0,manual_dict,,0,22.2
+2.2,9.9099,20.0,lru_cache,,0,22.2
+2.2,9.9099,20.0,manual_dict,,1,22.2
+2.2,9.9099,20.0,lru_cache,,1,22.2
+2.2,9.9099,20.0,manual_dict,,2,22.2
+2.2,9.9099,20.0,lru_cache,,2,22.2
+2.2,9.9099,20.0,manual_dict,,3,22.2
+2.2,9.9099,20.0,lru_cache,,3,22.2
+2.2,9.9099,20.0,manual_dict,,5,22.2
+2.2,9.9099,20.0,lru_cache,,5,22.2
+2.2,9.9099,20.0,manual_dict,,10,22.2
+2.2,9.9099,20.0,lru_cache,,10,22.2
+2.2,9.9099,20.0,manual_dict,,20,22.2
+2.2,9.9099,20.0,lru_cache,,20,22.2
+2.1,17.3554,10.0,observe_invalidation,1,,12.1

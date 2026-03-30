@@ -1,0 +1,91 @@
+2026-03-30 17:27:46,006 [INFO] ============================================================
+2026-03-30 17:27:46,006 [INFO] Ordered Chaos — Python Runtime Validation
+2026-03-30 17:27:46,006 [INFO] Python      : 3.12.10
+2026-03-30 17:27:46,006 [INFO] NUM_RUNS    : 1,000
+2026-03-30 17:27:46,006 [INFO] RANDOM_SEED : 42
+2026-03-30 17:27:46,006 [INFO] ============================================================
+2026-03-30 17:27:46,006 [INFO] Running descriptor experiment (A1 + A3 analogues)...
+2026-03-30 17:27:46,234 [INFO]   Done in 0.2s — 18 config rows
+2026-03-30 17:27:46,235 [INFO] Running cache invalidation experiment...
+2026-03-30 17:27:46,238 [INFO]   Done in 0.0s — max cache error: 17.36%
+2026-03-30 17:27:46,238 [INFO] Running SLE fitting experiment (A2 analogue)...
+2026-03-30 17:27:46,885 [INFO]   Done in 0.6s — SLE=2.8603  R²=0.9842  95% CI=[2.8603, 2.8603]
+2026-03-30 17:27:46,886 [INFO] Writing summary CSVs and findings...
+2026-03-30 17:32:08,695 [INFO] ============================================================
+2026-03-30 17:32:08,695 [INFO] Ordered Chaos — Python Runtime Validation
+2026-03-30 17:32:08,695 [INFO] Python      : 3.12.10
+2026-03-30 17:32:08,695 [INFO] NUM_RUNS    : 1,000
+2026-03-30 17:32:08,695 [INFO] RANDOM_SEED : 42
+2026-03-30 17:32:08,695 [INFO] ============================================================
+2026-03-30 17:32:08,695 [INFO] Running descriptor experiment (A1 + A3 analogues)...
+2026-03-30 17:32:08,846 [INFO]   Done in 0.2s — 18 config rows
+2026-03-30 17:32:08,846 [INFO] Running cache invalidation experiment...
+2026-03-30 17:32:08,846 [INFO]   Done in 0.0s — max cache error: 17.36%
+2026-03-30 17:32:08,846 [INFO] Running SLE fitting experiment (A2 analogue)...
+2026-03-30 17:32:09,320 [INFO]   Done in 0.5s — SLE=2.8603  R²=0.9842  95% CI=[2.8603, 2.8603]
+2026-03-30 17:32:09,320 [INFO] Writing summary CSVs and findings...
+2026-03-30 17:32:09,377 [INFO] Generating figures...
+2026-03-30 17:32:13,953 [INFO] ============================================================
+2026-03-30 17:32:13,953 [INFO] RESULTS SUMMARY
+2026-03-30 17:32:13,953 [INFO]   Python SLE              : 2.860307
+2026-03-30 17:32:13,953 [INFO]   SLE R²                  : 0.984208
+2026-03-30 17:32:13,953 [INFO]   SLE 95% CI              : [2.860307, 2.860307]
+2026-03-30 17:32:13,954 [INFO]   Hiesenoether SLE (ref)  : 2.7891
+2026-03-30 17:32:13,954 [INFO]   Max cache error %%       : 17.36
+2026-03-30 17:32:13,954 [INFO]   Total runtime           : 5.3s
+2026-03-30 17:32:13,954 [INFO]   Summary CSVs            : C:\Users\Asus\Desktop\Profitlo Projects\Hiesenoether\real_world_validation\results\summary
+2026-03-30 17:32:13,954 [INFO]   Figures                 : C:\Users\Asus\Desktop\Profitlo Projects\Hiesenoether\real_world_validation\results\figures
+2026-03-30 17:32:13,954 [INFO]   Run log                 : C:\Users\Asus\Desktop\Profitlo Projects\Hiesenoether\real_world_validation\results\logs\run.log
+2026-03-30 17:32:13,955 [INFO] ============================================================
+2026-03-30 17:32:34,696 [INFO] ============================================================
+2026-03-30 17:32:34,696 [INFO] Ordered Chaos — Python Runtime Validation
+2026-03-30 17:32:34,696 [INFO] Python      : 3.12.10
+2026-03-30 17:32:34,696 [INFO] NUM_RUNS    : 1,000
+2026-03-30 17:32:34,697 [INFO] RANDOM_SEED : 42
+2026-03-30 17:32:34,697 [INFO] ============================================================
+2026-03-30 17:32:34,697 [INFO] Running descriptor experiment (A1 + A3 analogues)...
+2026-03-30 17:32:34,844 [INFO]   Done in 0.1s — 18 config rows
+2026-03-30 17:32:34,844 [INFO] Running cache invalidation experiment...
+2026-03-30 17:32:34,846 [INFO]   Done in 0.0s — max cache error: 17.36%
+2026-03-30 17:32:34,846 [INFO] Running SLE fitting experiment (A2 analogue)...
+2026-03-30 17:32:35,276 [INFO]   Done in 0.4s — SLE=2.8603  R²=0.9842  95% CI=[2.8603, 2.8603]
+2026-03-30 17:32:35,276 [INFO] Writing summary CSVs and findings...
+2026-03-30 17:32:35,326 [INFO] Generating figures...
+2026-03-30 17:32:38,347 [INFO] ============================================================
+2026-03-30 17:32:38,347 [INFO] RESULTS SUMMARY
+2026-03-30 17:32:38,347 [INFO]   Python SLE              : 2.860307
+2026-03-30 17:32:38,347 [INFO]   SLE R²                  : 0.984208
+2026-03-30 17:32:38,347 [INFO]   SLE 95% CI              : [2.860307, 2.860307]
+2026-03-30 17:32:38,347 [INFO]   Hiesenoether SLE (ref)  : 2.7891
+2026-03-30 17:32:38,347 [INFO]   Max cache error %%       : 17.36
+2026-03-30 17:32:38,347 [INFO]   Total runtime           : 3.7s
+2026-03-30 17:32:38,347 [INFO]   Summary CSVs            : C:\Users\Asus\Desktop\Profitlo Projects\Hiesenoether\real_world_validation\results\summary
+2026-03-30 17:32:38,347 [INFO]   Figures                 : C:\Users\Asus\Desktop\Profitlo Projects\Hiesenoether\real_world_validation\results\figures
+2026-03-30 17:32:38,347 [INFO]   Run log                 : C:\Users\Asus\Desktop\Profitlo Projects\Hiesenoether\real_world_validation\results\logs\run.log
+2026-03-30 17:32:38,347 [INFO] ============================================================
+2026-03-30 17:35:36,016 [INFO] ============================================================
+2026-03-30 17:35:36,016 [INFO] Ordered Chaos — Python Runtime Validation
+2026-03-30 17:35:36,016 [INFO] Python      : 3.12.10
+2026-03-30 17:35:36,016 [INFO] NUM_RUNS    : 100,000
+2026-03-30 17:35:36,016 [INFO] RANDOM_SEED : 42
+2026-03-30 17:35:36,016 [INFO] ============================================================
+2026-03-30 17:35:36,016 [INFO] Running descriptor experiment (A1 + A3 analogues)...
+2026-03-30 17:35:46,607 [INFO]   Done in 10.6s — 18 config rows
+2026-03-30 17:35:46,607 [INFO] Running cache invalidation experiment...
+2026-03-30 17:35:46,607 [INFO]   Done in 0.0s — max cache error: 17.36%
+2026-03-30 17:35:46,613 [INFO] Running SLE fitting experiment (A2 analogue)...
+2026-03-30 17:37:24,646 [INFO]   Done in 98.0s — SLE=2.8603  R²=0.9842  95% CI=[2.8603, 2.8603]
+2026-03-30 17:37:24,646 [INFO] Writing summary CSVs and findings...
+2026-03-30 17:37:25,893 [INFO] Generating figures...
+2026-03-30 17:37:28,704 [INFO] ============================================================
+2026-03-30 17:37:28,704 [INFO] RESULTS SUMMARY
+2026-03-30 17:37:28,704 [INFO]   Python SLE              : 2.860307
+2026-03-30 17:37:28,704 [INFO]   SLE R²                  : 0.984208
+2026-03-30 17:37:28,704 [INFO]   SLE 95% CI              : [2.860307, 2.860307]
+2026-03-30 17:37:28,704 [INFO]   Hiesenoether SLE (ref)  : 2.7891
+2026-03-30 17:37:28,704 [INFO]   Max cache error %%       : 17.36
+2026-03-30 17:37:28,704 [INFO]   Total runtime           : 112.7s
+2026-03-30 17:37:28,704 [INFO]   Summary CSVs            : C:\Users\Asus\Desktop\Profitlo Projects\Hiesenoether\real_world_validation\results\summary
+2026-03-30 17:37:28,704 [INFO]   Figures                 : C:\Users\Asus\Desktop\Profitlo Projects\Hiesenoether\real_world_validation\results\figures
+2026-03-30 17:37:28,704 [INFO]   Run log                 : C:\Users\Asus\Desktop\Profitlo Projects\Hiesenoether\real_world_validation\results\logs\run.log
+2026-03-30 17:37:28,704 [INFO] ============================================================
