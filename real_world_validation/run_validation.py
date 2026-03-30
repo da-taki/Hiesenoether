@@ -11,6 +11,10 @@ ROOT = Path(__file__).parent.parent
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
+RWV = Path(__file__).parent
+if str(RWV) not in sys.path:
+    sys.path.insert(0, str(RWV))
+
 import config
 
 config.RESULTS_RAW_DIR.mkdir(parents=True, exist_ok=True)
@@ -78,6 +82,26 @@ def run_all(num_runs: int = config.NUM_RUNS) -> None:
         f"95% CI=[{sle_result['ci_low']:.4f}, {sle_result['ci_high']:.4f}]"
     )
 
+    # ── Real system case studies ─────────────────────────────────────
+    logger.info("Running real system case studies (risk / ORM / ML)...")
+    t0 = time.time()
+    from experiments.exp_real_system_case import run_experiment as run_real_system
+    real_system_rows = run_real_system(num_runs)
+    if real_system_rows:
+        cases = {}
+        for r in real_system_rows:
+            cases.setdefault(r["case"], []).append(r["flip_rate"])
+        for case_name, flip_rates in cases.items():
+            logger.info(
+                f"  {case_name}: max flip_rate={max(flip_rates):.4f}  "
+                f"monotonic={real_system_rows[[r['case'] for r in real_system_rows].index(case_name)]['monotonic_drift']}"
+            )
+    logger.info(
+        f"  Done in {time.time() - t0:.1f}s — "
+        f"{len(real_system_rows)} rows across "
+        f"{len({r['case'] for r in real_system_rows})} case families"
+    )
+
     # ── NumPy stub ───────────────────────────────────────────────────
     from experiments.exp_numpy_extension import run_experiment as run_numpy
     run_numpy()
@@ -103,6 +127,15 @@ def run_all(num_runs: int = config.NUM_RUNS) -> None:
 
     # ── Final summary ────────────────────────────────────────────────
     elapsed = time.time() - t_start
+
+    # Compute per-case max flip rates for summary line
+    flip_summary = {}
+    for r in real_system_rows:
+        case = r["case"]
+        fr = float(r.get("flip_rate", 0))
+        if case not in flip_summary or fr > flip_summary[case]:
+            flip_summary[case] = fr
+
     logger.info("=" * 60)
     logger.info("RESULTS SUMMARY")
     logger.info(f"  Python SLE              : {sle_result['sle']}")
@@ -110,6 +143,9 @@ def run_all(num_runs: int = config.NUM_RUNS) -> None:
     logger.info(f"  SLE 95% CI              : [{sle_result['ci_low']}, {sle_result['ci_high']}]")
     logger.info(f"  Hiesenoether SLE (ref)  : 2.7891")
     logger.info(f"  Max cache error %%       : {max_err:.2f}")
+    logger.info(f"  Real system rows        : {len(real_system_rows)}")
+    for case_name, max_fr in flip_summary.items():
+        logger.info(f"  Flip rate [{case_name:<20}]: {max_fr:.4f} ({max_fr*100:.2f}%)")
     logger.info(f"  Total runtime           : {elapsed:.1f}s")
     logger.info(f"  Summary CSVs            : {config.RESULTS_SUMMARY_DIR}")
     logger.info(f"  Figures                 : {config.RESULTS_FIGURES_DIR}")

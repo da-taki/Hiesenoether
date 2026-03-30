@@ -4,7 +4,13 @@ import csv
 import math
 import random
 import statistics
+import sys
 from pathlib import Path
+
+# Path guard: ensures 'core' is importable when called from repo root
+_RWV = Path(__file__).parent.parent
+if str(_RWV) not in sys.path:
+    sys.path.insert(0, str(_RWV))
 
 from core.unstable_object import UnstableObject
 
@@ -65,7 +71,6 @@ def run_single(ops: list, nonlinearity: str) -> float:
 
 
 def run_single_cached(add_steps: int, nonlinearity: str) -> float:
-    """Single read cached and reused for all add steps — stale access pattern."""
     obj = UnstableObject(base=BASE_VALUE)
     cached_val = obj.read()
     y = cached_val * add_steps

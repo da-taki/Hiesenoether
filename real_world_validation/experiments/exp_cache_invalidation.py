@@ -2,8 +2,13 @@
 
 import csv
 import functools
-import math
+import sys
 from pathlib import Path
+
+# Path guard: ensures 'core' is importable when called from repo root
+_RWV = Path(__file__).parent.parent
+if str(_RWV) not in sys.path:
+    sys.path.insert(0, str(_RWV))
 
 from core.unstable_object import UnstableObject
 
@@ -19,16 +24,15 @@ except ImportError:
 STEPS_BETWEEN_SWEEP = [0, 1, 2, 3, 5, 10, 20]
 
 
-def _make_fresh_obj_at_state(base: float, target_access: int, target_entropy: float) -> UnstableObject:
-    """Reconstruct an UnstableObject with given access_count and entropy without calling read()."""
-    from core.unstable_object import INITIAL_ENTROPY, ENTROPY_INCREMENT
+def _make_fresh_obj_at_state(base: float, target_access: int,
+                              target_entropy: float) -> UnstableObject:
     obj = UnstableObject(base=base, initial_entropy=target_entropy)
     obj.access_count = target_access
     return obj
 
 
-def _compute_true_result(base: float, access_count_at_call: int, entropy_at_call: float,
-                         multiplier: float) -> float:
+def _compute_true_result(base: float, access_count_at_call: int,
+                          entropy_at_call: float, multiplier: float) -> float:
     obj = _make_fresh_obj_at_state(base, access_count_at_call, entropy_at_call)
     return obj.read() * multiplier
 
@@ -74,7 +78,8 @@ def run_lru_cache_case(steps_between: int) -> dict:
     @functools.lru_cache(maxsize=128)
     def cached_compute(key: str, mult: float) -> float:
         val = shared_obj.read() * mult
-        call_log.append(("computed", shared_obj.access_count, shared_obj.entropy, val))
+        call_log.append(("computed", shared_obj.access_count,
+                         shared_obj.entropy, val))
         return val
 
     first_result = cached_compute("x", multiplier)
@@ -111,8 +116,6 @@ def run_observe_invalidation_case() -> dict:
     cache = {"key": first_val}
 
     ac_after_first = obj.access_count
-    ent_after_first = obj.entropy
-
     obj.observe()
 
     cache_hit_result = cache["key"]

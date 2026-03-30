@@ -4,7 +4,13 @@ import csv
 import math
 import random
 import statistics
+import sys
 from pathlib import Path
+
+# Path guard: ensures 'core' is importable when called from repo root
+_RWV = Path(__file__).parent.parent
+if str(_RWV) not in sys.path:
+    sys.path.insert(0, str(_RWV))
 
 from core.unstable_object import UnstableObject
 
@@ -167,11 +173,12 @@ def run_experiment(num_runs: int = NUM_RUNS) -> dict:
     degrees = [v[0] for v in valid]
     log_ranges = [v[1] for v in valid]
 
-    sle, r_squared = (0.0, 0.0)
-    ci_low, ci_high = (0.0, 0.0)
+    sle, r_squared = 0.0, 0.0
+    ci_low, ci_high = 0.0, 0.0
 
     if len(degrees) >= 2:
         try:
+            sys.path.insert(0, str(Path(__file__).parent.parent))
             from analysis.sle_fit import fit_sle, bootstrap_sle_ci
             sle, r_squared = fit_sle(degrees, log_ranges)
             ci_low, ci_high = bootstrap_sle_ci(
