@@ -1,0 +1,5 @@
+experiment,config,schedule,beta,nonlinearity,steps,inspects,mean,std,min,max,range,log_range,n,gamma_collapse,r2_gamma
+E4,e4_constant_beta_0p0_steps_6,constant,0.0,quadratic,6,1,2316.5645,135.5626,2060.8,2444.8,384.0,5.950643,100000,3.330216,0.998566
+E4,e4_constant_beta_0p0_steps_12,constant,0.0,quadratic,12,1,13582.13,1040.29,11451.44,14645.84,3194.4,8.069155,100000,3.330216,0.998566
+E4,e4_constant_beta_0p0_steps_20,constant,0.0,quadratic,20,1,68725.4625,5387.24,57330.0,74430.0,17100.0,9.746834,100000,3.330216,0.998566
+E4,e4_constant_beta_0p0_steps_50,constant,0.0,quadratic,50,1,2370145.1796,134800.1159,2076300.0,2517300.0,441000.0,12.9968,100000,3.330216,0.998566

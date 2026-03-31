@@ -1,0 +1,5 @@
+experiment,config,ablation,steps,inspects,mean,std,min,max,range,log_range,n
+E3,ablation_baseline,none,6,1,2316.7583,135.7523,2060.8,2444.8,384.0,5.950643,100000
+E3,ablation_noop_inspect,noop_inspect,6,1,1577.8,0.0,1577.8,1577.8,0.0,0.0,100000
+E3,ablation_no_entropy,no_entropy,6,1,1869.4806,116.7647,1650.0,1980.0,330.0,5.799093,100000
+E3,ablation_fixed_order,fixed_order,6,1,2444.8,0.0,2444.8,2444.8,0.0,0.0,100000

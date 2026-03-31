@@ -1,0 +1,14 @@
+experiment,config,schedule,beta,nonlinearity,steps,inspects,mean,std,min,max,range,log_range,n,gamma_collapse,r2_gamma
+E4,e4_constant_beta_0p0_steps_6,constant,0.0,quadratic,6,1,2316.5645,135.5626,2060.8,2444.8,384.0,5.950643,100000,3.330216,0.998566
+E4,e4_linear_decay_beta_0p0_steps_6,linear_decay,0.0,quadratic,6,1,2316.7867,135.7314,2060.8,2444.8,384.0,5.950643,100000,3.330216,0.998566
+E4,e4_linear_decay_beta_0p05_steps_6,linear_decay,0.05,quadratic,6,1,2242.3345,132.2175,1992.606,2367.156,374.55,5.925725,100000,2.945859,0.999997
+E4,e4_linear_decay_beta_0p1_steps_6,linear_decay,0.1,quadratic,6,1,2168.3068,129.1202,1925.294,2290.394,365.1,5.900171,100000,2.876384,0.99994
+E4,e4_linear_decay_beta_0p2_steps_6,linear_decay,0.2,quadratic,6,1,2034.4869,123.0649,1802.64,2150.64,348.0,5.852202,100000,2.853198,0.999887
+E4,e4_linear_decay_beta_0p5_steps_6,linear_decay,0.5,quadratic,6,1,1911.6472,118.3029,1689.225,2023.725,334.5,5.812637,100000,2.841523,0.99987
+E4,e4_linear_decay_beta_1p0_steps_6,linear_decay,1.0,quadratic,6,1,1869.8814,116.5109,1650.0,1980.0,330.0,5.799093,100000,2.837347,0.999863
+E4,e4_exponential_decay_beta_0p0_steps_6,exponential_decay,0.0,quadratic,6,1,2316.9277,135.6469,2060.8,2444.8,384.0,5.950643,100000,3.330216,0.998566
+E4,e4_exponential_decay_beta_0p05_steps_6,exponential_decay,0.05,quadratic,6,1,2249.4409,132.4568,1998.9592,2374.4553,375.4961,5.928248,100000,3.059281,0.999871
+E4,e4_exponential_decay_beta_0p1_steps_6,exponential_decay,0.1,quadratic,6,1,2194.6961,129.7685,1948.6963,2317.3067,368.6104,5.90974,100000,2.953902,0.999969
+E4,e4_exponential_decay_beta_0p2_steps_6,exponential_decay,0.2,quadratic,6,1,2112.6151,126.2817,1873.5922,2231.9986,358.4064,5.881667,100000,2.885828,0.999951
+E4,e4_exponential_decay_beta_0p5_steps_6,exponential_decay,0.5,quadratic,6,1,1986.8747,121.2237,1758.3637,2101.5464,343.1827,5.838263,100000,2.850619,0.999887
+E4,e4_exponential_decay_beta_1p0_steps_6,exponential_decay,1.0,quadratic,6,1,1918.3386,118.3032,1694.4695,2029.6943,335.2248,5.814801,100000,2.84221,0.999871

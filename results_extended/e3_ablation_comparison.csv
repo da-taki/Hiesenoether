@@ -1,0 +1,5 @@
+config,ablation,std,range,log_range,std_vs_baseline,range_vs_baseline
+ablation_baseline,none,135.7523,384.0,5.950643,1.0,1.0
+ablation_noop_inspect,noop_inspect,0.0,0.0,0.0,0.0,0.0
+ablation_no_entropy,no_entropy,116.7647,330.0,5.799093,0.8601,0.8594
+ablation_fixed_order,fixed_order,0.0,0.0,0.0,0.0,0.0

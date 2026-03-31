@@ -1,0 +1,107 @@
+====================================================================
+  ORDERED CHAOS — EXTENDED EXPERIMENT FINDINGS (E1–E5)
+====================================================================
+
+E1 — Extended Degree Sweep
+------------------------------------------------
+  linear                 deg=1  range=15.0  log(range)=2.70805
+  quadratic              deg=2  range=384.0  log(range)=5.950643
+  cubic                  deg=3  range=11097.6  log(range)=9.314484
+  extreme                deg=4  range=67584.0  log(range)=11.121127
+  degree_5               deg=5  range=12980196.864  log(range)=16.378935
+  degree_6               deg=6  range=519207874.56  log(range)=20.067815
+  degree_7               deg=7  range=22897067268.096  log(range)=23.854275
+  degree_8               deg=8  range=1108218055775.8477  log(range)=27.733774
+  self_ref_yyx2          deg=9  range=1953177.6  log(range)=14.484968
+  self_ref_yyy_x         deg=10  range=8942688.0  log(range)=16.006347
+  SLE (E1, all degrees): 1.899453  R²=0.54198
+
+E2 — Entropy Parameter Sensitivity
+------------------------------------------------
+  Max std: e0=4.0 de=0.5 → std=307.4037
+  Min std: e0=0.25 de=0.02 → std=96.3224
+
+E3 — Measured Ablation
+------------------------------------------------
+  ablation_baseline              std=135.7523  range=384.0
+  ablation_noop_inspect          std=0.0  range=0.0
+  ablation_no_entropy            std=116.7647  range=330.0
+  ablation_fixed_order           std=0.0  range=0.0
+
+E4 — Entropy Decay Sweep
+------------------------------------------------
+  Schedule: constant
+    beta=0.0    steps=6     std=135.5626  range=384.0
+    beta=0.0    steps=12    std=1040.29  range=3194.4
+    beta=0.0    steps=20    std=5387.24  range=17100.0
+    beta=0.0    steps=50    std=134800.1159  range=441000.0
+  Schedule: linear_decay
+    beta=0.0    steps=6     std=135.7314  range=384.0
+    beta=0.0    steps=12    std=1040.5476  range=3194.4
+    beta=0.0    steps=20    std=5379.7539  range=17100.0
+    beta=0.0    steps=50    std=134669.7934  range=441000.0
+    beta=0.05   steps=6     std=132.2175  range=374.55
+    beta=0.05   steps=12    std=941.6627  range=2885.52
+    beta=0.05   steps=20    std=4132.5858  range=13110.0
+    beta=0.05   steps=50    std=58853.2896  range=192937.5
+    beta=0.1    steps=6     std=129.1202  range=365.1
+    beta=0.1    steps=12    std=846.473  range=2600.4
+    beta=0.1    steps=20    std=3534.8784  range=11210.0
+    beta=0.1    steps=50    std=49357.9028  range=162312.5
+    beta=0.2    steps=6     std=123.0649  range=348.0
+    beta=0.2    steps=12    std=783.8935  range=2402.4
+    beta=0.2    steps=20    std=3231.9299  range=10260.0
+    beta=0.2    steps=50    std=44775.5786  range=147000.0
+    beta=0.5    steps=6     std=118.3029  range=334.5
+    beta=0.5    steps=12    std=745.7744  range=2283.6
+    beta=0.5    steps=20    std=3047.1046  range=9690.0
+    beta=0.5    steps=50    std=42084.6251  range=137812.5
+    beta=1.0    steps=6     std=116.5109  range=330.0
+    beta=1.0    steps=12    std=730.6252  range=2244.0
+    beta=1.0    steps=20    std=2984.4046  range=9500.0
+    beta=1.0    steps=50    std=41046.8304  range=134750.0
+  Schedule: exponential_decay
+    beta=0.0    steps=6     std=135.6469  range=384.0
+    beta=0.0    steps=12    std=1041.5506  range=3194.4
+    beta=0.0    steps=20    std=5382.1163  range=17100.0
+    beta=0.0    steps=50    std=134394.8658  range=441000.0
+    beta=0.05   steps=6     std=132.4568  range=375.4961
+    beta=0.05   steps=12    std=957.4823  range=2940.9642
+    beta=0.05   steps=20    std=4462.3947  range=14185.0142
+    beta=0.05   steps=50    std=74565.3182  range=244406.898
+    beta=0.1    steps=6     std=129.7685  range=368.6104
+    beta=0.1    steps=12    std=903.3977  range=2770.2426
+    beta=0.1    steps=20    std=3989.475  range=12624.1773
+    beta=0.1    steps=50    std=58840.5176  range=192596.125
+    beta=0.2    steps=6     std=126.2817  range=358.4064
+    beta=0.2    steps=12    std=837.1882  range=2569.2676
+    beta=0.2    steps=20    std=3527.0343  range=11184.8935
+    beta=0.2    steps=50    std=49477.2255  range=162413.2594
+    beta=0.5    steps=6     std=121.2237  range=343.1827
+    beta=0.5    steps=12    std=770.8353  range=2365.7837
+    beta=0.5    steps=20    std=3173.0958  range=10085.7412
+    beta=0.5    steps=50    std=43866.4378  range=144191.6513
+    beta=1.0    steps=6     std=118.3032  range=335.2248
+    beta=1.0    steps=12    std=745.5955  range=2290.0923
+    beta=1.0    steps=20    std=3053.991  range=9721.1511
+    beta=1.0    steps=50    std=42146.8685  range=138314.6073
+
+E5 — Length Scaling Extension
+------------------------------------------------
+  Power-law fit: alpha=3.272676  R²=0.995774
+  steps=3     std=20.7277  range=50.7
+  steps=6     std=135.8717  range=384.0  Δstd=115.144
+  steps=9     std=435.1812  range=1299.6  Δstd=299.3095
+  steps=12    std=1042.8953  range=3194.4  Δstd=607.7141
+  steps=15    std=2098.1693  range=6562.5  Δstd=1055.274
+  steps=20    std=5388.2448  range=17100.0  Δstd=3290.0755
+  steps=25    std=11444.3752  range=36750.0  Δstd=6056.1304
+  steps=30    std=21540.6736  range=69600.0  Δstd=10096.2984
+  steps=40    std=59721.5775  range=195000.0  Δstd=38180.9039
+  steps=50    std=134451.5882  range=441000.0  Δstd=74730.0107
+  steps=75    std=604566.5288  range=2004937.5  Δstd=470114.9406
+  steps=100   std=1809172.2574  range=5989500.0  Δstd=1204605.7286
+
+====================================================================
+  END OF EXTENDED FINDINGS
+====================================================================
