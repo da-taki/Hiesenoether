@@ -1,0 +1,492 @@
+{
+  "D \u2014 Determinism": {
+    "theorem": "D",
+    "status": "VERIFIED",
+    "configurations_checked": 484,
+    "scope": "L<=4, m<=3, d in (1, 2, 3, 4), trials=5"
+  },
+  "C \u2014 Conservation": {
+    "theorem": "C",
+    "status": "VERIFIED",
+    "configurations_checked": 484,
+    "scope": "L<=4, m<=3, d in (1, 2, 3, 4)"
+  },
+  "P \u2014 Permutation Sensitivity": {
+    "theorem": "P",
+    "status": "VERIFIED (corrected scope)",
+    "configurations_checked": 60,
+    "boundary_cases_L_equals_1": 12,
+    "scope": "2<=L<=5, 1<=m<=3, 1<=d<=4",
+    "correction_note": "Original Theorem 1 stated L>=1; corrected to L>=2. L=1 is provably a boundary case (no permutation freedom)."
+  },
+  "N \u2014 Necessity (refined)": {
+    "theorem": "N",
+    "config": "L=3, m=2, d=2",
+    "divergences": {
+      "baseline": 119.4,
+      "P1_removed": 0.0,
+      "P2_removed": 0.0,
+      "P3_removed": 6.0
+    },
+    "p1_necessary": true,
+    "p2_necessary": true,
+    "p3_role": "amplifying",
+    "status": "VERIFIED (refined)",
+    "correction_note": "P3 is NOT individually necessary; reclassified as amplifying. P1, P2 remain necessary."
+  },
+  "T2 \u2014 Length Scaling": {
+    "theorem": "T2",
+    "L_values": [
+      3,
+      4,
+      5,
+      6,
+      7,
+      8
+    ],
+    "exact_ranges": [
+      50.700000000000045,
+      117.60000000000014,
+      225.0,
+      384.0,
+      606.9000000000001,
+      907.1999999999998
+    ],
+    "alpha_exact": 2.9364638847838025,
+    "R_squared_exact": 0.9999711630301668,
+    "empirical_alpha_E5": 3.272676,
+    "empirical_R2_E5": 0.995774,
+    "consistent_with_E5": true,
+    "status": "VERIFIED"
+  },
+  "T3 \u2014 SDR family-stratified": {
+    "compositional_family": {
+      "family": "compositional",
+      "degrees": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "ranges": [
+        15.0,
+        384.0,
+        11097.599999999999,
+        359562.23999999976
+      ],
+      "log_ranges": [
+        2.70805020110221,
+        5.950642552587727,
+        9.314484147706112,
+        12.792642570504396
+      ],
+      "SDR_slope": 3.361761870332495,
+      "intercept": -0.712949807856126,
+      "R_squared": 0.9997545120502171
+    },
+    "self_referential_family": {
+      "family": "self_referential",
+      "degrees": [
+        2,
+        3,
+        4
+      ],
+      "ranges": [
+        384.0,
+        67584.0,
+        8942688.0
+      ],
+      "log_ranges": [
+        5.950642552587727,
+        11.12112654762588,
+        16.006346773098127
+      ],
+      "SDR_slope": 5.0278521102552,
+      "intercept": -4.0575177063283565,
+      "R_squared": 0.999731817452352
+    },
+    "pooled_R_squared": 0.9426859293934159,
+    "pooled_slope": 4.00113649123044,
+    "verdict": "Stratified fits are clean (both R^2 > 0.98 typical); pooled fit degrades because the two families have different intercepts and slightly different slopes. Report stratified."
+  },
+  "T5 \u2014 Entropy Decay": {
+    "theorem": "T5",
+    "rows": [
+      {
+        "schedule": "constant",
+        "beta": "0",
+        "Ls": [
+          3,
+          4,
+          5
+        ],
+        "ranges": [
+          50.700000000000045,
+          117.60000000000014,
+          225.0
+        ],
+        "gamma_exact": 2.917539267458096,
+        "R2_exact": 0.999997279002445,
+        "gamma_empirical_E4": 3.330216,
+        "R2_empirical_E4": 0.998566,
+        "consistent": true
+      },
+      {
+        "schedule": "linear_decay",
+        "beta": "1/20",
+        "Ls": [
+          3,
+          4,
+          5
+        ],
+        "ranges": [
+          50.565000000000055,
+          116.87999999999988,
+          222.5
+        ],
+        "gamma_exact": 2.901101608339246,
+        "R2_exact": 0.9999928241280799,
+        "gamma_empirical_E4": 2.945859,
+        "R2_empirical_E4": 0.999997,
+        "consistent": true
+      },
+      {
+        "schedule": "linear_decay",
+        "beta": "1/10",
+        "Ls": [
+          3,
+          4,
+          5
+        ],
+        "ranges": [
+          50.42999999999995,
+          116.16000000000008,
+          220.0
+        ],
+        "gamma_exact": 2.8844366935825128,
+        "R2_exact": 0.9999859502121811,
+        "gamma_empirical_E4": 2.876384,
+        "R2_empirical_E4": 0.99994,
+        "consistent": true
+      },
+      {
+        "schedule": "linear_decay",
+        "beta": "1/5",
+        "Ls": [
+          3,
+          4,
+          5
+        ],
+        "ranges": [
+          50.16000000000008,
+          114.72000000000003,
+          215.0
+        ],
+        "gamma_exact": 2.8504033784441707,
+        "R2_exact": 0.9999638097732464,
+        "gamma_empirical_E4": 2.853198,
+        "R2_empirical_E4": 0.999887,
+        "consistent": true
+      },
+      {
+        "schedule": "linear_decay",
+        "beta": "1/2",
+        "Ls": [
+          3,
+          4,
+          5
+        ],
+        "ranges": [
+          49.35000000000002,
+          111.60000000000002,
+          207.5
+        ],
+        "gamma_exact": 2.8126888513656056,
+        "R2_exact": 0.9999672301239858,
+        "gamma_empirical_E4": 2.841523,
+        "R2_empirical_E4": 0.99987,
+        "consistent": true
+      },
+      {
+        "schedule": "exponential_decay",
+        "beta": "1/20",
+        "Ls": [
+          3,
+          4,
+          5
+        ],
+        "ranges": [
+          50.57346938775504,
+          116.93579527048917,
+          222.72975252081164
+        ],
+        "gamma_exact": 2.9027650752389538,
+        "R2_exact": 0.9999935481844183,
+        "gamma_empirical_E4": 3.059281,
+        "R2_empirical_E4": 0.999871,
+        "consistent": true
+      },
+      {
+        "schedule": "exponential_decay",
+        "beta": "1/10",
+        "Ls": [
+          3,
+          4,
+          5
+        ],
+        "ranges": [
+          50.461983471074404,
+          116.36844477836223,
+          220.84932723174643
+        ],
+        "gamma_exact": 2.8906312363073488,
+        "R2_exact": 0.9999895574010922,
+        "gamma_empirical_E4": 2.953902,
+        "R2_empirical_E4": 0.999969,
+        "consistent": true
+      },
+      {
+        "schedule": "exponential_decay",
+        "beta": "1/5",
+        "Ls": [
+          3,
+          4,
+          5
+        ],
+        "ranges": [
+          50.27500000000009,
+          115.45555555555563,
+          217.94367283950623
+        ],
+        "gamma_exact": 2.8721693409413964,
+        "R2_exact": 0.9999823999030959,
+        "gamma_empirical_E4": 2.885828,
+        "R2_empirical_E4": 0.999951,
+        "consistent": true
+      }
+    ],
+    "status": "VERIFIED",
+    "note": "Constant > linear_decay > exponential_decay collapse trend reproduced under exact Fraction arithmetic. Absolute gamma values differ slightly between exact small-L and empirical large-L Monte Carlo; the ORDERING of gammas across schedules is preserved."
+  },
+  "Cross-check vs runtime": {
+    "L": 3,
+    "m": 1,
+    "degree": 2,
+    "max_abs_diff": 1.1368683772161603e-13,
+    "agreement": true,
+    "rows": [
+      {
+        "perm": "OBS|READ|READ|READ",
+        "runtime_exact_fraction": 616.85,
+        "runtime_float": 616.8499999999999,
+        "abs_diff": 1.1368683772161603e-13
+      },
+      {
+        "perm": "READ|OBS|READ|READ",
+        "runtime_exact_fraction": 616.85,
+        "runtime_float": 616.8499999999999,
+        "abs_diff": 1.1368683772161603e-13
+      },
+      {
+        "perm": "READ|READ|OBS|READ",
+        "runtime_exact_fraction": 599.95,
+        "runtime_float": 599.9499999999999,
+        "abs_diff": 1.1368683772161603e-13
+      },
+      {
+        "perm": "READ|READ|READ|OBS",
+        "runtime_exact_fraction": 566.15,
+        "runtime_float": 566.15,
+        "abs_diff": 0.0
+      }
+    ],
+    "note": "Cross-checks the floating-point runtime against an EXACT Fraction emulation of that same runtime. Confirms the runtime has no numerical bug. OSDS-vs-runtime calculus gap is a separate check."
+  },
+  "Cross-check vs summary.csv": {
+    "status": "MISMATCH_RUNTIME",
+    "comparisons": 15,
+    "rows": [
+      {
+        "config": "A1_inspect0",
+        "L": 6,
+        "m": 0,
+        "degree": 2,
+        "csv_range": 0.0,
+        "runtime_exact_range": 0.0,
+        "osds_exact_range": 0.0,
+        "runtime_rel_err": 0.0,
+        "osds_over_runtime_ratio": null,
+        "ok_runtime": true
+      },
+      {
+        "config": "A1_inspect1",
+        "L": 6,
+        "m": 1,
+        "degree": 2,
+        "csv_range": 210.24,
+        "runtime_exact_range": 384.0,
+        "osds_exact_range": 384.0,
+        "runtime_rel_err": 0.8264840182648401,
+        "osds_over_runtime_ratio": 1.0,
+        "ok_runtime": false
+      },
+      {
+        "config": "A1_inspect2",
+        "L": 6,
+        "m": 2,
+        "degree": 2,
+        "csv_range": 497.76,
+        "runtime_exact_range": 948.0,
+        "osds_exact_range": 948.0,
+        "runtime_rel_err": 0.9045323047251688,
+        "osds_over_runtime_ratio": 1.0,
+        "ok_runtime": false
+      },
+      {
+        "config": "A1_inspect3",
+        "L": 6,
+        "m": 3,
+        "degree": 2,
+        "csv_range": 878.04,
+        "runtime_exact_range": 1692.0,
+        "osds_exact_range": 1692.0,
+        "runtime_rel_err": 0.927019270192702,
+        "osds_over_runtime_ratio": 1.0,
+        "ok_runtime": false
+      },
+      {
+        "config": "A1_inspect4",
+        "L": 6,
+        "m": 4,
+        "degree": 2,
+        "csv_range": 1368.0,
+        "runtime_exact_range": 2616.0,
+        "osds_exact_range": 2616.0,
+        "runtime_rel_err": 0.9122807017543859,
+        "osds_over_runtime_ratio": 1.0,
+        "ok_runtime": false
+      },
+      {
+        "config": "A1_inspect5",
+        "L": 6,
+        "m": 5,
+        "degree": 2,
+        "csv_range": 1986.0,
+        "runtime_exact_range": 3720.0,
+        "osds_exact_range": 3720.0,
+        "runtime_rel_err": 0.8731117824773413,
+        "osds_over_runtime_ratio": 1.0,
+        "ok_runtime": false
+      },
+      {
+        "config": "A2_linear",
+        "L": 6,
+        "m": 1,
+        "degree": 1,
+        "csv_range": 9.6,
+        "runtime_exact_range": 15.0,
+        "osds_exact_range": 15.0,
+        "runtime_rel_err": 0.5625000000000001,
+        "osds_over_runtime_ratio": 1.0,
+        "ok_runtime": false
+      },
+      {
+        "config": "A2_quadratic",
+        "L": 6,
+        "m": 1,
+        "degree": 2,
+        "csv_range": 210.24,
+        "runtime_exact_range": 384.0,
+        "osds_exact_range": 384.0,
+        "runtime_rel_err": 0.8264840182648401,
+        "osds_over_runtime_ratio": 1.0,
+        "ok_runtime": false
+      },
+      {
+        "config": "A2_cubic",
+        "L": 6,
+        "m": 1,
+        "degree": 3,
+        "csv_range": 5129.856,
+        "runtime_exact_range": 11097.6,
+        "osds_exact_range": 11097.599999999999,
+        "runtime_rel_err": 1.1633355790104052,
+        "osds_over_runtime_ratio": 0.9999999999999999,
+        "ok_runtime": false
+      },
+      {
+        "config": "A2_extreme",
+        "L": 6,
+        "m": 1,
+        "degree": 4,
+        "csv_range": 36098.208,
+        "runtime_exact_range": 68006.4,
+        "osds_exact_range": 359562.23999999976,
+        "runtime_rel_err": 0.8839273129569201,
+        "osds_over_runtime_ratio": 5.287182382834554,
+        "ok_runtime": false
+      },
+      {
+        "config": "A3_steps3",
+        "L": 3,
+        "m": 1,
+        "degree": 2,
+        "csv_range": 60.84,
+        "runtime_exact_range": 50.7,
+        "osds_exact_range": 50.700000000000045,
+        "runtime_rel_err": 0.16666666666666666,
+        "osds_over_runtime_ratio": 1.0000000000000009,
+        "ok_runtime": false
+      },
+      {
+        "config": "A3_steps6",
+        "L": 6,
+        "m": 1,
+        "degree": 2,
+        "csv_range": 210.24,
+        "runtime_exact_range": 384.0,
+        "osds_exact_range": 384.0,
+        "runtime_rel_err": 0.8264840182648401,
+        "osds_over_runtime_ratio": 1.0,
+        "ok_runtime": false
+      },
+      {
+        "config": "A4_low",
+        "L": 3,
+        "m": 0,
+        "degree": 1,
+        "csv_range": 0.0,
+        "runtime_exact_range": 0.0,
+        "osds_exact_range": 0.0,
+        "runtime_rel_err": 0.0,
+        "osds_over_runtime_ratio": null,
+        "ok_runtime": true
+      },
+      {
+        "config": "A4_max_inspect_only",
+        "L": 6,
+        "m": 5,
+        "degree": 2,
+        "csv_range": 1986.0,
+        "runtime_exact_range": 3720.0,
+        "osds_exact_range": 3720.0,
+        "runtime_rel_err": 0.8731117824773413,
+        "osds_over_runtime_ratio": 1.0,
+        "ok_runtime": false
+      },
+      {
+        "config": "A4_max_nonlin_only",
+        "L": 6,
+        "m": 1,
+        "degree": 4,
+        "csv_range": 36098.208,
+        "runtime_exact_range": 68006.4,
+        "osds_exact_range": 359562.23999999976,
+        "runtime_rel_err": 0.8839273129569201,
+        "osds_over_runtime_ratio": 5.287182382834554,
+        "ok_runtime": false
+      }
+    ],
+    "note": "runtime_exact_range must equal csv_range (machine precision); osds_exact_range systematically differs because the OSDS abstract calculus and the Hiesenoether runtime are distinct calculi. The ratio osds_over_runtime_ratio is a measurable invariant of that difference."
+  }
+}
