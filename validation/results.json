@@ -272,32 +272,32 @@
     "L": 3,
     "m": 1,
     "degree": 2,
-    "max_abs_diff": 1.1368683772161603e-13,
-    "agreement": true,
+    "max_abs_diff": 233.79000000000008,
+    "agreement": false,
     "rows": [
       {
         "perm": "OBS|READ|READ|READ",
-        "runtime_exact_fraction": 616.85,
+        "runtime_exact_fraction": 850.64,
         "runtime_float": 616.8499999999999,
-        "abs_diff": 1.1368683772161603e-13
+        "abs_diff": 233.79000000000008
       },
       {
         "perm": "READ|OBS|READ|READ",
-        "runtime_exact_fraction": 616.85,
+        "runtime_exact_fraction": 809.48,
         "runtime_float": 616.8499999999999,
-        "abs_diff": 1.1368683772161603e-13
+        "abs_diff": 192.6300000000001
       },
       {
         "perm": "READ|READ|OBS|READ",
-        "runtime_exact_fraction": 599.95,
+        "runtime_exact_fraction": 744.8,
         "runtime_float": 599.9499999999999,
-        "abs_diff": 1.1368683772161603e-13
+        "abs_diff": 144.85000000000002
       },
       {
         "perm": "READ|READ|READ|OBS",
-        "runtime_exact_fraction": 566.15,
+        "runtime_exact_fraction": 656.6,
         "runtime_float": 566.15,
-        "abs_diff": 0.0
+        "abs_diff": 90.45000000000005
       }
     ],
     "note": "Cross-checks the floating-point runtime against an EXACT Fraction emulation of that same runtime. Confirms the runtime has no numerical bug. OSDS-vs-runtime calculus gap is a separate check."
@@ -324,10 +324,10 @@
         "m": 1,
         "degree": 2,
         "csv_range": 210.24,
-        "runtime_exact_range": 384.0,
+        "runtime_exact_range": 884.34,
         "osds_exact_range": 384.0,
-        "runtime_rel_err": 0.8264840182648401,
-        "osds_over_runtime_ratio": 1.0,
+        "runtime_rel_err": 3.206335616438356,
+        "osds_over_runtime_ratio": 0.4342221317592781,
         "ok_runtime": false
       },
       {
@@ -336,10 +336,10 @@
         "m": 2,
         "degree": 2,
         "csv_range": 497.76,
-        "runtime_exact_range": 948.0,
+        "runtime_exact_range": 3005.76,
         "osds_exact_range": 948.0,
-        "runtime_rel_err": 0.9045323047251688,
-        "osds_over_runtime_ratio": 1.0,
+        "runtime_rel_err": 5.038572806171649,
+        "osds_over_runtime_ratio": 0.31539444267007344,
         "ok_runtime": false
       },
       {
@@ -348,10 +348,10 @@
         "m": 3,
         "degree": 2,
         "csv_range": 878.04,
-        "runtime_exact_range": 1692.0,
+        "runtime_exact_range": 7108.74,
         "osds_exact_range": 1692.0,
-        "runtime_rel_err": 0.927019270192702,
-        "osds_over_runtime_ratio": 1.0,
+        "runtime_rel_err": 7.096145961459615,
+        "osds_over_runtime_ratio": 0.23801686374800599,
         "ok_runtime": false
       },
       {
@@ -360,10 +360,10 @@
         "m": 4,
         "degree": 2,
         "csv_range": 1368.0,
-        "runtime_exact_range": 2616.0,
+        "runtime_exact_range": 14112.0,
         "osds_exact_range": 2616.0,
-        "runtime_rel_err": 0.9122807017543859,
-        "osds_over_runtime_ratio": 1.0,
+        "runtime_rel_err": 9.31578947368421,
+        "osds_over_runtime_ratio": 0.18537414965986396,
         "ok_runtime": false
       },
       {
@@ -372,10 +372,10 @@
         "m": 5,
         "degree": 2,
         "csv_range": 1986.0,
-        "runtime_exact_range": 3720.0,
+        "runtime_exact_range": 25108.5,
         "osds_exact_range": 3720.0,
-        "runtime_rel_err": 0.8731117824773413,
-        "osds_over_runtime_ratio": 1.0,
+        "runtime_rel_err": 11.642749244712991,
+        "osds_over_runtime_ratio": 0.14815699862596332,
         "ok_runtime": false
       },
       {
@@ -384,10 +384,10 @@
         "m": 1,
         "degree": 1,
         "csv_range": 9.6,
-        "runtime_exact_range": 15.0,
+        "runtime_exact_range": 30.6,
         "osds_exact_range": 15.0,
-        "runtime_rel_err": 0.5625000000000001,
-        "osds_over_runtime_ratio": 1.0,
+        "runtime_rel_err": 2.1875,
+        "osds_over_runtime_ratio": 0.49019607843137253,
         "ok_runtime": false
       },
       {
@@ -396,10 +396,10 @@
         "m": 1,
         "degree": 2,
         "csv_range": 210.24,
-        "runtime_exact_range": 384.0,
+        "runtime_exact_range": 884.34,
         "osds_exact_range": 384.0,
-        "runtime_rel_err": 0.8264840182648401,
-        "osds_over_runtime_ratio": 1.0,
+        "runtime_rel_err": 3.206335616438356,
+        "osds_over_runtime_ratio": 0.4342221317592781,
         "ok_runtime": false
       },
       {
@@ -408,10 +408,10 @@
         "m": 1,
         "degree": 3,
         "csv_range": 5129.856,
-        "runtime_exact_range": 11097.6,
+        "runtime_exact_range": 28652.616,
         "osds_exact_range": 11097.599999999999,
-        "runtime_rel_err": 1.1633355790104052,
-        "osds_over_runtime_ratio": 0.9999999999999999,
+        "runtime_rel_err": 4.58546204805749,
+        "osds_over_runtime_ratio": 0.3873154199951585,
         "ok_runtime": false
       },
       {
@@ -420,10 +420,10 @@
         "m": 1,
         "degree": 4,
         "csv_range": 36098.208,
-        "runtime_exact_range": 68006.4,
+        "runtime_exact_range": 170412.318,
         "osds_exact_range": 359562.23999999976,
-        "runtime_rel_err": 0.8839273129569201,
-        "osds_over_runtime_ratio": 5.287182382834554,
+        "runtime_rel_err": 3.7207971653329714,
+        "osds_over_runtime_ratio": 2.1099545163161255,
         "ok_runtime": false
       },
       {
@@ -432,10 +432,10 @@
         "m": 1,
         "degree": 2,
         "csv_range": 60.84,
-        "runtime_exact_range": 50.7,
+        "runtime_exact_range": 194.04,
         "osds_exact_range": 50.700000000000045,
-        "runtime_rel_err": 0.16666666666666666,
-        "osds_over_runtime_ratio": 1.0000000000000009,
+        "runtime_rel_err": 2.189349112426035,
+        "osds_over_runtime_ratio": 0.26128633271490437,
         "ok_runtime": false
       },
       {
@@ -444,10 +444,10 @@
         "m": 1,
         "degree": 2,
         "csv_range": 210.24,
-        "runtime_exact_range": 384.0,
+        "runtime_exact_range": 884.34,
         "osds_exact_range": 384.0,
-        "runtime_rel_err": 0.8264840182648401,
-        "osds_over_runtime_ratio": 1.0,
+        "runtime_rel_err": 3.206335616438356,
+        "osds_over_runtime_ratio": 0.4342221317592781,
         "ok_runtime": false
       },
       {
@@ -468,10 +468,10 @@
         "m": 5,
         "degree": 2,
         "csv_range": 1986.0,
-        "runtime_exact_range": 3720.0,
+        "runtime_exact_range": 25108.5,
         "osds_exact_range": 3720.0,
-        "runtime_rel_err": 0.8731117824773413,
-        "osds_over_runtime_ratio": 1.0,
+        "runtime_rel_err": 11.642749244712991,
+        "osds_over_runtime_ratio": 0.14815699862596332,
         "ok_runtime": false
       },
       {
@@ -480,10 +480,10 @@
         "m": 1,
         "degree": 4,
         "csv_range": 36098.208,
-        "runtime_exact_range": 68006.4,
+        "runtime_exact_range": 170412.318,
         "osds_exact_range": 359562.23999999976,
-        "runtime_rel_err": 0.8839273129569201,
-        "osds_over_runtime_ratio": 5.287182382834554,
+        "runtime_rel_err": 3.7207971653329714,
+        "osds_over_runtime_ratio": 2.1099545163161255,
         "ok_runtime": false
       }
     ],

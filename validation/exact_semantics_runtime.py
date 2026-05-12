@@ -23,7 +23,9 @@ def read(u: UV) -> Tuple[Fraction, UV]:
 
 
 def observe(u: UV) -> UV:
-    return UV(b=u.b, n=u.n, e=u.e + DOBS)
+    drift = Fraction(u.n) * u.e         # value read but discarded
+    _ = u.b + drift                     # discarded; only state advances
+    return UV(b=u.b, n=u.n + 1, e=u.e + DE + DOBS)
 
 
 def wrap(value: Fraction) -> UV:
