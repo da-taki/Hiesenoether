@@ -14,49 +14,117 @@ from validation.exact_semantics import evaluate, Params
 from real_world_validation.core.unstable_object import UnstableObject
 
 
-def run_runtime(perm: tuple, degree: int) -> float:
-    x = UnstableObject(base=10.0)
-    y = 0.0
+# Hiesenoether interpreter (the actual runtime that produced summary.csv).
+try:
+    import io
+    from contextlib import redirect_stdout
+    from src.parser import parse as hn_parse
+    from src.runtime import Runtime
+    HIESENOETHER_INTERPRETER_AVAILABLE = True
+except ImportError:
+    HIESENOETHER_INTERPRETER_AVAILABLE = False
+
+
+TEMPLATE = """\
+energy[100]
+
+x <- 10
+y <- 0
+
+{BODY}
+
+print y
+"""
+
+NONLINEAR_LINE = {
+    1: None,
+    2: "y <- y * x",
+    3: "y <- y * x * x",
+    4: "y <- y * y * x",
+}
+
+
+def _perm_to_hn_body(perm: tuple, degree: int) -> str:
+    """Translate an OSDS permutation into the Hiesenoether program body
+    used by run_experiments.py: READ becomes 'y <- y + x',
+    OBS becomes 'inspect x'. The nonlinear cap line is appended last
+    (matching run_experiments.py's build_body, which appends after
+    shuffle so the cap is never interleaved)."""
+    lines = []
     for op in perm:
         if op == "READ":
-            y += x.read()
+            lines.append("y <- y + x")
         elif op == "OBS":
-            x.observe()
-    if degree == 1:
-        return y
-    out = y
-    for _ in range(degree - 1):
-        out *= x.read()
-    return out
+            lines.append("inspect x")
+        else:
+            raise ValueError(op)
+    nl = NONLINEAR_LINE[degree]
+    if nl is not None:
+        lines.append(nl)
+    return "\n".join(lines)
+
+
+def run_hiesenoether(perm: tuple, degree: int) -> float:
+    """Execute a permutation by running the actual Hiesenoether
+    interpreter (src.runtime). Returns the float printed by `print y`.
+
+    This is the function that should agree with the exact Fraction
+    emulator in exact_semantics_runtime.py and with summary.csv."""
+    if not HIESENOETHER_INTERPRETER_AVAILABLE:
+        raise RuntimeError("Hiesenoether interpreter not importable; "
+                           "run from repo root with src/ on path")
+    body = _perm_to_hn_body(perm, degree)
+    program = TEMPLATE.format(BODY=body)
+    ast = hn_parse(program)
+    rt = Runtime()
+    buf = io.StringIO()
+    with redirect_stdout(buf):
+        rt.run(ast)
+    out_lines = [ln for ln in buf.getvalue().strip().split("\n") if ln]
+    # Last non-empty line is the print y output (some inspects also print).
+    for ln in reversed(out_lines):
+        try:
+            return float(ln)
+        except ValueError:
+            continue
+    raise RuntimeError(f"no numeric output from interpreter for perm={perm}, d={degree}")
 
 
 def cross_check(L: int = 3, m: int = 1, degree: int = 2,
                 tol: float = 1e-9) -> dict:
-    """Cross-check the Hiesenoether RUNTIME against the
-    HIESENOETHER-RUNTIME exact Fraction semantics (not the OSDS calculus).
-    The OSDS calculus is checked separately by check_against_summary_csv.
+    """Cross-check the exact Fraction emulator against the actual
+    Hiesenoether interpreter on the same permutation+template that
+    summary.csv was generated from.
+
+    Agreement here means: the exact Fraction emulator in
+    exact_semantics_runtime.py is a faithful symbolic model of
+    src/runtime.py. Combined with check_against_summary_csv, this
+    closes the loop: emulator <-> interpreter <-> summary.csv all
+    agree to machine precision.
     """
     from validation.exact_semantics_runtime import run_program as rt_exact
     body = ("READ",) * L + ("OBS",) * m
     rows = []
     max_diff = 0.0
+    if not HIESENOETHER_INTERPRETER_AVAILABLE:
+        return {"status": "SKIPPED",
+                "reason": "Hiesenoether interpreter not importable"}
     for perm in sorted(set(permutations(body))):
-        exact_runtime = float(rt_exact(perm, degree))
-        runtime_float = run_runtime(perm, degree)
-        diff = abs(exact_runtime - runtime_float)
+        exact_v = float(rt_exact(perm, degree))
+        actual_v = run_hiesenoether(perm, degree)
+        diff = abs(exact_v - actual_v)
         max_diff = max(max_diff, diff)
         rows.append({"perm": "|".join(perm),
-                     "runtime_exact_fraction": exact_runtime,
-                     "runtime_float":          runtime_float,
-                     "abs_diff":               diff})
+                     "emulator_exact_fraction": exact_v,
+                     "interpreter_float":       actual_v,
+                     "abs_diff":                diff})
     return {"L": L, "m": m, "degree": degree,
             "max_abs_diff": max_diff,
             "agreement": max_diff < tol,
             "rows": rows,
-            "note": "Cross-checks the floating-point runtime against an "
-                    "EXACT Fraction emulation of that same runtime. "
-                    "Confirms the runtime has no numerical bug. "
-                    "OSDS-vs-runtime calculus gap is a separate check."}
+            "note": "exact_semantics_runtime.py vs src/runtime.py on "
+                    "the run_experiments.py program template. Must "
+                    "agree to machine precision."}
 
 
 def check_against_summary_csv() -> dict:
