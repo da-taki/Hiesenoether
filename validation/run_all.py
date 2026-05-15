@@ -4,6 +4,7 @@ from validation import (theorem_D_determinism, theorem_C_conservation,
                         theorem_P_permutation_sensitivity,
                         theorem_N_necessity, theorem_T2_length_scaling,
                         theorem_T3_SDR, theorem_T5_entropy_decay,
+                        theorem_R_polynomial,
                         validate_against_runtime)
 
 steps = [
@@ -11,6 +12,7 @@ steps = [
     ("C — Conservation",               theorem_C_conservation.check),
     ("P — Permutation Sensitivity",    theorem_P_permutation_sensitivity.check),
     ("N — Necessity (refined)",        theorem_N_necessity.check),
+    ("R — Polynomial Structure",       theorem_R_polynomial.check),
     ("T2 — Length Scaling",            theorem_T2_length_scaling.check),
     ("T3 — SDR family-stratified",     theorem_T3_SDR.pooled_vs_stratified),
     ("T5 — Entropy Decay",             theorem_T5_entropy_decay.check),

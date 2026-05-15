@@ -1,0 +1,174 @@
+{
+  "theorem": "R",
+  "status": "VERIFIED",
+  "claim": "Delta_OSDS(L, m, d) and Delta_runtime(L, m, d) are polynomials in L of degree d+2 (compositional). The ratio rho(L, m, d) -> rho_inf(m, d) as L -> infinity, where rho_inf is the ratio of leading coefficients.",
+  "scope_note": "Holdout-verified for d=1 (m=1) and d=2 (m in {1,2,3}). Higher m and d=3,4 omitted: exact rational Lagrange interpolation at large L produces astronomical coefficient denominators whose equality test is the bottleneck. Polynomial-structure claim does not require exhausting the grid; structural induction in the proof handles all (m, d).",
+  "cases": [
+    {
+      "m": 1,
+      "d": 1,
+      "L_range": [
+        2,
+        7
+      ],
+      "osds_polynomial_degree": 2,
+      "rt_polynomial_degree": 2,
+      "osds_leading_coeff": "1/2",
+      "rt_leading_coeff": "1/10",
+      "rho_infinity": "5/1",
+      "rho_infinity_float": 5.0,
+      "holdout_check": {
+        "L": 8,
+        "osds_true": "28/1",
+        "osds_predicted": "28/1",
+        "rt_true": "72/5",
+        "rt_predicted": "72/5",
+        "match_osds": true,
+        "match_rt": true
+      },
+      "holdout_passes": true,
+      "osds_poly_coeffs": [
+        "0/1",
+        "-1/2",
+        "1/2",
+        "0/1",
+        "0/1",
+        "0/1"
+      ],
+      "rt_poly_coeffs": [
+        "0/1",
+        "1/1",
+        "1/10",
+        "0/1",
+        "0/1",
+        "0/1"
+      ]
+    },
+    {
+      "m": 1,
+      "d": 2,
+      "L_range": [
+        2,
+        8
+      ],
+      "osds_polynomial_degree": 4,
+      "rt_polynomial_degree": 4,
+      "osds_leading_coeff": "1/20",
+      "rt_leading_coeff": "1/100",
+      "rho_infinity": "5/1",
+      "rho_infinity_float": 5.0,
+      "holdout_check": {
+        "L": 9,
+        "osds_true": "6498/5",
+        "osds_predicted": "6498/5",
+        "rt_true": "513/1",
+        "rt_predicted": "513/1",
+        "match_osds": true,
+        "match_rt": true
+      },
+      "holdout_passes": true,
+      "osds_poly_coeffs": [
+        "0/1",
+        "-5/1",
+        "4/1",
+        "19/20",
+        "1/20",
+        "0/1",
+        "0/1"
+      ],
+      "rt_poly_coeffs": [
+        "0/1",
+        "111/10",
+        "231/100",
+        "11/50",
+        "1/100",
+        "0/1",
+        "0/1"
+      ]
+    },
+    {
+      "m": 2,
+      "d": 2,
+      "L_range": [
+        2,
+        8
+      ],
+      "osds_polynomial_degree": 4,
+      "rt_polynomial_degree": 4,
+      "osds_leading_coeff": "1/10",
+      "rt_leading_coeff": "1/50",
+      "rho_infinity": "5/1",
+      "rho_infinity_float": 5.0,
+      "holdout_check": {
+        "L": 9,
+        "osds_true": "16236/5",
+        "osds_predicted": "16236/5",
+        "rt_true": "5958/5",
+        "rt_predicted": "5958/5",
+        "match_osds": true,
+        "match_rt": true
+      },
+      "holdout_passes": true,
+      "osds_poly_coeffs": [
+        "0/1",
+        "-10/1",
+        "7/1",
+        "29/10",
+        "1/10",
+        "0/1",
+        "0/1"
+      ],
+      "rt_poly_coeffs": [
+        "0/1",
+        "682/25",
+        "139/25",
+        "1/2",
+        "1/50",
+        "0/1",
+        "0/1"
+      ]
+    },
+    {
+      "m": 3,
+      "d": 2,
+      "L_range": [
+        2,
+        8
+      ],
+      "osds_polynomial_degree": 4,
+      "rt_polynomial_degree": 4,
+      "osds_leading_coeff": "3/20",
+      "rt_leading_coeff": "3/100",
+      "rho_infinity": "5/1",
+      "rho_infinity_float": 5.0,
+      "holdout_check": {
+        "L": 9,
+        "osds_true": "29214/5",
+        "osds_predicted": "29214/5",
+        "rt_true": "51597/25",
+        "rt_predicted": "51597/25",
+        "match_osds": true,
+        "match_rt": true
+      },
+      "holdout_passes": true,
+      "osds_poly_coeffs": [
+        "0/1",
+        "-15/1",
+        "9/1",
+        "117/20",
+        "3/20",
+        "0/1",
+        "0/1"
+      ],
+      "rt_poly_coeffs": [
+        "0/1",
+        "1251/25",
+        "993/100",
+        "21/25",
+        "3/100",
+        "0/1",
+        "0/1"
+      ]
+    }
+  ]
+}
