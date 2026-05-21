@@ -1,7 +1,7 @@
 from __future__ import annotations
 import math
 import sys
-from itertools import permutations
+from itertools import combinations
 from pathlib import Path
 
 REPO = Path(__file__).resolve().parents[1]
@@ -9,6 +9,14 @@ if str(REPO) not in sys.path:
     sys.path.insert(0, str(REPO))
 
 from validation.exact_semantics import evaluate, Params
+
+
+def unique_orders(L: int, m: int):
+    """Generate unique READ/OBS orderings without materializing factorials."""
+    n = L + m
+    for obs_positions in combinations(range(n), m):
+        obs_positions = set(obs_positions)
+        yield tuple("OBS" if i in obs_positions else "READ" for i in range(n))
 
 
 def fit_loglinear(xs, ys):
@@ -25,9 +33,8 @@ def fit_loglinear(xs, ys):
 
 
 def family_sweep(family: str, degrees: list, L: int = 6, m: int = 1) -> dict:
-    body = ("READ",) * L + ("OBS",) * m
     p = Params()
-    perms = list(set(permutations(body)))
+    perms = list(unique_orders(L, m))
     out = []
     for d in degrees:
         if family == "compositional":
@@ -49,6 +56,9 @@ def family_sweep(family: str, degrees: list, L: int = 6, m: int = 1) -> dict:
     ys = [o[2] for o in out]
     slope, intercept, r2 = fit_loglinear(xs, ys)
     return {"family": family,
+            "L": L,
+            "m": m,
+            "unique_orderings": len(perms),
             "degrees": [o[0] for o in out],
             "ranges":  [o[1] for o in out],
             "log_ranges": [o[2] for o in out],
@@ -57,9 +67,9 @@ def family_sweep(family: str, degrees: list, L: int = 6, m: int = 1) -> dict:
             "R_squared": r2}
 
 
-def pooled_vs_stratified() -> dict:
-    comp = family_sweep("compositional", [1, 2, 3, 4])
-    selfref = family_sweep("self_referential", [2, 3, 4])
+def _pooled_vs_stratified_legacy() -> dict:
+    comp = family_sweep("compositional", list(range(1, 9)))
+    selfref = family_sweep("self_referential", list(range(9, 13)))
     all_x, all_y = [], []
     for d, _, ly in zip(comp["degrees"], comp["ranges"], comp["log_ranges"]):
         all_x.append(d); all_y.append(ly)
@@ -78,6 +88,32 @@ def pooled_vs_stratified() -> dict:
                  "(R² < 0.95) because the two families have different "
                  "intercepts and slightly different slopes. Report "
                  "stratified. Resolves v2 Open Problem 4.")}
+
+
+def pooled_vs_stratified() -> dict:
+    comp = family_sweep("compositional", list(range(1, 9)))
+    selfref = family_sweep("self_referential", list(range(9, 13)))
+    all_x, all_y = [], []
+    for d, _, ly in zip(comp["degrees"], comp["ranges"], comp["log_ranges"]):
+        all_x.append(d)
+        all_y.append(ly)
+    for d, _, ly in zip(selfref["degrees"], selfref["ranges"],
+                        selfref["log_ranges"]):
+        all_x.append(d)
+        all_y.append(ly)
+    p_slope, _, p_r2 = fit_loglinear(all_x, all_y)
+    return {"theorem": "T4",
+            "compositional_family": comp,
+            "self_referential_family": selfref,
+            "pooled_R_squared": p_r2,
+            "pooled_slope": p_slope,
+            "verdict":
+                ("Family-stratified SDR fits are the correct model: "
+                 "compositional caps are fit over degrees 1-8 and "
+                 "self-referential caps are fit separately over degrees "
+                 "9-12. The pooled fit is retained as a diagnostic, not "
+                 "as the reported model, because mixed-family caps have "
+                 "different slopes and intercepts.")}
 
 
 def check() -> dict:

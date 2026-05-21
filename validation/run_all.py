@@ -2,12 +2,14 @@
 import json, sys
 from validation import (theorem_D_determinism, theorem_C_conservation,
                         theorem_P_permutation_sensitivity,
+                        exhaustive_permutation_check,
                         theorem_N_necessity, theorem_T2_length_scaling,
                         theorem_T4_SDR, theorem_T5_entropy_decay,
                         theorem_R_polynomial,
                         validate_against_runtime)
 
 steps = [
+    ("P exhaustive small-L check",            exhaustive_permutation_check.check),
     ("D — Determinism",                       theorem_D_determinism.check),
     ("C — Conservation",                      theorem_C_conservation.check),
     ("P — Permutation Sensitivity",           theorem_P_permutation_sensitivity.check),
