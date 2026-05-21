@@ -1,497 +1,15 @@
 package,version,status,error,files_scanned,classes_scanned,functions_scanned,SAFE,LOW,MEDIUM,HIGH
 attrs,26.1.0,analyzed,,21,84,215,82,0,2,0
-click,8.4.0,analyzed,,17,84,552,78,0,6,0
+click,8.4.0,analyzed,,16,77,513,72,0,5,0
 humanize,4.15.0,analyzed,,6,1,36,1,0,0,0
-pendulum,,download_failed,"error: subprocess-exited-with-error
-  
-  installing build dependencies for pendulum did not run successfully.
-  exit code: 1
-  
-  [82 lines of output]
-  Collecting maturin<2.0,>=1.0
-    Using cached maturin-1.13.3.tar.gz (357 kB)
-    Installing build dependencies: started
-    Installing build dependencies: finished with status 'done'
-    Getting requirements to build wheel: started
-    Getting requirements to build wheel: finished with status 'done'
-    Installing backend dependencies: started
-    Installing backend dependencies: finished with status 'done'
-    Preparing metadata (pyproject.toml): started
-    Preparing metadata (pyproject.toml): finished with status 'done'
-  Building wheels for collected packages: maturin
-    Building wheel for maturin (pyproject.toml): started
-    Building wheel for maturin (pyproject.toml): finished with status 'error'
-    error: subprocess-exited-with-error
-  
-    Building wheel for maturin (pyproject.toml) did not run successfully.
-    exit code: 1
-  
-    [53 lines of output]
-    C:\Users\Asus\AppData\Local\Temp\pip-build-env-lxq9y0r8\overlay\Lib\site-packages\setuptools\_vendor\wheel\bdist_wheel.py:4: FutureWarning: The 'wheel' package is no longer the canonical location of the 'bdist_wheel' command, and will be removed in a future release. Please update to setuptools v70.1 or later which contains an integrated version of this command.
-      warn(
-    Python reports SOABI: cp314-win_amd64
-    Computed rustc target triple: x86_64-pc-windows-msvc
-    Installation directory: C:\Users\Asus\AppData\Local\puccinialin\puccinialin\Cache
-    Rustup already downloaded
-    Installing rust to C:\Users\Asus\AppData\Local\puccinialin\puccinialin\Cache\rustup
-    warn: It looks like you have an existing rustup settings file at:
-    warn: C:\Users\Asus\AppData\Local\puccinialin\puccinialin\Cache\rustup\settings.toml
-    warn: Rustup will install the default toolchain as specified in the settings file,
-    warn: instead of the one inferred from the default host triple.
-    warn: installing msvc toolchain without its prerequisites
-    info: profile set to minimal
-    info: setting default host triple to x86_64-pc-windows-msvc
-    warn: Updating existing toolchain, profile choice will be ignored
-    info: syncing channel updates for stable-x86_64-pc-windows-msvc
-    info: default toolchain set to stable-x86_64-pc-windows-msvc
-    Checking if cargo is installed
-    cargo 1.95.0 (f2d3ce0bd 2026-03-21)
-    Rust not found, installing into a temporary directory
-    running bdist_wheel
-    running build
-    running build_py
-    creating build\lib.win-amd64-cpython-314\maturin
-    copying maturin\bootstrap.py -> build\lib.win-amd64-cpython-314\maturin
-    copying maturin\__init__.py -> build\lib.win-amd64-cpython-314\maturin
-    copying maturin\__main__.py -> build\lib.win-amd64-cpython-314\maturin
-    running egg_info
-    creating maturin.egg-info
-    writing maturin.egg-info\PKG-INFO
-    writing dependency_links to maturin.egg-info\dependency_links.txt
-    writing requirements to maturin.egg-info\requires.txt
-    writing top-level names to maturin.egg-info\top_level.txt
-    writing manifest file 'maturin.egg-info\SOURCES.txt'
-    reading manifest file 'maturin.egg-info\SOURCES.txt'
-    reading manifest template 'MANIFEST.in'
-    warning: no files found matching '*.json' under directory 'src\python_interpreter'
-    adding license file 'license-mit'
-    adding license file 'license-apache'
-    writing manifest file 'maturin.egg-info\SOURCES.txt'
-    running build_ext
-    running build_rust
-    error: can't find Rust compiler
-  
-    If you are using an outdated pip version, it is possible a prebuilt wheel is available for this package but pip is not able to install from it. Installing from the wheel would avoid the need for a Rust compiler.
-  
-    To update pip, run:
-  
-        pip install --upgrade pip
-  
-    and then retry package installation.
-  
-    If you did intend to build this package from source, try installing a Rust compiler from your system package manager and ensure it is on the PATH during installation. Alternatively, rustup (available at https://rustup.rs) is the recommended way to download and update the Rust compiler toolchain.
-    [end of output]
-  
-    note: This error originates from a subprocess, and is likely not a problem with pip.
-    ERROR: Failed building wheel for maturin
-  Failed to build maturin
-  error: failed-wheel-build-for-install
-  
-  Failed to build installable wheels for some pyproject.toml based projects
-  
-  maturin
-  [end of output]
-  
-  note: This error originates from a subprocess, and is likely not a problem with pip.
-ERROR: Failed to build 'pendulum' when installing build dependencies for pendulum",0,0,0,0,0,0,0
+pendulum,3.2.0,analyzed,,96,22,406,20,0,2,0
 arrow,1.4.0,analyzed,,10,93,175,8,0,0,0
 cachetools,7.1.3,analyzed,,5,30,193,24,0,6,0
 sortedcontainers,2.4.0,analyzed,,5,9,136,8,0,1,0
 boltons,25.0.0,analyzed,,32,94,939,76,0,14,1
 more-itertools,11.0.2,analyzed,,3,15,270,11,0,2,1
 toolz,1.1.0,analyzed,,16,7,162,6,0,1,0
-yarl,,download_failed,"error: subprocess-exited-with-error
-  
-  installing backend dependencies for yarl did not run successfully.
-  exit code: 1
-  
-  [382 lines of output]
-  Collecting Cython>=3.1.2
-    Using cached cython-3.2.4.tar.gz (3.3 MB)
-    Installing build dependencies: started
-    Installing build dependencies: finished with status 'done'
-    Getting requirements to build wheel: started
-    Getting requirements to build wheel: finished with status 'done'
-    Preparing metadata (pyproject.toml): started
-    Preparing metadata (pyproject.toml): finished with status 'done'
-  Building wheels for collected packages: Cython
-    Building wheel for Cython (pyproject.toml): started
-    Building wheel for Cython (pyproject.toml): finished with status 'error'
-    error: subprocess-exited-with-error
-  
-    Building wheel for Cython (pyproject.toml) did not run successfully.
-    exit code: 1
-  
-    [355 lines of output]
-    Unable to find pgen, not compiling formal grammar.
-    C:\Users\Asus\AppData\Local\Temp\pip-build-env-rze7h_d9\overlay\Lib\site-packages\setuptools\dist.py:765: SetuptoolsDeprecationWarning: License classifiers are deprecated.
-    !!
-  
-            ********************************************************************************
-            Please consider removing the following classifiers in favor of a SPDX license expression:
-  
-            License :: OSI Approved :: Apache Software License
-  
-            See https://packaging.python.org/en/latest/guides/writing-pyproject-toml/#license for details.
-            ********************************************************************************
-  
-    !!
-      self._finalize_license_expression()
-    running bdist_wheel
-    running build
-    running build_py
-    creating build\lib.win-amd64-cpython-314
-    copying cython.py -> build\lib.win-amd64-cpython-314
-    creating build\lib.win-amd64-cpython-314\Cython
-    copying Cython\CodeWriter.py -> build\lib.win-amd64-cpython-314\Cython
-    copying Cython\Coverage.py -> build\lib.win-amd64-cpython-314\Cython
-    copying Cython\Debugging.py -> build\lib.win-amd64-cpython-314\Cython
-    copying Cython\Shadow.py -> build\lib.win-amd64-cpython-314\Cython
-    copying Cython\StringIOTree.py -> build\lib.win-amd64-cpython-314\Cython
-    copying Cython\TestUtils.py -> build\lib.win-amd64-cpython-314\Cython
-    copying Cython\Utils.py -> build\lib.win-amd64-cpython-314\Cython
-    copying Cython\__init__.py -> build\lib.win-amd64-cpython-314\Cython
-    creating build\lib.win-amd64-cpython-314\Cython\Build
-    copying Cython\Build\BuildExecutable.py -> build\lib.win-amd64-cpython-314\Cython\Build
-    copying Cython\Build\Cache.py -> build\lib.win-amd64-cpython-314\Cython\Build
-    copying Cython\Build\Cythonize.py -> build\lib.win-amd64-cpython-314\Cython\Build
-    copying Cython\Build\Dependencies.py -> build\lib.win-amd64-cpython-314\Cython\Build
-    copying Cython\Build\Distutils.py -> build\lib.win-amd64-cpython-314\Cython\Build
-    copying Cython\Build\Inline.py -> build\lib.win-amd64-cpython-314\Cython\Build
-    copying Cython\Build\IpythonMagic.py -> build\lib.win-amd64-cpython-314\Cython\Build
-    copying Cython\Build\SharedModule.py -> build\lib.win-amd64-cpython-314\Cython\Build
-    copying Cython\Build\__init__.py -> build\lib.win-amd64-cpython-314\Cython\Build
-    creating build\lib.win-amd64-cpython-314\Cython\Compiler
-    copying Cython\Compiler\AnalysedTreeTransforms.py -> build\lib.win-amd64-cpython-314\Cython\Compiler
-    copying Cython\Compiler\Annotate.py -> build\lib.win-amd64-cpython-314\Cython\Compiler
-    copying Cython\Compiler\AutoDocTransforms.py -> build\lib.win-amd64-cpython-314\Cython\Compiler
-    copying Cython\Compiler\Buffer.py -> build\lib.win-amd64-cpython-314\Cython\Compiler
-    copying Cython\Compiler\Builtin.py -> build\lib.win-amd64-cpython-314\Cython\Compiler
-    copying Cython\Compiler\CmdLine.py -> build\lib.win-amd64-cpython-314\Cython\Compiler
-    copying Cython\Compiler\Code.py -> build\lib.win-amd64-cpython-314\Cython\Compiler
-    copying Cython\Compiler\CodeGeneration.py -> build\lib.win-amd64-cpython-314\Cython\Compiler
-    copying Cython\Compiler\CythonScope.py -> build\lib.win-amd64-cpython-314\Cython\Compiler
-    copying Cython\Compiler\Dataclass.py -> build\lib.win-amd64-cpython-314\Cython\Compiler
-    copying Cython\Compiler\DebugFlags.py -> build\lib.win-amd64-cpython-314\Cython\Compiler
-    copying Cython\Compiler\Errors.py -> build\lib.win-amd64-cpython-314\Cython\Compiler
-    copying Cython\Compiler\ExprNodes.py -> build\lib.win-amd64-cpython-314\Cython\Compiler
-    copying Cython\Compiler\FlowControl.py -> build\lib.win-amd64-cpython-314\Cython\Compiler
-    copying Cython\Compiler\FusedNode.py -> build\lib.win-amd64-cpython-314\Cython\Compiler
-    copying Cython\Compiler\Future.py -> build\lib.win-amd64-cpython-314\Cython\Compiler
-    copying Cython\Compiler\Interpreter.py -> build\lib.win-amd64-cpython-314\Cython\Compiler
-    copying Cython\Compiler\Lexicon.py -> build\lib.win-amd64-cpython-314\Cython\Compiler
-    copying Cython\Compiler\LineTable.py -> build\lib.win-amd64-cpython-314\Cython\Compiler
-    copying Cython\Compiler\Main.py -> build\lib.win-amd64-cpython-314\Cython\Compiler
-    copying Cython\Compiler\MatchCaseNodes.py -> build\lib.win-amd64-cpython-314\Cython\Compiler
-    copying Cython\Compiler\MemoryView.py -> build\lib.win-amd64-cpython-314\Cython\Compiler
-    copying Cython\Compiler\ModuleNode.py -> build\lib.win-amd64-cpython-314\Cython\Compiler
-    copying Cython\Compiler\Naming.py -> build\lib.win-amd64-cpython-314\Cython\Compiler
-    copying Cython\Compiler\Nodes.py -> build\lib.win-amd64-cpython-314\Cython\Compiler
-    copying Cython\Compiler\Optimize.py -> build\lib.win-amd64-cpython-314\Cython\Compiler
-    copying Cython\Compiler\Options.py -> build\lib.win-amd64-cpython-314\Cython\Compiler
-    copying Cython\Compiler\ParseTreeTransforms.py -> build\lib.win-amd64-cpython-314\Cython\Compiler
-    copying Cython\Compiler\Parsing.py -> build\lib.win-amd64-cpython-314\Cython\Compiler
-    copying Cython\Compiler\Pipeline.py -> build\lib.win-amd64-cpython-314\Cython\Compiler
-    copying Cython\Compiler\PyrexTypes.py -> build\lib.win-amd64-cpython-314\Cython\Compiler
-    copying Cython\Compiler\Pythran.py -> build\lib.win-amd64-cpython-314\Cython\Compiler
-    copying Cython\Compiler\Scanning.py -> build\lib.win-amd64-cpython-314\Cython\Compiler
-    copying Cython\Compiler\StringEncoding.py -> build\lib.win-amd64-cpython-314\Cython\Compiler
-    copying Cython\Compiler\Symtab.py -> build\lib.win-amd64-cpython-314\Cython\Compiler
-    copying Cython\Compiler\TreeFragment.py -> build\lib.win-amd64-cpython-314\Cython\Compiler
-    copying Cython\Compiler\TreePath.py -> build\lib.win-amd64-cpython-314\Cython\Compiler
-    copying Cython\Compiler\TypeInference.py -> build\lib.win-amd64-cpython-314\Cython\Compiler
-    copying Cython\Compiler\TypeSlots.py -> build\lib.win-amd64-cpython-314\Cython\Compiler
-    copying Cython\Compiler\UFuncs.py -> build\lib.win-amd64-cpython-314\Cython\Compiler
-    copying Cython\Compiler\UtilityCode.py -> build\lib.win-amd64-cpython-314\Cython\Compiler
-    copying Cython\Compiler\UtilNodes.py -> build\lib.win-amd64-cpython-314\Cython\Compiler
-    copying Cython\Compiler\Version.py -> build\lib.win-amd64-cpython-314\Cython\Compiler
-    copying Cython\Compiler\Visitor.py -> build\lib.win-amd64-cpython-314\Cython\Compiler
-    copying Cython\Compiler\__init__.py -> build\lib.win-amd64-cpython-314\Cython\Compiler
-    creating build\lib.win-amd64-cpython-314\Cython\Runtime
-    copying Cython\Runtime\__init__.py -> build\lib.win-amd64-cpython-314\Cython\Runtime
-    creating build\lib.win-amd64-cpython-314\Cython\Distutils
-    copying Cython\Distutils\build_ext.py -> build\lib.win-amd64-cpython-314\Cython\Distutils
-    copying Cython\Distutils\extension.py -> build\lib.win-amd64-cpython-314\Cython\Distutils
-    copying Cython\Distutils\old_build_ext.py -> build\lib.win-amd64-cpython-314\Cython\Distutils
-    copying Cython\Distutils\__init__.py -> build\lib.win-amd64-cpython-314\Cython\Distutils
-    creating build\lib.win-amd64-cpython-314\Cython\Debugger
-    copying Cython\Debugger\Cygdb.py -> build\lib.win-amd64-cpython-314\Cython\Debugger
-    copying Cython\Debugger\DebugWriter.py -> build\lib.win-amd64-cpython-314\Cython\Debugger
-    copying Cython\Debugger\libcython.py -> build\lib.win-amd64-cpython-314\Cython\Debugger
-    copying Cython\Debugger\libpython.py -> build\lib.win-amd64-cpython-314\Cython\Debugger
-    copying Cython\Debugger\__init__.py -> build\lib.win-amd64-cpython-314\Cython\Debugger
-    creating build\lib.win-amd64-cpython-314\Cython\Debugger\Tests
-    copying Cython\Debugger\Tests\TestLibCython.py -> build\lib.win-amd64-cpython-314\Cython\Debugger\Tests
-    copying Cython\Debugger\Tests\test_libcython_in_gdb.py -> build\lib.win-amd64-cpython-314\Cython\Debugger\Tests
-    copying Cython\Debugger\Tests\test_libpython_in_gdb.py -> build\lib.win-amd64-cpython-314\Cython\Debugger\Tests
-    copying Cython\Debugger\Tests\__init__.py -> build\lib.win-amd64-cpython-314\Cython\Debugger\Tests
-    creating build\lib.win-amd64-cpython-314\Cython\Plex
-    copying Cython\Plex\Actions.py -> build\lib.win-amd64-cpython-314\Cython\Plex
-    copying Cython\Plex\DFA.py -> build\lib.win-amd64-cpython-314\Cython\Plex
-    copying Cython\Plex\Errors.py -> build\lib.win-amd64-cpython-314\Cython\Plex
-    copying Cython\Plex\Lexicons.py -> build\lib.win-amd64-cpython-314\Cython\Plex
-    copying Cython\Plex\Machines.py -> build\lib.win-amd64-cpython-314\Cython\Plex
-    copying Cython\Plex\Regexps.py -> build\lib.win-amd64-cpython-314\Cython\Plex
-    copying Cython\Plex\Scanners.py -> build\lib.win-amd64-cpython-314\Cython\Plex
-    copying Cython\Plex\Transitions.py -> build\lib.win-amd64-cpython-314\Cython\Plex
-    copying Cython\Plex\__init__.py -> build\lib.win-amd64-cpython-314\Cython\Plex
-    creating build\lib.win-amd64-cpython-314\Cython\Tests
-    copying Cython\Tests\TestCodeWriter.py -> build\lib.win-amd64-cpython-314\Cython\Tests
-    copying Cython\Tests\TestCythonUtils.py -> build\lib.win-amd64-cpython-314\Cython\Tests
-    copying Cython\Tests\TestJediTyper.py -> build\lib.win-amd64-cpython-314\Cython\Tests
-    copying Cython\Tests\TestShadow.py -> build\lib.win-amd64-cpython-314\Cython\Tests
-    copying Cython\Tests\TestStringIOTree.py -> build\lib.win-amd64-cpython-314\Cython\Tests
-    copying Cython\Tests\TestTestUtils.py -> build\lib.win-amd64-cpython-314\Cython\Tests
-    copying Cython\Tests\xmlrunner.py -> build\lib.win-amd64-cpython-314\Cython\Tests
-    copying Cython\Tests\__init__.py -> build\lib.win-amd64-cpython-314\Cython\Tests
-    creating build\lib.win-amd64-cpython-314\Cython\Build\Tests
-    copying Cython\Build\Tests\TestCyCache.py -> build\lib.win-amd64-cpython-314\Cython\Build\Tests
-    copying Cython\Build\Tests\TestCythonizeArgsParser.py -> build\lib.win-amd64-cpython-314\Cython\Build\Tests
-    copying Cython\Build\Tests\TestDependencies.py -> build\lib.win-amd64-cpython-314\Cython\Build\Tests
-    copying Cython\Build\Tests\TestInline.py -> build\lib.win-amd64-cpython-314\Cython\Build\Tests
-    copying Cython\Build\Tests\TestIpythonMagic.py -> build\lib.win-amd64-cpython-314\Cython\Build\Tests
-    copying Cython\Build\Tests\TestRecythonize.py -> build\lib.win-amd64-cpython-314\Cython\Build\Tests
-    copying Cython\Build\Tests\TestStripLiterals.py -> build\lib.win-amd64-cpython-314\Cython\Build\Tests
-    copying Cython\Build\Tests\__init__.py -> build\lib.win-amd64-cpython-314\Cython\Build\Tests
-    creating build\lib.win-amd64-cpython-314\Cython\Compiler\Tests
-    copying Cython\Compiler\Tests\TestBuffer.py -> build\lib.win-amd64-cpython-314\Cython\Compiler\Tests
-    copying Cython\Compiler\Tests\TestBuiltin.py -> build\lib.win-amd64-cpython-314\Cython\Compiler\Tests
-    copying Cython\Compiler\Tests\TestCmdLine.py -> build\lib.win-amd64-cpython-314\Cython\Compiler\Tests
-    copying Cython\Compiler\Tests\TestCode.py -> build\lib.win-amd64-cpython-314\Cython\Compiler\Tests
-    copying Cython\Compiler\Tests\TestFlowControl.py -> build\lib.win-amd64-cpython-314\Cython\Compiler\Tests
-    copying Cython\Compiler\Tests\TestGrammar.py -> build\lib.win-amd64-cpython-314\Cython\Compiler\Tests
-    copying Cython\Compiler\Tests\TestMemView.py -> build\lib.win-amd64-cpython-314\Cython\Compiler\Tests
-    copying Cython\Compiler\Tests\TestParseTreeTransforms.py -> build\lib.win-amd64-cpython-314\Cython\Compiler\Tests
-    copying Cython\Compiler\Tests\TestScanning.py -> build\lib.win-amd64-cpython-314\Cython\Compiler\Tests
-    copying Cython\Compiler\Tests\TestSignatureMatching.py -> build\lib.win-amd64-cpython-314\Cython\Compiler\Tests
-    copying Cython\Compiler\Tests\TestStringEncoding.py -> build\lib.win-amd64-cpython-314\Cython\Compiler\Tests
-    copying Cython\Compiler\Tests\TestTreeFragment.py -> build\lib.win-amd64-cpython-314\Cython\Compiler\Tests
-    copying Cython\Compiler\Tests\TestTreePath.py -> build\lib.win-amd64-cpython-314\Cython\Compiler\Tests
-    copying Cython\Compiler\Tests\TestTypes.py -> build\lib.win-amd64-cpython-314\Cython\Compiler\Tests
-    copying Cython\Compiler\Tests\TestUtilityLoad.py -> build\lib.win-amd64-cpython-314\Cython\Compiler\Tests
-    copying Cython\Compiler\Tests\TestVisitor.py -> build\lib.win-amd64-cpython-314\Cython\Compiler\Tests
-    copying Cython\Compiler\Tests\Utils.py -> build\lib.win-amd64-cpython-314\Cython\Compiler\Tests
-    copying Cython\Compiler\Tests\__init__.py -> build\lib.win-amd64-cpython-314\Cython\Compiler\Tests
-    creating build\lib.win-amd64-cpython-314\Cython\Utility
-    copying Cython\Utility\__init__.py -> build\lib.win-amd64-cpython-314\Cython\Utility
-    creating build\lib.win-amd64-cpython-314\Cython\Tempita
-    copying Cython\Tempita\_looper.py -> build\lib.win-amd64-cpython-314\Cython\Tempita
-    copying Cython\Tempita\_tempita.py -> build\lib.win-amd64-cpython-314\Cython\Tempita
-    copying Cython\Tempita\__init__.py -> build\lib.win-amd64-cpython-314\Cython\Tempita
-    creating build\lib.win-amd64-cpython-314\pyximport
-    copying pyximport\pyxbuild.py -> build\lib.win-amd64-cpython-314\pyximport
-    copying pyximport\pyximport.py -> build\lib.win-amd64-cpython-314\pyximport
-    copying pyximport\__init__.py -> build\lib.win-amd64-cpython-314\pyximport
-    copying Cython\Shadow.pyi -> build\lib.win-amd64-cpython-314\Cython
-    copying Cython\__init__.pyi -> build\lib.win-amd64-cpython-314\Cython
-    copying Cython\py.typed -> build\lib.win-amd64-cpython-314\Cython
-    creating build\lib.win-amd64-cpython-314\Cython\Includes
-    copying Cython\Includes\openmp.pxd -> build\lib.win-amd64-cpython-314\Cython\Includes
-    creating build\lib.win-amd64-cpython-314\Cython\Includes\cpython
-    copying Cython\Includes\cpython\array.pxd -> build\lib.win-amd64-cpython-314\Cython\Includes\cpython
-    copying Cython\Includes\cpython\bool.pxd -> build\lib.win-amd64-cpython-314\Cython\Includes\cpython
-    copying Cython\Includes\cpython\buffer.pxd -> build\lib.win-amd64-cpython-314\Cython\Includes\cpython
-    copying Cython\Includes\cpython\bytearray.pxd -> build\lib.win-amd64-cpython-314\Cython\Includes\cpython
-    copying Cython\Includes\cpython\bytes.pxd -> build\lib.win-amd64-cpython-314\Cython\Includes\cpython
-    copying Cython\Includes\cpython\cellobject.pxd -> build\lib.win-amd64-cpython-314\Cython\Includes\cpython
-    copying Cython\Includes\cpython\ceval.pxd -> build\lib.win-amd64-cpython-314\Cython\Includes\cpython
-    copying Cython\Includes\cpython\codecs.pxd -> build\lib.win-amd64-cpython-314\Cython\Includes\cpython
-    copying Cython\Includes\cpython\complex.pxd -> build\lib.win-amd64-cpython-314\Cython\Includes\cpython
-    copying Cython\Includes\cpython\contextvars.pxd -> build\lib.win-amd64-cpython-314\Cython\Includes\cpython
-    copying Cython\Includes\cpython\conversion.pxd -> build\lib.win-amd64-cpython-314\Cython\Includes\cpython
-    copying Cython\Includes\cpython\datetime.pxd -> build\lib.win-amd64-cpython-314\Cython\Includes\cpython
-    copying Cython\Includes\cpython\descr.pxd -> build\lib.win-amd64-cpython-314\Cython\Includes\cpython
-    copying Cython\Includes\cpython\dict.pxd -> build\lib.win-amd64-cpython-314\Cython\Includes\cpython
-    copying Cython\Includes\cpython\exc.pxd -> build\lib.win-amd64-cpython-314\Cython\Includes\cpython
-    copying Cython\Includes\cpython\fileobject.pxd -> build\lib.win-amd64-cpython-314\Cython\Includes\cpython
-    copying Cython\Includes\cpython\float.pxd -> build\lib.win-amd64-cpython-314\Cython\Includes\cpython
-    copying Cython\Includes\cpython\function.pxd -> build\lib.win-amd64-cpython-314\Cython\Includes\cpython
-    copying Cython\Includes\cpython\genobject.pxd -> build\lib.win-amd64-cpython-314\Cython\Includes\cpython
-    copying Cython\Includes\cpython\getargs.pxd -> build\lib.win-amd64-cpython-314\Cython\Includes\cpython
-    copying Cython\Includes\cpython\instance.pxd -> build\lib.win-amd64-cpython-314\Cython\Includes\cpython
-    copying Cython\Includes\cpython\iterator.pxd -> build\lib.win-amd64-cpython-314\Cython\Includes\cpython
-    copying Cython\Includes\cpython\iterobject.pxd -> build\lib.win-amd64-cpython-314\Cython\Includes\cpython
-    copying Cython\Includes\cpython\list.pxd -> build\lib.win-amd64-cpython-314\Cython\Includes\cpython
-    copying Cython\Includes\cpython\long.pxd -> build\lib.win-amd64-cpython-314\Cython\Includes\cpython
-    copying Cython\Includes\cpython\longintrepr.pxd -> build\lib.win-amd64-cpython-314\Cython\Includes\cpython
-    copying Cython\Includes\cpython\mapping.pxd -> build\lib.win-amd64-cpython-314\Cython\Includes\cpython
-    copying Cython\Includes\cpython\marshal.pxd -> build\lib.win-amd64-cpython-314\Cython\Includes\cpython
-    copying Cython\Includes\cpython\mem.pxd -> build\lib.win-amd64-cpython-314\Cython\Includes\cpython
-    copying Cython\Includes\cpython\memoryview.pxd -> build\lib.win-amd64-cpython-314\Cython\Includes\cpython
-    copying Cython\Includes\cpython\method.pxd -> build\lib.win-amd64-cpython-314\Cython\Includes\cpython
-    copying Cython\Includes\cpython\module.pxd -> build\lib.win-amd64-cpython-314\Cython\Includes\cpython
-    copying Cython\Includes\cpython\number.pxd -> build\lib.win-amd64-cpython-314\Cython\Includes\cpython
-    copying Cython\Includes\cpython\object.pxd -> build\lib.win-amd64-cpython-314\Cython\Includes\cpython
-    copying Cython\Includes\cpython\pycapsule.pxd -> build\lib.win-amd64-cpython-314\Cython\Includes\cpython
-    copying Cython\Includes\cpython\pylifecycle.pxd -> build\lib.win-amd64-cpython-314\Cython\Includes\cpython
-    copying Cython\Includes\cpython\pyport.pxd -> build\lib.win-amd64-cpython-314\Cython\Includes\cpython
-    copying Cython\Includes\cpython\pystate.pxd -> build\lib.win-amd64-cpython-314\Cython\Includes\cpython
-    copying Cython\Includes\cpython\pythread.pxd -> build\lib.win-amd64-cpython-314\Cython\Includes\cpython
-    copying Cython\Includes\cpython\ref.pxd -> build\lib.win-amd64-cpython-314\Cython\Includes\cpython
-    copying Cython\Includes\cpython\sequence.pxd -> build\lib.win-amd64-cpython-314\Cython\Includes\cpython
-    copying Cython\Includes\cpython\set.pxd -> build\lib.win-amd64-cpython-314\Cython\Includes\cpython
-    copying Cython\Includes\cpython\slice.pxd -> build\lib.win-amd64-cpython-314\Cython\Includes\cpython
-    copying Cython\Includes\cpython\time.pxd -> build\lib.win-amd64-cpython-314\Cython\Includes\cpython
-    copying Cython\Includes\cpython\tuple.pxd -> build\lib.win-amd64-cpython-314\Cython\Includes\cpython
-    copying Cython\Includes\cpython\type.pxd -> build\lib.win-amd64-cpython-314\Cython\Includes\cpython
-    copying Cython\Includes\cpython\unicode.pxd -> build\lib.win-amd64-cpython-314\Cython\Includes\cpython
-    copying Cython\Includes\cpython\version.pxd -> build\lib.win-amd64-cpython-314\Cython\Includes\cpython
-    copying Cython\Includes\cpython\weakref.pxd -> build\lib.win-amd64-cpython-314\Cython\Includes\cpython
-    copying Cython\Includes\cpython\__init__.pxd -> build\lib.win-amd64-cpython-314\Cython\Includes\cpython
-    creating build\lib.win-amd64-cpython-314\Cython\Includes\libc
-    copying Cython\Includes\libc\complex.pxd -> build\lib.win-amd64-cpython-314\Cython\Includes\libc
-    copying Cython\Includes\libc\errno.pxd -> build\lib.win-amd64-cpython-314\Cython\Includes\libc
-    copying Cython\Includes\libc\float.pxd -> build\lib.win-amd64-cpython-314\Cython\Includes\libc
-    copying Cython\Includes\libc\limits.pxd -> build\lib.win-amd64-cpython-314\Cython\Includes\libc
-    copying Cython\Includes\libc\locale.pxd -> build\lib.win-amd64-cpython-314\Cython\Includes\libc
-    copying Cython\Includes\libc\math.pxd -> build\lib.win-amd64-cpython-314\Cython\Includes\libc
-    copying Cython\Includes\libc\setjmp.pxd -> build\lib.win-amd64-cpython-314\Cython\Includes\libc
-    copying Cython\Includes\libc\signal.pxd -> build\lib.win-amd64-cpython-314\Cython\Includes\libc
-    copying Cython\Includes\libc\stddef.pxd -> build\lib.win-amd64-cpython-314\Cython\Includes\libc
-    copying Cython\Includes\libc\stdint.pxd -> build\lib.win-amd64-cpython-314\Cython\Includes\libc
-    copying Cython\Includes\libc\stdio.pxd -> build\lib.win-amd64-cpython-314\Cython\Includes\libc
-    copying Cython\Includes\libc\stdlib.pxd -> build\lib.win-amd64-cpython-314\Cython\Includes\libc
-    copying Cython\Includes\libc\string.pxd -> build\lib.win-amd64-cpython-314\Cython\Includes\libc
-    copying Cython\Includes\libc\threads.pxd -> build\lib.win-amd64-cpython-314\Cython\Includes\libc
-    copying Cython\Includes\libc\time.pxd -> build\lib.win-amd64-cpython-314\Cython\Includes\libc
-    copying Cython\Includes\libc\__init__.pxd -> build\lib.win-amd64-cpython-314\Cython\Includes\libc
-    creating build\lib.win-amd64-cpython-314\Cython\Includes\libcpp
-    copying Cython\Includes\libcpp\algorithm.pxd -> build\lib.win-amd64-cpython-314\Cython\Includes\libcpp
-    copying Cython\Includes\libcpp\any.pxd -> build\lib.win-amd64-cpython-314\Cython\Includes\libcpp
-    copying Cython\Includes\libcpp\atomic.pxd -> build\lib.win-amd64-cpython-314\Cython\Includes\libcpp
-    copying Cython\Includes\libcpp\barrier.pxd -> build\lib.win-amd64-cpython-314\Cython\Includes\libcpp
-    copying Cython\Includes\libcpp\bit.pxd -> build\lib.win-amd64-cpython-314\Cython\Includes\libcpp
-    copying Cython\Includes\libcpp\cast.pxd -> build\lib.win-amd64-cpython-314\Cython\Includes\libcpp
-    copying Cython\Includes\libcpp\cmath.pxd -> build\lib.win-amd64-cpython-314\Cython\Includes\libcpp
-    copying Cython\Includes\libcpp\complex.pxd -> build\lib.win-amd64-cpython-314\Cython\Includes\libcpp
-    copying Cython\Includes\libcpp\condition_variable.pxd -> build\lib.win-amd64-cpython-314\Cython\Includes\libcpp
-    copying Cython\Includes\libcpp\deque.pxd -> build\lib.win-amd64-cpython-314\Cython\Includes\libcpp
-    copying Cython\Includes\libcpp\exception.pxd -> build\lib.win-amd64-cpython-314\Cython\Includes\libcpp
-    copying Cython\Includes\libcpp\execution.pxd -> build\lib.win-amd64-cpython-314\Cython\Includes\libcpp
-    copying Cython\Includes\libcpp\forward_list.pxd -> build\lib.win-amd64-cpython-314\Cython\Includes\libcpp
-    copying Cython\Includes\libcpp\functional.pxd -> build\lib.win-amd64-cpython-314\Cython\Includes\libcpp
-    copying Cython\Includes\libcpp\future.pxd -> build\lib.win-amd64-cpython-314\Cython\Includes\libcpp
-    copying Cython\Includes\libcpp\iterator.pxd -> build\lib.win-amd64-cpython-314\Cython\Includes\libcpp
-    copying Cython\Includes\libcpp\latch.pxd -> build\lib.win-amd64-cpython-314\Cython\Includes\libcpp
-    copying Cython\Includes\libcpp\limits.pxd -> build\lib.win-amd64-cpython-314\Cython\Includes\libcpp
-    copying Cython\Includes\libcpp\list.pxd -> build\lib.win-amd64-cpython-314\Cython\Includes\libcpp
-    copying Cython\Includes\libcpp\map.pxd -> build\lib.win-amd64-cpython-314\Cython\Includes\libcpp
-    copying Cython\Includes\libcpp\memory.pxd -> build\lib.win-amd64-cpython-314\Cython\Includes\libcpp
-    copying Cython\Includes\libcpp\mutex.pxd -> build\lib.win-amd64-cpython-314\Cython\Includes\libcpp
-    copying Cython\Includes\libcpp\numbers.pxd -> build\lib.win-amd64-cpython-314\Cython\Includes\libcpp
-    copying Cython\Includes\libcpp\numeric.pxd -> build\lib.win-amd64-cpython-314\Cython\Includes\libcpp
-    copying Cython\Includes\libcpp\optional.pxd -> build\lib.win-amd64-cpython-314\Cython\Includes\libcpp
-    copying Cython\Includes\libcpp\pair.pxd -> build\lib.win-amd64-cpython-314\Cython\Includes\libcpp
-    copying Cython\Includes\libcpp\queue.pxd -> build\lib.win-amd64-cpython-314\Cython\Includes\libcpp
-    copying Cython\Includes\libcpp\random.pxd -> build\lib.win-amd64-cpython-314\Cython\Includes\libcpp
-    copying Cython\Includes\libcpp\semaphore.pxd -> build\lib.win-amd64-cpython-314\Cython\Includes\libcpp
-    copying Cython\Includes\libcpp\set.pxd -> build\lib.win-amd64-cpython-314\Cython\Includes\libcpp
-    copying Cython\Includes\libcpp\shared_mutex.pxd -> build\lib.win-amd64-cpython-314\Cython\Includes\libcpp
-    copying Cython\Includes\libcpp\span.pxd -> build\lib.win-amd64-cpython-314\Cython\Includes\libcpp
-    copying Cython\Includes\libcpp\stack.pxd -> build\lib.win-amd64-cpython-314\Cython\Includes\libcpp
-    copying Cython\Includes\libcpp\stop_token.pxd -> build\lib.win-amd64-cpython-314\Cython\Includes\libcpp
-    copying Cython\Includes\libcpp\string.pxd -> build\lib.win-amd64-cpython-314\Cython\Includes\libcpp
-    copying Cython\Includes\libcpp\string_view.pxd -> build\lib.win-amd64-cpython-314\Cython\Includes\libcpp
-    copying Cython\Includes\libcpp\typeindex.pxd -> build\lib.win-amd64-cpython-314\Cython\Includes\libcpp
-    copying Cython\Includes\libcpp\typeinfo.pxd -> build\lib.win-amd64-cpython-314\Cython\Includes\libcpp
-    copying Cython\Includes\libcpp\unordered_map.pxd -> build\lib.win-amd64-cpython-314\Cython\Includes\libcpp
-    copying Cython\Includes\libcpp\unordered_set.pxd -> build\lib.win-amd64-cpython-314\Cython\Includes\libcpp
-    copying Cython\Includes\libcpp\utility.pxd -> build\lib.win-amd64-cpython-314\Cython\Includes\libcpp
-    copying Cython\Includes\libcpp\vector.pxd -> build\lib.win-amd64-cpython-314\Cython\Includes\libcpp
-    copying Cython\Includes\libcpp\__init__.pxd -> build\lib.win-amd64-cpython-314\Cython\Includes\libcpp
-    creating build\lib.win-amd64-cpython-314\Cython\Includes\numpy
-    copying Cython\Includes\numpy\math.pxd -> build\lib.win-amd64-cpython-314\Cython\Includes\numpy
-    creating build\lib.win-amd64-cpython-314\Cython\Includes\posix
-    copying Cython\Includes\posix\dlfcn.pxd -> build\lib.win-amd64-cpython-314\Cython\Includes\posix
-    copying Cython\Includes\posix\fcntl.pxd -> build\lib.win-amd64-cpython-314\Cython\Includes\posix
-    copying Cython\Includes\posix\ioctl.pxd -> build\lib.win-amd64-cpython-314\Cython\Includes\posix
-    copying Cython\Includes\posix\mman.pxd -> build\lib.win-amd64-cpython-314\Cython\Includes\posix
-    copying Cython\Includes\posix\resource.pxd -> build\lib.win-amd64-cpython-314\Cython\Includes\posix
-    copying Cython\Includes\posix\select.pxd -> build\lib.win-amd64-cpython-314\Cython\Includes\posix
-    copying Cython\Includes\posix\signal.pxd -> build\lib.win-amd64-cpython-314\Cython\Includes\posix
-    copying Cython\Includes\posix\stat.pxd -> build\lib.win-amd64-cpython-314\Cython\Includes\posix
-    copying Cython\Includes\posix\stdio.pxd -> build\lib.win-amd64-cpython-314\Cython\Includes\posix
-    copying Cython\Includes\posix\stdlib.pxd -> build\lib.win-amd64-cpython-314\Cython\Includes\posix
-    copying Cython\Includes\posix\strings.pxd -> build\lib.win-amd64-cpython-314\Cython\Includes\posix
-    copying Cython\Includes\posix\time.pxd -> build\lib.win-amd64-cpython-314\Cython\Includes\posix
-    copying Cython\Includes\posix\types.pxd -> build\lib.win-amd64-cpython-314\Cython\Includes\posix
-    copying Cython\Includes\posix\uio.pxd -> build\lib.win-amd64-cpython-314\Cython\Includes\posix
-    copying Cython\Includes\posix\unistd.pxd -> build\lib.win-amd64-cpython-314\Cython\Includes\posix
-    copying Cython\Includes\posix\wait.pxd -> build\lib.win-amd64-cpython-314\Cython\Includes\posix
-    copying Cython\Includes\posix\__init__.pxd -> build\lib.win-amd64-cpython-314\Cython\Includes\posix
-    copying Cython\Compiler\Code.pxd -> build\lib.win-amd64-cpython-314\Cython\Compiler
-    copying Cython\Compiler\FlowControl.pxd -> build\lib.win-amd64-cpython-314\Cython\Compiler
-    copying Cython\Compiler\ParseTreeTransforms.pxd -> build\lib.win-amd64-cpython-314\Cython\Compiler
-    copying Cython\Compiler\Parsing.pxd -> build\lib.win-amd64-cpython-314\Cython\Compiler
-    copying Cython\Compiler\Scanning.pxd -> build\lib.win-amd64-cpython-314\Cython\Compiler
-    copying Cython\Compiler\Visitor.pxd -> build\lib.win-amd64-cpython-314\Cython\Compiler
-    copying Cython\Runtime\refnanny.pyx -> build\lib.win-amd64-cpython-314\Cython\Runtime
-    copying Cython\Debugger\Tests\codefile -> build\lib.win-amd64-cpython-314\Cython\Debugger\Tests
-    copying Cython\Debugger\Tests\cfuncs.c -> build\lib.win-amd64-cpython-314\Cython\Debugger\Tests
-    copying Cython\Plex\Actions.pxd -> build\lib.win-amd64-cpython-314\Cython\Plex
-    copying Cython\Plex\DFA.pxd -> build\lib.win-amd64-cpython-314\Cython\Plex
-    copying Cython\Plex\Machines.pxd -> build\lib.win-amd64-cpython-314\Cython\Plex
-    copying Cython\Plex\Scanners.pxd -> build\lib.win-amd64-cpython-314\Cython\Plex
-    copying Cython\Plex\Transitions.pxd -> build\lib.win-amd64-cpython-314\Cython\Plex
-    copying Cython\Utility\CConvert.pyx -> build\lib.win-amd64-cpython-314\Cython\Utility
-    copying Cython\Utility\CpdefEnums.pyx -> build\lib.win-amd64-cpython-314\Cython\Utility
-    copying Cython\Utility\CppConvert.pyx -> build\lib.win-amd64-cpython-314\Cython\Utility
-    copying Cython\Utility\FusedFunction.pyx -> build\lib.win-amd64-cpython-314\Cython\Utility
-    copying Cython\Utility\MemoryView.pyx -> build\lib.win-amd64-cpython-314\Cython\Utility
-    copying Cython\Utility\TestCythonScope.pyx -> build\lib.win-amd64-cpython-314\Cython\Utility
-    copying Cython\Utility\TestCyUtilityLoader.pyx -> build\lib.win-amd64-cpython-314\Cython\Utility
-    copying Cython\Utility\UFuncs.pyx -> build\lib.win-amd64-cpython-314\Cython\Utility
-    copying Cython\Utility\BufferFormatFromTypeInfo.pxd -> build\lib.win-amd64-cpython-314\Cython\Utility
-    copying Cython\Utility\MemoryView.pxd -> build\lib.win-amd64-cpython-314\Cython\Utility
-    copying Cython\Utility\AsyncGen.c -> build\lib.win-amd64-cpython-314\Cython\Utility
-    copying Cython\Utility\Buffer.c -> build\lib.win-amd64-cpython-314\Cython\Utility
-    copying Cython\Utility\Builtins.c -> build\lib.win-amd64-cpython-314\Cython\Utility
-    copying Cython\Utility\CMath.c -> build\lib.win-amd64-cpython-314\Cython\Utility
-    copying Cython\Utility\CommonStructures.c -> build\lib.win-amd64-cpython-314\Cython\Utility
-    copying Cython\Utility\Complex.c -> build\lib.win-amd64-cpython-314\Cython\Utility
-    copying Cython\Utility\Coroutine.c -> build\lib.win-amd64-cpython-314\Cython\Utility
-    copying Cython\Utility\CythonFunction.c -> build\lib.win-amd64-cpython-314\Cython\Utility
-    copying Cython\Utility\Dataclasses.c -> build\lib.win-amd64-cpython-314\Cython\Utility
-    copying Cython\Utility\Embed.c -> build\lib.win-amd64-cpython-314\Cython\Utility
-    copying Cython\Utility\Exceptions.c -> build\lib.win-amd64-cpython-314\Cython\Utility
-    copying Cython\Utility\ExtensionTypes.c -> build\lib.win-amd64-cpython-314\Cython\Utility
-    copying Cython\Utility\FunctionArguments.c -> build\lib.win-amd64-cpython-314\Cython\Utility
-    copying Cython\Utility\ImportExport.c -> build\lib.win-amd64-cpython-314\Cython\Utility
-    copying Cython\Utility\MemoryView_C.c -> build\lib.win-amd64-cpython-314\Cython\Utility
-    copying Cython\Utility\ModuleSetupCode.c -> build\lib.win-amd64-cpython-314\Cython\Utility
-    copying Cython\Utility\NumpyImportArray.c -> build\lib.win-amd64-cpython-314\Cython\Utility
-    copying Cython\Utility\ObjectHandling.c -> build\lib.win-amd64-cpython-314\Cython\Utility
-    copying Cython\Utility\Optimize.c -> build\lib.win-amd64-cpython-314\Cython\Utility
-    copying Cython\Utility\Overflow.c -> build\lib.win-amd64-cpython-314\Cython\Utility
-    copying Cython\Utility\Printing.c -> build\lib.win-amd64-cpython-314\Cython\Utility
-    copying Cython\Utility\Profile.c -> build\lib.win-amd64-cpython-314\Cython\Utility
-    copying Cython\Utility\StringTools.c -> build\lib.win-amd64-cpython-314\Cython\Utility
-    copying Cython\Utility\Synchronization.c -> build\lib.win-amd64-cpython-314\Cython\Utility
-    copying Cython\Utility\TestUtilityLoader.c -> build\lib.win-amd64-cpython-314\Cython\Utility
-    copying Cython\Utility\TString.c -> build\lib.win-amd64-cpython-314\Cython\Utility
-    copying Cython\Utility\TypeConversion.c -> build\lib.win-amd64-cpython-314\Cython\Utility
-    copying Cython\Utility\UFuncs_C.c -> build\lib.win-amd64-cpython-314\Cython\Utility
-    copying Cython\Utility\arrayarray.h -> build\lib.win-amd64-cpython-314\Cython\Utility
-    copying Cython\Utility\CppSupport.cpp -> build\lib.win-amd64-cpython-314\Cython\Utility
-    running build_ext
-    Compiling C:\Users\Asus\AppData\Local\Temp\pip-install-st382tsd\cython_62de473198a042d8bd918a57754ea64d\Cython\Compiler\Parsing.py because it changed.
-    [1/1] Cythonizing C:\Users\Asus\AppData\Local\Temp\pip-install-st382tsd\cython_62de473198a042d8bd918a57754ea64d\Cython\Compiler\Parsing.py
-    building 'Cython.Compiler.Parsing' extension
-    error: Microsoft Visual C++ 14.0 or greater is required. Get it with ""Microsoft C++ Build Tools"": https://visualstudio.microsoft.com/visual-cpp-build-tools/
-    [end of output]
-  
-    note: This error originates from a subprocess, and is likely not a problem with pip.
-    ERROR: Failed building wheel for Cython
-  Failed to build Cython
-  error: failed-wheel-build-for-install
-  
-  Failed to build installable wheels for some pyproject.toml based projects
-  
-  Cython
-  [end of output]
-  
-  note: This error originates from a subprocess, and is likely not a problem with pip.
-ERROR: Failed to build 'yarl' when installing backend dependencies for yarl",0,0,0,0,0,0,0
+yarl,1.24.2,analyzed,,7,6,116,2,0,0,0
 multidict,6.7.1,analyzed,,5,18,146,17,0,1,0
 marshmallow,4.3.0,analyzed,,14,65,241,63,0,2,0
 cerberus,1.3.8,analyzed,,6,24,213,23,0,1,0
@@ -499,17 +17,58 @@ tomli,2.4.1,analyzed,,4,5,40,5,0,0,0
 tomlkit,0.15.0,analyzed,,13,59,466,55,0,4,0
 python-dotenv,1.2.2,analyzed,,8,10,65,9,0,1,0
 loguru,0.7.3,analyzed,,18,35,220,30,0,1,0
-structlog,25.5.0,analyzed,,22,65,347,63,0,2,0
+structlog,25.5.0,analyzed,,21,59,335,57,0,2,0
 tenacity,9.1.4,analyzed,,13,55,164,54,0,1,0
 pluggy,1.6.0,analyzed,,10,18,97,17,0,1,0
 packaging,26.2,analyzed,,20,78,404,74,0,4,0
-importlib-metadata,9.0.0,analyzed,,14,26,180,24,0,2,0
+importlib-metadata,9.0.0,analyzed,,13,26,178,24,0,2,0
 jsonschema,4.26.0,analyzed,,13,21,242,20,0,1,0
 tqdm,4.67.3,analyzed,,31,40,225,34,0,6,0
 anyio,4.13.0,analyzed,,42,168,1037,156,0,12,0
-sniffio,1.3.1,analyzed,,5,2,7,2,0,0,0
-pyparsing,3.3.2,analyzed,,16,120,522,82,0,15,0
+sniffio,1.3.1,analyzed,,4,2,1,2,0,0,0
+pyparsing,3.3.2,analyzed,,16,117,510,82,0,15,0
 requests,2.34.2,analyzed,,20,52,267,51,0,1,0
-urllib3,2.7.0,analyzed,,42,116,577,102,0,14,0
-jinja2,3.1.6,analyzed,,24,160,775,150,0,10,0
+urllib3,2.7.0,analyzed,,41,108,558,94,0,14,0
+jinja2,3.1.6,analyzed,,23,160,752,150,0,10,0
 markupsafe,3.0.3,analyzed,,3,7,58,7,0,0,0
+flask,3.1.3,analyzed,,23,44,355,42,0,2,0
+werkzeug,3.1.8,analyzed,,50,176,1045,161,0,15,0
+itsdangerous,2.2.0,analyzed,,8,18,62,18,0,0,0
+blinker,1.9.0,analyzed,,3,5,30,5,0,0,0
+iniconfig,2.3.0,analyzed,,4,4,30,4,0,0,0
+filelock,3.29.0,analyzed,,14,33,160,31,0,2,0
+platformdirs,4.9.6,analyzed,,9,9,254,9,0,0,0
+pathspec,1.1.1,analyzed,,33,27,110,24,0,3,0
+mypy-extensions,1.1.0,analyzed,,1,9,22,9,0,0,0
+typing-extensions,4.15.0,analyzed,,2,54,211,54,0,0,0
+typing-inspection,0.4.2,analyzed,,3,4,18,4,0,0,0
+dacite,1.9.2,analyzed,,11,12,60,11,0,1,0
+cattrs,26.1.0,analyzed,,50,26,290,26,0,0,0
+deprecated,1.3.1,analyzed,,5,3,18,3,0,0,0
+wrapt,2.2.0,analyzed,,13,43,283,37,0,6,0
+dateparser,1.4.0,analyzed,,148,36,303,29,0,2,0
+parsedatetime,2.6,analyzed,,15,8,74,7,0,1,0
+Babel,2.18.0,analyzed,,30,54,546,42,0,4,0
+soupsieve,2.8.3,analyzed,,8,24,183,22,0,2,0
+beautifulsoup4,4.14.3,analyzed,,19,66,387,60,0,3,0
+pygments,2.20.0,analyzed,,343,762,990,709,0,18,0
+mistune,3.2.1,analyzed,,36,24,313,24,0,0,0
+markdown,3.10.2,analyzed,,34,108,388,96,0,12,0
+docutils,0.22.4,analyzed,,116,506,2359,386,0,38,0
+pydocstyle,6.3.0,analyzed,,11,28,160,25,0,3,0
+flake8,7.3.0,analyzed,,34,39,210,38,0,1,0
+mccabe,0.7.0,analyzed,,2,5,35,3,0,2,0
+pycodestyle,2.14.0,analyzed,,2,6,88,3,0,3,0
+pyflakes,3.4.0,analyzed,,9,77,178,77,0,0,0
+click-option-group,0.5.9,analyzed,,5,11,53,10,0,1,0
+fastjsonschema,2.21.2,analyzed,,11,9,87,8,0,1,0
+jsonpointer,3.1.1,analyzed,,2,3,24,3,0,0,0
+jsonpatch,1.33,analyzed,,3,15,60,12,0,3,0
+email-validator,2.3.0,analyzed,,10,7,25,7,0,0,0
+dnspython,2.8.0,analyzed,,151,401,1744,384,0,17,0
+h11,0.16.0,analyzed,,13,38,96,35,0,3,0
+h2,4.3.0,analyzed,,12,60,236,54,0,6,0
+wsproto,1.3.2,analyzed,,8,33,90,24,0,9,0
+websockets,16.0,analyzed,,49,83,555,77,0,6,0
+frozenlist,1.8.0,analyzed,,1,1,14,1,0,0,0
+aiosignal,1.4.0,analyzed,,2,1,4,1,0,0,0

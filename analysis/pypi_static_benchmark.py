@@ -59,6 +59,47 @@ PACKAGES = [
     "urllib3",
     "jinja2",
     "markupsafe",
+    "flask",
+    "werkzeug",
+    "itsdangerous",
+    "blinker",
+    "iniconfig",
+    "filelock",
+    "platformdirs",
+    "pathspec",
+    "mypy-extensions",
+    "typing-extensions",
+    "typing-inspection",
+    "dacite",
+    "cattrs",
+    "deprecated",
+    "wrapt",
+    "dateparser",
+    "parsedatetime",
+    "Babel",
+    "soupsieve",
+    "beautifulsoup4",
+    "pygments",
+    "mistune",
+    "markdown",
+    "docutils",
+    "pydocstyle",
+    "flake8",
+    "mccabe",
+    "pycodestyle",
+    "pyflakes",
+    "click-option-group",
+    "fastjsonschema",
+    "jsonpointer",
+    "jsonpatch",
+    "email-validator",
+    "dnspython",
+    "h11",
+    "h2",
+    "wsproto",
+    "websockets",
+    "frozenlist",
+    "aiosignal",
 ]
 
 SKIP_DIRS = {
@@ -186,6 +227,56 @@ FALSE_POSITIVES = {
         "visitor bookkeeping mutates state and returns None",
     "jinja2|jinja2-3.1.6\\src\\jinja2\\lexer.py|Lexer":
         "constructor/local setup pattern; not an access/read path",
+    "flask|flask-3.1.3\\src\\flask\\cli.py|ScriptInfo":
+        "lazy app cache; repeated load returns the same application object",
+    "flask|flask-3.1.3\\src\\flask\\testing.py|FlaskClient":
+        "context-manager preserve-context flag returns self; no access-derived value",
+    "werkzeug|werkzeug-3.1.8\\src\\werkzeug\\datastructures\\mixins.py|ImmutableListMixin":
+        "memoized hash cache; semantic hash value is stable",
+    "werkzeug|werkzeug-3.1.8\\src\\werkzeug\\datastructures\\mixins.py|ImmutableDictMixin":
+        "memoized hash cache; semantic hash value is stable",
+    "werkzeug|werkzeug-3.1.8\\src\\werkzeug\\debug\\console.py|_InteractiveConsole":
+        "constructor/local setup pattern; not an access/read path",
+    "werkzeug|werkzeug-3.1.8\\src\\werkzeug\\local.py|_ProxyLookup":
+        "descriptor/proxy setup pattern; not an access/read path",
+    "werkzeug|werkzeug-3.1.8\\src\\werkzeug\\local.py|_ProxyIOp":
+        "descriptor/proxy setup pattern; not an access/read path",
+    "werkzeug|werkzeug-3.1.8\\src\\werkzeug\\middleware\\http_proxy.py|ProxyMiddleware":
+        "constructor/local setup pattern; not an access/read path",
+    "werkzeug|werkzeug-3.1.8\\src\\werkzeug\\sansio\\response.py|Response":
+        "lazy header object cache; repeated access is semantically stable",
+    "werkzeug|werkzeug-3.1.8\\src\\werkzeug\\test.py|EnvironBuilder":
+        "lazy args cache; repeated access returns the same semantic mapping",
+    "werkzeug|werkzeug-3.1.8\\src\\werkzeug\\wrappers\\request.py|Request":
+        "request body cache; repeated access returns stable cached data",
+    "pathspec|pathspec-1.1.1\\pathspec\\pathspec.py|PathSpec":
+        "in-place pattern-list update returning self; not an access/read path",
+    "dacite|dacite-1.9.2\\dacite\\frozen_dict.py|FrozenDict":
+        "memoized hash cache; semantic hash value is stable",
+    "wrapt|wrapt-2.2.0\\src\\wrapt\\caching.py|_LRUCacheFunctionWrapper":
+        "LRU memoization wrapper; cache fill does not indicate access-evolving object semantics",
+    "wrapt|wrapt-2.2.0\\src\\wrapt\\decorators.py|_StateBindingWrapper":
+        "decorator binding wrapper setup; not an access/read path",
+    "wrapt|wrapt-2.2.0\\src\\wrapt\\proxies.py|LazyObjectProxy":
+        "lazy proxy target cache; repeated access returns stable wrapped object",
+    "wrapt|wrapt-2.2.0\\src\\wrapt\\wrappers.py|ObjectProxy":
+        "in-place operator forwarding returning self; not an access/read path",
+    "wrapt|wrapt-2.2.0\\src\\wrapt\\wrappers.py|PartialCallableObjectProxy":
+        "constructor/local setup pattern; not an access/read path",
+    "dateparser|dateparser-1.4.0\\dateparser\\date.py|_DateLocaleParser":
+        "lazy translated-date cache; repeated access is semantically stable",
+    "parsedatetime|parsedatetime-2.6\\parsedatetime\\__init__.py|Constants":
+        "constructor/local setup pattern; not an access/read path",
+    "Babel|babel-2.18.0\\babel\\core.py|Locale":
+        "lazy locale-data cache; repeated access is semantically stable",
+    "Babel|babel-2.18.0\\babel\\messages\\catalog.py|Catalog":
+        "lazy plural-count cache; repeated access is semantically stable",
+    "Babel|babel-2.18.0\\babel\\plural.py|PluralRule":
+        "lazy compiled-rule cache; repeated access returns stable semantics",
+    "beautifulsoup4|beautifulsoup4-4.14.3\\bs4\\__init__.py|BeautifulSoup":
+        "constructor/tree-builder setup pattern; not an access/read path",
+    "pygments|pygments-2.20.0\\pygments\\formatters\\latex.py|LatexFormatter":
+        "stylesheet construction cache; repeated access is semantically stable",
 }
 
 
@@ -201,7 +292,7 @@ def ensure_dirs() -> None:
 
 def download_sdist(package: str) -> tuple[Path | None, str | None]:
     existing = sorted(DOWNLOAD_DIR.glob(f"{package.replace('-', '*')}*"))
-    existing = [p for p in existing if p.suffix in {".zip", ".gz"} or p.name.endswith(".tar.gz")]
+    existing = [p for p in existing if p.suffix in {".zip", ".gz", ".whl"} or p.name.endswith(".tar.gz")]
     if existing:
         return existing[-1], None
 
@@ -218,8 +309,23 @@ def download_sdist(package: str) -> tuple[Path | None, str | None]:
         package,
     ]
     proc = subprocess.run(cmd, text=True, capture_output=True)
+    first_error = (proc.stderr or proc.stdout).strip()
     if proc.returncode != 0:
-        return None, (proc.stderr or proc.stdout).strip()
+        cmd = [
+            sys.executable,
+            "-m",
+            "pip",
+            "download",
+            "--no-deps",
+            "--only-binary",
+            ":all:",
+            "--dest",
+            str(DOWNLOAD_DIR),
+            package,
+        ]
+        proc = subprocess.run(cmd, text=True, capture_output=True)
+    if proc.returncode != 0:
+        return None, (proc.stderr or proc.stdout).strip() or first_error
 
     candidates = sorted(DOWNLOAD_DIR.glob("*"))
     normalized = normalize_name(package)
@@ -237,7 +343,7 @@ def extract_archive(package: str, archive: Path) -> Path:
     if archive.name.endswith(".tar.gz") or archive.suffixes[-2:] == [".tar", ".gz"]:
         with tarfile.open(archive) as tf:
             tf.extractall(target)
-    elif archive.suffix == ".zip":
+    elif archive.suffix in {".zip", ".whl"}:
         with zipfile.ZipFile(archive) as zf:
             zf.extractall(target)
     else:
@@ -261,6 +367,9 @@ def iter_python_files(root: Path) -> Iterable[Path]:
     for path in sorted(root.rglob("*.py")):
         parts = {p.lower() for p in path.relative_to(root).parts[:-1]}
         if parts & SKIP_DIRS:
+            continue
+        name = path.name.lower()
+        if name.startswith("test") or name == "conftest.py":
             continue
         yield path
 
@@ -427,11 +536,17 @@ def write_summary(package_rows: list[dict], findings: list[dict]) -> None:
         f"- Python files scanned: {sum(int(r['files_scanned']) for r in analyzed)}",
         f"- classes scanned: {sum(int(r['classes_scanned']) for r in analyzed)}",
         f"- functions scanned: {sum(int(r['functions_scanned']) for r in analyzed)}",
+        f"- MEDIUM/HIGH findings reviewed: {len(findings)}",
         "",
         "Packages analyzed: " + ", ".join(r["package"] for r in analyzed),
     ]
     if skipped:
-        lines.append("Packages skipped: " + ", ".join(f"{r['package']} ({r['status']})" for r in skipped))
+        lines.append("Packages skipped:")
+        for row in skipped:
+            reason = (row["error"] or row["status"]).replace("\n", " ").strip()
+            if len(reason) > 300:
+                reason = reason[:297] + "..."
+            lines.append(f"- {row['package']}: {row['status']} - {reason}")
     else:
         lines.append("Packages skipped: none")
 
@@ -471,7 +586,7 @@ def write_summary(package_rows: list[dict], findings: list[dict]) -> None:
         "",
         "## Recall",
         "",
-        "Recall is not estimated because the benchmark does not fully label all SAFE and LOW classes in the analyzed packages.",
+        "Recall is not estimated because SAFE and LOW classes were not exhaustively manually labeled.",
         "",
         "## Notable findings",
         "",
