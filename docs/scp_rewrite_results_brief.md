@@ -76,7 +76,13 @@ The Python screening study also includes a 20-class controlled benchmark and a P
 - Expanded PyPI precision and recall cannot be claimed until manual labels are completed.
 - Production prevalence is not claimed.
 
-## 4. Recommended SCP Paper Structure
+## 4. Formal Proof Core
+
+Full proof text is available in `docs/formal_proof_appendix.md`. Claim classification is available in `results/proof_support/claim_manifest.md`. The running example derivation is available in `results/proof_support/running_example_derivation.md`. Lean mechanization status is in `docs/lean_mechanization_status.md`.
+
+Only deterministic and zero-divergence results should be written as formal propositions under their stated assumptions. Linear cap preservation may be stated as the injectivity of a nonzero-slope linear cap over unequal body accumulators. Nonlinear amplification and degree or ratio relationships should remain empirical or bounded computational findings. Analyzer results should remain empirical screening results.
+
+## 5. Recommended SCP Paper Structure
 
 Title
 
@@ -103,7 +109,7 @@ Declarations
 
 References
 
-## 5. Tables To Include
+## 6. Tables To Include
 
 - Running example trace table
 - Formal claims and evidence level table
@@ -114,7 +120,7 @@ References
 - PyPI screening summary
 - Case-study examples
 
-## 6. Case Studies
+## 7. Case Studies
 
 The case-study section should include three controlled true-positive-style examples, three benign near-misses, and three PyPI flagged examples pending manual review.
 
@@ -124,6 +130,6 @@ Benign near-misses should show why syntactic screening can over-approximate. Goo
 
 PyPI flagged examples should be presented as pending manual review. They can demonstrate realistic syntactic patterns found by the screen, but they should not be described as confirmed true positives until reviewed. Keep code excerpts short and focus on the analyzer evidence, the suspected latent state, and the later read or value path.
 
-## 7. Data and Materials Availability
+## 8. Data and Materials Availability
 
 The interpreter, validation suite, static analyzer, experiment scripts, benchmark outputs, and result summaries are available at https://github.com/da-taki/Hiesenoether.

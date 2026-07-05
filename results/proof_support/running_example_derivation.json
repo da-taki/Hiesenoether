@@ -1,0 +1,183 @@
+{
+  "initial_value": {
+    "base": "10",
+    "access_count": 0,
+    "drift_state": "1"
+  },
+  "access_entropy_increment": "1/10",
+  "observation_entropy_increment": "1",
+  "orders": [
+    {
+      "name": "A",
+      "operations": [
+        "OBS",
+        "READ",
+        "READ"
+      ],
+      "read_values": [
+        "10",
+        "121/10"
+      ],
+      "body_accumulator": "221/10",
+      "cap": {
+        "degree": 2,
+        "formula": "body_accumulator * next_read",
+        "factors": [
+          {
+            "cap_read": 1,
+            "exposed_read_value": "72/5",
+            "drift": "22/5",
+            "state_after": {
+              "base": "10",
+              "access_count": 3,
+              "drift_state": "23/10"
+            }
+          }
+        ],
+        "output": "7956/25"
+      },
+      "steps": [
+        {
+          "step": 0,
+          "operation": "INITIAL",
+          "state": {
+            "base": "10",
+            "access_count": 0,
+            "drift_state": "1"
+          },
+          "accumulator": "0"
+        },
+        {
+          "step": 1,
+          "operation": "OBS",
+          "state_before": {
+            "base": "10",
+            "access_count": 0,
+            "drift_state": "1"
+          },
+          "state_after": {
+            "base": "10",
+            "access_count": 0,
+            "drift_state": "2"
+          },
+          "accumulator": "0",
+          "observation_exposes_value": false
+        },
+        {
+          "step": 2,
+          "operation": "READ",
+          "exposed_read_value": "10",
+          "drift": "0",
+          "state_after": {
+            "base": "10",
+            "access_count": 1,
+            "drift_state": "21/10"
+          },
+          "accumulator": "10"
+        },
+        {
+          "step": 3,
+          "operation": "READ",
+          "exposed_read_value": "121/10",
+          "drift": "21/10",
+          "state_after": {
+            "base": "10",
+            "access_count": 2,
+            "drift_state": "11/5"
+          },
+          "accumulator": "221/10"
+        }
+      ]
+    },
+    {
+      "name": "B",
+      "operations": [
+        "READ",
+        "READ",
+        "OBS"
+      ],
+      "read_values": [
+        "10",
+        "111/10"
+      ],
+      "body_accumulator": "211/10",
+      "cap": {
+        "degree": 2,
+        "formula": "body_accumulator * next_read",
+        "factors": [
+          {
+            "cap_read": 1,
+            "exposed_read_value": "72/5",
+            "drift": "22/5",
+            "state_after": {
+              "base": "10",
+              "access_count": 3,
+              "drift_state": "23/10"
+            }
+          }
+        ],
+        "output": "7596/25"
+      },
+      "steps": [
+        {
+          "step": 0,
+          "operation": "INITIAL",
+          "state": {
+            "base": "10",
+            "access_count": 0,
+            "drift_state": "1"
+          },
+          "accumulator": "0"
+        },
+        {
+          "step": 1,
+          "operation": "READ",
+          "exposed_read_value": "10",
+          "drift": "0",
+          "state_after": {
+            "base": "10",
+            "access_count": 1,
+            "drift_state": "11/10"
+          },
+          "accumulator": "10"
+        },
+        {
+          "step": 2,
+          "operation": "READ",
+          "exposed_read_value": "111/10",
+          "drift": "11/10",
+          "state_after": {
+            "base": "10",
+            "access_count": 2,
+            "drift_state": "6/5"
+          },
+          "accumulator": "211/10"
+        },
+        {
+          "step": 3,
+          "operation": "OBS",
+          "state_before": {
+            "base": "10",
+            "access_count": 2,
+            "drift_state": "6/5"
+          },
+          "state_after": {
+            "base": "10",
+            "access_count": 2,
+            "drift_state": "11/5"
+          },
+          "accumulator": "211/10",
+          "observation_exposes_value": false
+        }
+      ]
+    }
+  ],
+  "final_outputs": {
+    "A": "7956/25",
+    "B": "7596/25"
+  },
+  "final_divergence": "72/5",
+  "uses_exact_arithmetic": true,
+  "numeric_representation": "fractions-as-strings",
+  "paper_explanation": "Both executions use the same multiset of operations. Placing OBS before the reads raises latent drift before the second body read, so order A has body accumulator 221/10 while order B has body accumulator 211/10. The compositional cap uses the same next-read factor 72/5 in both orders, producing final outputs 7956/25 and 7596/25 and exact divergence 72/5."
+}

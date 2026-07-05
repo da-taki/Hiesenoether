@@ -1,0 +1,25 @@
+# Claim Manifest
+
+This manifest classifies paper claims by evidence level so manuscript drafting does not turn bounded or empirical findings into theorems.
+
+| Claim | Classification | Evidence level | Artifact | Scope | Non-claim |
+| --- | --- | --- | --- | --- | --- |
+| fixed-order determinism | proved in paper | Formal proof | `docs/formal_proof_appendix.md#3-proposition-1-fixed-order-determinism` | fixed initial configuration, fixed operation sequence, deterministic transitions | not a claim about nondeterministic hosts or arbitrary Python effects |
+| identity-observation zero divergence | proved in paper | Formal proof | `docs/formal_proof_appendix.md#4-proposition-2-identity-observation-zero-divergence` | studied template with g(d) = d and identical read/add operation multiset | not a claim about observations that mutate latent state |
+| access-insensitive-read zero divergence | proved in paper | Formal proof | `docs/formal_proof_appendix.md#5-proposition-3-access-insensitive-read-zero-divergence` | studied template with f(b, a, d) = h(b) | not a claim about access-sensitive or drift-sensitive reads |
+| linear cap preserves body-level divergence | proved in paper | Formal proof | `docs/formal_proof_appendix.md#6-proposition-4-linear-cap-preserves-body-level-divergence` | linear cap alpha*x + beta with alpha != 0 | not a nonlinear amplification theorem |
+| nonlinear cap amplification | empirical finding | Empirical sweep | `results/scp_new_experiments/expanded_mechanism_sweep_summary.json` | tested region of expanded mechanism sweep | not universally proved |
+| degree relationship | bounded exact computational finding | Exact bounded enumeration | `validation/theorem_R_polynomial.py; validation/theorem_T4_SDR.py` | bounded validation grids and reported exact-rational checks | not a theorem for all OSDS programs |
+| divergence-ratio relationship | bounded exact computational finding | Exact bounded enumeration | `validation/rho_infinity_investigation.py; validation/results.json` | bounded validation grids | not a universal asymptotic law |
+| zero-observation configurations have zero divergence in the sweep | bounded exact computational finding | Exact rational replay | `results/scp_new_experiments/expanded_mechanism_sweep_summary.json` | 2,112-configuration sweep subset with observation_count = 0 | not a claim about every possible program shape |
+| linear cap positive divergence in 240 configs | bounded exact computational finding | Exact rational replay | `results/scp_new_experiments/expanded_mechanism_sweep_summary.json` | expanded mechanism sweep configurations | not a universal lower bound |
+| nonlinear cap amplified in 1,680 configs | empirical finding | Empirical sweep | `results/scp_new_experiments/expanded_mechanism_sweep_summary.json` | tested positive-observation nonlinear cap configurations | not universally proved |
+| no nonlinear amplification counterexamples in tested region | empirical finding | Empirical sweep | `results/scp_new_experiments/expanded_mechanism_sweep_summary.json` | tested region only | not absence of counterexamples outside the tested region |
+| 240 exhaustive configurations | bounded exact computational finding | Exact bounded enumeration | `results/scp_new_experiments/extended_exhaustive_enumeration_summary.json` | body lengths 2 through 9, observation counts 0 through 5, cap degrees 1 through 5 under cutoff | not exhaustive over all body sizes |
+| sample-vs-exact range misses | bounded exact computational finding | Exact bounded enumeration | `results/scp_new_experiments/extended_exhaustive_enumeration_summary.json` | cases where exact and sampled ranges are both available | not a statement about every sampling policy |
+| sampling convergence at budget 1024 | empirical finding | Empirical sweep | `results/scp_new_experiments/sampling_convergence_summary.json` | sampled budgets and seeds in the convergence study | not exact extrema unless exhaustive enumeration is used |
+| analyzer controlled benchmark recall | empirical finding | Source-inspection evaluation | `results/scp_new_experiments/extended_controlled_benchmark_summary.json` | 64 labeled controlled classes | not analyzer soundness |
+| analyzer controlled benchmark precision | empirical finding | Source-inspection evaluation | `results/scp_new_experiments/extended_controlled_benchmark_summary.json` | 64 labeled controlled classes | not analyzer soundness |
+| reviewed PyPI precision | empirical finding | Source-inspection evaluation | `results/pypi_reviewed_findings.csv` | manual review of 278 MEDIUM/HIGH findings | not production prevalence and not analyzer soundness |
+| expanded PyPI screening scale | analyzer screening result | Screening-scale evidence | `results/scp_new_experiments/pypi_expanded_screen_summary.json` | cache-only screen of 116 packages | not precision or recall until manual labels are completed |
+| production prevalence | unsupported / should not be claimed | Screening-scale evidence | `none` | no production-prevalence design is present | should not be claimed |
