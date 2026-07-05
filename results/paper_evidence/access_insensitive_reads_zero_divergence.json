@@ -1,0 +1,11 @@
+{
+  "claim": "Access-insensitive reads give zero divergence",
+  "status": "PASS",
+  "assumptions": [
+    "Templates contain only READ and OBS over one OSDS value.",
+    "READ returns the base value independent of access count and drift.",
+    "All compared executions use the same READ/OBS multiset."
+  ],
+  "configurations_checked": 48,
+  "counterexamples": []
+}

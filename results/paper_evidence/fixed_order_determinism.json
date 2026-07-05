@@ -1,0 +1,100 @@
+{
+  "claim": "Fixed-order determinism",
+  "status": "PASS",
+  "templates": [
+    {
+      "reads": 2,
+      "observations": 1,
+      "degree": 1
+    },
+    {
+      "reads": 2,
+      "observations": 1,
+      "degree": 2
+    },
+    {
+      "reads": 2,
+      "observations": 1,
+      "degree": 3
+    },
+    {
+      "reads": 2,
+      "observations": 2,
+      "degree": 1
+    },
+    {
+      "reads": 2,
+      "observations": 2,
+      "degree": 2
+    },
+    {
+      "reads": 2,
+      "observations": 2,
+      "degree": 3
+    },
+    {
+      "reads": 3,
+      "observations": 1,
+      "degree": 1
+    },
+    {
+      "reads": 3,
+      "observations": 1,
+      "degree": 2
+    },
+    {
+      "reads": 3,
+      "observations": 1,
+      "degree": 3
+    },
+    {
+      "reads": 3,
+      "observations": 2,
+      "degree": 1
+    },
+    {
+      "reads": 3,
+      "observations": 2,
+      "degree": 2
+    },
+    {
+      "reads": 3,
+      "observations": 2,
+      "degree": 3
+    },
+    {
+      "reads": 4,
+      "observations": 1,
+      "degree": 1
+    },
+    {
+      "reads": 4,
+      "observations": 1,
+      "degree": 2
+    },
+    {
+      "reads": 4,
+      "observations": 1,
+      "degree": 3
+    },
+    {
+      "reads": 4,
+      "observations": 2,
+      "degree": 1
+    },
+    {
+      "reads": 4,
+      "observations": 2,
+      "degree": 2
+    },
+    {
+      "reads": 4,
+      "observations": 2,
+      "degree": 3
+    }
+  ],
+  "templates_checked": 18,
+  "permutations_checked": 129,
+  "repeats": 4,
+  "mismatches": []
+}

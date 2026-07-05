@@ -1,0 +1,194 @@
+{
+  "initial_state": {
+    "base_value_b": "10",
+    "access_count_a": 0,
+    "entropy": "1",
+    "initial_drift_d": "0",
+    "access_entropy_increment": "1/10",
+    "observation_entropy_increment": "1"
+  },
+  "cap": {
+    "kind": "compositional",
+    "degree": 2,
+    "formula": "final = accumulated_reads * next_read"
+  },
+  "sequence_A_operations": [
+    "OBS",
+    "READ",
+    "READ"
+  ],
+  "sequence_A_intermediate_states": [
+    {
+      "step": 0,
+      "operation": "INITIAL",
+      "accumulator_y": "0",
+      "x": {
+        "base_b": "10",
+        "access_count_a": 0,
+        "entropy": "1"
+      },
+      "drift_d": "0"
+    },
+    {
+      "step": 1,
+      "operation": "OBS",
+      "observation": {
+        "before": {
+          "base_b": "10",
+          "access_count_a": 0,
+          "entropy": "1"
+        },
+        "after": {
+          "base_b": "10",
+          "access_count_a": 0,
+          "entropy": "2"
+        },
+        "delta_entropy": "1"
+      },
+      "drift_d": "0",
+      "accumulator_y": "0",
+      "x": {
+        "base_b": "10",
+        "access_count_a": 0,
+        "entropy": "2"
+      }
+    },
+    {
+      "step": 2,
+      "operation": "READ",
+      "read_value": "10",
+      "drift_d": "0",
+      "accumulator_y": "10",
+      "x": {
+        "base_b": "10",
+        "access_count_a": 1,
+        "entropy": "21/10"
+      }
+    },
+    {
+      "step": 3,
+      "operation": "READ",
+      "read_value": "121/10",
+      "drift_d": "21/10",
+      "accumulator_y": "221/10",
+      "x": {
+        "base_b": "10",
+        "access_count_a": 2,
+        "entropy": "11/5"
+      }
+    },
+    {
+      "step": 4,
+      "operation": "CAP",
+      "degree": 2,
+      "input_y": "221/10",
+      "cap_factors": [
+        {
+          "cap_read": 1,
+          "read_value": "72/5",
+          "drift_d": "22/5",
+          "x_after_read": {
+            "base_b": "10",
+            "access_count_a": 3,
+            "entropy": "23/10"
+          }
+        }
+      ],
+      "final_output": "7956/25"
+    }
+  ],
+  "sequence_A_final_output": "7956/25",
+  "sequence_A_final_output_decimal": 318.24,
+  "sequence_B_operations": [
+    "READ",
+    "READ",
+    "OBS"
+  ],
+  "sequence_B_intermediate_states": [
+    {
+      "step": 0,
+      "operation": "INITIAL",
+      "accumulator_y": "0",
+      "x": {
+        "base_b": "10",
+        "access_count_a": 0,
+        "entropy": "1"
+      },
+      "drift_d": "0"
+    },
+    {
+      "step": 1,
+      "operation": "READ",
+      "read_value": "10",
+      "drift_d": "0",
+      "accumulator_y": "10",
+      "x": {
+        "base_b": "10",
+        "access_count_a": 1,
+        "entropy": "11/10"
+      }
+    },
+    {
+      "step": 2,
+      "operation": "READ",
+      "read_value": "111/10",
+      "drift_d": "11/10",
+      "accumulator_y": "211/10",
+      "x": {
+        "base_b": "10",
+        "access_count_a": 2,
+        "entropy": "6/5"
+      }
+    },
+    {
+      "step": 3,
+      "operation": "OBS",
+      "observation": {
+        "before": {
+          "base_b": "10",
+          "access_count_a": 2,
+          "entropy": "6/5"
+        },
+        "after": {
+          "base_b": "10",
+          "access_count_a": 2,
+          "entropy": "11/5"
+        },
+        "delta_entropy": "1"
+      },
+      "drift_d": "0",
+      "accumulator_y": "211/10",
+      "x": {
+        "base_b": "10",
+        "access_count_a": 2,
+        "entropy": "11/5"
+      }
+    },
+    {
+      "step": 4,
+      "operation": "CAP",
+      "degree": 2,
+      "input_y": "211/10",
+      "cap_factors": [
+        {
+          "cap_read": 1,
+          "read_value": "72/5",
+          "drift_d": "22/5",
+          "x_after_read": {
+            "base_b": "10",
+            "access_count_a": 3,
+            "entropy": "23/10"
+          }
+        }
+      ],
+      "final_output": "7596/25"
+    }
+  ],
+  "sequence_B_final_output": "7596/25",
+  "sequence_B_final_output_decimal": 303.84,
+  "divergence": {
+    "exact": "72/5",
+    "decimal": 14.4
+  },
+  "explanation": "Both executions use exactly two READ operations and one OBS operation. When OBS occurs first, it raises entropy before the second body read, so the accumulated read sum entering the cap is larger. The cap then uses the same exact-rational next-read factor in both orders, producing different deterministic final outputs from the same operation multiset."
+}

@@ -1,0 +1,19 @@
+{
+  "claim": "Polynomial-degree and divergence-ratio checks are bounded computational evidence",
+  "status": "PASS",
+  "polynomial_degree_configurations": {
+    "source": "validation\\theorem_R_polynomial.json",
+    "status": "reproduced_from_existing_results",
+    "top_level_status": "VERIFIED",
+    "cases_checked": 4,
+    "failed_holdout_cases": [],
+    "scope_note": "Holdout-verified for d=1 (m=1) and d=2 (m in {1,2,3}). Higher m and d=3,4 omitted: exact rational Lagrange interpolation at large L produces astronomical coefficient denominators whose equality test is the bottleneck. Polynomial-structure claim does not require exhausting the grid; structural induction in the proof handles all (m, d)."
+  },
+  "divergence_ratio_cases": {
+    "source": "validation\\theorem_R_table.json",
+    "status": "reproduced_from_code",
+    "rows_checked": 11,
+    "mismatches": []
+  },
+  "failures": []
+}

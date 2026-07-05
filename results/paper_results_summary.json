@@ -1,0 +1,506 @@
+{
+  "status_vocabulary": [
+    "reproduced_from_code",
+    "reproduced_from_existing_results",
+    "missing_reproduction_script",
+    "missing_raw_data",
+    "mismatch"
+  ],
+  "paper_numbers": [
+    {
+      "name": "2.2 million executions",
+      "expected": 2200000,
+      "actual": 2200000,
+      "status": "reproduced_from_existing_results",
+      "source": "results/summary.csv",
+      "note": "22 configurations with n_valid summed from existing results"
+    },
+    {
+      "name": "exhaustive enumeration configurations",
+      "expected": 112,
+      "actual": 112,
+      "status": "reproduced_from_code",
+      "source": "results/exhaustive_enumeration_summary.json",
+      "note": ""
+    },
+    {
+      "name": "exhaustive enumeration mismatches",
+      "expected": 0,
+      "actual": 0,
+      "status": "reproduced_from_code",
+      "source": "results/exhaustive_enumeration_summary.json",
+      "note": ""
+    },
+    {
+      "name": "controlled analyzer benchmark cases",
+      "expected": 20,
+      "actual": 20,
+      "status": "reproduced_from_code",
+      "source": "analysis\\benchmark_examples.py",
+      "note": ""
+    },
+    {
+      "name": "controlled analyzer benchmark precision",
+      "expected": 0.9231,
+      "actual": 0.9231,
+      "status": "reproduced_from_code",
+      "source": "analysis\\benchmark_examples.py",
+      "note": ""
+    },
+    {
+      "name": "controlled analyzer benchmark recall",
+      "expected": 1.0,
+      "actual": 1.0,
+      "status": "reproduced_from_code",
+      "source": "analysis\\benchmark_examples.py",
+      "note": ""
+    },
+    {
+      "name": "controlled analyzer benchmark exact_label_accuracy",
+      "expected": 0.95,
+      "actual": 0.95,
+      "status": "reproduced_from_code",
+      "source": "analysis\\benchmark_examples.py",
+      "note": ""
+    },
+    {
+      "name": "controlled analyzer benchmark TP",
+      "expected": 12,
+      "actual": 12,
+      "status": "reproduced_from_code",
+      "source": "analysis\\benchmark_examples.py",
+      "note": ""
+    },
+    {
+      "name": "controlled analyzer benchmark FP",
+      "expected": 1,
+      "actual": 1,
+      "status": "reproduced_from_code",
+      "source": "analysis\\benchmark_examples.py",
+      "note": ""
+    },
+    {
+      "name": "controlled analyzer benchmark TN",
+      "expected": 7,
+      "actual": 7,
+      "status": "reproduced_from_code",
+      "source": "analysis\\benchmark_examples.py",
+      "note": ""
+    },
+    {
+      "name": "controlled analyzer benchmark FN",
+      "expected": 0,
+      "actual": 0,
+      "status": "reproduced_from_code",
+      "source": "analysis\\benchmark_examples.py",
+      "note": ""
+    },
+    {
+      "name": "PyPI packages",
+      "expected": 73,
+      "actual": 73,
+      "status": "reproduced_from_existing_results",
+      "source": "results_static/pypi_static_benchmark_findings.csv",
+      "note": ""
+    },
+    {
+      "name": "PyPI files",
+      "expected": 1858,
+      "actual": 1858,
+      "status": "reproduced_from_existing_results",
+      "source": "results_static/pypi_static_benchmark_findings.csv",
+      "note": ""
+    },
+    {
+      "name": "PyPI classes",
+      "expected": 4437,
+      "actual": 4437,
+      "status": "reproduced_from_existing_results",
+      "source": "results_static/pypi_static_benchmark_findings.csv",
+      "note": ""
+    },
+    {
+      "name": "PyPI functions",
+      "expected": 21530,
+      "actual": 21530,
+      "status": "reproduced_from_existing_results",
+      "source": "results_static/pypi_static_benchmark_findings.csv",
+      "note": ""
+    },
+    {
+      "name": "reviewed MEDIUM/HIGH findings",
+      "expected": 278,
+      "actual": 278,
+      "status": "reproduced_from_existing_results",
+      "source": "results_static/pypi_static_benchmark_findings.csv",
+      "note": ""
+    },
+    {
+      "name": "likely true positives",
+      "expected": 203,
+      "actual": 203,
+      "status": "reproduced_from_existing_results",
+      "source": "results_static/pypi_static_benchmark_findings.csv",
+      "note": ""
+    },
+    {
+      "name": "likely false positives",
+      "expected": 75,
+      "actual": 75,
+      "status": "reproduced_from_existing_results",
+      "source": "results_static/pypi_static_benchmark_findings.csv",
+      "note": ""
+    },
+    {
+      "name": "reviewed PyPI precision",
+      "expected": 0.7302,
+      "actual": 0.7302,
+      "status": "reproduced_from_existing_results",
+      "source": "results_static/pypi_static_benchmark_findings.csv",
+      "note": ""
+    }
+  ],
+  "tables": {
+    "observation_count_sweep": {
+      "status": "reproduced_from_existing_results",
+      "source": "results\\A1.csv",
+      "rows": [
+        {
+          "config": "A1_inspect0",
+          "inspects": "0",
+          "std": "0.0",
+          "range": "0.0",
+          "n_valid": "100000",
+          "status": "reproduced_from_existing_results"
+        },
+        {
+          "config": "A1_inspect1",
+          "inspects": "1",
+          "std": "70.6351",
+          "range": "210.24",
+          "n_valid": "100000",
+          "status": "reproduced_from_existing_results"
+        },
+        {
+          "config": "A1_inspect2",
+          "inspects": "2",
+          "std": "125.5293",
+          "range": "497.76",
+          "n_valid": "100000",
+          "status": "reproduced_from_existing_results"
+        },
+        {
+          "config": "A1_inspect3",
+          "inspects": "3",
+          "std": "189.9506",
+          "range": "878.04",
+          "n_valid": "100000",
+          "status": "reproduced_from_existing_results"
+        },
+        {
+          "config": "A1_inspect4",
+          "inspects": "4",
+          "std": "269.13",
+          "range": "1368.0",
+          "n_valid": "100000",
+          "status": "reproduced_from_existing_results"
+        },
+        {
+          "config": "A1_inspect5",
+          "inspects": "5",
+          "std": "365.7408",
+          "range": "1986.0",
+          "n_valid": "100000",
+          "status": "reproduced_from_existing_results"
+        }
+      ]
+    },
+    "cap_degree_sweep": {
+      "status": "reproduced_from_existing_results",
+      "source": "results\\A2.csv",
+      "rows": [
+        {
+          "config": "A2_linear",
+          "nonlinear": "linear",
+          "std": "3.2187",
+          "range": "9.6",
+          "log_range": "2.261763",
+          "n_valid": "100000",
+          "status": "reproduced_from_existing_results"
+        },
+        {
+          "config": "A2_quadratic",
+          "nonlinear": "quadratic",
+          "std": "70.612",
+          "range": "210.24",
+          "log_range": "5.34825",
+          "n_valid": "100000",
+          "status": "reproduced_from_existing_results"
+        },
+        {
+          "config": "A2_cubic",
+          "nonlinear": "cubic",
+          "std": "1722.0659",
+          "range": "5129.856",
+          "log_range": "8.542833",
+          "n_valid": "100000",
+          "status": "reproduced_from_existing_results"
+        },
+        {
+          "config": "A2_extreme",
+          "nonlinear": "extreme",
+          "std": "12098.2108",
+          "range": "36098.208",
+          "log_range": "10.493999",
+          "n_valid": "100000",
+          "status": "reproduced_from_existing_results"
+        }
+      ]
+    },
+    "ablation_table": {
+      "status": "reproduced_from_existing_results",
+      "source": "results_extended\\e3_ablation_comparison.csv",
+      "rows": [
+        {
+          "config": "ablation_baseline",
+          "ablation": "none",
+          "std": "135.7523",
+          "range": "384.0",
+          "std_vs_baseline": "1.0",
+          "range_vs_baseline": "1.0",
+          "status": "reproduced_from_existing_results"
+        },
+        {
+          "config": "ablation_noop_inspect",
+          "ablation": "noop_inspect",
+          "std": "0.0",
+          "range": "0.0",
+          "std_vs_baseline": "0.0",
+          "range_vs_baseline": "0.0",
+          "status": "reproduced_from_existing_results"
+        },
+        {
+          "config": "ablation_no_entropy",
+          "ablation": "no_entropy",
+          "std": "116.7647",
+          "range": "330.0",
+          "std_vs_baseline": "0.8601",
+          "range_vs_baseline": "0.8594",
+          "status": "reproduced_from_existing_results"
+        },
+        {
+          "config": "ablation_fixed_order",
+          "ablation": "fixed_order",
+          "std": "0.0",
+          "range": "0.0",
+          "std_vs_baseline": "0.0",
+          "range_vs_baseline": "0.0",
+          "status": "reproduced_from_existing_results"
+        }
+      ]
+    }
+  },
+  "exhaustive_enumeration_summary": {
+    "total_configurations": 112,
+    "expected_total_if_sweep_matches_paper": 112,
+    "matched_configurations": 112,
+    "mismatched_configurations": 0,
+    "max_absolute_mismatch": "0",
+    "mismatches": [],
+    "scope": {
+      "body_lengths": [
+        2,
+        8
+      ],
+      "observation_counts": [
+        1,
+        4
+      ],
+      "cap_degrees": [
+        1,
+        4
+      ]
+    },
+    "csv": "results\\exhaustive_enumeration_report.csv",
+    "status": "reproduced_from_code"
+  },
+  "controlled_analyzer_benchmark": {
+    "cases": 20,
+    "TP": 12,
+    "FP": 1,
+    "TN": 7,
+    "FN": 0,
+    "precision": 0.9231,
+    "recall": 1.0,
+    "exact_label_accuracy": 0.95,
+    "rows": [
+      {
+        "class": "CachedDriftingProperty",
+        "expected": "MEDIUM",
+        "observed": "MEDIUM",
+        "exact_match": true,
+        "severity_delta": 0
+      },
+      {
+        "class": "FalsePositiveInternalMultiply",
+        "expected": "SAFE",
+        "observed": "SAFE",
+        "exact_match": true,
+        "severity_delta": 0
+      },
+      {
+        "class": "FalsePositiveObserverName",
+        "expected": "SAFE",
+        "observed": "SAFE",
+        "exact_match": true,
+        "severity_delta": 0
+      },
+      {
+        "class": "FalsePositivePureCache",
+        "expected": "SAFE",
+        "observed": "MEDIUM",
+        "exact_match": false,
+        "severity_delta": 2
+      },
+      {
+        "class": "FullP1P2Counter",
+        "expected": "HIGH",
+        "observed": "HIGH",
+        "exact_match": true,
+        "severity_delta": 0
+      },
+      {
+        "class": "FullP1P2Descriptor",
+        "expected": "HIGH",
+        "observed": "HIGH",
+        "exact_match": true,
+        "severity_delta": 0
+      },
+      {
+        "class": "FullReactiveCell",
+        "expected": "HIGH",
+        "observed": "HIGH",
+        "exact_match": true,
+        "severity_delta": 0
+      },
+      {
+        "class": "ObserverOnlyDescriptor",
+        "expected": "LOW",
+        "observed": "LOW",
+        "exact_match": true,
+        "severity_delta": 0
+      },
+      {
+        "class": "PartialP1Getter",
+        "expected": "MEDIUM",
+        "observed": "MEDIUM",
+        "exact_match": true,
+        "severity_delta": 0
+      },
+      {
+        "class": "PartialP1Next",
+        "expected": "MEDIUM",
+        "observed": "MEDIUM",
+        "exact_match": true,
+        "severity_delta": 0
+      },
+      {
+        "class": "PartialP1Reader",
+        "expected": "MEDIUM",
+        "observed": "MEDIUM",
+        "exact_match": true,
+        "severity_delta": 0
+      },
+      {
+        "class": "PartialP2Inspect",
+        "expected": "LOW",
+        "observed": "LOW",
+        "exact_match": true,
+        "severity_delta": 0
+      },
+      {
+        "class": "PartialP2Observer",
+        "expected": "LOW",
+        "observed": "LOW",
+        "exact_match": true,
+        "severity_delta": 0
+      },
+      {
+        "class": "PartialP2Watch",
+        "expected": "LOW",
+        "observed": "LOW",
+        "exact_match": true,
+        "severity_delta": 0
+      },
+      {
+        "class": "ReactiveAccumulator",
+        "expected": "HIGH",
+        "observed": "HIGH",
+        "exact_match": true,
+        "severity_delta": 0
+      },
+      {
+        "class": "SafeCachedProperty",
+        "expected": "SAFE",
+        "observed": "SAFE",
+        "exact_match": true,
+        "severity_delta": 0
+      },
+      {
+        "class": "SafeDescriptor",
+        "expected": "SAFE",
+        "observed": "SAFE",
+        "exact_match": true,
+        "severity_delta": 0
+      },
+      {
+        "class": "SafeFrozenPair",
+        "expected": "SAFE",
+        "observed": "SAFE",
+        "exact_match": true,
+        "severity_delta": 0
+      },
+      {
+        "class": "SafeImmutableValue",
+        "expected": "SAFE",
+        "observed": "SAFE",
+        "exact_match": true,
+        "severity_delta": 0
+      },
+      {
+        "class": "SafeObserver",
+        "expected": "SAFE",
+        "observed": "SAFE",
+        "exact_match": true,
+        "severity_delta": 0
+      }
+    ],
+    "status": "reproduced_from_code",
+    "source": "analysis\\benchmark_examples.py"
+  },
+  "pypi_screening_metrics": {
+    "status": "reproduced_from_existing_results",
+    "summary_source": "results_static\\pypi_static_benchmark.csv",
+    "findings_source": "results_static\\pypi_static_benchmark_findings.csv",
+    "reviewed_findings_csv": "results\\pypi_reviewed_findings.csv",
+    "packages": 73,
+    "files": 1858,
+    "classes": 4437,
+    "functions": 21530,
+    "reviewed_MEDIUM_HIGH_findings": 278,
+    "likely_true_positives": 203,
+    "likely_false_positives": 75,
+    "reviewed_precision": 0.7302
+  },
+  "execution_count": {
+    "status": "reproduced_from_existing_results",
+    "configuration_count": 22,
+    "total_executions": 2200000
+  },
+  "gaps": [],
+  "generated_artifacts": [
+    "results/paper_results_summary.json",
+    "results/paper_results_tables.md",
+    "results/pypi_reviewed_findings.csv"
+  ]
+}

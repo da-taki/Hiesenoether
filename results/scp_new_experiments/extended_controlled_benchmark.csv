@@ -1,0 +1,65 @@
+file,class,line,expected,observed,expected_positive,observed_positive,exact_match,severity_delta,evidence
+analysis/benchmark_examples.py,CachedDriftingProperty,133,MEDIUM,MEDIUM,True,True,True,0,P1: method value() (line 137): mutates self.{n} and returns a value derived from self state
+analysis/benchmark_examples.py,FalsePositiveInternalMultiply,103,SAFE,SAFE,False,False,True,0,
+analysis/benchmark_examples.py,FalsePositiveObserverName,118,SAFE,SAFE,False,False,True,0,
+analysis/benchmark_examples.py,FalsePositivePureCache,109,SAFE,MEDIUM,False,True,False,2,P1: method get() (line 112): mutates self.{cached} and returns a value derived from self state
+analysis/benchmark_examples.py,FullP1P2Counter,76,HIGH,HIGH,True,True,True,0,P1: method read() (line 79): mutates self.{n} and returns a value derived from self state | P2: method observe() (line 82): mutates self.{e}
+analysis/benchmark_examples.py,FullP1P2Descriptor,85,HIGH,HIGH,True,True,True,0,P1: method __get__() (line 88): mutates self.{n} and returns a value derived from self state | P2: method inspect() (line 91): mutates self.{e}
+analysis/benchmark_examples.py,FullReactiveCell,94,HIGH,HIGH,True,True,True,0,P1: method current() (line 97): mutates self.{n} and returns a value derived from self state | P2: method observe() (line 100): mutates self.{e}
+analysis/benchmark_examples.py,ObserverOnlyDescriptor,142,LOW,LOW,True,True,True,0,P2: method inspect() (line 145): mutates self.{e}
+analysis/benchmark_examples.py,PartialP1Getter,42,MEDIUM,MEDIUM,True,True,True,0,P1: method get() (line 45): mutates self.{n} and returns a value derived from self state
+analysis/benchmark_examples.py,PartialP1Next,50,MEDIUM,MEDIUM,True,True,True,0,P1: method __next__() (line 53): mutates self.{n} and returns a value derived from self state
+analysis/benchmark_examples.py,PartialP1Reader,34,MEDIUM,MEDIUM,True,True,True,0,P1: method read() (line 37): mutates self.{n} and returns a value derived from self state
+analysis/benchmark_examples.py,PartialP2Inspect,64,LOW,LOW,True,True,True,0,P2: method inspect() (line 67): mutates self.{e}
+analysis/benchmark_examples.py,PartialP2Observer,58,LOW,LOW,True,True,True,0,P2: method observe() (line 61): mutates self.{e}
+analysis/benchmark_examples.py,PartialP2Watch,70,LOW,LOW,True,True,True,0,P2: method watch() (line 73): mutates self.{e}
+analysis/benchmark_examples.py,ReactiveAccumulator,124,HIGH,HIGH,True,True,True,0,P1: method fetch() (line 127): mutates self.{n} and returns a value derived from self state | P2: method snapshot() (line 130): mutates self.{e}
+analysis/benchmark_examples.py,SafeCachedProperty,16,SAFE,SAFE,False,False,True,0,
+analysis/benchmark_examples.py,SafeDescriptor,23,SAFE,SAFE,False,False,True,0,
+analysis/benchmark_examples.py,SafeFrozenPair,10,SAFE,SAFE,False,False,True,0,
+analysis/benchmark_examples.py,SafeImmutableValue,4,SAFE,SAFE,False,False,True,0,
+analysis/benchmark_examples.py,SafeObserver,28,SAFE,SAFE,False,False,True,0,
+benchmarks/controlled_extended/extended_examples.py,AccessEvolvingPropertyOnly,116,MEDIUM,MEDIUM,True,True,True,0,P1: method value() (line 120): mutates self.{n} and returns a value derived from self state
+benchmarks/controlled_extended/extended_examples.py,AccessEvolvingPropertyWithObserver,6,HIGH,HIGH,True,True,True,0,P1: method value() (line 10): mutates self.{n} and returns a value derived from self state | P2: method observe() (line 13): mutates self.{e}
+benchmarks/controlled_extended/extended_examples.py,AccessingDescriptorOnly,181,MEDIUM,MEDIUM,True,True,True,0,P1: method __get__() (line 184): mutates self.{n} and returns a value derived from self state
+benchmarks/controlled_extended/extended_examples.py,BuilderPattern,261,SAFE,SAFE,False,False,True,0,
+benchmarks/controlled_extended/extended_examples.py,CachedHash,252,SAFE,MEDIUM,False,True,False,2,P1: method __hash__() (line 255): mutates self.{_hash} and returns a value derived from self state
+benchmarks/controlled_extended/extended_examples.py,CachedInvalidationReaderNoObserver,189,MEDIUM,MEDIUM,True,True,True,0,P1: method read() (line 192): mutates self.{n} and returns a value derived from self state
+benchmarks/controlled_extended/extended_examples.py,CachedValueInvalidationAndRead,61,HIGH,HIGH,True,True,True,0,P1: method read() (line 64): mutates self.{n} and returns a value derived from self state | P2: method observe() (line 67): mutates self.{generation}
+benchmarks/controlled_extended/extended_examples.py,ConstantAfterMutationNearMiss,332,SAFE,MEDIUM,False,True,False,2,P1: method get() (line 335): mutates self.{calls} and returns a value derived from self state
+benchmarks/controlled_extended/extended_examples.py,ConstantObserverName,326,SAFE,SAFE,False,False,True,0,
+benchmarks/controlled_extended/extended_examples.py,ContextManagerBookkeeping,269,SAFE,MEDIUM,False,True,False,2,P1: method __enter__() (line 272): mutates self.{depth} and returns a value derived from self state
+benchmarks/controlled_extended/extended_examples.py,CounterBasedReadThreshold,34,HIGH,HIGH,True,True,True,0,P1: method get() (line 37): mutates self.{n} and returns a value derived from self state | P2: method watch() (line 40): mutates self.{threshold}
+benchmarks/controlled_extended/extended_examples.py,CounterBasedReaderOnly,125,MEDIUM,MEDIUM,True,True,True,0,P1: method read() (line 128): mutates self.{n} and returns a value derived from self state
+benchmarks/controlled_extended/extended_examples.py,DataclassStyleProperty,305,SAFE,SAFE,False,False,True,0,
+benchmarks/controlled_extended/extended_examples.py,DescriptorObserverPair,89,HIGH,HIGH,True,True,True,0,P1: method __get__() (line 92): mutates self.{n} and returns a value derived from self state | P2: method observe() (line 95): mutates self.{e}
+benchmarks/controlled_extended/extended_examples.py,FetchWithHiddenCounter,165,MEDIUM,MEDIUM,True,True,True,0,P1: method fetch() (line 168): mutates self.{n} and returns a value derived from self state
+benchmarks/controlled_extended/extended_examples.py,FluentSetter,312,SAFE,MEDIUM,False,True,False,2,P1: method set_name() (line 315): mutates self.{name} and returns a value derived from self state
+benchmarks/controlled_extended/extended_examples.py,HarmlessMemoizedProperty,242,SAFE,MEDIUM,False,True,False,2,P1: method value() (line 246): mutates self.{_cached} and returns a value derived from self state
+benchmarks/controlled_extended/extended_examples.py,HiddenCounterFetcher,71,HIGH,HIGH,True,True,True,0,P1: method fetch() (line 74): mutates self.{hidden} and returns a value derived from self state | P2: method snapshot() (line 77): mutates self.{scale}
+benchmarks/controlled_extended/extended_examples.py,HiddenCounterGetter,141,MEDIUM,MEDIUM,True,True,True,0,P1: method get() (line 144): mutates self.{hidden} and returns a value derived from self state
+benchmarks/controlled_extended/extended_examples.py,InspectOnly,216,LOW,LOW,True,True,True,0,P2: method inspect() (line 219): mutates self.{inspections}
+benchmarks/controlled_extended/extended_examples.py,InstrumentationHookPattern,52,HIGH,HIGH,True,True,True,0,P1: method fetch() (line 55): mutates self.{n} and returns a value derived from self state | P2: method inspect() (line 58): mutates self.{hooks}
+benchmarks/controlled_extended/extended_examples.py,LatentStateDescriptor,16,HIGH,HIGH,True,True,True,0,P1: method __get__() (line 19): mutates self.{n} and returns a value derived from self state | P2: method inspect() (line 22): mutates self.{e}
+benchmarks/controlled_extended/extended_examples.py,LazyInvalidatingCell,107,HIGH,HIGH,True,True,True,0,P1: method value() (line 110): mutates self.{n} and returns a value derived from self state | P2: method watch() (line 113): mutates self.{epoch}
+benchmarks/controlled_extended/extended_examples.py,LoggingNoEffect,279,SAFE,SAFE,False,False,True,0,
+benchmarks/controlled_extended/extended_examples.py,LoggingObserverNameNoMutation,354,SAFE,SAFE,False,False,True,0,
+benchmarks/controlled_extended/extended_examples.py,MeteredCurrentValue,157,MEDIUM,MEDIUM,True,True,True,0,P1: method current() (line 160): mutates self.{n} and returns a value derived from self state
+benchmarks/controlled_extended/extended_examples.py,MetricsCounterIndependent,287,SAFE,MEDIUM,False,True,False,2,P1: method get() (line 290): mutates self.{metric} and returns a value derived from self state
+benchmarks/controlled_extended/extended_examples.py,MetricsObserver,229,LOW,LOW,True,True,True,0,P2: method observe() (line 232): mutates self.{events}
+benchmarks/controlled_extended/extended_examples.py,NextToken,173,MEDIUM,MEDIUM,True,True,True,0,P1: method __next__() (line 176): mutates self.{n} and returns a value derived from self state
+benchmarks/controlled_extended/extended_examples.py,ObserverDescriptorNoRead,222,LOW,LOW,True,True,True,0,P2: method inspect() (line 225): mutates self.{version}
+benchmarks/controlled_extended/extended_examples.py,ObserverMutatesLaterRead,25,HIGH,HIGH,True,True,True,0,P1: method read() (line 28): mutates self.{n} and returns a value derived from self state | P2: method observe() (line 31): mutates self.{bias}
+benchmarks/controlled_extended/extended_examples.py,ObserverOnlyInvalidate,198,LOW,LOW,True,True,True,0,P2: method observe() (line 201): mutates self.{epoch}
+benchmarks/controlled_extended/extended_examples.py,PureAreaCalculator,320,SAFE,SAFE,False,False,True,0,
+benchmarks/controlled_extended/extended_examples.py,PureDescriptor,340,SAFE,SAFE,False,False,True,0,
+benchmarks/controlled_extended/extended_examples.py,ReactiveDependencyRegistration,43,HIGH,HIGH,True,True,True,0,P1: method current() (line 46): mutates self.{n} and returns a value derived from self state | P2: method snapshot() (line 49): mutates self.{dependencies}
+benchmarks/controlled_extended/extended_examples.py,ReadThresholdOnly,133,MEDIUM,MEDIUM,True,True,True,0,P1: method get() (line 136): mutates self.{n} and returns a value derived from self state
+benchmarks/controlled_extended/extended_examples.py,RepeatedReadSource,149,MEDIUM,MEDIUM,True,True,True,0,P1: method read() (line 152): mutates self.{n} and returns a value derived from self state
+benchmarks/controlled_extended/extended_examples.py,RollingWindowReader,98,HIGH,HIGH,True,True,True,0,P1: method read() (line 101): mutates self.{index} and returns a value derived from self state | P2: method inspect() (line 104): mutates self.{window}
+benchmarks/controlled_extended/extended_examples.py,SnapshotOnly,204,LOW,LOW,True,True,True,0,P2: method snapshot() (line 207): mutates self.{version}
+benchmarks/controlled_extended/extended_examples.py,SnapshotThenRead,80,HIGH,HIGH,True,True,True,0,P1: method read() (line 83): mutates self.{n} and returns a value derived from self state | P2: method snapshot() (line 86): mutates self.{offset}
+benchmarks/controlled_extended/extended_examples.py,StabilizingDescriptor,345,SAFE,MEDIUM,False,True,False,2,P1: method __get__() (line 348): mutates self.{cached} and returns a value derived from self state
+benchmarks/controlled_extended/extended_examples.py,StableDescriptorCacheOnce,295,SAFE,MEDIUM,False,True,False,2,P1: method __get__() (line 298): mutates self.{cached} and returns a value derived from self state
+benchmarks/controlled_extended/extended_examples.py,StoredProperty,235,SAFE,SAFE,False,False,True,0,
+benchmarks/controlled_extended/extended_examples.py,WatchOnly,210,LOW,LOW,True,True,True,0,P2: method watch() (line 213): mutates self.{watchers}

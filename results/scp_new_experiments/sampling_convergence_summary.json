@@ -1,0 +1,178 @@
+{
+  "configurations": [
+    {
+      "body_length": 5,
+      "observation_count": 3,
+      "cap_degree": 2
+    },
+    {
+      "body_length": 6,
+      "observation_count": 4,
+      "cap_degree": 3
+    },
+    {
+      "body_length": 8,
+      "observation_count": 4,
+      "cap_degree": 4
+    },
+    {
+      "body_length": 9,
+      "observation_count": 5,
+      "cap_degree": 5
+    }
+  ],
+  "budgets": [
+    8,
+    16,
+    32,
+    64,
+    128,
+    256,
+    512,
+    1024
+  ],
+  "seeds": [
+    17,
+    29,
+    43,
+    71,
+    101
+  ],
+  "rows": 160,
+  "budget_summary": [
+    {
+      "budget": 8,
+      "rows": 20,
+      "exact_extrema_matches": 0,
+      "exact_extrema_match_rate": 0.0,
+      "average_relative_error": 0.434900793651,
+      "max_relative_error": 0.672222222222
+    },
+    {
+      "budget": 16,
+      "rows": 20,
+      "exact_extrema_matches": 0,
+      "exact_extrema_match_rate": 0.0,
+      "average_relative_error": 0.342599206349,
+      "max_relative_error": 0.644444444444
+    },
+    {
+      "budget": 32,
+      "rows": 20,
+      "exact_extrema_matches": 3,
+      "exact_extrema_match_rate": 0.15,
+      "average_relative_error": 0.200555555555,
+      "max_relative_error": 0.394444444444
+    },
+    {
+      "budget": 64,
+      "rows": 20,
+      "exact_extrema_matches": 6,
+      "exact_extrema_match_rate": 0.3,
+      "average_relative_error": 0.125505952381,
+      "max_relative_error": 0.3
+    },
+    {
+      "budget": 128,
+      "rows": 20,
+      "exact_extrema_matches": 8,
+      "exact_extrema_match_rate": 0.4,
+      "average_relative_error": 0.08498015873,
+      "max_relative_error": 0.266666666667
+    },
+    {
+      "budget": 256,
+      "rows": 20,
+      "exact_extrema_matches": 13,
+      "exact_extrema_match_rate": 0.65,
+      "average_relative_error": 0.0425,
+      "max_relative_error": 0.194444444444
+    },
+    {
+      "budget": 512,
+      "rows": 20,
+      "exact_extrema_matches": 16,
+      "exact_extrema_match_rate": 0.8,
+      "average_relative_error": 0.02,
+      "max_relative_error": 0.138888888889
+    },
+    {
+      "budget": 1024,
+      "rows": 20,
+      "exact_extrema_matches": 17,
+      "exact_extrema_match_rate": 0.85,
+      "average_relative_error": 0.010833333333,
+      "max_relative_error": 0.127777777778
+    }
+  ],
+  "max_budget_extrema_failures": [
+    {
+      "body_length": 9,
+      "observation_count": 5,
+      "cap_degree": 5,
+      "unique_permutations": 2002,
+      "budget": 1024,
+      "seed": 43,
+      "sampled_permutations": 1024,
+      "sampled_min": 7563546652.928,
+      "sampled_max": 15989259245.568,
+      "sampled_range": 8425712592.64,
+      "sampled_exact_min": "945443331616/125",
+      "sampled_exact_max": "1998657405696/125",
+      "sampled_exact_range": "210642814816/25",
+      "true_exhaustive_range": 8817606201.6,
+      "true_exhaustive_exact_range": "44088031008/5",
+      "absolute_error": 391893608.96,
+      "exact_absolute_error": "9797340224/25",
+      "relative_error": 0.044444444444,
+      "sampled_extrema_matched_exact_extrema": false,
+      "exact_rational_arithmetic_used": true
+    },
+    {
+      "body_length": 9,
+      "observation_count": 5,
+      "cap_degree": 5,
+      "unique_permutations": 2002,
+      "budget": 1024,
+      "seed": 71,
+      "sampled_permutations": 1024,
+      "sampled_min": 7563546652.928,
+      "sampled_max": 15989259245.568,
+      "sampled_range": 8425712592.64,
+      "sampled_exact_min": "945443331616/125",
+      "sampled_exact_max": "1998657405696/125",
+      "sampled_exact_range": "210642814816/25",
+      "true_exhaustive_range": 8817606201.6,
+      "true_exhaustive_exact_range": "44088031008/5",
+      "absolute_error": 391893608.96,
+      "exact_absolute_error": "9797340224/25",
+      "relative_error": 0.044444444444,
+      "sampled_extrema_matched_exact_extrema": false,
+      "exact_rational_arithmetic_used": true
+    },
+    {
+      "body_length": 9,
+      "observation_count": 5,
+      "cap_degree": 5,
+      "unique_permutations": 2002,
+      "budget": 1024,
+      "seed": 101,
+      "sampled_permutations": 1024,
+      "sampled_min": 8298347169.728,
+      "sampled_max": 15989259245.568,
+      "sampled_range": 7690912075.84,
+      "sampled_exact_min": "1037293396216/125",
+      "sampled_exact_max": "1998657405696/125",
+      "sampled_exact_range": "192272801896/25",
+      "true_exhaustive_range": 8817606201.6,
+      "true_exhaustive_exact_range": "44088031008/5",
+      "absolute_error": 1126694125.76,
+      "exact_absolute_error": "28167353144/25",
+      "relative_error": 0.127777777778,
+      "sampled_extrema_matched_exact_extrema": false,
+      "exact_rational_arithmetic_used": true
+    }
+  ],
+  "exact_rational_arithmetic_used": true,
+  "csv": "results/scp_new_experiments/sampling_convergence.csv"
+}

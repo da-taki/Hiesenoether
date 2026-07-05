@@ -1,0 +1,23 @@
+{
+  "total_configurations": 112,
+  "expected_total_if_sweep_matches_paper": 112,
+  "matched_configurations": 112,
+  "mismatched_configurations": 0,
+  "max_absolute_mismatch": "0",
+  "mismatches": [],
+  "scope": {
+    "body_lengths": [
+      2,
+      8
+    ],
+    "observation_counts": [
+      1,
+      4
+    ],
+    "cap_degrees": [
+      1,
+      4
+    ]
+  },
+  "csv": "results\\exhaustive_enumeration_report.csv"
+}
