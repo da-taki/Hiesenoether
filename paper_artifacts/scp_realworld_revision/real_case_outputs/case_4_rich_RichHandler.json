@@ -1,0 +1,44 @@
+{
+  "case_id": "case_4_rich_RichHandler",
+  "package": "rich",
+  "version": "15.0.0",
+  "class_name": "RichHandler",
+  "file_path": "rich/logging.py",
+  "operation_A": "construct handler; do not render message",
+  "result_A": {
+    "before": {
+      "keywords": null
+    },
+    "after": {
+      "keywords": null,
+      "rendered": null
+    }
+  },
+  "operation_B": "construct handler; render_message() once",
+  "result_B": {
+    "before": {
+      "keywords": null
+    },
+    "after": {
+      "keywords": [
+        "GET",
+        "POST",
+        "HEAD",
+        "PUT",
+        "DELETE",
+        "OPTIONS",
+        "TRACE",
+        "PATCH"
+      ],
+      "rendered": "GET /index"
+    }
+  },
+  "branch_flip": false,
+  "output_diff": false,
+  "state_diff": true,
+  "classification": "confirmed_state_divergence_only",
+  "read_or_observer_operation": "RichHandler.render_message()",
+  "latent_state": "handler.keywords",
+  "later_read_or_behavior": "later handler keyword-highlighting state",
+  "notes": "Logging/rendering path mutates keyword-highlight configuration on first render."
+}

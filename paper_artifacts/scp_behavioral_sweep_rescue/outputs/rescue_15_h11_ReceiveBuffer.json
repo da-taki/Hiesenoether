@@ -1,0 +1,42 @@
+{
+  "boundary_note": "ReceiveBuffer line extraction is destructive by design; it is a cursor semantics example.",
+  "branch_flip": false,
+  "class_name": "ReceiveBuffer",
+  "classification": "confirmed_output_divergence",
+  "failure_reason": "",
+  "file_path": "h11-0.16.0\\h11\\_receivebuffer.py",
+  "fixture_description": "ReceiveBuffer containing HTTP-like header bytes.",
+  "operation_A": "maybe_extract_lines()",
+  "operation_B": "maybe_extract_next_line() first; then maybe_extract_lines()",
+  "original_sweep_rank": 50,
+  "output_diff": true,
+  "package": "h11",
+  "rescue_rank": 15,
+  "result_A": {
+    "kind": "value",
+    "later": [
+      "b'GET / HTTP/1.1'",
+      "b'Host: x'"
+    ],
+    "observation": null,
+    "state": {
+      "buffer": "b'BODY'",
+      "multiple_lines_search": 0,
+      "next_line_search": 0
+    }
+  },
+  "result_B": {
+    "kind": "value",
+    "later": [
+      "b'Host: x'"
+    ],
+    "observation": "b'GET / HTTP/1.1\\r\\n'",
+    "state": {
+      "buffer": "b'BODY'",
+      "multiple_lines_search": 0,
+      "next_line_search": 0
+    }
+  },
+  "state_diff": false,
+  "version": "0.16.0"
+}

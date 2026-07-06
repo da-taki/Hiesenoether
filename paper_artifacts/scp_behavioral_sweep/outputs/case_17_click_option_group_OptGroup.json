@@ -1,0 +1,58 @@
+{
+  "sweep_rank": 17,
+  "package": "click-option-group",
+  "version": "0.5.9",
+  "class_name": "_OptGroup",
+  "file_path": "click_option_group-0.5.9\\src\\click_option_group\\_decorators.py",
+  "selected_score": 10,
+  "classification": "structural_only_no_runtime_difference",
+  "reproduced": false,
+  "output_diff": false,
+  "branch_flip": false,
+  "state_diff": false,
+  "operation_A": "__call__() once on fresh instance",
+  "operation_B": "__call__() once first; then __call__() again",
+  "result_A": {
+    "before": {
+      "_decorating_state": "defaultdict(<class 'list'>, {})",
+      "_not_attached_options": "defaultdict(<class 'list'>, {})",
+      "_outer_frame_index": "1"
+    },
+    "result": {
+      "kind": "value",
+      "value": "<function _OptGroup.group.<locals>.decorator at 0xADDR>"
+    },
+    "after": {
+      "_decorating_state": "defaultdict(<class 'list'>, {})",
+      "_not_attached_options": "defaultdict(<class 'list'>, {})",
+      "_outer_frame_index": "1"
+    }
+  },
+  "result_B": {
+    "before": {
+      "_decorating_state": "defaultdict(<class 'list'>, {})",
+      "_not_attached_options": "defaultdict(<class 'list'>, {})",
+      "_outer_frame_index": "1"
+    },
+    "observation_result": {
+      "kind": "value",
+      "value": "<function _OptGroup.group.<locals>.decorator at 0xADDR>"
+    },
+    "after_observation": {
+      "_decorating_state": "defaultdict(<class 'list'>, {})",
+      "_not_attached_options": "defaultdict(<class 'list'>, {})",
+      "_outer_frame_index": "1"
+    },
+    "result": {
+      "kind": "value",
+      "value": "<function _OptGroup.group.<locals>.decorator at 0xADDR>"
+    },
+    "after": {
+      "_decorating_state": "defaultdict(<class 'list'>, {})",
+      "_not_attached_options": "defaultdict(<class 'list'>, {})",
+      "_outer_frame_index": "1"
+    }
+  },
+  "failure_reason": "",
+  "notes": "generic safe repeated-operation harness; confirmation depends on no-arg construction and no-arg operation"
+}

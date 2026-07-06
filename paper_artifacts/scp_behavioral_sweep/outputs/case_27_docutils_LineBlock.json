@@ -1,0 +1,19 @@
+{
+  "sweep_rank": 27,
+  "package": "docutils",
+  "version": "0.22.4",
+  "class_name": "LineBlock",
+  "file_path": "docutils-0.22.4\\docutils\\parsers\\rst\\directives\\body.py",
+  "selected_score": 10,
+  "classification": "could_not_construct",
+  "reproduced": false,
+  "output_diff": false,
+  "branch_flip": false,
+  "state_diff": false,
+  "operation_A": "",
+  "operation_B": "",
+  "result_A": {},
+  "result_B": {},
+  "failure_reason": "constructor requires arguments: name, arguments, options, content, lineno, content_offset, block_text, state, state_machine",
+  "notes": "generic harness did not execute candidate behavior"
+}

@@ -1,0 +1,93 @@
+{
+  "sweep_rank": 22,
+  "package": "dnspython",
+  "version": "2.8.0",
+  "class_name": "Tokenizer",
+  "file_path": "dnspython-2.8.0\\dns\\tokenizer.py",
+  "selected_score": 10,
+  "classification": "confirmed_state_divergence_only",
+  "reproduced": true,
+  "output_diff": false,
+  "branch_flip": false,
+  "state_diff": true,
+  "operation_A": "_get_char() once on fresh instance",
+  "operation_B": "_get_char() once first; then _get_char() again",
+  "result_A": {
+    "before": {
+      "delimiters": "{')', '\\n', '(', ' ', '\"', ';', '\\t'}",
+      "eof": "False",
+      "file": "<_io.TextIOWrapper name='<stdin>' mode='r' encoding='cp1252'>",
+      "filename": "'<stdin>'",
+      "idna_codec": "<dns.name.IDNA2003Codec object at 0xADDR>",
+      "line_number": "1",
+      "multiline": "0",
+      "quoting": "False",
+      "ungotten_char": "None",
+      "ungotten_token": "None"
+    },
+    "result": {
+      "kind": "value",
+      "value": "''"
+    },
+    "after": {
+      "delimiters": "{')', '\\n', '(', ' ', '\"', ';', '\\t'}",
+      "eof": "True",
+      "file": "<_io.TextIOWrapper name='<stdin>' mode='r' encoding='cp1252'>",
+      "filename": "'<stdin>'",
+      "idna_codec": "<dns.name.IDNA2003Codec object at 0xADDR>",
+      "line_number": "1",
+      "multiline": "0",
+      "quoting": "False",
+      "ungotten_char": "None",
+      "ungotten_token": "None"
+    }
+  },
+  "result_B": {
+    "before": {
+      "delimiters": "{')', '\\n', '(', ' ', '\"', ';', '\\t'}",
+      "eof": "False",
+      "file": "<_io.TextIOWrapper name='<stdin>' mode='r' encoding='cp1252'>",
+      "filename": "'<stdin>'",
+      "idna_codec": "<dns.name.IDNA2003Codec object at 0xADDR>",
+      "line_number": "1",
+      "multiline": "0",
+      "quoting": "False",
+      "ungotten_char": "None",
+      "ungotten_token": "None"
+    },
+    "observation_result": {
+      "kind": "value",
+      "value": "''"
+    },
+    "after_observation": {
+      "delimiters": "{')', '\\n', '(', ' ', '\"', ';', '\\t'}",
+      "eof": "True",
+      "file": "<_io.TextIOWrapper name='<stdin>' mode='r' encoding='cp1252'>",
+      "filename": "'<stdin>'",
+      "idna_codec": "<dns.name.IDNA2003Codec object at 0xADDR>",
+      "line_number": "1",
+      "multiline": "0",
+      "quoting": "False",
+      "ungotten_char": "None",
+      "ungotten_token": "None"
+    },
+    "result": {
+      "kind": "value",
+      "value": "''"
+    },
+    "after": {
+      "delimiters": "{')', '\\n', '(', ' ', '\"', ';', '\\t'}",
+      "eof": "True",
+      "file": "<_io.TextIOWrapper name='<stdin>' mode='r' encoding='cp1252'>",
+      "filename": "'<stdin>'",
+      "idna_codec": "<dns.name.IDNA2003Codec object at 0xADDR>",
+      "line_number": "1",
+      "multiline": "0",
+      "quoting": "False",
+      "ungotten_char": "None",
+      "ungotten_token": "None"
+    }
+  },
+  "failure_reason": "",
+  "notes": "generic safe repeated-operation harness; confirmation depends on no-arg construction and no-arg operation"
+}

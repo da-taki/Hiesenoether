@@ -1,0 +1,19 @@
+{
+  "sweep_rank": 33,
+  "package": "docutils",
+  "version": "0.22.4",
+  "class_name": "EnumeratedList",
+  "file_path": "docutils-0.22.4\\docutils\\parsers\\rst\\states.py",
+  "selected_score": 10,
+  "classification": "could_not_construct",
+  "reproduced": false,
+  "output_diff": false,
+  "branch_flip": false,
+  "state_diff": false,
+  "operation_A": "",
+  "operation_B": "",
+  "result_A": {},
+  "result_B": {},
+  "failure_reason": "constructor requires arguments: state_machine",
+  "notes": "generic harness did not execute candidate behavior"
+}

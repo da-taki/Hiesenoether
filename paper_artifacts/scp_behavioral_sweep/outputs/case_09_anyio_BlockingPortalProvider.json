@@ -1,0 +1,67 @@
+{
+  "sweep_rank": 9,
+  "package": "anyio",
+  "version": "4.13.0",
+  "class_name": "BlockingPortalProvider",
+  "file_path": "anyio-4.13.0\\src\\anyio\\from_thread.py",
+  "selected_score": 10,
+  "classification": "confirmed_state_divergence_only",
+  "reproduced": true,
+  "output_diff": false,
+  "branch_flip": false,
+  "state_diff": true,
+  "operation_A": "__enter__() once on fresh instance",
+  "operation_B": "__enter__() once first; then __enter__() again",
+  "result_A": {
+    "before": {
+      "_lock": "<unlocked _thread.lock object at 0xADDR>",
+      "backend": "'asyncio'",
+      "backend_options": "None"
+    },
+    "result": {
+      "kind": "value",
+      "value": "<anyio.from_thread.BlockingPortal object at 0xADDR>"
+    },
+    "after": {
+      "_leases": "1",
+      "_lock": "<unlocked _thread.lock object at 0xADDR>",
+      "_portal": "<anyio.from_thread.BlockingPortal object at 0xADDR>",
+      "_portal_cm": "<contextlib._GeneratorContextManager object at 0xADDR>",
+      "backend": "'asyncio'",
+      "backend_options": "None"
+    }
+  },
+  "result_B": {
+    "before": {
+      "_lock": "<unlocked _thread.lock object at 0xADDR>",
+      "backend": "'asyncio'",
+      "backend_options": "None"
+    },
+    "observation_result": {
+      "kind": "value",
+      "value": "<anyio.from_thread.BlockingPortal object at 0xADDR>"
+    },
+    "after_observation": {
+      "_leases": "1",
+      "_lock": "<unlocked _thread.lock object at 0xADDR>",
+      "_portal": "<anyio.from_thread.BlockingPortal object at 0xADDR>",
+      "_portal_cm": "<contextlib._GeneratorContextManager object at 0xADDR>",
+      "backend": "'asyncio'",
+      "backend_options": "None"
+    },
+    "result": {
+      "kind": "value",
+      "value": "<anyio.from_thread.BlockingPortal object at 0xADDR>"
+    },
+    "after": {
+      "_leases": "2",
+      "_lock": "<unlocked _thread.lock object at 0xADDR>",
+      "_portal": "<anyio.from_thread.BlockingPortal object at 0xADDR>",
+      "_portal_cm": "<contextlib._GeneratorContextManager object at 0xADDR>",
+      "backend": "'asyncio'",
+      "backend_options": "None"
+    }
+  },
+  "failure_reason": "",
+  "notes": "generic safe repeated-operation harness; confirmation depends on no-arg construction and no-arg operation"
+}

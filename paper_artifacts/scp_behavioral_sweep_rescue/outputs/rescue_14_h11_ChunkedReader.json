@@ -1,0 +1,43 @@
+{
+  "boundary_note": "ChunkedReader consumes a ReceiveBuffer; Data versus EndOfMessage is expected stream-reader state.",
+  "branch_flip": false,
+  "class_name": "ChunkedReader",
+  "classification": "confirmed_output_divergence",
+  "failure_reason": "",
+  "file_path": "h11-0.16.0\\h11\\_readers.py",
+  "fixture_description": "h11 ReceiveBuffer containing a complete chunked body b'3\\r\\nabc\\r\\n0\\r\\n\\r\\n'.",
+  "operation_A": "ChunkedReader()(buffer)",
+  "operation_B": "ChunkedReader()(buffer) first; then ChunkedReader()(buffer)",
+  "original_sweep_rank": 49,
+  "output_diff": true,
+  "package": "h11",
+  "rescue_rank": 14,
+  "result_A": {
+    "kind": "value",
+    "later": "Data(data=bytearray(b'abc'), chunk_start=True, chunk_end=True)",
+    "observation": null,
+    "state": {
+      "buffer": "b'\\r\\n0\\r\\n\\r\\n'",
+      "reader": {
+        "_bytes_in_chunk": 0,
+        "_bytes_to_discard": "b'\\r\\n'",
+        "_reading_trailer": false
+      }
+    }
+  },
+  "result_B": {
+    "kind": "value",
+    "later": "EndOfMessage(headers=<Headers([])>)",
+    "observation": "Data(data=bytearray(b'abc'), chunk_start=True, chunk_end=True)",
+    "state": {
+      "buffer": "b''",
+      "reader": {
+        "_bytes_in_chunk": 0,
+        "_bytes_to_discard": "b''",
+        "_reading_trailer": true
+      }
+    }
+  },
+  "state_diff": true,
+  "version": "0.16.0"
+}

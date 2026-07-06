@@ -1,0 +1,19 @@
+{
+  "sweep_rank": 2,
+  "package": "more-itertools",
+  "version": "11.0.2",
+  "class_name": "seekable",
+  "file_path": "more_itertools-11.0.2\\more_itertools\\more.py",
+  "selected_score": 12,
+  "classification": "could_not_construct",
+  "reproduced": false,
+  "output_diff": false,
+  "branch_flip": false,
+  "state_diff": false,
+  "operation_A": "",
+  "operation_B": "",
+  "result_A": {},
+  "result_B": {},
+  "failure_reason": "constructor requires arguments: iterable",
+  "notes": "generic harness did not execute candidate behavior"
+}

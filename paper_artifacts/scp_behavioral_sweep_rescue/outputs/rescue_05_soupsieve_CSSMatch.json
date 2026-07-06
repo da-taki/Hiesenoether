@@ -1,0 +1,38 @@
+{
+  "boundary_note": "The rescue only fixes sys.path/import construction; simple selector matching remained output-equivalent.",
+  "branch_flip": false,
+  "class_name": "CSSMatch",
+  "classification": "structural_only_no_runtime_difference",
+  "failure_reason": "",
+  "file_path": "soupsieve-2.8.3\\soupsieve\\css_match.py",
+  "fixture_description": "BeautifulSoup tree and soupsieve compiled selector 'p.a'.",
+  "operation_A": "list(CSSMatch(...).select())",
+  "operation_B": "match(first p) first; then list(CSSMatch(...).select())",
+  "original_sweep_rank": 5,
+  "output_diff": false,
+  "package": "soupsieve",
+  "rescue_rank": 5,
+  "result_A": {
+    "kind": "value",
+    "later": [
+      "<p class=\"a\">x</p>"
+    ],
+    "state": {
+      "cached_default_forms": [],
+      "cached_meta_lang": []
+    }
+  },
+  "result_B": {
+    "kind": "value",
+    "later": [
+      "<p class=\"a\">x</p>"
+    ],
+    "observation": true,
+    "state": {
+      "cached_default_forms": [],
+      "cached_meta_lang": []
+    }
+  },
+  "state_diff": false,
+  "version": "2.8.3"
+}

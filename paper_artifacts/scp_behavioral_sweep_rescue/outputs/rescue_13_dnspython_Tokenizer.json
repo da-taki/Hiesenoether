@@ -1,0 +1,43 @@
+{
+  "boundary_note": "Tokenizer is a cursor over token input; output divergence is expected after consuming a token.",
+  "branch_flip": false,
+  "class_name": "Tokenizer",
+  "classification": "confirmed_output_divergence",
+  "failure_reason": "",
+  "file_path": "dnspython-2.8.0\\dns\\tokenizer.py",
+  "fixture_description": "dns.tokenizer.Tokenizer over io.StringIO('alpha beta\\n').",
+  "operation_A": "get_string()",
+  "operation_B": "get() first; then get_string()",
+  "original_sweep_rank": 22,
+  "output_diff": true,
+  "package": "dnspython",
+  "rescue_rank": 13,
+  "result_A": {
+    "kind": "value",
+    "later": "alpha",
+    "observation": null,
+    "state": {
+      "eof": false,
+      "ungotten_token": null,
+      "where": [
+        "<file>",
+        1
+      ]
+    }
+  },
+  "result_B": {
+    "kind": "value",
+    "later": "beta",
+    "observation": "alpha",
+    "state": {
+      "eof": false,
+      "ungotten_token": null,
+      "where": [
+        "<file>",
+        2
+      ]
+    }
+  },
+  "state_diff": true,
+  "version": "2.8.0"
+}

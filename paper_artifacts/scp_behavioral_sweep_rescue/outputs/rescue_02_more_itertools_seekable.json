@@ -1,0 +1,37 @@
+{
+  "boundary_note": "Iterator consumption is expected behavior; the rescue shows the generic no-arg harness missed a real cursor effect.",
+  "branch_flip": false,
+  "class_name": "seekable",
+  "classification": "confirmed_output_divergence",
+  "failure_reason": "",
+  "file_path": "more-itertools-11.0.2\\more_itertools\\more.py",
+  "fixture_description": "seekable over iter(['a', 'b', 'c']).",
+  "operation_A": "next(seekable(iter(['a','b','c'])))",
+  "operation_B": "next(it) first; then next(it)",
+  "original_sweep_rank": 2,
+  "output_diff": true,
+  "package": "more-itertools",
+  "rescue_rank": 2,
+  "result_A": {
+    "kind": "value",
+    "later": "a",
+    "state": {
+      "elements": [
+        "a"
+      ]
+    }
+  },
+  "result_B": {
+    "kind": "value",
+    "later": "b",
+    "observation": "a",
+    "state": {
+      "elements": [
+        "a",
+        "b"
+      ]
+    }
+  },
+  "state_diff": true,
+  "version": "11.0.2"
+}

@@ -1,0 +1,19 @@
+{
+  "sweep_rank": 21,
+  "package": "dnspython",
+  "version": "2.8.0",
+  "class_name": "Buffer",
+  "file_path": "dnspython-2.8.0\\dns\\quic\\_common.py",
+  "selected_score": 10,
+  "classification": "import_failed",
+  "reproduced": false,
+  "output_diff": false,
+  "branch_flip": false,
+  "state_diff": false,
+  "operation_A": "",
+  "operation_B": "",
+  "result_A": {},
+  "result_B": {},
+  "failure_reason": "import_failed: ModuleNotFoundError: No module named 'aioquic'",
+  "notes": "generic harness did not execute candidate behavior"
+}

@@ -1,0 +1,40 @@
+{
+  "boundary_note": "The manual fixture tests Transformer serial bookkeeping, not transform application output.",
+  "branch_flip": false,
+  "class_name": "Transformer",
+  "classification": "confirmed_state_divergence_only",
+  "failure_reason": "",
+  "file_path": "docutils-0.22.4\\docutils\\transforms\\__init__.py",
+  "fixture_description": "docutils new_document with two tiny Transform subclasses.",
+  "operation_A": "inspect transform priority queue",
+  "operation_B": "get_priority_string(10) first; then inspect transform priority queue",
+  "original_sweep_rank": 4,
+  "output_diff": false,
+  "package": "docutils",
+  "rescue_rank": 4,
+  "result_A": {
+    "kind": "value",
+    "later": [
+      "010-001",
+      "005-002"
+    ],
+    "state": {
+      "serialno": 2,
+      "sorted": false
+    }
+  },
+  "result_B": {
+    "kind": "value",
+    "later": [
+      "010-001",
+      "005-002"
+    ],
+    "observation": "010-003",
+    "state": {
+      "serialno": 3,
+      "sorted": false
+    }
+  },
+  "state_diff": true,
+  "version": "0.22.4"
+}

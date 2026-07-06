@@ -1,0 +1,69 @@
+{
+  "sweep_rank": 44,
+  "package": "docutils",
+  "version": "0.22.4",
+  "class_name": "ViewList",
+  "file_path": "docutils-0.22.4\\docutils\\statemachine.py",
+  "selected_score": 10,
+  "classification": "structural_only_no_runtime_difference",
+  "reproduced": false,
+  "output_diff": false,
+  "branch_flip": false,
+  "state_diff": false,
+  "operation_A": "__iadd__() once on fresh instance",
+  "operation_B": "__iadd__() once first; then __iadd__() again",
+  "result_A": {
+    "before": {
+      "data": "[]",
+      "items": "[]",
+      "parent": "None",
+      "parent_offset": "None"
+    },
+    "result": {
+      "kind": "not_callable_without_args",
+      "required": [
+        "other"
+      ]
+    },
+    "after": {
+      "data": "[]",
+      "items": "[]",
+      "parent": "None",
+      "parent_offset": "None"
+    }
+  },
+  "result_B": {
+    "before": {
+      "data": "[]",
+      "items": "[]",
+      "parent": "None",
+      "parent_offset": "None"
+    },
+    "observation_result": {
+      "kind": "not_callable_without_args",
+      "required": [
+        "other"
+      ]
+    },
+    "after_observation": {
+      "data": "[]",
+      "items": "[]",
+      "parent": "None",
+      "parent_offset": "None"
+    },
+    "result": {
+      "kind": "not_callable_without_args",
+      "required": [
+        "other"
+      ]
+    },
+    "after": {
+      "data": "[]",
+      "items": "[]",
+      "parent": "None",
+      "parent_offset": "None"
+    }
+  },
+  "failure_reason": "",
+  "notes": "generic safe repeated-operation harness; confirmation depends on no-arg construction and no-arg operation"
+}

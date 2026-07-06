@@ -1,0 +1,16 @@
+scenario_id,variant,feedback_mode,feedback_weight,classification,top1_changed,topk_order_changed,answer_changed,order_A_topk,order_B_topk,order_A_answer,order_B_answer
+S2_access_log_cache,access_count_feedback,disabled,0.0,no_divergence,False,False,False,"[""cache_lru"", ""cache_lri""]","[""cache_lru"", ""cache_lri""]",LRU,LRU
+S2_access_log_cache,access_count_feedback,default,1.25,confirmed_answer_divergence,True,True,True,"[""cache_lru"", ""cache_lri""]","[""cache_lri"", ""cache_lru""]",LRU,LRI
+S2_access_log_cache,access_count_feedback,strong,3.0,confirmed_answer_divergence,True,True,True,"[""cache_lru"", ""cache_lri""]","[""cache_lri"", ""cache_lru""]",LRU,LRI
+S3_recency_preview_city,recency_memory_feedback,disabled,0.0,no_divergence,False,False,False,"[""accessibility_berlin"", ""accessibility_boston""]","[""accessibility_berlin"", ""accessibility_boston""]",Berlin,Berlin
+S3_recency_preview_city,recency_memory_feedback,default,1.75,confirmed_answer_divergence,True,True,True,"[""accessibility_berlin"", ""accessibility_boston""]","[""accessibility_boston"", ""accessibility_berlin""]",Berlin,Boston
+S3_recency_preview_city,recency_memory_feedback,strong,3.0,confirmed_answer_divergence,True,True,True,"[""accessibility_berlin"", ""accessibility_boston""]","[""accessibility_boston"", ""accessibility_berlin""]",Berlin,Boston
+S4_explain_markdown,explanation_feedback,disabled,0.0,no_divergence,False,False,False,"[""markdown_reset"", ""markdown_build""]","[""markdown_reset"", ""markdown_build""]",reset,reset
+S4_explain_markdown,explanation_feedback,default,1.5,confirmed_answer_divergence,True,True,True,"[""markdown_reset"", ""markdown_build""]","[""markdown_build"", ""markdown_reset""]",reset,build_parser
+S4_explain_markdown,explanation_feedback,strong,3.0,confirmed_answer_divergence,True,True,True,"[""markdown_reset"", ""markdown_build""]","[""markdown_build"", ""markdown_reset""]",reset,build_parser
+S5_cache_materialization_stream,cache_materialization_feedback,disabled,0.0,no_divergence,False,False,False,"[""stream_reader"", ""stream_logger""]","[""stream_reader"", ""stream_logger""]",StreamReader,StreamReader
+S5_cache_materialization_stream,cache_materialization_feedback,default,1.25,confirmed_answer_divergence,True,True,True,"[""stream_reader"", ""stream_logger""]","[""stream_logger"", ""stream_reader""]",StreamReader,TraceLogger
+S5_cache_materialization_stream,cache_materialization_feedback,strong,3.0,confirmed_answer_divergence,True,True,True,"[""stream_reader"", ""stream_logger""]","[""stream_logger"", ""stream_reader""]",StreamReader,TraceLogger
+S6_recency_inspect_state,recency_memory_feedback,disabled,0.0,no_divergence,False,False,False,"[""memory_alpha"", ""memory_beta""]","[""memory_alpha"", ""memory_beta""]",Alpha Memory,Alpha Memory
+S6_recency_inspect_state,recency_memory_feedback,default,1.75,confirmed_state_only_divergence,False,False,False,"[""memory_alpha"", ""memory_beta""]","[""memory_alpha"", ""memory_beta""]",Alpha Memory,Alpha Memory
+S6_recency_inspect_state,recency_memory_feedback,strong,3.0,confirmed_state_only_divergence,False,False,False,"[""memory_alpha"", ""memory_beta""]","[""memory_alpha"", ""memory_beta""]",Alpha Memory,Alpha Memory

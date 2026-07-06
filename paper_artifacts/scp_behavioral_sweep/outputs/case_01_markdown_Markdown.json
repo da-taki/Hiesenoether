@@ -1,0 +1,118 @@
+{
+  "sweep_rank": 1,
+  "package": "markdown",
+  "version": "3.10.2",
+  "class_name": "Markdown",
+  "file_path": "markdown-3.10.2\\markdown\\core.py",
+  "selected_score": 12,
+  "classification": "structural_only_no_runtime_difference",
+  "reproduced": false,
+  "output_diff": false,
+  "branch_flip": false,
+  "state_diff": false,
+  "operation_A": "build_parser() once on fresh instance",
+  "operation_B": "build_parser() once first; then build_parser() again",
+  "result_A": {
+    "before": {
+      "ESCAPED_CHARS": "['\\\\', '`', '*', '_', '{', '}', '[', ']', '(', ')', '>', '#', '+', '-', '.', '!']",
+      "block_level_elements": "['address', 'article', 'aside', 'blockquote', 'details', 'div', 'dl', 'fieldset', 'figcaption', 'figure', 'footer', 'form', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6...",
+      "docType": "''",
+      "htmlStash": "<markdown.util.HtmlStash object at 0xADDR>",
+      "inlinePatterns": "<Registry([<markdown.inlinepatterns.BacktickInlineProcessor object at 0xADDR>, <markdown.inlinepatterns.EscapeInlineProcessor object at 0xADDR>, <markdown.in...",
+      "output_format": "'xhtml'",
+      "parser": "<markdown.blockparser.BlockParser object at 0xADDR>",
+      "postprocessors": "<Registry([<markdown.postprocessors.RawHtmlPostprocessor object at 0xADDR>, <markdown.postprocessors.AndSubstitutePostprocessor object at 0xADDR>])>",
+      "preprocessors": "<Registry([<markdown.preprocessors.NormalizeWhitespace object at 0xADDR>, <markdown.preprocessors.HtmlBlockPreprocessor object at 0xADDR>])>",
+      "references": "{}",
+      "registeredExtensions": "[]",
+      "serializer": "<function to_xhtml_string at 0xADDR>",
+      "stripTopLevelTags": "True",
+      "tab_length": "4",
+      "treeprocessors": "<Registry([<markdown.treeprocessors.InlineProcessor object at 0xADDR>, <markdown.treeprocessors.PrettifyTreeprocessor object at 0xADDR>, <markdown.treeproces..."
+    },
+    "result": {
+      "kind": "value",
+      "value": "<markdown.core.Markdown object at 0xADDR>"
+    },
+    "after": {
+      "ESCAPED_CHARS": "['\\\\', '`', '*', '_', '{', '}', '[', ']', '(', ')', '>', '#', '+', '-', '.', '!']",
+      "block_level_elements": "['address', 'article', 'aside', 'blockquote', 'details', 'div', 'dl', 'fieldset', 'figcaption', 'figure', 'footer', 'form', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6...",
+      "docType": "''",
+      "htmlStash": "<markdown.util.HtmlStash object at 0xADDR>",
+      "inlinePatterns": "<Registry([<markdown.inlinepatterns.BacktickInlineProcessor object at 0xADDR>, <markdown.inlinepatterns.EscapeInlineProcessor object at 0xADDR>, <markdown.in...",
+      "output_format": "'xhtml'",
+      "parser": "<markdown.blockparser.BlockParser object at 0xADDR>",
+      "postprocessors": "<Registry([<markdown.postprocessors.RawHtmlPostprocessor object at 0xADDR>, <markdown.postprocessors.AndSubstitutePostprocessor object at 0xADDR>])>",
+      "preprocessors": "<Registry([<markdown.preprocessors.NormalizeWhitespace object at 0xADDR>, <markdown.preprocessors.HtmlBlockPreprocessor object at 0xADDR>])>",
+      "references": "{}",
+      "registeredExtensions": "[]",
+      "serializer": "<function to_xhtml_string at 0xADDR>",
+      "stripTopLevelTags": "True",
+      "tab_length": "4",
+      "treeprocessors": "<Registry([<markdown.treeprocessors.InlineProcessor object at 0xADDR>, <markdown.treeprocessors.PrettifyTreeprocessor object at 0xADDR>, <markdown.treeproces..."
+    }
+  },
+  "result_B": {
+    "before": {
+      "ESCAPED_CHARS": "['\\\\', '`', '*', '_', '{', '}', '[', ']', '(', ')', '>', '#', '+', '-', '.', '!']",
+      "block_level_elements": "['address', 'article', 'aside', 'blockquote', 'details', 'div', 'dl', 'fieldset', 'figcaption', 'figure', 'footer', 'form', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6...",
+      "docType": "''",
+      "htmlStash": "<markdown.util.HtmlStash object at 0xADDR>",
+      "inlinePatterns": "<Registry([<markdown.inlinepatterns.BacktickInlineProcessor object at 0xADDR>, <markdown.inlinepatterns.EscapeInlineProcessor object at 0xADDR>, <markdown.in...",
+      "output_format": "'xhtml'",
+      "parser": "<markdown.blockparser.BlockParser object at 0xADDR>",
+      "postprocessors": "<Registry([<markdown.postprocessors.RawHtmlPostprocessor object at 0xADDR>, <markdown.postprocessors.AndSubstitutePostprocessor object at 0xADDR>])>",
+      "preprocessors": "<Registry([<markdown.preprocessors.NormalizeWhitespace object at 0xADDR>, <markdown.preprocessors.HtmlBlockPreprocessor object at 0xADDR>])>",
+      "references": "{}",
+      "registeredExtensions": "[]",
+      "serializer": "<function to_xhtml_string at 0xADDR>",
+      "stripTopLevelTags": "True",
+      "tab_length": "4",
+      "treeprocessors": "<Registry([<markdown.treeprocessors.InlineProcessor object at 0xADDR>, <markdown.treeprocessors.PrettifyTreeprocessor object at 0xADDR>, <markdown.treeproces..."
+    },
+    "observation_result": {
+      "kind": "value",
+      "value": "<markdown.core.Markdown object at 0xADDR>"
+    },
+    "after_observation": {
+      "ESCAPED_CHARS": "['\\\\', '`', '*', '_', '{', '}', '[', ']', '(', ')', '>', '#', '+', '-', '.', '!']",
+      "block_level_elements": "['address', 'article', 'aside', 'blockquote', 'details', 'div', 'dl', 'fieldset', 'figcaption', 'figure', 'footer', 'form', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6...",
+      "docType": "''",
+      "htmlStash": "<markdown.util.HtmlStash object at 0xADDR>",
+      "inlinePatterns": "<Registry([<markdown.inlinepatterns.BacktickInlineProcessor object at 0xADDR>, <markdown.inlinepatterns.EscapeInlineProcessor object at 0xADDR>, <markdown.in...",
+      "output_format": "'xhtml'",
+      "parser": "<markdown.blockparser.BlockParser object at 0xADDR>",
+      "postprocessors": "<Registry([<markdown.postprocessors.RawHtmlPostprocessor object at 0xADDR>, <markdown.postprocessors.AndSubstitutePostprocessor object at 0xADDR>])>",
+      "preprocessors": "<Registry([<markdown.preprocessors.NormalizeWhitespace object at 0xADDR>, <markdown.preprocessors.HtmlBlockPreprocessor object at 0xADDR>])>",
+      "references": "{}",
+      "registeredExtensions": "[]",
+      "serializer": "<function to_xhtml_string at 0xADDR>",
+      "stripTopLevelTags": "True",
+      "tab_length": "4",
+      "treeprocessors": "<Registry([<markdown.treeprocessors.InlineProcessor object at 0xADDR>, <markdown.treeprocessors.PrettifyTreeprocessor object at 0xADDR>, <markdown.treeproces..."
+    },
+    "result": {
+      "kind": "value",
+      "value": "<markdown.core.Markdown object at 0xADDR>"
+    },
+    "after": {
+      "ESCAPED_CHARS": "['\\\\', '`', '*', '_', '{', '}', '[', ']', '(', ')', '>', '#', '+', '-', '.', '!']",
+      "block_level_elements": "['address', 'article', 'aside', 'blockquote', 'details', 'div', 'dl', 'fieldset', 'figcaption', 'figure', 'footer', 'form', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6...",
+      "docType": "''",
+      "htmlStash": "<markdown.util.HtmlStash object at 0xADDR>",
+      "inlinePatterns": "<Registry([<markdown.inlinepatterns.BacktickInlineProcessor object at 0xADDR>, <markdown.inlinepatterns.EscapeInlineProcessor object at 0xADDR>, <markdown.in...",
+      "output_format": "'xhtml'",
+      "parser": "<markdown.blockparser.BlockParser object at 0xADDR>",
+      "postprocessors": "<Registry([<markdown.postprocessors.RawHtmlPostprocessor object at 0xADDR>, <markdown.postprocessors.AndSubstitutePostprocessor object at 0xADDR>])>",
+      "preprocessors": "<Registry([<markdown.preprocessors.NormalizeWhitespace object at 0xADDR>, <markdown.preprocessors.HtmlBlockPreprocessor object at 0xADDR>])>",
+      "references": "{}",
+      "registeredExtensions": "[]",
+      "serializer": "<function to_xhtml_string at 0xADDR>",
+      "stripTopLevelTags": "True",
+      "tab_length": "4",
+      "treeprocessors": "<Registry([<markdown.treeprocessors.InlineProcessor object at 0xADDR>, <markdown.treeprocessors.PrettifyTreeprocessor object at 0xADDR>, <markdown.treeproces..."
+    }
+  },
+  "failure_reason": "",
+  "notes": "generic safe repeated-operation harness; confirmation depends on no-arg construction and no-arg operation"
+}

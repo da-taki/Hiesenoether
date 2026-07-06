@@ -1,0 +1,41 @@
+{
+  "boundary_note": "The decorator fixture is tiny and in-process; it did not produce a meaningful runtime divergence.",
+  "branch_flip": false,
+  "class_name": "_OptGroup",
+  "classification": "structural_only_no_runtime_difference",
+  "failure_reason": "",
+  "file_path": "click-option-group-0.5.9\\src\\click_option_group\\_decorators.py",
+  "fixture_description": "Tiny Click command using click-option-group public optgroup helpers and CliRunner.",
+  "operation_A": "build command with grouped option and invoke --foo x",
+  "operation_B": "call group decorator on a function first; then build and invoke command",
+  "original_sweep_rank": 17,
+  "output_diff": false,
+  "package": "click-option-group",
+  "rescue_rank": 11,
+  "result_A": {
+    "kind": "value",
+    "later": {
+      "exit_code": 1,
+      "output": "",
+      "params": [
+        "foo"
+      ]
+    },
+    "observation": null,
+    "state": {}
+  },
+  "result_B": {
+    "kind": "value",
+    "later": {
+      "exit_code": 1,
+      "output": "",
+      "params": [
+        "foo"
+      ]
+    },
+    "observation": "<function case_11.<locals>.build.<locals>.callback at 0x0000026E64471F80>",
+    "state": {}
+  },
+  "state_diff": false,
+  "version": "0.5.9"
+}

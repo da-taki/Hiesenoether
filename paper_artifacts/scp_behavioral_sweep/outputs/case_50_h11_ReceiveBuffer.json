@@ -1,0 +1,64 @@
+{
+  "sweep_rank": 50,
+  "package": "h11",
+  "version": "0.16.0",
+  "class_name": "ReceiveBuffer",
+  "file_path": "h11-0.16.0\\h11\\_receivebuffer.py",
+  "selected_score": 10,
+  "classification": "structural_only_no_runtime_difference",
+  "reproduced": false,
+  "output_diff": false,
+  "branch_flip": false,
+  "state_diff": false,
+  "operation_A": "__iadd__() once on fresh instance",
+  "operation_B": "__iadd__() once first; then __iadd__() again",
+  "result_A": {
+    "before": {
+      "_data": "bytearray(b'')",
+      "_multiple_lines_search": "0",
+      "_next_line_search": "0"
+    },
+    "result": {
+      "kind": "not_callable_without_args",
+      "required": [
+        "byteslike"
+      ]
+    },
+    "after": {
+      "_data": "bytearray(b'')",
+      "_multiple_lines_search": "0",
+      "_next_line_search": "0"
+    }
+  },
+  "result_B": {
+    "before": {
+      "_data": "bytearray(b'')",
+      "_multiple_lines_search": "0",
+      "_next_line_search": "0"
+    },
+    "observation_result": {
+      "kind": "not_callable_without_args",
+      "required": [
+        "byteslike"
+      ]
+    },
+    "after_observation": {
+      "_data": "bytearray(b'')",
+      "_multiple_lines_search": "0",
+      "_next_line_search": "0"
+    },
+    "result": {
+      "kind": "not_callable_without_args",
+      "required": [
+        "byteslike"
+      ]
+    },
+    "after": {
+      "_data": "bytearray(b'')",
+      "_multiple_lines_search": "0",
+      "_next_line_search": "0"
+    }
+  },
+  "failure_reason": "",
+  "notes": "generic safe repeated-operation harness; confirmation depends on no-arg construction and no-arg operation"
+}

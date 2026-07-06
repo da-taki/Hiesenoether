@@ -1,0 +1,68 @@
+{
+  "sweep_rank": 3,
+  "package": "pygments",
+  "version": "2.20.0",
+  "class_name": "EscapeSequence",
+  "file_path": "pygments-2.20.0\\pygments\\formatters\\terminal256.py",
+  "selected_score": 12,
+  "classification": "structural_only_no_runtime_difference",
+  "reproduced": false,
+  "output_diff": false,
+  "branch_flip": false,
+  "state_diff": false,
+  "operation_A": "color_string() once on fresh instance",
+  "operation_B": "color_string() once first; then color_string() again",
+  "result_A": {
+    "before": {
+      "bg": "None",
+      "bold": "False",
+      "fg": "None",
+      "italic": "False",
+      "underline": "False"
+    },
+    "result": {
+      "kind": "value",
+      "value": "''"
+    },
+    "after": {
+      "bg": "None",
+      "bold": "False",
+      "fg": "None",
+      "italic": "False",
+      "underline": "False"
+    }
+  },
+  "result_B": {
+    "before": {
+      "bg": "None",
+      "bold": "False",
+      "fg": "None",
+      "italic": "False",
+      "underline": "False"
+    },
+    "observation_result": {
+      "kind": "value",
+      "value": "''"
+    },
+    "after_observation": {
+      "bg": "None",
+      "bold": "False",
+      "fg": "None",
+      "italic": "False",
+      "underline": "False"
+    },
+    "result": {
+      "kind": "value",
+      "value": "''"
+    },
+    "after": {
+      "bg": "None",
+      "bold": "False",
+      "fg": "None",
+      "italic": "False",
+      "underline": "False"
+    }
+  },
+  "failure_reason": "",
+  "notes": "generic safe repeated-operation harness; confirmation depends on no-arg construction and no-arg operation"
+}

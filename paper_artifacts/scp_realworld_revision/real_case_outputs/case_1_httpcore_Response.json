@@ -1,0 +1,51 @@
+{
+  "case_id": "case_1_httpcore_Response",
+  "package": "httpcore",
+  "version": "1.0.9",
+  "class_name": "Response",
+  "file_path": "httpcore/_models.py",
+  "operation_A": "response.content without prior response.read()",
+  "result_A": {
+    "before": {
+      "has__content": false,
+      "stream_consumed": false
+    },
+    "after": {
+      "has__content": false,
+      "stream_consumed": false
+    },
+    "result": {
+      "kind": "exception",
+      "type": "RuntimeError",
+      "message": "Attempted to access 'response.content' on a streaming response. Call 'response.read()' first."
+    }
+  },
+  "operation_B": "response.read(); then response.content",
+  "result_B": {
+    "before": {
+      "has__content": false,
+      "stream_consumed": false
+    },
+    "observation_result": "alphabeta",
+    "after_observation": {
+      "has__content": true,
+      "stream_consumed": true
+    },
+    "after": {
+      "has__content": true,
+      "stream_consumed": true
+    },
+    "result": {
+      "kind": "value",
+      "value": "alphabeta"
+    }
+  },
+  "branch_flip": true,
+  "output_diff": true,
+  "state_diff": true,
+  "classification": "confirmed_branch_flip",
+  "read_or_observer_operation": "Response.read()",
+  "latent_state": "_content and _stream_consumed",
+  "later_read_or_behavior": "Response.content",
+  "notes": "Real package API; read-shaped access materializes content and changes later content access from exception to value."
+}

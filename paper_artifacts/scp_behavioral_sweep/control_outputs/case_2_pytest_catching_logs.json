@@ -1,0 +1,47 @@
+{
+  "case_id": "case_2_pytest_catching_logs",
+  "package": "pytest",
+  "version": "8.3.5",
+  "class_name": "catching_logs",
+  "file_path": "_pytest/logging.py",
+  "operation_A": "emit WARNING with fresh handler",
+  "result_A": {
+    "before": {
+      "handler_level": 0,
+      "messages": []
+    },
+    "after_observation": {
+      "handler_level": 0,
+      "messages": []
+    },
+    "after_later": {
+      "handler_level": 0,
+      "messages": [
+        "warning-visible"
+      ]
+    }
+  },
+  "operation_B": "enter/exit catching_logs(level=ERROR); then emit same WARNING",
+  "result_B": {
+    "before": {
+      "handler_level": 0,
+      "messages": []
+    },
+    "after_observation": {
+      "handler_level": 40,
+      "messages": []
+    },
+    "after_later": {
+      "handler_level": 40,
+      "messages": []
+    }
+  },
+  "branch_flip": true,
+  "output_diff": true,
+  "state_diff": true,
+  "classification": "confirmed_branch_flip",
+  "read_or_observer_operation": "catching_logs.__enter__()/__exit__()",
+  "latent_state": "handler.level",
+  "later_read_or_behavior": "logging handler filters WARNING after level mutation",
+  "notes": "Uses pytest internal logging utility. It is a behavioral instance, not an upstream bug claim."
+}

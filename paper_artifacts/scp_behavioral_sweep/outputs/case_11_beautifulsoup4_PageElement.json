@@ -1,0 +1,41 @@
+{
+  "sweep_rank": 11,
+  "package": "beautifulsoup4",
+  "version": "4.14.3",
+  "class_name": "PageElement",
+  "file_path": "beautifulsoup4-4.14.3\\bs4\\element.py",
+  "selected_score": 10,
+  "classification": "structural_only_no_runtime_difference",
+  "reproduced": false,
+  "output_diff": false,
+  "branch_flip": false,
+  "state_diff": false,
+  "operation_A": "extract() once on fresh instance",
+  "operation_B": "extract() once first; then extract() again",
+  "result_A": {
+    "before": {},
+    "result": {
+      "kind": "exception",
+      "type": "AttributeError",
+      "message": "'PageElement' object has no attribute 'parent'"
+    },
+    "after": {}
+  },
+  "result_B": {
+    "before": {},
+    "observation_result": {
+      "kind": "exception",
+      "type": "AttributeError",
+      "message": "'PageElement' object has no attribute 'parent'"
+    },
+    "after_observation": {},
+    "result": {
+      "kind": "exception",
+      "type": "AttributeError",
+      "message": "'PageElement' object has no attribute 'parent'"
+    },
+    "after": {}
+  },
+  "failure_reason": "",
+  "notes": "generic safe repeated-operation harness; confirmation depends on no-arg construction and no-arg operation"
+}

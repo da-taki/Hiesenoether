@@ -1,0 +1,64 @@
+{
+  "sweep_rank": 49,
+  "package": "h11",
+  "version": "0.16.0",
+  "class_name": "ChunkedReader",
+  "file_path": "h11-0.16.0\\h11\\_readers.py",
+  "selected_score": 10,
+  "classification": "structural_only_no_runtime_difference",
+  "reproduced": false,
+  "output_diff": false,
+  "branch_flip": false,
+  "state_diff": false,
+  "operation_A": "__call__() once on fresh instance",
+  "operation_B": "__call__() once first; then __call__() again",
+  "result_A": {
+    "before": {
+      "_bytes_in_chunk": "0",
+      "_bytes_to_discard": "b''",
+      "_reading_trailer": "False"
+    },
+    "result": {
+      "kind": "not_callable_without_args",
+      "required": [
+        "buf"
+      ]
+    },
+    "after": {
+      "_bytes_in_chunk": "0",
+      "_bytes_to_discard": "b''",
+      "_reading_trailer": "False"
+    }
+  },
+  "result_B": {
+    "before": {
+      "_bytes_in_chunk": "0",
+      "_bytes_to_discard": "b''",
+      "_reading_trailer": "False"
+    },
+    "observation_result": {
+      "kind": "not_callable_without_args",
+      "required": [
+        "buf"
+      ]
+    },
+    "after_observation": {
+      "_bytes_in_chunk": "0",
+      "_bytes_to_discard": "b''",
+      "_reading_trailer": "False"
+    },
+    "result": {
+      "kind": "not_callable_without_args",
+      "required": [
+        "buf"
+      ]
+    },
+    "after": {
+      "_bytes_in_chunk": "0",
+      "_bytes_to_discard": "b''",
+      "_reading_trailer": "False"
+    }
+  },
+  "failure_reason": "",
+  "notes": "generic safe repeated-operation harness; confirmation depends on no-arg construction and no-arg operation"
+}

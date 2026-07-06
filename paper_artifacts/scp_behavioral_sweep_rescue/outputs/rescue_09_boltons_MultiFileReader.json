@@ -1,0 +1,33 @@
+{
+  "boundary_note": "MultiFileReader is a stream-like cursor; output divergence is expected after a prior read.",
+  "branch_flip": false,
+  "class_name": "MultiFileReader",
+  "classification": "confirmed_output_divergence",
+  "failure_reason": "",
+  "file_path": "boltons-25.0.0\\boltons\\ioutils.py",
+  "fixture_description": "MultiFileReader(BytesIO(b'ab'), BytesIO(b'cd'), BytesIO(b'e')).",
+  "operation_A": "read(3)",
+  "operation_B": "read(3) first; then read(3)",
+  "original_sweep_rank": 14,
+  "output_diff": true,
+  "package": "boltons",
+  "rescue_rank": 9,
+  "result_A": {
+    "kind": "value",
+    "later": "b'abc'",
+    "observation": null,
+    "state": {
+      "index": 1
+    }
+  },
+  "result_B": {
+    "kind": "value",
+    "later": "b'de'",
+    "observation": "b'abc'",
+    "state": {
+      "index": 3
+    }
+  },
+  "state_diff": true,
+  "version": "25.0.0"
+}

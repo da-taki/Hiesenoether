@@ -1,0 +1,54 @@
+{
+  "sweep_rank": 46,
+  "package": "docutils",
+  "version": "0.22.4",
+  "class_name": "MathSchema",
+  "file_path": "docutils-0.22.4\\docutils\\utils\\math\\mathml_elements.py",
+  "selected_score": 10,
+  "classification": "structural_only_no_runtime_difference",
+  "reproduced": false,
+  "output_diff": false,
+  "branch_flip": false,
+  "state_diff": false,
+  "operation_A": "append() once on fresh instance",
+  "operation_B": "append() once first; then append() again",
+  "result_A": {
+    "before": {
+      "switch": "False"
+    },
+    "result": {
+      "kind": "not_callable_without_args",
+      "required": [
+        "element"
+      ]
+    },
+    "after": {
+      "switch": "False"
+    }
+  },
+  "result_B": {
+    "before": {
+      "switch": "False"
+    },
+    "observation_result": {
+      "kind": "not_callable_without_args",
+      "required": [
+        "element"
+      ]
+    },
+    "after_observation": {
+      "switch": "False"
+    },
+    "result": {
+      "kind": "not_callable_without_args",
+      "required": [
+        "element"
+      ]
+    },
+    "after": {
+      "switch": "False"
+    }
+  },
+  "failure_reason": "",
+  "notes": "generic safe repeated-operation harness; confirmation depends on no-arg construction and no-arg operation"
+}

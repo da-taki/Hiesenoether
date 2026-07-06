@@ -1,0 +1,89 @@
+{
+  "sweep_rank": 13,
+  "package": "boltons",
+  "version": "25.0.0",
+  "class_name": "LRU",
+  "file_path": "boltons-25.0.0\\boltons\\cacheutils.py",
+  "selected_score": 10,
+  "classification": "structural_only_no_runtime_difference",
+  "reproduced": false,
+  "output_diff": false,
+  "branch_flip": false,
+  "state_diff": false,
+  "operation_A": "__getitem__() once on fresh instance",
+  "operation_B": "__getitem__() once first; then __getitem__() again",
+  "result_A": {
+    "before": {
+      "_anchor": "[[...], [...], _MISSING, _MISSING]",
+      "_link_lookup": "{}",
+      "_lock": "<unlocked _thread.RLock object owner=0 count=0 at 0xADDR>",
+      "hit_count": "0",
+      "max_size": "128",
+      "miss_count": "0",
+      "on_miss": "None",
+      "soft_miss_count": "0"
+    },
+    "result": {
+      "kind": "not_callable_without_args",
+      "required": [
+        "key"
+      ]
+    },
+    "after": {
+      "_anchor": "[[...], [...], _MISSING, _MISSING]",
+      "_link_lookup": "{}",
+      "_lock": "<unlocked _thread.RLock object owner=0 count=0 at 0xADDR>",
+      "hit_count": "0",
+      "max_size": "128",
+      "miss_count": "0",
+      "on_miss": "None",
+      "soft_miss_count": "0"
+    }
+  },
+  "result_B": {
+    "before": {
+      "_anchor": "[[...], [...], _MISSING, _MISSING]",
+      "_link_lookup": "{}",
+      "_lock": "<unlocked _thread.RLock object owner=0 count=0 at 0xADDR>",
+      "hit_count": "0",
+      "max_size": "128",
+      "miss_count": "0",
+      "on_miss": "None",
+      "soft_miss_count": "0"
+    },
+    "observation_result": {
+      "kind": "not_callable_without_args",
+      "required": [
+        "key"
+      ]
+    },
+    "after_observation": {
+      "_anchor": "[[...], [...], _MISSING, _MISSING]",
+      "_link_lookup": "{}",
+      "_lock": "<unlocked _thread.RLock object owner=0 count=0 at 0xADDR>",
+      "hit_count": "0",
+      "max_size": "128",
+      "miss_count": "0",
+      "on_miss": "None",
+      "soft_miss_count": "0"
+    },
+    "result": {
+      "kind": "not_callable_without_args",
+      "required": [
+        "key"
+      ]
+    },
+    "after": {
+      "_anchor": "[[...], [...], _MISSING, _MISSING]",
+      "_link_lookup": "{}",
+      "_lock": "<unlocked _thread.RLock object owner=0 count=0 at 0xADDR>",
+      "hit_count": "0",
+      "max_size": "128",
+      "miss_count": "0",
+      "on_miss": "None",
+      "soft_miss_count": "0"
+    }
+  },
+  "failure_reason": "",
+  "notes": "generic safe repeated-operation harness; confirmation depends on no-arg construction and no-arg operation"
+}

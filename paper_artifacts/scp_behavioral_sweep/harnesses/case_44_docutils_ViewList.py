@@ -1,0 +1,33 @@
+from pathlib import Path
+import sys
+
+ROOT = Path(__file__).resolve().parents[3]
+SWEEP = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(SWEEP))
+from harness_common import write_case
+
+META = {
+  "package": "docutils",
+  "version": "0.22.4",
+  "file_path": "docutils-0.22.4\\docutils\\statemachine.py",
+  "class_name": "ViewList",
+  "line_start": "1051",
+  "manual_review": "likely true positive",
+  "risk_label": "MEDIUM",
+  "mechanisms": "P1_access_sensitive",
+  "manual_review_note": "source review found state mutation on a method/property/call path that returns a value or access handle",
+  "score": 10,
+  "source_path": "C:\\Users\\Asus\\Desktop\\Profitlo Projects\\Hiesenoether\\paper_artifacts\\scp_realworld_revision\\source_snapshot\\docutils-0.22.4\\docutils\\statemachine.py",
+  "source_root": "C:\\Users\\Asus\\Desktop\\Profitlo Projects\\Hiesenoether\\paper_artifacts\\scp_realworld_revision\\source_snapshot\\docutils-0.22.4",
+  "constructor_feasibility": "simple",
+  "import_feasibility": "source_file_available",
+  "expected_observer_or_read_operation": "__iadd__",
+  "expected_latent_state": "data",
+  "expected_later_behavior": "repeat the same read-shaped operation and compare result/state",
+  "selection_reason": "+4 likely true positive; +2 read/getter-like mutation; +2 later/cache/branch/composition hint; +1 simple constructor; +1 source import path available",
+  "sweep_rank": 44,
+  "output_json": "C:\\Users\\Asus\\Desktop\\Profitlo Projects\\Hiesenoether\\paper_artifacts\\scp_behavioral_sweep\\outputs\\case_44_docutils_ViewList.json"
+}
+
+if __name__ == '__main__':
+    raise SystemExit(write_case(META, META['output_json']))

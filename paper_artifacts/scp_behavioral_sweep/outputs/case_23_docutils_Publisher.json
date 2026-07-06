@@ -1,0 +1,93 @@
+{
+  "sweep_rank": 23,
+  "package": "docutils",
+  "version": "0.22.4",
+  "class_name": "Publisher",
+  "file_path": "docutils-0.22.4\\docutils\\core.py",
+  "selected_score": 10,
+  "classification": "confirmed_state_divergence_only",
+  "reproduced": true,
+  "output_diff": false,
+  "branch_flip": false,
+  "state_diff": true,
+  "operation_A": "get_settings() once on fresh instance",
+  "operation_B": "get_settings() once first; then get_settings() again",
+  "result_A": {
+    "before": {
+      "_stderr": "<docutils.io.ErrorOutput object at 0xADDR>",
+      "destination": "None",
+      "destination_class": "<class 'docutils.io.FileOutput'>",
+      "document": "None",
+      "parser": "None",
+      "reader": "None",
+      "settings": "None",
+      "source": "None",
+      "source_class": "<class 'docutils.io.FileInput'>",
+      "writer": "None"
+    },
+    "result": {
+      "kind": "value",
+      "value": "<Values at 0xADDR: {'output_path': None, 'title': None, 'generator': None, 'datestamp': None, 'root_prefix': '', 'source_link': None, 'source_url': None, 'toc_backlinks': 'entry', 'footnote_backlinks': True, 'sectnum_xform': True, 'strip_comments': None, 'strip_elements_with_classes': None, 'strip_classes': None, 'report_level': 2, 'halt_level': 4, 'exit_status_level': 5, 'debug': None, 'warning_stream': None, 'traceback': None, 'input_encoding': 'utf-8', 'input_encoding_error_handler': 'stri..."
+    },
+    "after": {
+      "_stderr": "<docutils.io.ErrorOutput object at 0xADDR>",
+      "destination": "None",
+      "destination_class": "<class 'docutils.io.FileOutput'>",
+      "document": "None",
+      "parser": "None",
+      "reader": "None",
+      "settings": "<Values at 0xADDR: {'output_path': None, 'title': None, 'generator': None, 'datestamp': None, 'root_prefix': '', 'source_link': None, 'source_url': None, 'to...",
+      "source": "None",
+      "source_class": "<class 'docutils.io.FileInput'>",
+      "writer": "None"
+    }
+  },
+  "result_B": {
+    "before": {
+      "_stderr": "<docutils.io.ErrorOutput object at 0xADDR>",
+      "destination": "None",
+      "destination_class": "<class 'docutils.io.FileOutput'>",
+      "document": "None",
+      "parser": "None",
+      "reader": "None",
+      "settings": "None",
+      "source": "None",
+      "source_class": "<class 'docutils.io.FileInput'>",
+      "writer": "None"
+    },
+    "observation_result": {
+      "kind": "value",
+      "value": "<Values at 0xADDR: {'output_path': None, 'title': None, 'generator': None, 'datestamp': None, 'root_prefix': '', 'source_link': None, 'source_url': None, 'toc_backlinks': 'entry', 'footnote_backlinks': True, 'sectnum_xform': True, 'strip_comments': None, 'strip_elements_with_classes': None, 'strip_classes': None, 'report_level': 2, 'halt_level': 4, 'exit_status_level': 5, 'debug': None, 'warning_stream': None, 'traceback': None, 'input_encoding': 'utf-8', 'input_encoding_error_handler': 'stri..."
+    },
+    "after_observation": {
+      "_stderr": "<docutils.io.ErrorOutput object at 0xADDR>",
+      "destination": "None",
+      "destination_class": "<class 'docutils.io.FileOutput'>",
+      "document": "None",
+      "parser": "None",
+      "reader": "None",
+      "settings": "<Values at 0xADDR: {'output_path': None, 'title': None, 'generator': None, 'datestamp': None, 'root_prefix': '', 'source_link': None, 'source_url': None, 'to...",
+      "source": "None",
+      "source_class": "<class 'docutils.io.FileInput'>",
+      "writer": "None"
+    },
+    "result": {
+      "kind": "value",
+      "value": "<Values at 0xADDR: {'output_path': None, 'title': None, 'generator': None, 'datestamp': None, 'root_prefix': '', 'source_link': None, 'source_url': None, 'toc_backlinks': 'entry', 'footnote_backlinks': True, 'sectnum_xform': True, 'strip_comments': None, 'strip_elements_with_classes': None, 'strip_classes': None, 'report_level': 2, 'halt_level': 4, 'exit_status_level': 5, 'debug': None, 'warning_stream': None, 'traceback': None, 'input_encoding': 'utf-8', 'input_encoding_error_handler': 'stri..."
+    },
+    "after": {
+      "_stderr": "<docutils.io.ErrorOutput object at 0xADDR>",
+      "destination": "None",
+      "destination_class": "<class 'docutils.io.FileOutput'>",
+      "document": "None",
+      "parser": "None",
+      "reader": "None",
+      "settings": "<Values at 0xADDR: {'output_path': None, 'title': None, 'generator': None, 'datestamp': None, 'root_prefix': '', 'source_link': None, 'source_url': None, 'to...",
+      "source": "None",
+      "source_class": "<class 'docutils.io.FileInput'>",
+      "writer": "None"
+    }
+  },
+  "failure_reason": "",
+  "notes": "generic safe repeated-operation harness; confirmation depends on no-arg construction and no-arg operation"
+}

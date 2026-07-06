@@ -1,0 +1,41 @@
+{
+  "sweep_rank": 8,
+  "package": "anyio",
+  "version": "4.13.0",
+  "class_name": "ContextManagerMixin",
+  "file_path": "anyio-4.13.0\\src\\anyio\\_core\\_contextmanagers.py",
+  "selected_score": 10,
+  "classification": "structural_only_no_runtime_difference",
+  "reproduced": false,
+  "output_diff": false,
+  "branch_flip": false,
+  "state_diff": false,
+  "operation_A": "__enter__() once on fresh instance",
+  "operation_B": "__enter__() once first; then __enter__() again",
+  "result_A": {
+    "before": {},
+    "result": {
+      "kind": "exception",
+      "type": "TypeError",
+      "message": "__contextmanager__() did not return a context manager object, but <class 'NoneType'>"
+    },
+    "after": {}
+  },
+  "result_B": {
+    "before": {},
+    "observation_result": {
+      "kind": "exception",
+      "type": "TypeError",
+      "message": "__contextmanager__() did not return a context manager object, but <class 'NoneType'>"
+    },
+    "after_observation": {},
+    "result": {
+      "kind": "exception",
+      "type": "TypeError",
+      "message": "__contextmanager__() did not return a context manager object, but <class 'NoneType'>"
+    },
+    "after": {}
+  },
+  "failure_reason": "",
+  "notes": "generic safe repeated-operation harness; confirmation depends on no-arg construction and no-arg operation"
+}

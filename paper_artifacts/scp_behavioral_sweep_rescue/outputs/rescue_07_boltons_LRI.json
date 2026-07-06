@@ -1,0 +1,55 @@
+{
+  "boundary_note": "LRI access affects statistics but not eviction order in this fixture.",
+  "branch_flip": false,
+  "class_name": "LRI",
+  "classification": "confirmed_state_divergence_only",
+  "failure_reason": "",
+  "file_path": "boltons-25.0.0\\boltons\\cacheutils.py",
+  "fixture_description": "LRI(max_size=2) with keys a, b, c.",
+  "operation_A": "insert c after initializing LRI with a,b",
+  "operation_B": "__getitem__('a') first; then insert c",
+  "original_sweep_rank": 12,
+  "output_diff": false,
+  "package": "boltons",
+  "rescue_rank": 7,
+  "result_A": {
+    "kind": "value",
+    "later": [
+      [
+        "b",
+        "B"
+      ],
+      [
+        "c",
+        "C"
+      ]
+    ],
+    "observation": null,
+    "state": {
+      "hit_count": 0,
+      "miss_count": 0,
+      "soft_miss_count": 0
+    }
+  },
+  "result_B": {
+    "kind": "value",
+    "later": [
+      [
+        "b",
+        "B"
+      ],
+      [
+        "c",
+        "C"
+      ]
+    ],
+    "observation": "A",
+    "state": {
+      "hit_count": 1,
+      "miss_count": 0,
+      "soft_miss_count": 0
+    }
+  },
+  "state_diff": true,
+  "version": "25.0.0"
+}

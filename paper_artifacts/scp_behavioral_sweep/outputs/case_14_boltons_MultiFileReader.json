@@ -1,0 +1,58 @@
+{
+  "sweep_rank": 14,
+  "package": "boltons",
+  "version": "25.0.0",
+  "class_name": "MultiFileReader",
+  "file_path": "boltons-25.0.0\\boltons\\ioutils.py",
+  "selected_score": 10,
+  "classification": "structural_only_no_runtime_difference",
+  "reproduced": false,
+  "output_diff": false,
+  "branch_flip": false,
+  "state_diff": false,
+  "operation_A": "read() once on fresh instance",
+  "operation_B": "read() once first; then read() again",
+  "result_A": {
+    "before": {
+      "_fileobjs": "()",
+      "_index": "0",
+      "_joiner": "''"
+    },
+    "result": {
+      "kind": "value",
+      "value": "''"
+    },
+    "after": {
+      "_fileobjs": "()",
+      "_index": "0",
+      "_joiner": "''"
+    }
+  },
+  "result_B": {
+    "before": {
+      "_fileobjs": "()",
+      "_index": "0",
+      "_joiner": "''"
+    },
+    "observation_result": {
+      "kind": "value",
+      "value": "''"
+    },
+    "after_observation": {
+      "_fileobjs": "()",
+      "_index": "0",
+      "_joiner": "''"
+    },
+    "result": {
+      "kind": "value",
+      "value": "''"
+    },
+    "after": {
+      "_fileobjs": "()",
+      "_index": "0",
+      "_joiner": "''"
+    }
+  },
+  "failure_reason": "",
+  "notes": "generic safe repeated-operation harness; confirmation depends on no-arg construction and no-arg operation"
+}

@@ -1,0 +1,111 @@
+{
+  "sweep_rank": 6,
+  "package": "anyio",
+  "version": "4.13.0",
+  "class_name": "CancelScope",
+  "file_path": "anyio-4.13.0\\src\\anyio\\_backends\\_asyncio.py",
+  "selected_score": 10,
+  "classification": "structural_only_no_runtime_difference",
+  "reproduced": false,
+  "output_diff": false,
+  "branch_flip": false,
+  "state_diff": false,
+  "operation_A": "__enter__() once on fresh instance",
+  "operation_B": "__enter__() once first; then __enter__() again",
+  "result_A": {
+    "before": {
+      "_active": "False",
+      "_cancel_called": "False",
+      "_cancel_handle": "None",
+      "_cancel_reason": "None",
+      "_cancelled_caught": "False",
+      "_child_scopes": "set()",
+      "_deadline": "inf",
+      "_host_task": "None",
+      "_parent_scope": "None",
+      "_pending_uncancellations": "0",
+      "_shield": "False",
+      "_tasks": "set()",
+      "_timeout_handle": "None"
+    },
+    "result": {
+      "kind": "exception",
+      "type": "RuntimeError",
+      "message": "no running event loop"
+    },
+    "after": {
+      "_active": "False",
+      "_cancel_called": "False",
+      "_cancel_handle": "None",
+      "_cancel_reason": "None",
+      "_cancelled_caught": "False",
+      "_child_scopes": "set()",
+      "_deadline": "inf",
+      "_host_task": "None",
+      "_parent_scope": "None",
+      "_pending_uncancellations": "0",
+      "_shield": "False",
+      "_tasks": "set()",
+      "_timeout_handle": "None"
+    }
+  },
+  "result_B": {
+    "before": {
+      "_active": "False",
+      "_cancel_called": "False",
+      "_cancel_handle": "None",
+      "_cancel_reason": "None",
+      "_cancelled_caught": "False",
+      "_child_scopes": "set()",
+      "_deadline": "inf",
+      "_host_task": "None",
+      "_parent_scope": "None",
+      "_pending_uncancellations": "0",
+      "_shield": "False",
+      "_tasks": "set()",
+      "_timeout_handle": "None"
+    },
+    "observation_result": {
+      "kind": "exception",
+      "type": "RuntimeError",
+      "message": "no running event loop"
+    },
+    "after_observation": {
+      "_active": "False",
+      "_cancel_called": "False",
+      "_cancel_handle": "None",
+      "_cancel_reason": "None",
+      "_cancelled_caught": "False",
+      "_child_scopes": "set()",
+      "_deadline": "inf",
+      "_host_task": "None",
+      "_parent_scope": "None",
+      "_pending_uncancellations": "0",
+      "_shield": "False",
+      "_tasks": "set()",
+      "_timeout_handle": "None"
+    },
+    "result": {
+      "kind": "exception",
+      "type": "RuntimeError",
+      "message": "no running event loop"
+    },
+    "after": {
+      "_active": "False",
+      "_cancel_called": "False",
+      "_cancel_handle": "None",
+      "_cancel_reason": "None",
+      "_cancelled_caught": "False",
+      "_child_scopes": "set()",
+      "_deadline": "inf",
+      "_host_task": "None",
+      "_parent_scope": "None",
+      "_pending_uncancellations": "0",
+      "_shield": "False",
+      "_tasks": "set()",
+      "_timeout_handle": "None"
+    }
+  },
+  "failure_reason": "",
+  "notes": "generic safe repeated-operation harness; confirmation depends on no-arg construction and no-arg operation"
+}

@@ -1,0 +1,34 @@
+{
+  "boundary_note": "BTree lookup is stable under this minimal fixture; cursor/copy-on-write behavior was not forced.",
+  "branch_flip": false,
+  "class_name": "BTree",
+  "classification": "structural_only_no_runtime_difference",
+  "failure_reason": "",
+  "file_path": "dnspython-2.8.0\\dns\\btree.py",
+  "fixture_description": "BTree populated with dns.btree.KV('a','A') and KV('b','B').",
+  "operation_A": "get_element('b')",
+  "operation_B": "get_element('a') first; then get_element('b')",
+  "original_sweep_rank": 18,
+  "output_diff": false,
+  "package": "dnspython",
+  "rescue_rank": 12,
+  "result_A": {
+    "kind": "value",
+    "later": "KV(b, B)",
+    "state": {
+      "cursors": 0,
+      "size": 2
+    }
+  },
+  "result_B": {
+    "kind": "value",
+    "later": "KV(b, B)",
+    "observation": "KV(a, A)",
+    "state": {
+      "cursors": 0,
+      "size": 2
+    }
+  },
+  "state_diff": false,
+  "version": "2.8.0"
+}

@@ -1,0 +1,63 @@
+{
+  "sweep_rank": 36,
+  "package": "docutils",
+  "version": "0.22.4",
+  "class_name": "Inliner",
+  "file_path": "docutils-0.22.4\\docutils\\parsers\\rst\\states.py",
+  "selected_score": 10,
+  "classification": "structural_only_no_runtime_difference",
+  "reproduced": false,
+  "output_diff": false,
+  "branch_flip": false,
+  "state_diff": false,
+  "operation_A": "parse() once on fresh instance",
+  "operation_B": "parse() once first; then parse() again",
+  "result_A": {
+    "before": {
+      "implicit_dispatch": "[]"
+    },
+    "result": {
+      "kind": "not_callable_without_args",
+      "required": [
+        "text",
+        "lineno",
+        "memo",
+        "parent"
+      ]
+    },
+    "after": {
+      "implicit_dispatch": "[]"
+    }
+  },
+  "result_B": {
+    "before": {
+      "implicit_dispatch": "[]"
+    },
+    "observation_result": {
+      "kind": "not_callable_without_args",
+      "required": [
+        "text",
+        "lineno",
+        "memo",
+        "parent"
+      ]
+    },
+    "after_observation": {
+      "implicit_dispatch": "[]"
+    },
+    "result": {
+      "kind": "not_callable_without_args",
+      "required": [
+        "text",
+        "lineno",
+        "memo",
+        "parent"
+      ]
+    },
+    "after": {
+      "implicit_dispatch": "[]"
+    }
+  },
+  "failure_reason": "",
+  "notes": "generic safe repeated-operation harness; confirmation depends on no-arg construction and no-arg operation"
+}

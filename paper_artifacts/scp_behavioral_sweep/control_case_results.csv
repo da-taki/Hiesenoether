@@ -1,0 +1,5 @@
+case_id,package,version,class_name,classification,output_diff,branch_flip,state_diff,rerun_status,notes
+case_1_httpcore_Response,httpcore,1.0.9,Response,confirmed_branch_flip,True,True,True,passed,Real package API; read-shaped access materializes content and changes later content access from exception to value.
+case_2_pytest_catching_logs,pytest,8.3.5,catching_logs,confirmed_branch_flip,True,True,True,passed,"Uses pytest internal logging utility. It is a behavioral instance, not an upstream bug claim."
+case_3_pyyaml_SafeRepresenter,PyYAML,6.0.3,SafeRepresenter,confirmed_output_divergence,True,False,False,passed,Low-level representer API. The full dumper resets state after represent(); this harness demonstrates the underlying access-observation feedback boundary.
+case_4_rich_RichHandler,rich,15.0.0,RichHandler,confirmed_state_divergence_only,False,False,True,passed,Logging/rendering path mutates keyword-highlight configuration on first render.

@@ -1,0 +1,19 @@
+{
+  "sweep_rank": 47,
+  "package": "docutils",
+  "version": "0.22.4",
+  "class_name": "Writer",
+  "file_path": "docutils-0.22.4\\docutils\\writers\\__init__.py",
+  "selected_score": 10,
+  "classification": "unsafe_to_execute",
+  "reproduced": false,
+  "output_diff": false,
+  "branch_flip": false,
+  "state_diff": false,
+  "operation_A": "",
+  "operation_B": "",
+  "result_A": {},
+  "result_B": {},
+  "failure_reason": "method name treated as unsafe: write",
+  "notes": "generic harness did not execute candidate behavior"
+}

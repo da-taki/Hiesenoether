@@ -1,0 +1,900 @@
+package,version,file_path,class_name,line_start,line_end,read_shaped_methods_or_properties,read_shaped_methods_mutate_state,observation_like_methods_mutate_state,mutated_state_consumed_by_later_reads,composition_or_threshold_visible,audit_label,evidence_note,code_snippet_or_lines
+PyYAML,6.0.3,yaml\events.py,MappingStartEvent,,,,,,,,uncertain,Reviewed-corpus source files are missing from the repo/cache. This fallback row comes from the expanded SAFE manual-review queue; the stored excerpt is insufficient to prove an OSDS miss or nonmatch.,"77:
+78: class SequenceEndEvent(CollectionEndEvent):
+79:     pass
+80:
+81: class MappingStartEvent(CollectionStartEvent):
+82:     pass
+83:
+84: class MappingEndEvent(CollectionEndEvent):
+85:     pass"
+PyYAML,6.0.3,yaml\representer.py,SafeRepresenter,,,,,,,,uncertain,Reviewed-corpus source files are missing from the repo/cache. This fallback row comes from the expanded SAFE manual-review queue; the stored excerpt is insufficient to prove an OSDS miss or nonmatch.,"130:
+131:     def ignore_aliases(self, data):
+132:         return False
+133:
+134: class SafeRepresenter(BaseRepresenter):
+135:
+136:     def ignore_aliases(self, data):
+137:         if data is None:
+138:             return True"
+asttokens,3.0.1,asttokens-3.0.1\asttokens\util.py,Token,,,,,,,,uncertain,Reviewed-corpus source files are missing from the repo/cache. This fallback row comes from the expanded SAFE manual-review queue; the stored excerpt is insufficient to prove an OSDS miss or nonmatch.,"60:   # repr() prefixes unicode with 'u' on Python2 but not Python3; strip it out for consistency.
+61:   return '%s:%s' % (token.tok_name[tok_type], repr(string).lstrip('u'))
+62:
+63:
+64: class Token(collections.namedtuple('Token', 'type string start end line index startpos endpos')):
+65:   """"""
+66:   TokenInfo is an 8-tuple containing the same 5 fields as the tokens produced by the tokenize
+67:   module, and 3 additional ones useful for this module:
+68:"
+black,26.5.1,black-26.5.1\src\black\rusty.py,Ok,,,,,,,,uncertain,Reviewed-corpus source files are missing from the repo/cache. This fallback row comes from the expanded SAFE manual-review queue; the stored excerpt is insufficient to prove an OSDS miss or nonmatch.,"8: T = TypeVar(""T"")
+9: E = TypeVar(""E"", bound=Exception)
+10:
+11:
+12: class Ok(Generic[T]):
+13:     def __init__(self, value: T) -> None:
+14:         self._value = value
+15:
+16:     def ok(self) -> T:"
+cffi,2.0.0,cffi\setuptools_ext.py,build_ext_make_mod,,,,,,,,uncertain,Reviewed-corpus source files are missing from the repo/cache. This fallback row comes from the expanded SAFE manual-review queue; the stored excerpt is insufficient to prove an OSDS miss or nonmatch.,"146:         dist.ext_modules = []
+147:     dist.ext_modules.append(ext)
+148:
+149:     base_class = dist.cmdclass.get('build_ext', build_ext)
+150:     class build_ext_make_mod(base_class):
+151:         def run(self):
+152:             if ext.sources[0] == '$PLACEHOLDER':
+153:                 pre_run = getattr(self, 'pre_run', None)
+154:                 ext.sources[0] = make_mod(self.build_temp, pre_run)"
+coverage,7.15.0,coverage-7.15.0\coverage\files.py,GlobMatcher,,,,,,,,uncertain,Reviewed-corpus source files are missing from the repo/cache. This fallback row comes from the expanded SAFE manual-review queue; the stored excerpt is insufficient to prove an OSDS miss or nonmatch.,"312:
+313:         return False
+314:
+315:
+316: class GlobMatcher(Matcher):
+317:     """"""A matcher for files by file name pattern.""""""
+318:
+319:     def __init__(
+320:         self,"
+cryptography,49.0.0,cryptography\hazmat\decrepit\ciphers\algorithms.py,TripleDES,,,,,,,,uncertain,Reviewed-corpus source files are missing from the repo/cache. This fallback row comes from the expanded SAFE manual-review queue; the stored excerpt is insufficient to prove an OSDS miss or nonmatch.,"25:     def key_size(self) -> int:
+26:         return len(self.key) * 8
+27:
+28:
+29: class TripleDES(BlockCipherAlgorithm):
+30:     name = ""3DES""
+31:     block_size = 64
+32:     key_sizes = frozenset([64, 128, 192])
+33:"
+cryptography,49.0.0,cryptography\hazmat\primitives\asymmetric\ec.py,SECP192R1,,,,,,,,uncertain,Reviewed-corpus source files are missing from the repo/cache. This fallback row comes from the expanded SAFE manual-review queue; the stored excerpt is insufficient to prove an OSDS miss or nonmatch.,"250:     key_size = 224
+251:     group_order = 0xFFFFFFFFFFFFFFFFFFFFFFFFFFFF16A2E0B8F03E13DD29455C5C2A3D
+252:
+253:
+254: class SECP192R1(EllipticCurve):
+255:     name = ""secp192r1""
+256:     key_size = 192
+257:     group_order = 0xFFFFFFFFFFFFFFFFFFFFFFFF99DEF836146BC9B1B4D22831
+258:"
+cryptography,49.0.0,cryptography\hazmat\primitives\asymmetric\ec.py,SECP384R1,,,,,,,,uncertain,Reviewed-corpus source files are missing from the repo/cache. This fallback row comes from the expanded SAFE manual-review queue; the stored excerpt is insufficient to prove an OSDS miss or nonmatch.,"222:     key_size = 521
+223:     group_order = 0x1FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFA51868783BF2F966B7FCC0148F709A5D03BB5C9B8899C47AEBB6FB71E91386409  # noqa: E501
+224:
+225:
+226: class SECP384R1(EllipticCurve):
+227:     name = ""secp384r1""
+228:     key_size = 384
+229:     group_order = 0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFC7634D81F4372DDF581A0DB248B0A77AECEC196ACCC52973  # noqa: E501
+230:"
+cryptography,49.0.0,cryptography\hazmat\primitives\asymmetric\mldsa.py,MLDSA65PrivateKey,,,,,,,,uncertain,Reviewed-corpus source files are missing from the repo/cache. This fallback row comes from the expanded SAFE manual-review queue; the stored excerpt is insufficient to prove an OSDS miss or nonmatch.,"253: if hasattr(rust_openssl, ""mldsa""):
+254:     MLDSA65PublicKey.register(rust_openssl.mldsa.MLDSA65PublicKey)
+255:
+256:
+257: class MLDSA65PrivateKey(metaclass=abc.ABCMeta):
+258:     @classmethod
+259:     def generate(cls) -> MLDSA65PrivateKey:
+260:         from cryptography.hazmat.backends.openssl.backend import backend
+261:"
+cryptography,49.0.0,cryptography\hazmat\primitives\ciphers\modes.py,CBC,,,,,,,,uncertain,Reviewed-corpus source files are missing from the repo/cache. This fallback row comes from the expanded SAFE manual-review queue; the stored excerpt is insufficient to prove an OSDS miss or nonmatch.,"35: )
+36: from cryptography.hazmat.primitives.ciphers import algorithms
+37:
+38:
+39: class CBC(ModeWithInitializationVector):
+40:     name = ""CBC""
+41:
+42:     def __init__(self, initialization_vector: utils.Buffer):
+43:         utils._check_byteslike(""initialization_vector"", initialization_vector)"
+cryptography,49.0.0,cryptography\x509\extensions.py,PolicyInformation,,,,,,,,uncertain,Reviewed-corpus source files are missing from the repo/cache. This fallback row comes from the expanded SAFE manual-review queue; the stored excerpt is insufficient to prove an OSDS miss or nonmatch.,"844:     def public_bytes(self) -> bytes:
+845:         return rust_x509.encode_extension_value(self)
+846:
+847:
+848: class PolicyInformation:
+849:     def __init__(
+850:         self,
+851:         policy_identifier: ObjectIdentifier,
+852:         policy_qualifiers: Iterable[str | UserNotice] | None,"
+cryptography,49.0.0,cryptography\x509\ocsp.py,OCSPRequestBuilder,,,,,,,,uncertain,Reviewed-corpus source files are missing from the repo/cache. This fallback row comes from the expanded SAFE manual-review queue; the stored excerpt is insufficient to prove an OSDS miss or nonmatch.,"114: OCSPResponse = ocsp.OCSPResponse
+115: OCSPSingleResponse = ocsp.OCSPSingleResponse
+116:
+117:
+118: class OCSPRequestBuilder:
+119:     def __init__(
+120:         self,
+121:         request: tuple[
+122:             x509.Certificate, x509.Certificate, hashes.HashAlgorithm"
+fastapi,0.139.0,fastapi-0.139.0\docs_src\body_multiple_params\tutorial004_an_py310.py,User,,,,,,,,uncertain,Reviewed-corpus source files are missing from the repo/cache. This fallback row comes from the expanded SAFE manual-review queue; the stored excerpt is insufficient to prove an OSDS miss or nonmatch.,"12:     price: float
+13:     tax: float | None = None
+14:
+15:
+16: class User(BaseModel):
+17:     username: str
+18:     full_name: str | None = None
+19:
+20:"
+fastapi,0.139.0,fastapi-0.139.0\docs_src\body_nested_models\tutorial007_py310.py,Image,,,,,,,,uncertain,Reviewed-corpus source files are missing from the repo/cache. This fallback row comes from the expanded SAFE manual-review queue; the stored excerpt is insufficient to prove an OSDS miss or nonmatch.,"3:
+4: app = FastAPI()
+5:
+6:
+7: class Image(BaseModel):
+8:     url: HttpUrl
+9:     name: str
+10:
+11:"
+fastapi,0.139.0,fastapi-0.139.0\docs_src\encoder\tutorial001_py310.py,Item,,,,,,,,uncertain,Reviewed-corpus source files are missing from the repo/cache. This fallback row comes from the expanded SAFE manual-review queue; the stored excerpt is insufficient to prove an OSDS miss or nonmatch.,"6:
+7: fake_db = {}
+8:
+9:
+10: class Item(BaseModel):
+11:     title: str
+12:     timestamp: datetime
+13:     description: str | None = None
+14:"
+fastapi,0.139.0,fastapi-0.139.0\docs_src\security\tutorial004_an_py310.py,TokenData,,,,,,,,uncertain,Reviewed-corpus source files are missing from the repo/cache. This fallback row comes from the expanded SAFE manual-review queue; the stored excerpt is insufficient to prove an OSDS miss or nonmatch.,"30:     access_token: str
+31:     token_type: str
+32:
+33:
+34: class TokenData(BaseModel):
+35:     username: str | None = None
+36:
+37:
+38: class User(BaseModel):"
+fastapi,0.139.0,fastapi-0.139.0\docs_src\server_sent_events\tutorial004_py310.py,Item,,,,,,,,uncertain,Reviewed-corpus source files are missing from the repo/cache. This fallback row comes from the expanded SAFE manual-review queue; the stored excerpt is insufficient to prove an OSDS miss or nonmatch.,"7:
+8: app = FastAPI()
+9:
+10:
+11: class Item(BaseModel):
+12:     name: str
+13:     price: float
+14:
+15:"
+fastapi,0.139.0,fastapi-0.139.0\fastapi\openapi\models.py,Response,,,,,,,,uncertain,Reviewed-corpus source files are missing from the repo/cache. This fallback row comes from the expanded SAFE manual-review queue; the stored excerpt is insufficient to prove an OSDS miss or nonmatch.,"278:     description: str | None = None
+279:     server: Server | None = None
+280:
+281:
+282: class Response(BaseModelWithConfig):
+283:     description: str
+284:     headers: dict[str, Header | Reference] | None = None
+285:     content: dict[str, MediaType] | None = None
+286:     links: dict[str, Link | Reference] | None = None"
+fastapi,0.139.0,fastapi-0.139.0\fastapi\security\http.py,HTTPBasicCredentials,,,,,,,,uncertain,Reviewed-corpus source files are missing from the repo/cache. This fallback row comes from the expanded SAFE manual-review queue; the stored excerpt is insufficient to prove an OSDS miss or nonmatch.,"12: from starlette.requests import Request
+13: from starlette.status import HTTP_401_UNAUTHORIZED
+14:
+15:
+16: class HTTPBasicCredentials(BaseModel):
+17:     """"""
+18:     The HTTP Basic credentials given as the result of using `HTTPBasic` in a
+19:     dependency.
+20:"
+fastapi,0.139.0,fastapi-0.139.0\fastapi\sse.py,ServerSentEvent,,,,,,,,uncertain,Reviewed-corpus source files are missing from the repo/cache. This fallback row comes from the expanded SAFE manual-review queue; the stored excerpt is insufficient to prove an OSDS miss or nonmatch.,"48:         raise ValueError(""SSE 'id' must not contain null characters"")
+49:     return _check_single_line(v, ""id"")
+50:
+51:
+52: class ServerSentEvent(BaseModel):
+53:     """"""Represents a single Server-Sent Event.
+54:
+55:     When `yield`ed from a *path operation function* that uses
+56:     `response_class=EventSourceResponse`, each `ServerSentEvent` is encoded"
+fastapi,0.139.0,fastapi-0.139.0\scripts\contributors.py,Labels,,,,,,,,uncertain,Reviewed-corpus source files are missing from the repo/cache. This fallback row comes from the expanded SAFE manual-review queue; the stored excerpt is insufficient to prove an OSDS miss or nonmatch.,"65: class LabelNode(BaseModel):
+66:     name: str
+67:
+68:
+69: class Labels(BaseModel):
+70:     nodes: list[LabelNode]
+71:
+72:
+73: class ReviewNode(BaseModel):"
+fastapi,0.139.0,fastapi-0.139.0\scripts\people.py,DiscussionsComments,,,,,,,,uncertain,Reviewed-corpus source files are missing from the repo/cache. This fallback row comes from the expanded SAFE manual-review queue; the stored excerpt is insufficient to prove an OSDS miss or nonmatch.,"148:     minimizedReason: LowerStr | None = None
+149:     replies: Replies
+150:
+151:
+152: class DiscussionsComments(BaseModel):
+153:     totalCount: int
+154:     nodes: list[DiscussionsCommentsNode]
+155:
+156:"
+hypothesis,6.155.7,hypothesis-6.155.7\src\hypothesis\database.py,_EDMeta,,,,,,,,uncertain,Reviewed-corpus source files are missing from the repo/cache. This fallback row comes from the expanded SAFE manual-review queue; the stored excerpt is insufficient to prove an OSDS miss or nonmatch.,"109:     path = cast(StrPathT, path)
+110:     return DirectoryBasedExampleDatabase(path)
+111:
+112:
+113: class _EDMeta(abc.ABCMeta):
+114:     def __call__(self, *args: Any, **kwargs: Any) -> ""ExampleDatabase"":
+115:         if self is ExampleDatabase:
+116:             note_deprecation(
+117:                 ""Creating a database using the abstract ExampleDatabase() class """
+hypothesis,6.155.7,hypothesis-6.155.7\src\hypothesis\extra\codemods.py,HypothesisFixPositionalKeywonlyArgs,,,,,,,,uncertain,Reviewed-corpus source files are missing from the repo/cache. This fallback row comes from the expanded SAFE manual-review queue; the stored excerpt is insufficient to prove an OSDS miss or nonmatch.,"110:     mod, fn = import_path.rsplit(""."", 1)
+111:     return getattr(importlib.import_module(mod), fn)
+112:
+113:
+114: class HypothesisFixPositionalKeywonlyArgs(VisitorBasedCodemodCommand):
+115:     """"""Fix positional arguments for newly keyword-only parameters, e.g.::
+116:
+117:         st.fractions(0, 1, 9) -> st.fractions(0, 1, max_denominator=9)
+118:"
+hypothesis,6.155.7,hypothesis-6.155.7\src\hypothesis\extra\django\_impl.py,SimpleTestCase,,,,,,,,uncertain,Reviewed-corpus source files are missing from the repo/cache. This fallback row comes from the expanded SAFE manual-review queue; the stored excerpt is insufficient to prove an OSDS miss or nonmatch.,"40:         else:
+41:             return dt.SimpleTestCase.__call__(self, result)
+42:
+43:
+44: class SimpleTestCase(HypothesisTestCase, dt.SimpleTestCase):
+45:     pass
+46:
+47:
+48: class TestCase(HypothesisTestCase, dt.TestCase):"
+hypothesis,6.155.7,hypothesis-6.155.7\src\hypothesis\internal\conjecture\data.py,_starts_and_ends,,,,,,,,uncertain,Reviewed-corpus source files are missing from the repo/cache. This fallback row comes from the expanded SAFE manual-review queue; the stored excerpt is insufficient to prove an OSDS miss or nonmatch.,"344:         else:
+345:             self.trail.append(TrailType.STOP_SPAN_NO_DISCARD)
+346:
+347:
+348: class _starts_and_ends(SpanProperty):
+349:     def __init__(self, spans: ""Spans"") -> None:
+350:         super().__init__(spans)
+351:         self.starts = IntList.of_length(len(self.spans))
+352:         self.ends = IntList.of_length(len(self.spans))"
+ipython,9.15.0,ipython-9.15.0\IPython\core\autocall.py,ExitAutocall,,,,,,,,uncertain,Reviewed-corpus source files are missing from the repo/cache. This fallback row comes from the expanded SAFE manual-review queue; the stored excerpt is insufficient to prove an OSDS miss or nonmatch.,"47:         """"""
+48:         self._ip = ip
+49:
+50:
+51: class ExitAutocall(IPyAutocall):
+52:     """"""An autocallable object which will be added to the user namespace so that
+53:     exit, exit(), quit or quit() are all valid ways to close the shell.""""""
+54:     rewrite = False
+55:"
+ipython,9.15.0,ipython-9.15.0\IPython\core\display.py,Latex,,,,,,,,uncertain,Reviewed-corpus source files are missing from the repo/cache. This fallback row comes from the expanded SAFE manual-review queue; the stored excerpt is insufficient to prove an OSDS miss or nonmatch.,"473:         else:
+474:             return s
+475:
+476:
+477: class Latex(TextDisplayObject):
+478:
+479:     def _repr_latex_(self):
+480:         return self._data_and_metadata()
+481:"
+ipython,9.15.0,ipython-9.15.0\IPython\core\formatters.py,DisplayFormatter,,,,,,,,uncertain,Reviewed-corpus source files are missing from the repo/cache. This fallback row comes from the expanded SAFE manual-review queue; the stored excerpt is insufficient to prove an OSDS miss or nonmatch.,"86:
+87: from typing import Any
+88:
+89:
+90: class DisplayFormatter(Configurable):
+91:
+92:     active_types = List(Unicode(),
+93:         help=""""""List of currently active mime-types to display.
+94:         You can use this to set a white-list for formats to display."
+ipython,9.15.0,ipython-9.15.0\IPython\core\magics\code.py,InteractivelyDefined,,,,,,,,uncertain,Reviewed-corpus source files are missing from the repo/cache. This fallback row comes from the expanded SAFE manual-review queue; the stored excerpt is insufficient to prove an OSDS miss or nonmatch.,"167:     for line in it:
+168:         yield line
+169:
+170:
+171: class InteractivelyDefined(Exception):
+172:     """"""Exception for interactively defined variable in magic_edit""""""
+173:     def __init__(self, index):
+174:         self.index = index
+175:"
+ipython,9.15.0,ipython-9.15.0\IPython\utils\PyColorize.py,MyStyle,,,,,,,,uncertain,Reviewed-corpus source files are missing from the repo/cache. This fallback row comes from the expanded SAFE manual-review queue; the stored excerpt is insufficient to prove an OSDS miss or nonmatch.,"63:             base_styles = get_style_by_name(self.base).styles
+64:         else:
+65:             base_styles = {}
+66:
+67:         class MyStyle(Style):
+68:             styles = {**base_styles, **self.extra_style}
+69:
+70:         return MyStyle
+71:"
+isort,8.0.1,isort-8.0.1\isort\io.py,_EmptyIO,,,,,,,,uncertain,Reviewed-corpus source files are missing from the repo/cache. This fallback row comes from the expanded SAFE manual-review queue; the stored excerpt is insufficient to prove an OSDS miss or nonmatch.,"64:             if stream is not None:
+65:                 stream.close()
+66:
+67:
+68: class _EmptyIO(StringIO):
+69:     def write(self, *args: Any, **kwargs: Any) -> None:  # type: ignore # skipcq: PTC-W0049
+70:         pass
+71:
+72:"
+jedi,0.20.0,jedi-0.20.0\jedi\api\classes.py,ParamName,,,,,,,,uncertain,Reviewed-corpus source files are missing from the repo/cache. This fallback row comes from the expanded SAFE manual-review queue; the stored excerpt is insufficient to prove an OSDS miss or nonmatch.,"856:             self._signature.to_string(),
+857:         )
+858:
+859:
+860: class ParamName(Name):
+861:     def infer_default(self):
+862:         """"""
+863:         Returns default values like the ``1`` of ``def foo(x=1):``.
+864:"
+jedi,0.20.0,jedi-0.20.0\jedi\inference\context.py,ModuleContext,,,,,,,,uncertain,Reviewed-corpus source files are missing from the repo/cache. This fallback row comes from the expanded SAFE manual-review queue; the stored excerpt is insufficient to prove an OSDS miss or nonmatch.,"314:             origin_scope=origin_scope
+315:         )
+316:
+317:
+318: class ModuleContext(TreeContextMixin, ValueContext):
+319:     def py__file__(self) -> Optional[Path]:
+320:         return self._value.py__file__()  # type: ignore[no-any-return]
+321:
+322:     def get_filters(self, until_position=None, origin_scope=None):"
+jedi,0.20.0,jedi-0.20.0\jedi\plugins\stdlib.py,PartialSignature,,,,,,,,uncertain,Reviewed-corpus source files are missing from the repo/cache. This fallback row comes from the expanded SAFE manual-review queue; the stored excerpt is insufficient to prove an OSDS miss or nonmatch.,"535:             return ValueSet([self])
+536:         return ValueSet([PartialObject(self._wrapped_value, self._arguments, instance)])
+537:
+538:
+539: class PartialSignature(SignatureWrapper):
+540:     def __init__(self, wrapped_signature, skipped_arg_count, skipped_arg_set):
+541:         super().__init__(wrapped_signature)
+542:         self._skipped_arg_count = skipped_arg_count
+543:         self._skipped_arg_set = skipped_arg_set"
+lxml,6.1.1,lxml\html\__init__.py,InputGetter,,,,,,,,uncertain,Reviewed-corpus source files are missing from the repo/cache. This fallback row comes from the expanded SAFE manual-review queue; the stored excerpt is insufficient to prove an OSDS miss or nonmatch.,"1145:             self.__class__.__name__,
+1146:             self.inputs.form._name())
+1147:
+1148:
+1149: class InputGetter:
+1150:
+1151:     """"""
+1152:     An accessor that represents all the input fields in a form.
+1153:"
+lxml,6.1.1,lxml\html\diff.py,InsensitiveSequenceMatcher,,,,,,,,uncertain,Reviewed-corpus source files are missing from the repo/cache. This fallback row comes from the expanded SAFE manual-review queue; the stored excerpt is insufficient to prove an OSDS miss or nonmatch.,"947:
+948:
+949: @cython.final
+950: @cython.cclass
+951: class InsensitiveSequenceMatcher(SequenceMatcher):
+952:     """"""
+953:     Acts like SequenceMatcher, but tries not to find very small equal
+954:     blocks amidst large spans of changes
+955:     """""""
+mpmath,1.4.1,mpmath-1.4.1\mpmath\_interactive.py,_WrapFloats,,,,,,,,uncertain,Reviewed-corpus source files are missing from the repo/cache. This fallback row comes from the expanded SAFE manual-review queue; the stored excerpt is insufficient to prove an OSDS miss or nonmatch.,"27:                             [node.left, node.right], [])
+28:         return self.generic_visit(node)
+29:
+30:
+31: class _WrapFloats(ast.NodeTransformer):
+32:     """"""Wrap float literals by calls to specified type.""""""
+33:     def __init__(self, lines, type):
+34:         super().__init__()
+35:         self.lines = lines"
+networkx,3.6.1,networkx-3.6.1\networkx\algorithms\coloring\greedy_coloring.py,_Node,,,,,,,,uncertain,Reviewed-corpus source files are missing from the repo/cache. This fallback row comes from the expanded SAFE manual-review queue; the stored excerpt is insufficient to prove an OSDS miss or nonmatch.,"375:     return colors
+376:
+377:
+378: # Tools for coloring with interchanges
+379: class _Node:
+380:     __slots__ = [""node_id"", ""color"", ""adj_list"", ""adj_color""]
+381:
+382:     def __init__(self, node_id, n):
+383:         self.node_id = node_id"
+networkx,3.6.1,networkx-3.6.1\networkx\algorithms\isomorphism\temporalisomorphvf2.py,TimeRespectingDiGraphMatcher,,,,,,,,uncertain,Reviewed-corpus source files are missing from the repo/cache. This fallback row comes from the expanded SAFE manual-review queue; the stored excerpt is insufficient to prove an OSDS miss or nonmatch.,"140:         # Otherwise, this node is semantically feasible!
+141:         return True
+142:
+143:
+144: class TimeRespectingDiGraphMatcher(DiGraphMatcher):
+145:     def __init__(self, G1, G2, temporal_attribute_name, delta):
+146:         """"""Initialize TimeRespectingDiGraphMatcher.
+147:
+148:         G1 and G2 should be nx.DiGraph or nx.MultiDiGraph instances."
+networkx,3.6.1,networkx-3.6.1\networkx\readwrite\graphml.py,GraphMLWriter,,,,,,,,uncertain,Reviewed-corpus source files are missing from the repo/cache. This fallback row comes from the expanded SAFE manual-review queue; the stored excerpt is insufficient to prove an OSDS miss or nonmatch.,"459:                 f""GraphML does not support type {key} as data values.""
+460:             ) from err
+461:
+462:
+463: class GraphMLWriter(GraphML):
+464:     def __init__(
+465:         self,
+466:         graph=None,
+467:         encoding=""utf-8"","
+parso,0.8.7,parso-0.8.7\parso\python\diff.py,_PositionUpdatingFinished,,,,,,,,uncertain,Reviewed-corpus source files are missing from the repo/cache. This fallback row comes from the expanded SAFE manual-review queue; the stored excerpt is insufficient to prove an OSDS miss or nonmatch.,"229:         return False
+230:     return value in ('if', 'for', 'while', 'try', 'with')
+231:
+232:
+233: class _PositionUpdatingFinished(Exception):
+234:     pass
+235:
+236:
+237: def _update_positions(nodes, line_offset, last_leaf):"
+parso,0.8.7,parso-0.8.7\parso\tree.py,BaseNode,,,,,,,,uncertain,Reviewed-corpus source files are missing from the repo/cache. This fallback row comes from the expanded SAFE manual-review queue; the stored excerpt is insufficient to prove an OSDS miss or nonmatch.,"358:         super().__init__(value, start_pos, prefix)
+359:         self.type = type
+360:
+361:
+362: class BaseNode(NodeOrLeaf):
+363:     """"""
+364:     The super class for all nodes.
+365:     A node has children, a type and possibly a parent node.
+366:     """""""
+prompt-toolkit,3.0.52,prompt_toolkit-3.0.52\src\prompt_toolkit\completion\filesystem.py,ExecutableCompleter,,,,,,,,uncertain,Reviewed-corpus source files are missing from the repo/cache. This fallback row comes from the expanded SAFE manual-review queue; the stored excerpt is insufficient to prove an OSDS miss or nonmatch.,"102:         except OSError:
+103:             pass
+104:
+105:
+106: class ExecutableCompleter(PathCompleter):
+107:     """"""
+108:     Complete only executable files in the current path.
+109:     """"""
+110:"
+prompt-toolkit,3.0.52,prompt_toolkit-3.0.52\src\prompt_toolkit\layout\containers.py,MagicContainer,,,,,,,,uncertain,Reviewed-corpus source files are missing from the repo/cache. This fallback row comes from the expanded SAFE manual-review queue; the stored excerpt is insufficient to prove an OSDS miss or nonmatch.,"151:
+152:
+153: if TYPE_CHECKING:
+154:
+155:     class MagicContainer(Protocol):
+156:         """"""
+157:         Any object that implements ``__pt_container__`` represents a container.
+158:         """"""
+159:"
+prompt-toolkit,3.0.52,prompt_toolkit-3.0.52\src\prompt_toolkit\utils.py,Event,,,,,,,,uncertain,Reviewed-corpus source files are missing from the repo/cache. This fallback row comes from the expanded SAFE manual-review queue; the stored excerpt is insufficient to prove an OSDS miss or nonmatch.,"41:
+42: _Sender = TypeVar(""_Sender"", covariant=True)
+43:
+44:
+45: class Event(Generic[_Sender]):
+46:     """"""
+47:     Simple event to which event handlers can be attached. For instance::
+48:
+49:         class Cls:"
+pydantic,2.13.4,pydantic-2.13.4\pydantic\_internal\_utils.py,SafeGetItemProxy,,,,,,,,uncertain,Reviewed-corpus source files are missing from the repo/cache. This fallback row comes from the expanded SAFE manual-review queue; the stored excerpt is insufficient to prove an OSDS miss or nonmatch.,"377:     return a if a is not None else b
+378:
+379:
+380: @dataclasses.dataclass(frozen=True)
+381: class SafeGetItemProxy:
+382:     """"""Wrapper redirecting `__getitem__` to `get` with a sentinel value as default
+383:
+384:     This makes is safe to use in `operator.itemgetter` when some keys may be missing
+385:     """""""
+pydantic,2.13.4,pydantic-2.13.4\pydantic\experimental\pipeline.py,_NotEq,,,,,,,,uncertain,Reviewed-corpus source files are missing from the repo/cache. This fallback row comes from the expanded SAFE manual-review queue; the stored excerpt is insufficient to prove an OSDS miss or nonmatch.,"72:     value: Any
+73:
+74:
+75: @dataclass(**_slots_frozen)
+76: class _NotEq:
+77:     value: Any
+78:
+79:
+80: @dataclass(**_slots_frozen)"
+pydantic,2.13.4,pydantic-2.13.4\pydantic\types.py,_AllowAnyJson,,,,,,,,uncertain,Reviewed-corpus source files are missing from the repo/cache. This fallback row comes from the expanded SAFE manual-review queue; the stored excerpt is insufficient to prove an OSDS miss or nonmatch.,"3174:     # Fail by returning the type's actual name
+3175:     return getattr(type_, '__name__', '<no type name>')
+3176:
+3177:
+3178: class _AllowAnyJson:
+3179:     @classmethod
+3180:     def __get_pydantic_core_schema__(cls, source_type: Any, handler: GetCoreSchemaHandler) -> CoreSchema:
+3181:         python_schema = handler(source_type)
+3182:         return core_schema.json_or_python_schema(json_schema=core_schema.any_schema(), python_schema=python_schema)"
+pydantic,2.13.4,pydantic-2.13.4\pydantic\v1\errors.py,InvalidLengthForBrand,,,,,,,,uncertain,Reviewed-corpus source files are missing from the repo/cache. This fallback row comes from the expanded SAFE manual-review queue; the stored excerpt is insufficient to prove an OSDS miss or nonmatch.,"612:     code = 'payment_card_number.luhn_check'
+613:     msg_template = 'card number is not luhn valid'
+614:
+615:
+616: class InvalidLengthForBrand(PydanticValueError):
+617:     code = 'payment_card_number.invalid_length_for_brand'
+618:     msg_template = 'Length for a {brand} card must be {required_length}'
+619:
+620:"
+pytest,9.1.1,pytest-9.1.1\src\_pytest\cacheprovider.py,NFPlugin,,,,,,,,uncertain,Reviewed-corpus source files are missing from the repo/cache. This fallback row comes from the expanded SAFE manual-review queue; the stored excerpt is insufficient to prove an OSDS miss or nonmatch.,"422:         if saved_lastfailed != self.lastfailed:
+423:             config.cache.set(""cache/lastfailed"", self.lastfailed)
+424:
+425:
+426: class NFPlugin:
+427:     """"""Plugin which implements the --nf (run new-first) option.""""""
+428:
+429:     def __init__(self, config: Config) -> None:
+430:         self.config = config"
+pytest,9.1.1,pytest-9.1.1\src\_pytest\runner.py,SetupState,,,,,,,,uncertain,Reviewed-corpus source files are missing from the repo/cache. This fallback row comes from the expanded SAFE manual-review queue; the stored excerpt is insufficient to prove an OSDS miss or nonmatch.,"435:     rep.call = call  # type: ignore # see collect_one_node
+436:     return rep
+437:
+438:
+439: class SetupState:
+440:     """"""Shared state for setting up/tearing down test items or collectors
+441:     in a session.
+442:
+443:     Suppose we have a collection tree as follows:"
+python-dateutil,2.9.0.post0,python-dateutil-2.9.0.post0\src\dateutil\tz\tz.py,tzlocal,,,,,,,,uncertain,Reviewed-corpus source files are missing from the repo/cache. This fallback row comes from the expanded SAFE manual-review queue; the stored excerpt is insufficient to prove an OSDS miss or nonmatch.,"197:
+198:     __reduce__ = object.__reduce__
+199:
+200:
+201: class tzlocal(_tzinfo):
+202:     """"""
+203:     A :class:`tzinfo` subclass built around the ``time`` timezone functions.
+204:     """"""
+205:     def __init__(self):"
+python-dateutil,2.9.0.post0,python-dateutil-2.9.0.post0\src\dateutil\tz\win.py,tzwin,,,,,,,,uncertain,Reviewed-corpus source files are missing from the repo/cache. This fallback row comes from the expanded SAFE manual-review queue; the stored excerpt is insufficient to prove an OSDS miss or nonmatch.,"198:     def _dst_base_offset(self):
+199:         return self._dst_base_offset_
+200:
+201:
+202: class tzwin(tzwinbase):
+203:     """"""
+204:     Time zone object created from the zone info in the Windows registry
+205:
+206:     These are similar to :py:class:`dateutil.tz.tzrange` objects in that"
+rich,15.0.0,rich-15.0.0\rich\highlighter.py,RegexHighlighter,,,,,,,,uncertain,Reviewed-corpus source files are missing from the repo/cache. This fallback row comes from the expanded SAFE manual-review queue; the stored excerpt is insufficient to prove an OSDS miss or nonmatch.,"57:     def highlight(self, text: Text) -> None:
+58:         """"""Nothing to do""""""
+59:
+60:
+61: class RegexHighlighter(Highlighter):
+62:     """"""Applies highlighting from a list of regular expressions.""""""
+63:
+64:     highlights: ClassVar[Sequence[str]] = []
+65:     base_style: ClassVar[str] = """""
+rich,15.0.0,rich-15.0.0\rich\pretty.py,Thing,,,,,,,,uncertain,Reviewed-corpus source files are missing from the repo/cache. This fallback row comes from the expanded SAFE manual-review queue; the stored excerpt is insufficient to prove an OSDS miss or nonmatch.,"1008:     from rich import print
+1009:
+1010:     print(Pretty(data, indent_guides=True, max_string=20))
+1011:
+1012:     class Thing:
+1013:         def __repr__(self) -> str:
+1014:             return ""Hello\x1b[38;5;239m World!""
+1015:
+1016:     print(Pretty(Thing()))"
+rich,15.0.0,rich-15.0.0\rich\style.py,StyleStack,,,,,,,,uncertain,Reviewed-corpus source files are missing from the repo/cache. This fallback row comes from the expanded SAFE manual-review queue; the stored excerpt is insufficient to prove an OSDS miss or nonmatch.,"761:
+762: NULL_STYLE = Style()
+763:
+764:
+765: class StyleStack:
+766:     """"""A stack of styles.""""""
+767:
+768:     __slots__ = [""_stack""]
+769:"
+six,1.17.0,six-1.17.0\six.py,metaclass,,,,,,,,uncertain,Reviewed-corpus source files are missing from the repo/cache. This fallback row comes from the expanded SAFE manual-review queue; the stored excerpt is insufficient to prove an OSDS miss or nonmatch.,"862:     """"""Create a base class with a metaclass.""""""
+863:     # This requires a bit of explanation: the basic idea is to make a dummy
+864:     # metaclass for one level of class instantiation that replaces itself with
+865:     # the actual metaclass.
+866:     class metaclass(type):
+867:
+868:         def __new__(cls, name, this_bases, d):
+869:             if sys.version_info[:2] >= (3, 7):
+870:                 # This version introduced PEP 560 that requires a bit"
+stack-data,0.6.3,stack_data-0.6.3\stack_data\core.py,BlankLineRange,,,,,,,,uncertain,Reviewed-corpus source files are missing from the repo/cache. This fallback row comes from the expanded SAFE manual-review queue; the stored excerpt is insufficient to prove an OSDS miss or nonmatch.,"229:
+230: LINE_GAP = LineGap()
+231:
+232:
+233: class BlankLineRange:
+234:     """"""
+235:     Records the line number range for blank lines gaps between pieces.
+236:     For a single blank line, begin_lineno == end_lineno.
+237:     """""""
+sympy,1.14.0,sympy-1.14.0\sympy\assumptions\relation\equality.py,GreaterThanPredicate,,,,,,,,uncertain,Reviewed-corpus source files are missing from the repo/cache. This fallback row comes from the expanded SAFE manual-review queue; the stored excerpt is insufficient to prove an OSDS miss or nonmatch.,"157:             assumptions = None
+158:         return is_gt(*args, assumptions)
+159:
+160:
+161: class GreaterThanPredicate(BinaryRelation):
+162:     """"""
+163:     Binary predicate for $>=$.
+164:
+165:     The purpose of this class is to provide the instance which represent"
+sympy,1.14.0,sympy-1.14.0\sympy\codegen\abstract_nodes.py,List,,,,,,,,uncertain,Reviewed-corpus source files are missing from the repo/cache. This fallback row comes from the expanded SAFE manual-review queue; the stored excerpt is insufficient to prove an OSDS miss or nonmatch.,"5:
+6: from sympy.core.containers import Tuple
+7:
+8:
+9: class List(Tuple):
+10:     """"""Represents a (frozen) (Python) list (for code printing purposes).""""""
+11:     def __eq__(self, other):
+12:         if isinstance(other, list):
+13:             return self == List(*other)"
+sympy,1.14.0,sympy-1.14.0\sympy\codegen\ast.py,_SizedIntType,,,,,,,,uncertain,Reviewed-corpus source files are missing from the repo/cache. This fallback row comes from the expanded SAFE manual-review queue; the stored excerpt is insufficient to prove an OSDS miss or nonmatch.,"1148:     __slots__ = ()
+1149:     cast_nocheck = lambda self, i: Integer(int(i))
+1150:
+1151:
+1152: class _SizedIntType(IntBaseType):
+1153:     __slots__ = ('nbits',)
+1154:     _fields = Type._fields + __slots__
+1155:
+1156:     _construct_nbits = Integer"
+sympy,1.14.0,sympy-1.14.0\sympy\codegen\numpy_nodes.py,minimum,,,,,,,,uncertain,Reviewed-corpus source files are missing from the repo/cache. This fallback row comes from the expanded SAFE manual-review queue; the stored excerpt is insufficient to prove an OSDS miss or nonmatch.,"160:     def _eval_rewrite_as_Max(self, *args):
+161:         return Max(*self.args)
+162:
+163:
+164: class minimum(Function):
+165:     """""" Element-wise minimum of array elements.
+166:
+167:     Helper class for use with e.g. numpy.minimum
+168:"
+sympy,1.14.0,sympy-1.14.0\sympy\core\numbers.py,Catalan,,,,,,,,uncertain,Reviewed-corpus source files are missing from the repo/cache. This fallback row comes from the expanded SAFE manual-review queue; the stored excerpt is insufficient to prove an OSDS miss or nonmatch.,"4016:         elif issubclass(number_cls, Rational):
+4017:             return (S.Half, Rational(3, 5, 1))
+4018:
+4019:
+4020: class Catalan(NumberSymbol, metaclass=Singleton):
+4021:     r""""""Catalan's constant.
+4022:
+4023:     Explanation
+4024:     ==========="
+sympy,1.14.0,sympy-1.14.0\sympy\functions\combinatorial\numbers.py,harmonic,,,,,,,,uncertain,Reviewed-corpus source files are missing from the repo/cache. This fallback row comes from the expanded SAFE manual-review queue; the stored excerpt is insufficient to prove an OSDS miss or nonmatch.,"758: #                                                                            #
+759: #----------------------------------------------------------------------------#
+760:
+761:
+762: class harmonic(DefinedFunction):
+763:     r""""""
+764:     Harmonic numbers
+765:
+766:     The nth harmonic number is given by `\operatorname{H}_{n} ="
+sympy,1.14.0,sympy-1.14.0\sympy\functions\elementary\trigonometric.py,TrigonometricFunction,,,,,,,,uncertain,Reviewed-corpus source files are missing from the repo/cache. This fallback row comes from the expanded SAFE manual-review queue; the stored excerpt is insufficient to prove an OSDS miss or nonmatch.,"41: ########################## TRIGONOMETRIC FUNCTIONS ############################
+42: ###############################################################################
+43:
+44:
+45: class TrigonometricFunction(DefinedFunction):
+46:     """"""Base class for trigonometric functions. """"""
+47:
+48:     unbranched = True
+49:     _singularities = (S.ComplexInfinity,)"
+sympy,1.14.0,sympy-1.14.0\sympy\functions\special\polynomials.py,OrthogonalPolynomial,,,,,,,,uncertain,Reviewed-corpus source files are missing from the repo/cache. This fallback row comes from the expanded SAFE manual-review queue; the stored excerpt is insufficient to prove an OSDS miss or nonmatch.,"24:
+25: _x = Dummy('x')
+26:
+27:
+28: class OrthogonalPolynomial(DefinedFunction):
+29:     """"""Base class for orthogonal polynomials.
+30:     """"""
+31:
+32:     @classmethod"
+sympy,1.14.0,sympy-1.14.0\sympy\geometry\line.py,Ray,,,,,,,,uncertain,Reviewed-corpus source files are missing from the repo/cache. This fallback row comes from the expanded SAFE manual-review queue; the stored excerpt is insufficient to prove an OSDS miss or nonmatch.,"1339:         t = _symbol(parameter, real=True)
+1340:         return [t, -5, 5]
+1341:
+1342:
+1343: class Ray(LinearEntity):
+1344:     """"""A Ray is a semi-line in the space with a source point and a direction.
+1345:
+1346:     Parameters
+1347:     =========="
+sympy,1.14.0,sympy-1.14.0\sympy\integrals\manualintegrate.py,CiRule,,,,,,,,uncertain,Reviewed-corpus source files are missing from the repo/cache. This fallback row comes from the expanded SAFE manual-review queue; the stored excerpt is insufficient to prove an OSDS miss or nonmatch.,"607:     b: Expr
+608:
+609:
+610: @dataclass
+611: class CiRule(IRule):
+612:     def eval(self) -> Expr:
+613:         a, b, x = self.a, self.b, self.variable
+614:         return cos(b)*Ci(a*x) - sin(b)*Si(a*x)
+615:"
+sympy,1.14.0,sympy-1.14.0\sympy\integrals\manualintegrate.py,Sec2Rule,,,,,,,,uncertain,Reviewed-corpus source files are missing from the repo/cache. This fallback row comes from the expanded SAFE manual-review queue; the stored excerpt is insufficient to prove an OSDS miss or nonmatch.,"237:         return -csc(self.variable)
+238:
+239:
+240: @dataclass
+241: class Sec2Rule(TrigRule):
+242:     """"""integrate(sec(x)**2, x) -> tan(x)""""""
+243:     def eval(self) -> Expr:
+244:         return tan(self.variable)
+245:"
+sympy,1.14.0,sympy-1.14.0\sympy\logic\algorithms\dpll2.py,Level,,,,,,,,uncertain,Reviewed-corpus source files are missing from the repo/cache. This fallback row comes from the expanded SAFE manual-review queue; the stored excerpt is insufficient to prove an OSDS miss or nonmatch.,"675:         """"""Clean up learned clauses.""""""
+676:         pass
+677:
+678:
+679: class Level:
+680:     """"""
+681:     Represents a single level in the DPLL algorithm, and contains
+682:     enough information for a sound backtracking procedure.
+683:     """""""
+sympy,1.14.0,sympy-1.14.0\sympy\logic\algorithms\lra_theory.py,LRARational,,,,,,,,uncertain,Reviewed-corpus source files are missing from the repo/cache. This fallback row comes from the expanded SAFE manual-review queue; the stored excerpt is insufficient to prove an OSDS miss or nonmatch.,"849:     def __hash__(self):
+850:         return hash((self.var, self.bound, self.strict, self.upper, self.equality))
+851:
+852:
+853: class LRARational():
+854:     """"""
+855:     Represents a rational plus or minus some amount
+856:     of arbitrary small deltas.
+857:     """""""
+sympy,1.14.0,sympy-1.14.0\sympy\matrices\expressions\factorizations.py,UofSVD,,,,,,,,uncertain,Reviewed-corpus source files are missing from the repo/cache. This fallback row comes from the expanded SAFE manual-review queue; the stored excerpt is insufficient to prove an OSDS miss or nonmatch.,"34:     @property
+35:     def predicates(self):
+36:         return (Q.diagonal,)
+37:
+38: class UofSVD(Factorization):
+39:     @property
+40:     def predicates(self):
+41:         return (Q.orthogonal,)
+42: class SofSVD(Factorization):"
+sympy,1.14.0,sympy-1.14.0\sympy\physics\quantum\innerproduct.py,InnerProduct,,,,,,,,uncertain,Reviewed-corpus source files are missing from the repo/cache. This fallback row comes from the expanded SAFE manual-review queue; the stored excerpt is insufficient to prove an OSDS miss or nonmatch.,"18: # (we use _eval_conjugate) and represent (we can use atoms and subs). Having
+19: # it be an Expr, mean that there are no commutative QExpr subclasses,
+20: # which simplifies the design of everything.
+21:
+22: class InnerProduct(Expr):
+23:     """"""An unevaluated inner product between a Bra and a Ket [1].
+24:
+25:     Parameters
+26:     =========="
+sympy,1.14.0,sympy-1.14.0\sympy\physics\quantum\operator.py,Operator,,,,,,,,uncertain,Reviewed-corpus source files are missing from the repo/cache. This fallback row comes from the expanded SAFE manual-review queue; the stored excerpt is insufficient to prove an OSDS miss or nonmatch.,"38: # Operators and outer products
+39: #-----------------------------------------------------------------------------
+40:
+41:
+42: class Operator(QExpr):
+43:     """"""Base class for non-commuting quantum operators.
+44:
+45:     An operator maps between quantum states [1]_. In quantum mechanics,
+46:     observables (including, but not limited to, measured physical values) are"
+sympy,1.14.0,sympy-1.14.0\sympy\physics\quantum\qubit.py,IntQubitState,,,,,,,,uncertain,Reviewed-corpus source files are missing from the repo/cache. This fallback row comes from the expanded SAFE manual-review queue; the stored excerpt is insufficient to prove an OSDS miss or nonmatch.,"283:     def dual_class(self):
+284:         return Qubit
+285:
+286:
+287: class IntQubitState(QubitState):
+288:     """"""A base class for qubits that work with binary representations.""""""
+289:
+290:     @classmethod
+291:     def _eval_args(cls, args, nqubits=None):"
+sympy,1.14.0,sympy-1.14.0\sympy\physics\vector\vector.py,VectorTypeError,,,,,,,,uncertain,Reviewed-corpus source files are missing from the repo/cache. This fallback row comes from the expanded SAFE manual-review queue; the stored excerpt is insufficient to prove an OSDS miss or nonmatch.,"791:             new_args.append([mat, frame])
+792:         return Vector(new_args)
+793:
+794:
+795: class VectorTypeError(TypeError):
+796:
+797:     def __init__(self, other, want):
+798:         msg = filldedent(""Expected an instance of %s, but received object ""
+799:                          ""'%s' of %s."" % (type(want), other, type(other)))"
+sympy,1.14.0,sympy-1.14.0\sympy\polys\domains\gaussiandomains.py,GaussianIntegerRing,,,,,,,,uncertain,Reviewed-corpus source files are missing from the repo/cache. This fallback row comes from the expanded SAFE manual-review queue; the stored excerpt is insufficient to prove an OSDS miss or nonmatch.,"324:         if K0.ext.args[0] == I:
+325:             return K1.from_sympy(K0.to_sympy(a))
+326:
+327:
+328: class GaussianIntegerRing(GaussianDomain, Ring):
+329:     r""""""Ring of Gaussian integers ``ZZ_I``
+330:
+331:     The :ref:`ZZ_I` domain represents the `Gaussian integers`_ `\mathbb{Z}[i]`
+332:     as a :py:class:`~.Domain` in the domain system (see"
+sympy,1.14.0,sympy-1.14.0\sympy\polys\domains\gmpyintegerring.py,GMPYIntegerRing,,,,,,,,uncertain,Reviewed-corpus source files are missing from the repo/cache. This fallback row comes from the expanded SAFE manual-review queue; the stored excerpt is insufficient to prove an OSDS miss or nonmatch.,"11: from sympy.polys.polyerrors import CoercionFailed
+12: from sympy.utilities import public
+13:
+14: @public
+15: class GMPYIntegerRing(IntegerRing):
+16:     """"""Integer ring based on GMPY's ``mpz`` type.
+17:
+18:     This will be the implementation of :ref:`ZZ` if ``gmpy`` or ``gmpy2`` is
+19:     installed. Elements will be of type ``gmpy.mpz``."
+sympy,1.14.0,sympy-1.14.0\sympy\polys\matrices\_dfm.py,DFM,,,,,,,,uncertain,Reviewed-corpus source files are missing from the repo/cache. This fallback row comes from the expanded SAFE manual-review queue; the stored excerpt is insufficient to prove an OSDS miss or nonmatch.,"66: __all__ = ['DFM']
+67:
+68:
+69: @doctest_depends_on(ground_types=['flint'])
+70: class DFM:
+71:     """"""
+72:     Dense FLINT matrix. This class is a wrapper for matrices from python-flint.
+73:
+74:     >>> from sympy.polys.domains import ZZ"
+sympy,1.14.0,sympy-1.14.0\sympy\polys\matrices\exceptions.py,DMNonSquareMatrixError,,,,,,,,uncertain,Reviewed-corpus source files are missing from the repo/cache. This fallback row comes from the expanded SAFE manual-review queue; the stored excerpt is insufficient to prove an OSDS miss or nonmatch.,"49:     """"""shapes are inconsistent""""""
+50:     pass
+51:
+52:
+53: class DMNonSquareMatrixError(DMShapeError):
+54:     """"""The matrix is not square""""""
+55:     pass
+56:
+57:"
+sympy,1.14.0,sympy-1.14.0\sympy\polys\numberfields\exceptions.py,ClosureFailure,,,,,,,,uncertain,Reviewed-corpus source files are missing from the repo/cache. This fallback row comes from the expanded SAFE manual-review queue; the stored excerpt is insufficient to prove an OSDS miss or nonmatch.,"1: """"""Special exception classes for numberfields. """"""
+2:
+3:
+4: class ClosureFailure(Exception):
+5:     r""""""
+6:     Signals that a :py:class:`ModuleElement` which we tried to represent in a
+7:     certain :py:class:`Module` cannot in fact be represented there.
+8:"
+sympy,1.14.0,sympy-1.14.0\sympy\polys\polyerrors.py,GeneratorsError,,,,,,,,uncertain,Reviewed-corpus source files are missing from the repo/cache. This fallback row comes from the expanded SAFE manual-review queue; the stored excerpt is insufficient to prove an OSDS miss or nonmatch.,"125:      having a factor whose solutions are not expressible in radicals
+126:      is encountered.""""""
+127:
+128: @public
+129: class GeneratorsError(BasePolynomialError):
+130:     pass
+131:
+132: @public
+133: class GeneratorsNeeded(GeneratorsError):"
+sympy,1.14.0,sympy-1.14.0\sympy\polys\polyerrors.py,ModularGCDFailed,,,,,,,,uncertain,Reviewed-corpus source files are missing from the repo/cache. This fallback row comes from the expanded SAFE manual-review queue; the stored excerpt is insufficient to prove an OSDS miss or nonmatch.,"67: @public
+68: class HeuristicGCDFailed(BasePolynomialError):
+69:     pass
+70:
+71: class ModularGCDFailed(BasePolynomialError):
+72:     pass
+73:
+74: @public
+75: class HomomorphismFailed(BasePolynomialError):"
+sympy,1.14.0,sympy-1.14.0\sympy\polys\polyoptions.py,OptionType,,,,,,,,uncertain,Reviewed-corpus source files are missing from the repo/cache. This fallback row comes from the expanded SAFE manual-review queue; the stored excerpt is insufficient to prove an OSDS miss or nonmatch.,"57:         else:
+58:             raise OptionError(""'%s' must have a boolean value assigned, got %s"" % (cls.option, value))
+59:
+60:
+61: class OptionType(type):
+62:     """"""Base type for all options that does registers options. """"""
+63:
+64:     def __init__(cls, *args, **kwargs):
+65:         @property"
+sympy,1.14.0,sympy-1.14.0\sympy\polys\rootoftools.py,_pure_key_dict,,,,,,,,uncertain,Reviewed-corpus source files are missing from the repo/cache. This fallback row comes from the expanded SAFE manual-review queue; the stored excerpt is insufficient to prove an OSDS miss or nonmatch.,"34: __all__ = ['CRootOf']
+35:
+36:
+37:
+38: class _pure_key_dict:
+39:     """"""A minimal dictionary that makes sure that the key is a
+40:     univariate PurePoly instance.
+41:
+42:     Examples"
+sympy,1.14.0,sympy-1.14.0\sympy\printing\smtlib.py,SMTLibPrinter,,,,,,,,uncertain,Reviewed-corpus source files are missing from the repo/cache. This fallback row comes from the expanded SAFE manual-review queue; the stored excerpt is insufficient to prove an OSDS miss or nonmatch.,"21: from sympy.assumptions.ask import Q
+22: from sympy.assumptions.relation.equality import StrictGreaterThanPredicate, StrictLessThanPredicate, GreaterThanPredicate, LessThanPredicate, EqualityPredicate
+23:
+24:
+25: class SMTLibPrinter(Printer):
+26:     printmethod = ""_smtlib""
+27:
+28:     # based on dReal, an automated reasoning tool for solving problems that can be encoded as first-order logic formulas over the real numbers.
+29:     # dReal's special strength is in handling problems that involve a wide range of nonlinear real functions."
+sympy,1.14.0,sympy-1.14.0\sympy\series\gruntz.py,Node,,,,,,,,uncertain,Reviewed-corpus source files are missing from the repo/cache. This fallback row comes from the expanded SAFE manual-review queue; the stored excerpt is insufficient to prove an OSDS miss or nonmatch.,"551:     To do this we assemble the nodes into a tree, and sort them by height.
+552:
+553:     This function builds the tree, rewrites then sorts the nodes.
+554:     """"""
+555:     class Node:
+556:         def __init__(self):
+557:             self.before = []
+558:             self.expr = None
+559:             self.var = None"
+sympy,1.14.0,sympy-1.14.0\sympy\sets\sets.py,UniversalSet,,,,,,,,uncertain,Reviewed-corpus source files are missing from the repo/cache. This fallback row comes from the expanded SAFE manual-review queue; the stored excerpt is insufficient to prove an OSDS miss or nonmatch.,"1889:     def _symmetric_difference(self, other):
+1890:         return other
+1891:
+1892:
+1893: class UniversalSet(Set, metaclass=Singleton):
+1894:     """"""
+1895:     Represents the set of all things.
+1896:     The universal set is available as a singleton as ``S.UniversalSet``.
+1897:"
+sympy,1.14.0,sympy-1.14.0\sympy\stats\crv_types.py,FDistributionDistribution,,,,,,,,uncertain,Reviewed-corpus source files are missing from the repo/cache. This fallback row comes from the expanded SAFE manual-review queue; the stored excerpt is insufficient to prove an OSDS miss or nonmatch.,"1577: #-------------------------------------------------------------------------------
+1578: # F distribution ---------------------------------------------------------------
+1579:
+1580:
+1581: class FDistributionDistribution(SingleContinuousDistribution):
+1582:     _argnames = ('d1', 'd2')
+1583:
+1584:     set = Interval(0, oo)
+1585:"
+sympy,1.14.0,sympy-1.14.0\sympy\stats\rv.py,MatrixDomain,,,,,,,,uncertain,Reviewed-corpus source files are missing from the repo/cache. This fallback row comes from the expanded SAFE manual-review queue; the stored excerpt is insufficient to prove an OSDS miss or nonmatch.,"124:         sym, val = tuple(other)[0]
+125:         return self.symbol == sym and val in self.set
+126:
+127:
+128: class MatrixDomain(RandomDomain):
+129:     """"""
+130:     A Random Matrix variable and its domain.
+131:
+132:     """""""
+sympy,1.14.0,sympy-1.14.0\sympy\tensor\array\ndim_array.py,ArrayKind,,,,,,,,uncertain,Reviewed-corpus source files are missing from the repo/cache. This fallback row comes from the expanded SAFE manual-review queue; the stored excerpt is insufficient to prove an OSDS miss or nonmatch.,"11: import itertools
+12: from collections.abc import Iterable
+13:
+14:
+15: class ArrayKind(Kind):
+16:     """"""
+17:     Kind for N-dimensional array in SymPy.
+18:
+19:     This kind represents the multidimensional array that algebraic"
+sympy,1.14.0,sympy-1.14.0\sympy\utilities\codegen.py,InputArgument,,,,,,,,uncertain,Reviewed-corpus source files are missing from the repo/cache. This fallback row comes from the expanded SAFE manual-review queue; the stored excerpt is insufficient to prove an OSDS miss or nonmatch.,"366:     """"""
+367:     pass
+368:
+369:
+370: class InputArgument(Argument):
+371:     pass
+372:
+373:
+374: class ResultBase:"
+sympy,1.14.0,sympy-1.14.0\sympy\utilities\codegen.py,JuliaCodeGen,,,,,,,,uncertain,Reviewed-corpus source files are missing from the repo/cache. This fallback row comes from the expanded SAFE manual-review queue; the stored excerpt is insufficient to prove an OSDS miss or nonmatch.,"1300:     # functions it has to call.
+1301:     dump_fns = [dump_f95, dump_h]
+1302:
+1303:
+1304: class JuliaCodeGen(CodeGen):
+1305:     """"""Generator for Julia code.
+1306:
+1307:     The .write() method inherited from CodeGen will output a code file
+1308:     <prefix>.jl."
+sympy,1.14.0,sympy-1.14.0\sympy\utilities\matchpy_connector.py,_WildAbstract,,,,,,,,uncertain,Reviewed-corpus source files are missing from the repo/cache. This fallback row comes from the expanded SAFE manual-review queue; the stored excerpt is insufficient to prove an OSDS miss or nonmatch.,"120:             self.optional = optional
+121:
+122:
+123: @doctest_depends_on(modules=('matchpy',))
+124: class _WildAbstract(Wildcard, Symbol):
+125:     min_length: int  # abstract field required in subclasses
+126:     fixed_size: bool  # abstract field required in subclasses
+127:
+128:     def __init__(self, variable_name=None, optional=None, **assumptions):"
+sympy,1.14.0,sympy-1.14.0\sympy\vector\orienters.py,AxisOrienter,,,,,,,,uncertain,Reviewed-corpus source files are missing from the repo/cache. This fallback row comes from the expanded SAFE manual-review queue; the stored excerpt is insufficient to prove an OSDS miss or nonmatch.,"20:         """"""
+21:         return self._parent_orient
+22:
+23:
+24: class AxisOrienter(Orienter):
+25:     """"""
+26:     Class to denote an axis orienter.
+27:     """"""
+28:"
+traitlets,5.15.1,traitlets-5.15.1\traitlets\config\configurable.py,SingletonConfigurable,,,,,,,,uncertain,Reviewed-corpus source files are missing from the repo/cache. This fallback row comes from the expanded SAFE manual-review queue; the stored excerpt is insufficient to prove an OSDS miss or nonmatch.,"513:
+514: CT = t.TypeVar(""CT"", bound=""SingletonConfigurable"")
+515:
+516:
+517: class SingletonConfigurable(LoggingConfigurable):
+518:     """"""A configurable that only allows one instance.
+519:
+520:     This class is for classes that should only have one instance of itself
+521:     or *any* subclass. To create and retrieve such a class use the"
+traitlets,5.15.1,traitlets-5.15.1\traitlets\config\loader.py,ConfigFileNotFound,,,,,,,,uncertain,Reviewed-corpus source files are missing from the repo/cache. This fallback row comes from the expanded SAFE manual-review queue; the stored excerpt is insufficient to prove an OSDS miss or nonmatch.,"30: class ConfigLoaderError(ConfigError):
+31:     pass
+32:
+33:
+34: class ConfigFileNotFound(ConfigError):
+35:     pass
+36:
+37:
+38: class ArgumentError(ConfigLoaderError):"
+virtualenv,21.5.1,virtualenv-21.5.1\src\virtualenv\create\via_global_ref\builtin\graalpy\__init__.py,GraalPyWindows,,,,,,,,uncertain,Reviewed-corpus source files are missing from the repo/cache. This fallback row comes from the expanded SAFE manual-review queue; the stored excerpt is insufficient to prove an OSDS miss or nonmatch.,"81:             return lib_dir / ""libpythonvm.dylib""
+82:         return lib_dir / ""libpythonvm.so""
+83:
+84:
+85: class GraalPyWindows(GraalPy, WindowsSupports):
+86:     @classmethod
+87:     def _native_lib(cls, lib_dir: Path, platform: str) -> Path:  # noqa: ARG003
+88:         return lib_dir / ""pythonvm.dll""
+89:"

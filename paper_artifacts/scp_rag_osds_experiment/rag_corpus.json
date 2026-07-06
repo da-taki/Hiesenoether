@@ -1,0 +1,72 @@
+[
+  {
+    "doc_id": "stream_reader",
+    "title": "Streaming Response Reader",
+    "body": "The streaming response content tool is StreamReader. It handles streaming response content by reading chunks from a response buffer.",
+    "answer_span": "StreamReader",
+    "tags": ["streaming", "response", "tool", "content"]
+  },
+  {
+    "doc_id": "stream_logger",
+    "title": "Streaming Trace Logger",
+    "body": "The streaming trace logger records response content for diagnostics. It is a logging utility, not the tool that handles streaming response content.",
+    "answer_span": "TraceLogger",
+    "tags": ["streaming", "response", "trace", "logging"]
+  },
+  {
+    "doc_id": "accessibility_berlin",
+    "title": "Accessibility Workshop City",
+    "body": "The accessibility workshop was hosted in Berlin. The city appears in the final event note and is the intended answer.",
+    "answer_span": "Berlin",
+    "tags": ["accessibility", "workshop", "city", "event"]
+  },
+  {
+    "doc_id": "accessibility_boston",
+    "title": "Accessibility Planning Memo",
+    "body": "The accessibility planning memo mentions Boston as a candidate city for the workshop, but it was not the hosted location.",
+    "answer_span": "Boston",
+    "tags": ["accessibility", "workshop", "city", "planning"]
+  },
+  {
+    "doc_id": "cache_lru",
+    "title": "LRU Cache Policy",
+    "body": "The cache policy that evicts least-recently-used entries is LRU. LRU updates recency when entries are accessed.",
+    "answer_span": "LRU",
+    "tags": ["cache", "policy", "evicts", "least", "recently", "used"]
+  },
+  {
+    "doc_id": "cache_lri",
+    "title": "LRI Cache Policy",
+    "body": "The LRI cache policy evicts least-recently-inserted entries. It tracks insertion order rather than recent use.",
+    "answer_span": "LRI",
+    "tags": ["cache", "policy", "evicts", "least", "recently", "inserted"]
+  },
+  {
+    "doc_id": "markdown_reset",
+    "title": "Markdown Reset Reuse Note",
+    "body": "The document says reset must be called before reuse. Markdown parsers keep references between conversions unless reset is called.",
+    "answer_span": "reset",
+    "tags": ["markdown", "reset", "reuse", "references"]
+  },
+  {
+    "doc_id": "markdown_build",
+    "title": "Markdown Build Parser Note",
+    "body": "The document says build_parser constructs processors for reuse. It is about parser construction, not the reset call before reuse.",
+    "answer_span": "build_parser",
+    "tags": ["markdown", "parser", "reuse", "processors"]
+  },
+  {
+    "doc_id": "memory_alpha",
+    "title": "Session Memory Alpha Evidence",
+    "body": "Session memory can boost alpha evidence after preview. The marked answer for the alpha memory question is Alpha Memory.",
+    "answer_span": "Alpha Memory",
+    "tags": ["session", "memory", "alpha", "preview"]
+  },
+  {
+    "doc_id": "memory_beta",
+    "title": "Session Memory Beta Evidence",
+    "body": "Session memory can preserve beta evidence after retrieval. The marked answer for the alpha memory question is Beta Memory.",
+    "answer_span": "Beta Memory",
+    "tags": ["session", "memory", "beta", "retrieval"]
+  }
+]

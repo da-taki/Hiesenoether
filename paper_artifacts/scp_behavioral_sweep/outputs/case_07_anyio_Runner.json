@@ -1,0 +1,84 @@
+{
+  "sweep_rank": 7,
+  "package": "anyio",
+  "version": "4.13.0",
+  "class_name": "Runner",
+  "file_path": "anyio-4.13.0\\src\\anyio\\_backends\\_asyncio.py",
+  "selected_score": 10,
+  "classification": "structural_only_no_runtime_difference",
+  "reproduced": false,
+  "output_diff": false,
+  "branch_flip": false,
+  "state_diff": false,
+  "operation_A": "run() once on fresh instance",
+  "operation_B": "run() once first; then run() again",
+  "result_A": {
+    "before": {
+      "_context": "None",
+      "_debug": "None",
+      "_interrupt_count": "0",
+      "_loop": "None",
+      "_loop_factory": "None",
+      "_set_event_loop": "False",
+      "_state": "<_State.CREATED: 'created'>"
+    },
+    "result": {
+      "kind": "not_callable_without_args",
+      "required": [
+        "coro"
+      ]
+    },
+    "after": {
+      "_context": "None",
+      "_debug": "None",
+      "_interrupt_count": "0",
+      "_loop": "None",
+      "_loop_factory": "None",
+      "_set_event_loop": "False",
+      "_state": "<_State.CREATED: 'created'>"
+    }
+  },
+  "result_B": {
+    "before": {
+      "_context": "None",
+      "_debug": "None",
+      "_interrupt_count": "0",
+      "_loop": "None",
+      "_loop_factory": "None",
+      "_set_event_loop": "False",
+      "_state": "<_State.CREATED: 'created'>"
+    },
+    "observation_result": {
+      "kind": "not_callable_without_args",
+      "required": [
+        "coro"
+      ]
+    },
+    "after_observation": {
+      "_context": "None",
+      "_debug": "None",
+      "_interrupt_count": "0",
+      "_loop": "None",
+      "_loop_factory": "None",
+      "_set_event_loop": "False",
+      "_state": "<_State.CREATED: 'created'>"
+    },
+    "result": {
+      "kind": "not_callable_without_args",
+      "required": [
+        "coro"
+      ]
+    },
+    "after": {
+      "_context": "None",
+      "_debug": "None",
+      "_interrupt_count": "0",
+      "_loop": "None",
+      "_loop_factory": "None",
+      "_set_event_loop": "False",
+      "_state": "<_State.CREATED: 'created'>"
+    }
+  },
+  "failure_reason": "",
+  "notes": "generic safe repeated-operation harness; confirmation depends on no-arg construction and no-arg operation"
+}

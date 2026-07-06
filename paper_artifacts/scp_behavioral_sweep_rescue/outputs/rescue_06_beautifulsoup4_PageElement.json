@@ -1,0 +1,32 @@
+{
+  "boundary_note": "BeautifulSoup extraction is intentionally destructive; use only as a tree-mutation/access-order example.",
+  "branch_flip": false,
+  "class_name": "PageElement",
+  "classification": "confirmed_output_divergence",
+  "failure_reason": "",
+  "file_path": "beautifulsoup4-4.14.3\\bs4\\element.py",
+  "fixture_description": "BeautifulSoup('<p>a</p><p>b</p>', 'html.parser'); Tag is a PageElement subclass.",
+  "operation_A": "str(soup)",
+  "operation_B": "first <p>.extract() first; then str(soup)",
+  "original_sweep_rank": 11,
+  "output_diff": true,
+  "package": "beautifulsoup4",
+  "rescue_rank": 6,
+  "result_A": {
+    "kind": "value",
+    "later": "<p>a</p><p>b</p>",
+    "state": {
+      "p_count": 2
+    }
+  },
+  "result_B": {
+    "kind": "value",
+    "later": "<p>b</p>",
+    "observation": "<p>a</p>",
+    "state": {
+      "p_count": 1
+    }
+  },
+  "state_diff": true,
+  "version": "4.14.3"
+}

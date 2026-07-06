@@ -1,0 +1,70 @@
+{
+  "sweep_rank": 43,
+  "package": "docutils",
+  "version": "0.22.4",
+  "class_name": "Reader",
+  "file_path": "docutils-0.22.4\\docutils\\readers\\__init__.py",
+  "selected_score": 10,
+  "classification": "structural_only_no_runtime_difference",
+  "reproduced": false,
+  "output_diff": false,
+  "branch_flip": false,
+  "state_diff": false,
+  "operation_A": "read() once on fresh instance",
+  "operation_B": "read() once first; then read() again",
+  "result_A": {
+    "before": {
+      "input": "None",
+      "parser": "None",
+      "source": "None"
+    },
+    "result": {
+      "kind": "not_callable_without_args",
+      "required": [
+        "source",
+        "parser",
+        "settings"
+      ]
+    },
+    "after": {
+      "input": "None",
+      "parser": "None",
+      "source": "None"
+    }
+  },
+  "result_B": {
+    "before": {
+      "input": "None",
+      "parser": "None",
+      "source": "None"
+    },
+    "observation_result": {
+      "kind": "not_callable_without_args",
+      "required": [
+        "source",
+        "parser",
+        "settings"
+      ]
+    },
+    "after_observation": {
+      "input": "None",
+      "parser": "None",
+      "source": "None"
+    },
+    "result": {
+      "kind": "not_callable_without_args",
+      "required": [
+        "source",
+        "parser",
+        "settings"
+      ]
+    },
+    "after": {
+      "input": "None",
+      "parser": "None",
+      "source": "None"
+    }
+  },
+  "failure_reason": "",
+  "notes": "generic safe repeated-operation harness; confirmation depends on no-arg construction and no-arg operation"
+}

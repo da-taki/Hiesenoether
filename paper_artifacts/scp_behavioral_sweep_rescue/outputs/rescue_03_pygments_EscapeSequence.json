@@ -1,0 +1,40 @@
+{
+  "boundary_note": "In this Pygments version the ANSI fixture did not trigger the suspected bold mutation; the case remains structural-only.",
+  "branch_flip": false,
+  "class_name": "EscapeSequence",
+  "classification": "structural_only_no_runtime_difference",
+  "failure_reason": "",
+  "file_path": "pygments-2.20.0\\pygments\\formatters\\terminal256.py",
+  "fixture_description": "EscapeSequence(fg='ansired') using Pygments terminal formatter internals.",
+  "operation_A": "reset_string() on EscapeSequence(fg='ansired')",
+  "operation_B": "color_string() first; then reset_string()",
+  "original_sweep_rank": 3,
+  "output_diff": false,
+  "package": "pygments",
+  "rescue_rank": 3,
+  "result_A": {
+    "kind": "value",
+    "later": "\u001b[39m",
+    "state": {
+      "bg": null,
+      "bold": false,
+      "fg": "ansired",
+      "italic": false,
+      "underline": false
+    }
+  },
+  "result_B": {
+    "kind": "value",
+    "later": "\u001b[39m",
+    "observation": "\u001b[31m",
+    "state": {
+      "bg": null,
+      "bold": false,
+      "fg": "ansired",
+      "italic": false,
+      "underline": false
+    }
+  },
+  "state_diff": false,
+  "version": "2.20.0"
+}

@@ -1,0 +1,37 @@
+{
+  "boundary_note": "The Python-Markdown docs explicitly say reset() should be called between convert() calls; count this as stateful reuse behavior, not a package bug.",
+  "branch_flip": false,
+  "class_name": "Markdown",
+  "classification": "confirmed_output_divergence",
+  "failure_reason": "",
+  "file_path": "markdown-3.10.2\\markdown\\core.py",
+  "fixture_description": "Two real Markdown strings on one Markdown instance, output_format='html'.",
+  "operation_A": "convert('[alpha][]')",
+  "operation_B": "convert('[alpha]: https://example.invalid') first; then convert('[alpha][]')",
+  "original_sweep_rank": 1,
+  "output_diff": true,
+  "package": "markdown",
+  "rescue_rank": 1,
+  "result_A": {
+    "kind": "value",
+    "later": "<p>[alpha][]</p>",
+    "state": {
+      "references": {}
+    }
+  },
+  "result_B": {
+    "kind": "value",
+    "later": "<p><a href=\"https://example.invalid\">alpha</a></p>",
+    "observation": "",
+    "state": {
+      "references": {
+        "alpha": [
+          "https://example.invalid",
+          null
+        ]
+      }
+    }
+  },
+  "state_diff": true,
+  "version": "3.10.2"
+}

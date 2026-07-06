@@ -1,0 +1,61 @@
+{
+  "sweep_rank": 15,
+  "package": "boltons",
+  "version": "25.0.0",
+  "class_name": "SpooledStringIO",
+  "file_path": "boltons-25.0.0\\boltons\\ioutils.py",
+  "selected_score": 10,
+  "classification": "confirmed_state_divergence_only",
+  "reproduced": true,
+  "output_diff": false,
+  "branch_flip": false,
+  "state_diff": true,
+  "operation_A": "read() once on fresh instance",
+  "operation_B": "read() once first; then read() again",
+  "result_A": {
+    "before": {
+      "_dir": "None",
+      "_max_size": "5000000",
+      "_tell": "0"
+    },
+    "result": {
+      "kind": "value",
+      "value": "''"
+    },
+    "after": {
+      "_buffer": "<codecs.StreamRecoder object at 0xADDR>",
+      "_dir": "None",
+      "_max_size": "5000000",
+      "_tell": "0"
+    }
+  },
+  "result_B": {
+    "before": {
+      "_dir": "None",
+      "_max_size": "5000000",
+      "_tell": "0"
+    },
+    "observation_result": {
+      "kind": "value",
+      "value": "''"
+    },
+    "after_observation": {
+      "_buffer": "<codecs.StreamRecoder object at 0xADDR>",
+      "_dir": "None",
+      "_max_size": "5000000",
+      "_tell": "0"
+    },
+    "result": {
+      "kind": "value",
+      "value": "''"
+    },
+    "after": {
+      "_buffer": "<codecs.StreamRecoder object at 0xADDR>",
+      "_dir": "None",
+      "_max_size": "5000000",
+      "_tell": "0"
+    }
+  },
+  "failure_reason": "",
+  "notes": "generic safe repeated-operation harness; confirmation depends on no-arg construction and no-arg operation"
+}

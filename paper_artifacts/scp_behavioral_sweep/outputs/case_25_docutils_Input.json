@@ -1,0 +1,74 @@
+{
+  "sweep_rank": 25,
+  "package": "docutils",
+  "version": "0.22.4",
+  "class_name": "Input",
+  "file_path": "docutils-0.22.4\\docutils\\io.py",
+  "selected_score": 10,
+  "classification": "structural_only_no_runtime_difference",
+  "reproduced": false,
+  "output_diff": false,
+  "branch_flip": false,
+  "state_diff": false,
+  "operation_A": "decode() once on fresh instance",
+  "operation_B": "decode() once first; then decode() again",
+  "result_A": {
+    "before": {
+      "encoding": "'utf-8'",
+      "error_handler": "'strict'",
+      "source": "None",
+      "source_path": "None",
+      "successful_encoding": "None"
+    },
+    "result": {
+      "kind": "not_callable_without_args",
+      "required": [
+        "data"
+      ]
+    },
+    "after": {
+      "encoding": "'utf-8'",
+      "error_handler": "'strict'",
+      "source": "None",
+      "source_path": "None",
+      "successful_encoding": "None"
+    }
+  },
+  "result_B": {
+    "before": {
+      "encoding": "'utf-8'",
+      "error_handler": "'strict'",
+      "source": "None",
+      "source_path": "None",
+      "successful_encoding": "None"
+    },
+    "observation_result": {
+      "kind": "not_callable_without_args",
+      "required": [
+        "data"
+      ]
+    },
+    "after_observation": {
+      "encoding": "'utf-8'",
+      "error_handler": "'strict'",
+      "source": "None",
+      "source_path": "None",
+      "successful_encoding": "None"
+    },
+    "result": {
+      "kind": "not_callable_without_args",
+      "required": [
+        "data"
+      ]
+    },
+    "after": {
+      "encoding": "'utf-8'",
+      "error_handler": "'strict'",
+      "source": "None",
+      "source_path": "None",
+      "successful_encoding": "None"
+    }
+  },
+  "failure_reason": "",
+  "notes": "generic safe repeated-operation harness; confirmation depends on no-arg construction and no-arg operation"
+}

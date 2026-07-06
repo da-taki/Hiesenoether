@@ -1,0 +1,79 @@
+{
+  "sweep_rank": 18,
+  "package": "dnspython",
+  "version": "2.8.0",
+  "class_name": "BTree",
+  "file_path": "dnspython-2.8.0\\dns\\btree.py",
+  "selected_score": 10,
+  "classification": "structural_only_no_runtime_difference",
+  "reproduced": false,
+  "output_diff": false,
+  "branch_flip": false,
+  "state_diff": false,
+  "operation_A": "insert_element() once on fresh instance",
+  "operation_B": "insert_element() once first; then insert_element() again",
+  "result_A": {
+    "before": {
+      "_immutable": "False",
+      "creator": "<dns.btree._Creator object at 0xADDR>",
+      "cursors": "set()",
+      "root": "<dns.btree._Node object at 0xADDR>",
+      "size": "0",
+      "t": "127"
+    },
+    "result": {
+      "kind": "not_callable_without_args",
+      "required": [
+        "elt"
+      ]
+    },
+    "after": {
+      "_immutable": "False",
+      "creator": "<dns.btree._Creator object at 0xADDR>",
+      "cursors": "set()",
+      "root": "<dns.btree._Node object at 0xADDR>",
+      "size": "0",
+      "t": "127"
+    }
+  },
+  "result_B": {
+    "before": {
+      "_immutable": "False",
+      "creator": "<dns.btree._Creator object at 0xADDR>",
+      "cursors": "set()",
+      "root": "<dns.btree._Node object at 0xADDR>",
+      "size": "0",
+      "t": "127"
+    },
+    "observation_result": {
+      "kind": "not_callable_without_args",
+      "required": [
+        "elt"
+      ]
+    },
+    "after_observation": {
+      "_immutable": "False",
+      "creator": "<dns.btree._Creator object at 0xADDR>",
+      "cursors": "set()",
+      "root": "<dns.btree._Node object at 0xADDR>",
+      "size": "0",
+      "t": "127"
+    },
+    "result": {
+      "kind": "not_callable_without_args",
+      "required": [
+        "elt"
+      ]
+    },
+    "after": {
+      "_immutable": "False",
+      "creator": "<dns.btree._Creator object at 0xADDR>",
+      "cursors": "set()",
+      "root": "<dns.btree._Node object at 0xADDR>",
+      "size": "0",
+      "t": "127"
+    }
+  },
+  "failure_reason": "",
+  "notes": "generic safe repeated-operation harness; confirmation depends on no-arg construction and no-arg operation"
+}
