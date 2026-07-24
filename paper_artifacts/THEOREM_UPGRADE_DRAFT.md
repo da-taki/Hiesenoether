@@ -29,6 +29,6 @@ The body accumulator for each fixed branch is polynomial in L. The max and min b
 - The older preferred d*q theorem is not supported by the current compositional cap family.
 - The divergence-ratio result remains bounded computational evidence unless the external runtime model is promoted to an explicit formal object.
 
-## Manuscript-Ready Table Text
+## Artifact-Ready Table Text
 
 The corrected compositional OSDS degree validation checked 20 exact-rational configurations (m=1..4, d=1..5) and all 20 matched the restricted 2d range-degree theorem on L=2..15. The previously suggested d*q form failed on the smallest checked case (m=1,d=1), because branch leading terms cancel before the range is formed.

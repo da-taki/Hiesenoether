@@ -35,6 +35,6 @@ The checked data match the simple pattern `rho_infinity = eta / (2 * delta)` for
 
 For the external generalized compositional runtime model and the OSDS extremal-order formula, the data support the conjecture that the leading cap factors cancel and `rho_infinity = eta / (2 * delta)` for positive delta. Under the default parameters eta=1 and delta=1/10, this gives rho_infinity=5.
 
-This is not a formal proof for the manuscript unless the algebraic derivation is completed and reviewed; it is exact computational evidence plus a proof sketch target.
+This is not a formal proof for the artifact unless the algebraic derivation is completed and reviewed; it is exact computational evidence plus a proof sketch target.
 
 Default non-5 cases: none

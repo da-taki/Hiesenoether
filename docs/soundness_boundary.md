@@ -16,7 +16,7 @@ Access-insensitive-read zero-divergence is provable only under the stated templa
 
 Composition amplification is empirical unless separately proved symbolically. The repository checks exact-rational configurations showing that linear caps already diverge when access-sensitive reads and observation mutation are present, and that nonlinear caps increase the measured range in the tested configurations.
 
-Polynomial-degree and divergence-ratio relationships are bounded computational findings in this repository. The checked JSON files and evidence tests record the exact cases covered. They should not be stated as unbounded theorems unless the manuscript includes a separate symbolic proof.
+Polynomial-degree and divergence-ratio relationships are bounded computational findings in this repository. The checked JSON files and evidence tests record the exact cases covered. They should not be stated as unbounded theorems unless the artifact includes a separate symbolic proof.
 
 ## Static Analyzer Boundary
 

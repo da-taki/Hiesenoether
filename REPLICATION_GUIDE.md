@@ -1,9 +1,9 @@
 # Replication Guide
 
 This guide collects the commands needed to reproduce the current evidence
-without editing manuscript files.
+without editing artifact files.
 
-These replications are author-implemented. Independent third-party replication remains future work.
+These replications are repository-local. Independent third-party replication remains future work.
 
 ## Environment
 

@@ -27,7 +27,7 @@ OUT_DIR = REPO / "paper_artifacts"
 SAMPLE_CSV = OUT_DIR / "unflagged_audit_sample.csv"
 SUMMARY_CSV_OUT = OUT_DIR / "unflagged_audit_summary.csv"
 REPORT_MD = OUT_DIR / "unflagged_audit_report.md"
-FALLBACK_QUEUE = REPO / "results" / "scp_new_experiments" / "pypi_expanded_manual_review_queue.csv"
+FALLBACK_QUEUE = REPO / "results" / "review_experiments" / "pypi_expanded_manual_review_queue.csv"
 SEED = 20260706
 TARGET_SAMPLE = 200
 

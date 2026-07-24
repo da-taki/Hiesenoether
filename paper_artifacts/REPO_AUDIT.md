@@ -6,16 +6,16 @@
 | --- | --- | --- |
 | OSDS interpreter | `src/` | Runtime and language implementation; `src/runtime.py`, `src/values.py`, parser/lexer/AST/energy modules. |
 | Exact semantics | `validation/exact_semantics.py` | Uses `fractions.Fraction` for exact rational OSDS replay. |
-| Experiments | `run_experiments.py`, `run_extended_experiments.py`, `scripts/scp_new_experiments/`, `real_world_validation/`, `substrates/reactive_py/` | Original, extended, descriptor, reactive, and new SCP experiment suites. |
-| Current summaries | `results/`, `results_extended/`, `results_validation/`, `results/scp_new_experiments/`, `results_static/` | Paper tables, exact validation summaries, static analyzer summaries. |
+| Experiments | `run_experiments.py`, `run_extended_experiments.py`, `scripts/review_experiments/`, `real_world_validation/`, `substrates/reactive_py/` | Original, extended, descriptor, reactive, and new OSDS experiment suites. |
+| Current summaries | `results/`, `results_extended/`, `results_validation/`, `results/review_experiments/`, `results_static/` | Paper tables, exact validation summaries, static analyzer summaries. |
 | Analyzer | `analysis/oc_static.py`, `analysis/pypi_static_benchmark.py`, `analyzer/` | Static analyzer and abstract-interpreter sketches/tests. |
-| Analyzer outputs | `results_static/pypi_static_benchmark*.csv`, `results/scp_new_experiments/pypi_expanded_*` | Reviewed PyPI findings and expanded screening artifacts. |
+| Analyzer outputs | `results_static/pypi_static_benchmark*.csv`, `results/review_experiments/pypi_expanded_*` | Reviewed PyPI findings and expanded screening artifacts. |
 | PyPI metadata/results | `results_static/pypi_static_benchmark.csv`, `results_static/pypi_static_benchmark_findings.csv` | 73 packages, 4437 classes, 278 reviewed MEDIUM/HIGH findings. |
-| Controlled labels | `analysis/benchmark_examples.py`, `benchmarks/controlled_extended/extended_examples.py`, `results/scp_new_experiments/extended_controlled_benchmark_summary.json` | Controlled benchmark labels and summary metrics. |
+| Controlled labels | `analysis/benchmark_examples.py`, `benchmarks/controlled_extended/extended_examples.py`, `results/review_experiments/extended_controlled_benchmark_summary.json` | Controlled benchmark labels and summary metrics. |
 
 ## Environment
 
-System `python` and `py` were not available. The Codex bundled runtime was used:
+System `python` and `py` were not available. The bundled Python runtime was used:
 
 - Python: `3.12.13`
 - Executable: `python`

@@ -39,7 +39,7 @@
       "claim": "nonlinear cap amplification",
       "classification": "empirical finding",
       "evidence_level": "Empirical sweep",
-      "artifact": "results/scp_new_experiments/expanded_mechanism_sweep_summary.json",
+      "artifact": "results/review_experiments/expanded_mechanism_sweep_summary.json",
       "scope": "tested region of expanded mechanism sweep",
       "non_claim": "not universally proved"
     },
@@ -63,7 +63,7 @@
       "claim": "zero-observation configurations have zero divergence in the sweep",
       "classification": "bounded exact computational finding",
       "evidence_level": "Exact rational replay",
-      "artifact": "results/scp_new_experiments/expanded_mechanism_sweep_summary.json",
+      "artifact": "results/review_experiments/expanded_mechanism_sweep_summary.json",
       "scope": "2,112-configuration sweep subset with observation_count = 0",
       "non_claim": "not a claim about every possible program shape"
     },
@@ -71,7 +71,7 @@
       "claim": "linear cap positive divergence in 240 configs",
       "classification": "bounded exact computational finding",
       "evidence_level": "Exact rational replay",
-      "artifact": "results/scp_new_experiments/expanded_mechanism_sweep_summary.json",
+      "artifact": "results/review_experiments/expanded_mechanism_sweep_summary.json",
       "scope": "expanded mechanism sweep configurations",
       "non_claim": "not a universal lower bound"
     },
@@ -79,7 +79,7 @@
       "claim": "nonlinear cap amplified in 1,680 configs",
       "classification": "empirical finding",
       "evidence_level": "Empirical sweep",
-      "artifact": "results/scp_new_experiments/expanded_mechanism_sweep_summary.json",
+      "artifact": "results/review_experiments/expanded_mechanism_sweep_summary.json",
       "scope": "tested positive-observation nonlinear cap configurations",
       "non_claim": "not universally proved"
     },
@@ -87,7 +87,7 @@
       "claim": "no nonlinear amplification counterexamples in tested region",
       "classification": "empirical finding",
       "evidence_level": "Empirical sweep",
-      "artifact": "results/scp_new_experiments/expanded_mechanism_sweep_summary.json",
+      "artifact": "results/review_experiments/expanded_mechanism_sweep_summary.json",
       "scope": "tested region only",
       "non_claim": "not absence of counterexamples outside the tested region"
     },
@@ -95,7 +95,7 @@
       "claim": "240 exhaustive configurations",
       "classification": "bounded exact computational finding",
       "evidence_level": "Exact bounded enumeration",
-      "artifact": "results/scp_new_experiments/extended_exhaustive_enumeration_summary.json",
+      "artifact": "results/review_experiments/extended_exhaustive_enumeration_summary.json",
       "scope": "body lengths 2 through 9, observation counts 0 through 5, cap degrees 1 through 5 under cutoff",
       "non_claim": "not exhaustive over all body sizes"
     },
@@ -103,7 +103,7 @@
       "claim": "sample-vs-exact range misses",
       "classification": "bounded exact computational finding",
       "evidence_level": "Exact bounded enumeration",
-      "artifact": "results/scp_new_experiments/extended_exhaustive_enumeration_summary.json",
+      "artifact": "results/review_experiments/extended_exhaustive_enumeration_summary.json",
       "scope": "cases where exact and sampled ranges are both available",
       "non_claim": "not a statement about every sampling policy"
     },
@@ -111,7 +111,7 @@
       "claim": "sampling convergence at budget 1024",
       "classification": "empirical finding",
       "evidence_level": "Empirical sweep",
-      "artifact": "results/scp_new_experiments/sampling_convergence_summary.json",
+      "artifact": "results/review_experiments/sampling_convergence_summary.json",
       "scope": "sampled budgets and seeds in the convergence study",
       "non_claim": "not exact extrema unless exhaustive enumeration is used"
     },
@@ -119,7 +119,7 @@
       "claim": "analyzer controlled benchmark recall",
       "classification": "empirical finding",
       "evidence_level": "Source-inspection evaluation",
-      "artifact": "results/scp_new_experiments/extended_controlled_benchmark_summary.json",
+      "artifact": "results/review_experiments/extended_controlled_benchmark_summary.json",
       "scope": "64 labeled controlled classes",
       "non_claim": "not analyzer soundness"
     },
@@ -127,7 +127,7 @@
       "claim": "analyzer controlled benchmark precision",
       "classification": "empirical finding",
       "evidence_level": "Source-inspection evaluation",
-      "artifact": "results/scp_new_experiments/extended_controlled_benchmark_summary.json",
+      "artifact": "results/review_experiments/extended_controlled_benchmark_summary.json",
       "scope": "64 labeled controlled classes",
       "non_claim": "not analyzer soundness"
     },
@@ -143,7 +143,7 @@
       "claim": "expanded PyPI screening scale",
       "classification": "analyzer screening result",
       "evidence_level": "Screening-scale evidence",
-      "artifact": "results/scp_new_experiments/pypi_expanded_screen_summary.json",
+      "artifact": "results/review_experiments/pypi_expanded_screen_summary.json",
       "scope": "cache-only screen of 116 packages",
       "non_claim": "not precision or recall until manual labels are completed"
     },

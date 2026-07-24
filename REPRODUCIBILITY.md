@@ -16,7 +16,7 @@ Expected outputs:
 - pytest summary on stdout
 - `validation/results.json`
 
-## SCP revision artifacts
+## Supplementary review artifacts
 
 ```bash
 python paper_artifacts/validate_polynomial_degree_theorem.py
@@ -37,6 +37,6 @@ Expected outputs:
 
 ## Real-world corpus
 
-The real-world experiments in `paper_artifacts/scp_realworld_revision/` ran against a snapshot of third-party PyPI packages. That vendored source is not committed. To rebuild it, download the exact package versions listed in `paper_artifacts/scp_realworld_revision/corpus_manifest.csv` (each row has the package name, version, wheel filename, SHA-256, and a PyPI URL) into `paper_artifacts/scp_realworld_revision/downloads/`, then run `build_source_snapshot.py`.
+The real-world experiments in `paper_artifacts/realworld_package_study/` ran against a snapshot of third-party PyPI packages. That vendored source is not committed. To rebuild it, download the exact package versions listed in `paper_artifacts/realworld_package_study/corpus_manifest.csv` (each row has the package name, version, wheel filename, SHA-256, and a PyPI URL) into `paper_artifacts/realworld_package_study/downloads/`, then run `build_source_snapshot.py`.
 
 The reviewed-corpus recall audit reports `not_computed_missing_reviewed_source` for recall fields when the reviewed source snapshot is not present.

@@ -32,7 +32,7 @@ def run_command(name: str, command: list[str]) -> CommandResult:
     return CommandResult(name, command, proc.returncode, elapsed)
 
 def main() -> int:
-    parser = argparse.ArgumentParser(description="Run author-implemented replication checks.")
+    parser = argparse.ArgumentParser(description="Run repository-local replication checks.")
     parser.add_argument(
         "--include-pypi",
         action="store_true",

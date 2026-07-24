@@ -1,6 +1,6 @@
 # Formal Proof Appendix
 
-This appendix states the proof core for the studied OSDS template. It is intended as manuscript text, not as an experiment log.
+This appendix states the proof core for the studied OSDS template. It is intended as artifact text, not as an experiment log.
 
 ## 1. Definitions
 
@@ -95,9 +95,9 @@ The analyzer is a syntactic screening tool. Controlled benchmark precision and r
 | Access-insensitive-read zero divergence | Formal proof | Proposition 3 in this appendix | Reads ignoring access count and drift | Not a claim about access-sensitive reads |
 | Linear cap preserves body-level divergence | Formal proof | Proposition 4 in this appendix | Nonzero-slope linear cap | Not nonlinear amplification |
 | Running example divergence | Exact rational replay | `results/proof_support/running_example_derivation.md` | Two specified operation orders | Not a prevalence claim |
-| Nonlinear cap amplification | Empirical sweep | `results/scp_new_experiments/expanded_mechanism_sweep_summary.json` | Tested region only | Not universally proved |
+| Nonlinear cap amplification | Empirical sweep | `results/review_experiments/expanded_mechanism_sweep_summary.json` | Tested region only | Not universally proved |
 | Degree relationships | Exact bounded enumeration | `validation/theorem_R_polynomial.py` and related outputs | Bounded validation grid | Not a theorem for all programs |
 | Divergence-ratio relationships | Exact bounded enumeration | `validation/rho_infinity_investigation.py` and validation outputs | Bounded validation grid | Not a universal law |
-| Sampled extrema | Empirical sweep | `results/scp_new_experiments/sampling_convergence_summary.json` | Sampled budgets tested | Not exact unless exhaustive |
-| Analyzer benchmark metrics | Source-inspection evaluation | `results/scp_new_experiments/extended_controlled_benchmark_summary.json` | Labeled benchmark classes | Not analyzer soundness |
-| PyPI screening counts | Screening-scale evidence | `results/scp_new_experiments/pypi_expanded_screen_summary.json` | Cache-only corpus analyzed | Not production prevalence |
+| Sampled extrema | Empirical sweep | `results/review_experiments/sampling_convergence_summary.json` | Sampled budgets tested | Not exact unless exhaustive |
+| Analyzer benchmark metrics | Source-inspection evaluation | `results/review_experiments/extended_controlled_benchmark_summary.json` | Labeled benchmark classes | Not analyzer soundness |
+| PyPI screening counts | Screening-scale evidence | `results/review_experiments/pypi_expanded_screen_summary.json` | Cache-only corpus analyzed | Not production prevalence |

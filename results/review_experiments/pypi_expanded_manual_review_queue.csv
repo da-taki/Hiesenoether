@@ -1,0 +1,2250 @@
+review_id,package,version,file,class,analyzer_label,short_reason,code_excerpt,suspected_pattern,manual_label_blank,reviewer_note_blank
+EXP-0001,sympy,1.14.0,sympy-1.14.0\sympy\logic\algorithms\lra_theory.py,LRASolver,MEDIUM,method assert_lit() (line 373): mutates self.{is_sat} and returns a value derived from self state,"138:
+139: # if true ~Q.gt(x, y) implies Q.le(x, y)
+140: HANDLE_NEGATION = True
+141:
+142: class LRASolver():
+143:     """"""
+144:     Linear Arithmetic Solver for DPLL(T) implemented with an algorithm based on
+145:     the Dual Simplex method. Uses Bland's pivoting rule to avoid cycling.
+146:",state_mutating_reader,,
+EXP-0002,hypothesis,6.155.7,hypothesis-6.155.7\src\hypothesis\strategies\_internal\lazy.py,LazyStrategy,MEDIUM,method wrapped_strategy() (line 107): mutates self.{__wrapped_strategy} and returns a value derived from self state,"62:             threadlocal.unwrap_cache.clear()
+63:         assert threadlocal.unwrap_depth >= 0
+64:
+65:
+66: class LazyStrategy(SearchStrategy[Ex]):
+67:     """"""A strategy which is defined purely by conversion to and from another
+68:     strategy.
+69:
+70:     Its parameter and distribution come from that other strategy.",state_mutating_reader,,
+EXP-0003,sympy,1.14.0,sympy-1.14.0\sympy\physics\mechanics\kane.py,KanesMethod,MEDIUM,"method _form_fr() (line 405): mutates self.{_forcelist,_fr} and returns a value derived from self state","15:
+16: __all__ = ['KanesMethod']
+17:
+18:
+19: class KanesMethod(_Methods):
+20:     r""""""Kane's method object.
+21:
+22:     Explanation
+23:     ===========",state_mutating_reader,,
+EXP-0004,coverage,7.15.0,coverage-7.15.0\coverage\sysmon.py,SysMonitor,MEDIUM,method sysmon_py_start() (line 320): mutates self.{_activity} and returns a value derived from self state,"187:     # to another offset.
+188:     always_jumps: dict[TOffset, TOffset]
+189:
+190:
+191: class SysMonitor(Tracer):
+192:     """"""Python implementation of the raw data tracer for PEP669 implementations.""""""
+193:
+194:     # One of these will be used across threads. Be careful.
+195:",state_mutating_reader,,
+EXP-0005,virtualenv,21.5.1,virtualenv-21.5.1\src\virtualenv\create\creator.py,Creator,MEDIUM,method debug() (line 248): mutates self.{_debug} and returns a value derived from self state,"38:     def __init__(self) -> None:
+39:         self.error = None
+40:
+41:
+42: class Creator(ABC):
+43:     """"""A class that given a python Interpreter creates a virtual environment.""""""
+44:
+45:     def __init__(self, options: VirtualEnvOptions, interpreter: PythonInfo) -> None:
+46:         """"""Construct a new virtual environment creator.",state_mutating_reader,,
+EXP-0006,hypothesis,6.155.7,hypothesis-6.155.7\src\hypothesis\internal\conjecture\shrinking\choicetree.py,Chooser,MEDIUM,method finish() (line 95): mutates self.{__finished} and returns a value derived from self state,"46:
+47:     return selection_order
+48:
+49:
+50: class Chooser:
+51:     """"""A source of nondeterminism for use in shrink passes.""""""
+52:
+53:     def __init__(
+54:         self,",state_mutating_reader,,
+EXP-0007,jedi,0.20.0,jedi-0.20.0\jedi\inference\utils.py,PushBackIterator,MEDIUM,method __next__() (line 84): mutates self.{current} and returns a value derived from self state,"69:             raise UncaughtAttributeError(e) from e
+70:     return wrapper
+71:
+72:
+73: class PushBackIterator:
+74:     def __init__(self, iterator):
+75:         self.pushes = []
+76:         self.iterator = iterator
+77:",state_mutating_reader,,
+EXP-0008,httpx,0.28.1,httpx-0.28.1\httpx\_models.py,Headers,MEDIUM,method encoding() (line 167): mutates self.{_encoding} and returns a value derived from self state,"135:             v = to_bytes_or_str(""[secure]"", match_type_of=v)
+136:         yield k, v
+137:
+138:
+139: class Headers(typing.MutableMapping[str, str]):
+140:     """"""
+141:     HTTP headers, as a case-insensitive multi-dict.
+142:     """"""
+143:",state_mutating_reader,,
+EXP-0009,tox,4.56.1,tox-4.56.1\src\tox\tox_env\python\pip\req_file.py,PythonDeps,MEDIUM,method _req_parser() (line 51): mutates self.{_req_parser_} and returns a value derived from self state,"20:     from pathlib import Path
+21:     from typing import Final
+22:
+23:
+24: class PythonDeps(RequirementsFile):
+25:     # these options are valid in requirements.txt, but not via pip cli and
+26:     # thus cannot be used in the testenv `deps` list
+27:     _illegal_options: Final[list[str]] = [""hash""]
+28:",state_mutating_reader,,
+EXP-0010,PyYAML,6.0.3,yaml\representer.py,BaseRepresenter,MEDIUM,method represent_data() (line 33): mutates self.{alias_key} and returns a value derived from self state,"9:
+10: class RepresenterError(YAMLError):
+11:     pass
+12:
+13: class BaseRepresenter:
+14:
+15:     yaml_representers = {}
+16:     yaml_multi_representers = {}
+17:",state_mutating_reader,,
+EXP-0011,mpmath,1.4.1,mpmath-1.4.1\mpmath\ctx_iv.py,ivmpf_constant,MEDIUM,method __new__() (line 294): mutates self.{_f} and returns a value derived from self state,"289: ivmpf.__pow__, ivmpf.__rpow__, ivmpc.__pow__, ivmpc.__rpow__ = _binary_op(mpi_pow, mpci_pow)
+290:
+291: ivmpf.__truediv__, ivmpf.__rtruediv__, ivmpc.__truediv__, ivmpc.__rtruediv__ = _binary_op(mpi_div, mpci_div)
+292:
+293: class ivmpf_constant(ivmpf):
+294:     def __new__(cls, f):
+295:         self = new(cls)
+296:         self._f = f
+297:         return self",state_mutating_reader,,
+EXP-0012,pycparser,3.0,pycparser-3.0\pycparser\c_ast.py,NodeVisitor,MEDIUM,method visit() (line 178): mutates self.{_method_cache} and returns a value derived from self state,"138:                 _my_node_name=child_name,
+139:             )
+140:
+141:
+142: class NodeVisitor:
+143:     """"""A base NodeVisitor class for visiting c_ast nodes.
+144:     Subclass it and define your own visit_XXX methods, where
+145:     XXX is the class name you want to visit with these
+146:     methods.",cache_or_memoization,,
+EXP-0013,networkx,3.6.1,networkx-3.6.1\networkx\generators\internet_as_graphs.py,AS_graph_generator,MEDIUM,method t_graph() (line 116): mutates self.{G} and returns a value derived from self state,"68:         acc += degs[nodes[i]]
+69:     return nodes[i]
+70:
+71:
+72: class AS_graph_generator:
+73:     """"""Generates random internet AS graphs.""""""
+74:
+75:     @py_random_state(""seed"")
+76:     def __init__(self, n, seed):",state_mutating_reader,,
+EXP-0014,ipython,9.15.0,ipython-9.15.0\IPython\terminal\shortcuts\auto_suggest.py,NavigableAutoSuggestFromHistory,MEDIUM,method _llm_provider() (line 325): mutates self.{_llm_provider_instance} and returns a value derived from self state,"156:             shift = ti.lineno - len(suggestions) + 1
+157:             return Transformation(ti.get_line(shift))
+158:
+159:
+160: class NavigableAutoSuggestFromHistory(AutoSuggestFromHistory):
+161:     """"""
+162:     A subclass of AutoSuggestFromHistory that allow navigation to next/previous
+163:     suggestion from history. To do so it remembers the current position, but it
+164:     state need to carefully be cleared on the right events.",state_mutating_reader,,
+EXP-0015,sympy,1.14.0,sympy-1.14.0\sympy\utilities\enumerative.py,MultisetPartitionTraverser,MEDIUM,"method decrement_part_small() (line 515): mutates self.{k1,k2,p1} and returns a value derived from self state","364:
+365:     return partition
+366:
+367:
+368: class MultisetPartitionTraverser():
+369:     """"""
+370:     Has methods to ``enumerate`` and ``count`` the partitions of a multiset.
+371:
+372:     This implements a refactored and extended version of Knuth's algorithm",state_mutating_reader,,
+EXP-0016,black,26.5.1,black-26.5.1\src\blib2to3\pgen2\parse.py,Parser,MEDIUM,method _addtoken() (line 274): mutates self.{last_token} and returns a value derived from self state,"126:         self.value = value
+127:         self.context = context
+128:
+129:
+130: class Parser:
+131:     """"""Parser engine.
+132:
+133:     The proper usage sequence is:
+134:",state_mutating_reader,,
+EXP-0017,sympy,1.14.0,sympy-1.14.0\sympy\solvers\ode\single.py,NthLinearEulerEqNonhomogeneousUndeterminedCoefficients,MEDIUM,method _matches() (line 2621): mutates self.{r} and returns a value derived from self state,"2568:
+2569:         return [Eq(f(x), homogen_sol.rhs + (sol.rhs - homogen_sol.rhs)*self.r[order])]
+2570:
+2571:
+2572: class NthLinearEulerEqNonhomogeneousUndeterminedCoefficients(SingleODESolver):
+2573:     r""""""
+2574:     Solves an `n`\th order linear non homogeneous Cauchy-Euler equidimensional
+2575:     ordinary differential equation using undetermined coefficients.
+2576:",state_mutating_reader,,
+EXP-0018,virtualenv,21.5.1,virtualenv-21.5.1\src\virtualenv\seed\embed\via_app_data\pip_install\base.py,PipInstall,MEDIUM,method _dist_info() (line 132): mutates self.{__dist_info} and returns a value derived from self state,"40:             raise RuntimeError(msg) from exc
+41:     zip_ref.extractall(str(target_dir))
+42:
+43:
+44: class PipInstall(ABC):
+45:     def __init__(self, wheel: Path, creator: Creator, image_folder: Path) -> None:
+46:         self._wheel = wheel
+47:         self._creator = creator
+48:         self._image_dir = image_folder",state_mutating_reader,,
+EXP-0019,sympy,1.14.0,sympy-1.14.0\sympy\solvers\ode\single.py,NthLinearConstantCoeffUndeterminedCoefficients,MEDIUM,"method _matches() (line 2354): mutates self.{r,trialset} and returns a value derived from self state","2290:             homogen_sol = _get_simplified_sol([homogen_sol], f(x), collectterms)
+2291:         return [homogen_sol]
+2292:
+2293:
+2294: class NthLinearConstantCoeffUndeterminedCoefficients(SingleODESolver):
+2295:     r""""""
+2296:     Solves an `n`\th order linear differential equation with constant
+2297:     coefficients using the method of undetermined coefficients.
+2298:",state_mutating_reader,,
+EXP-0020,httpcore,1.0.9,httpcore-1.0.9\httpcore\_sync\http11.py,HTTP11Connection,MEDIUM,"method handle_request() (line 65): mutates self.{_expire_at,_request_count,_state} and returns a value derived from self state","39:     IDLE = 2
+40:     CLOSED = 3
+41:
+42:
+43: class HTTP11Connection(ConnectionInterface):
+44:     READ_NUM_BYTES = 64 * 1024
+45:     MAX_INCOMPLETE_EVENT_SIZE = 100 * 1024
+46:
+47:     def __init__(",state_mutating_reader,,
+EXP-0021,sympy,1.14.0,sympy-1.14.0\sympy\plotting\series.py,Parametric3DLineSeries,MEDIUM,"method get_data() (line 1789): mutates self.{_xlim,_ylim,_zlim} and returns a value derived from self state","1751:     def __init__(self):
+1752:         super().__init__()
+1753:
+1754:
+1755: class Parametric3DLineSeries(ParametricLineBaseSeries):
+1756:     """"""Representation for a 3D line consisting of three parametric SymPy
+1757:     expressions and a range.""""""
+1758:
+1759:     is_2Dline = False",state_mutating_reader,,
+EXP-0022,networkx,3.6.1,networkx-3.6.1\networkx\algorithms\planarity.py,LRPlanarity,MEDIUM,"method lr_planarity() (line 323): mutates self.{DG,G,S,adjs,height,left_ref,lowpt,lowpt2,lowpt_edge,nesting_depth,ordered_adjs,parent_edge,ref,right_ref,roots,side,stack_bottom} and returns a value derived from self state","255:         return None
+256:     return l[-1]
+257:
+258:
+259: class LRPlanarity:
+260:     """"""A class to maintain the state during planarity check.""""""
+261:
+262:     __slots__ = [
+263:         ""G"",",state_mutating_reader,,
+EXP-0023,rich,15.0.0,rich-15.0.0\rich\markdown.py,TableElement,MEDIUM,"method on_child_close() (line 238): mutates self.{body,header} and returns a value derived from self state","227:         yield Rule(style=style, characters=""-"")
+228:         yield Text()
+229:
+230:
+231: class TableElement(MarkdownElement):
+232:     """"""MarkdownElement corresponding to `table_open`.""""""
+233:
+234:     def __init__(self) -> None:
+235:         self.header: TableHeaderElement | None = None",state_mutating_reader,,
+EXP-0024,hypothesis,6.155.7,hypothesis-6.155.7\src\hypothesis\internal\conjecture\shrinker.py,Shrinker,MEDIUM,method shrink() (line 437): mutates self.{should_explain} and returns a value derived from self state,"143: class StopShrinking(Exception):
+144:     pass
+145:
+146:
+147: class Shrinker:
+148:     """"""A shrinker is a child object of a ConjectureRunner which is designed to
+149:     manage the associated state of a particular shrink problem. That is, we
+150:     have some initial ConjectureData object and some property of interest
+151:     that it satisfies, and we want to find a ConjectureData object with a",state_mutating_reader,,
+EXP-0025,virtualenv,21.5.1,virtualenv-21.5.1\src\virtualenv\create\via_global_ref\_virtualenv.py,_Finder,MEDIUM,method find_spec() (line 58): mutates self.{fullname} and returns a value derived from self state,"44: _DISTUTILS_PATCH = ""distutils.dist"", ""setuptools.dist""
+45: # https://docs.python.org/3/library/importlib.html#setting-up-an-importer
+46:
+47:
+48: class _Finder:
+49:     """"""A meta path finder that allows patching the imported distutils modules.""""""
+50:
+51:     fullname = None
+52:",state_mutating_reader,,
+EXP-0026,rich,15.0.0,rich-15.0.0\rich\console.py,Console,MEDIUM,method set_alt_screen() (line 1201): mutates self.{_is_alt_screen} and returns a value derived from self state,"577:     """"""Detect legacy Windows.""""""
+578:     return WINDOWS and not get_windows_console_features().vt
+579:
+580:
+581: class Console:
+582:     """"""A high level console interface.
+583:
+584:     Args:
+585:         color_system (str, optional): The color system supported by your terminal,",state_mutating_reader,,
+EXP-0027,ipython,9.15.0,ipython-9.15.0\IPython\core\display.py,ProgressBar,MEDIUM,method __iter__() (line 568): mutates self.{_progress} and returns a value derived from self state,"519:
+520:     def _repr_svg_(self):
+521:         return self._data_and_metadata()
+522:
+523: class ProgressBar(DisplayObject):
+524:     """"""Progressbar supports displaying a progressbar like element
+525:     """"""
+526:     def __init__(self, total):
+527:         """"""Creates a new progressbar",state_mutating_reader,,
+EXP-0028,ipython,9.15.0,ipython-9.15.0\IPython\terminal\debugger.py,TerminalPdb,MEDIUM,"method pt_init() (line 34): mutates self.{_ptcomp,debugger_history,pt_app,pt_loop} and returns a value derived from self state","21: # as it uses cursor positioning requests, deletes color ....
+22: _use_simple_prompt = ""IPY_TEST_SIMPLE_PROMPT"" in os.environ
+23:
+24:
+25: class TerminalPdb(Pdb):
+26:     """"""Standalone IPython debugger.""""""
+27:
+28:     def __init__(self, *args, pt_session_options=None, **kwargs):
+29:         Pdb.__init__(self, *args, **kwargs)",state_mutating_reader,,
+EXP-0029,sympy,1.14.0,sympy-1.14.0\sympy\combinatorics\perm_groups.py,PermutationGroup,MEDIUM,method center() (line 932): mutates self.{_center} and returns a value derived from self state,"22: rmul = Permutation.rmul_with_af
+23: _af_new = Permutation._af_new
+24:
+25:
+26: class PermutationGroup(Basic):
+27:     r""""""The class defining a Permutation group.
+28:
+29:     Explanation
+30:     ===========",state_mutating_reader,,
+EXP-0030,PyYAML,6.0.3,yaml\parser.py,Parser,MEDIUM,method check_event() (line 94): mutates self.{current_event} and returns a value derived from self state,"68:
+69: class ParserError(MarkedYAMLError):
+70:     pass
+71:
+72: class Parser:
+73:     # Since writing a recursive-descendant parser is a straightforward task, we
+74:     # do not give many comments here.
+75:
+76:     DEFAULT_TAGS = {",state_mutating_reader,,
+EXP-0031,jedi,0.20.0,jedi-0.20.0\jedi\api\environment.py,_BaseEnvironment,MEDIUM,method _sha256() (line 48): mutates self.{_hash} and returns a value derived from self state,"34:     been trying to use is probably not a correct Python version.
+35:     """"""
+36:
+37:
+38: class _BaseEnvironment:
+39:     version_info: Any
+40:     executable: Any
+41:
+42:     @memoize_method",state_mutating_reader,,
+EXP-0032,hypothesis,6.155.7,hypothesis-6.155.7\src\hypothesis\strategies\_internal\strategies.py,SampledFromStrategy,MEDIUM,method __repr__() (line 632): mutates self.{_cached_repr} and returns a value derived from self state,"576: def is_hashable(value: object) -> bool:
+577:     return _is_hashable(value)[0]
+578:
+579:
+580: class SampledFromStrategy(SearchStrategy[Ex]):
+581:     """"""A strategy which samples from a set of elements. This is essentially
+582:     equivalent to using a OneOfStrategy over Just strategies but may be more
+583:     efficient and convenient.
+584:     """"""",cache_or_memoization,,
+EXP-0033,httpx,0.28.1,httpx-0.28.1\httpx\_decoders.py,BrotliDecoder,MEDIUM,method decode() (line 136): mutates self.{seen_data} and returns a value derived from self state,"104:         except zlib.error as exc:  # pragma: no cover
+105:             raise DecodingError(str(exc)) from exc
+106:
+107:
+108: class BrotliDecoder(ContentDecoder):
+109:     """"""
+110:     Handle 'brotli' decoding.
+111:
+112:     Requires `pip install brotlipy`. See: https://brotlipy.readthedocs.io/",state_mutating_reader,,
+EXP-0034,sympy,1.14.0,sympy-1.14.0\sympy\solvers\ode\single.py,NthLinearConstantCoeffHomogeneous,MEDIUM,method _matches() (line 2165): mutates self.{r} and returns a value derived from self state,"2094:
+2095:         return [sol]
+2096:
+2097:
+2098: class NthLinearConstantCoeffHomogeneous(SingleODESolver):
+2099:     r""""""
+2100:     Solves an `n`\th order linear homogeneous differential equation with
+2101:     constant coefficients.
+2102:",state_mutating_reader,,
+EXP-0035,httpcore,1.0.9,httpcore-1.0.9\httpcore\_sync\socks_proxy.py,Socks5Connection,MEDIUM,"method handle_request() (line 216): mutates self.{_connect_failed,_connection} and returns a value derived from self state","185:             network_backend=self._network_backend,
+186:         )
+187:
+188:
+189: class Socks5Connection(ConnectionInterface):
+190:     def __init__(
+191:         self,
+192:         proxy_origin: Origin,
+193:         remote_origin: Origin,",state_mutating_reader,,
+EXP-0036,ipython,9.15.0,ipython-9.15.0\IPython\core\display_trap.py,DisplayTrap,MEDIUM,method __enter__() (line 48): mutates self.{_nested_level} and returns a value derived from self state,"28: # Classes and functions
+29: #-----------------------------------------------------------------------------
+30:
+31:
+32: class DisplayTrap(Configurable):
+33:     """"""Object to manage sys.displayhook.
+34:
+35:     This came from IPython.core.kernel.display_hook, but is simplified
+36:     (no callbacks or formatters) until more of the core is refactored.",context_manager_bookkeeping,,
+EXP-0037,sympy,1.14.0,sympy-1.14.0\sympy\physics\mechanics\lagrange.py,LagrangesMethod,MEDIUM,"method form_lagranges_equations() (line 174): mutates self.{_f_cd,_f_d,_m_cd,_m_d,_term1,_term2,_term3,_term4,eom,lam_coeffs,lam_vec} and returns a value derived from self state","9:
+10: __all__ = ['LagrangesMethod']
+11:
+12:
+13: class LagrangesMethod(_Methods):
+14:     """"""Lagrange's method object.
+15:
+16:     Explanation
+17:     ===========",state_mutating_reader,,
+EXP-0038,jedi,0.20.0,jedi-0.20.0\jedi\inference\compiled\subprocess\__init__.py,CompiledSubprocess,MEDIUM,"method _get_process() (line 256): mutates self.{_cleanup_callable,_stderr_queue,_stderr_thread} and returns a value derived from self state","222:         if self._used and not self._compiled_subprocess.is_crashed:
+223:             self._compiled_subprocess.delete_inference_state(self._inference_state_id)
+224:
+225:
+226: class CompiledSubprocess:
+227:     """"""
+228:     A subprocess which runs inference within a target environment.
+229:
+230:     This class manages the interface to a single instance of such a process as",state_mutating_reader,,
+EXP-0039,prompt-toolkit,3.0.52,prompt_toolkit-3.0.52\src\prompt_toolkit\widgets\base.py,Box,MEDIUM,"method __init__() (line 629): mutates self.{body,container,padding,padding_bottom,padding_left,padding_right,padding_top} and returns a value derived from self state","606:     def __pt_container__(self) -> Container:
+607:         return self.container
+608:
+609:
+610: class Box:
+611:     """"""
+612:     Add padding around a container.
+613:
+614:     This also makes sure that the parent can provide more space than required by",state_mutating_reader,,
+EXP-0040,cffi,2.0.0,cffi\backend_ctypes.py,CTypesArray,MEDIUM,method _from_ctypes() (line 689): mutates self.{_blob} and returns a value derived from self state,"604:             kind = 'byte'
+605:         else:
+606:             kind = 'generic'
+607:         #
+608:         class CTypesArray(CTypesGenericArray):
+609:             __slots__ = ['_blob', '_own']
+610:             if length is not None:
+611:                 _ctype = BItem._ctype * length
+612:             else:",state_mutating_reader,,
+EXP-0041,coverage,7.15.0,coverage-7.15.0\coverage\cmdline.py,CoverageScript,MEDIUM,"method command_line() (line 793): mutates self.{coverage,global_option} and returns a value derived from self state","782:
+783: OK, ERR, FAIL_UNDER = 0, 1, 2
+784:
+785:
+786: class CoverageScript:
+787:     """"""The command-line interface to coverage.py.""""""
+788:
+789:     def __init__(self) -> None:
+790:         self.global_option = False",state_mutating_reader,,
+EXP-0042,pydantic,2.13.4,pydantic-2.13.4\pydantic\v1\error_wrappers.py,ValidationError,MEDIUM,method errors() (line 58): mutates self.{_error_cache} and returns a value derived from self state,"46: # but recursive, therefore just use:
+47: ErrorList = Union[Sequence[Any], ErrorWrapper]
+48:
+49:
+50: class ValidationError(Representation, ValueError):
+51:     __slots__ = 'raw_errors', 'model', '_error_cache'
+52:
+53:     def __init__(self, errors: Sequence[ErrorList], model: 'ModelOrDc') -> None:
+54:         self.raw_errors = errors",cache_or_memoization,,
+EXP-0043,prompt-toolkit,3.0.52,prompt_toolkit-3.0.52\src\prompt_toolkit\contrib\regular_languages\compiler.py,_CompiledGrammar,MEDIUM,"method __init__() (line 81): mutates self.{_re,_re_pattern,_re_prefix,_re_prefix_patterns,_re_prefix_with_trailing_input,escape_funcs,root_node,unescape_funcs} and returns a value derived from self state","67:
+68: EscapeFuncDict = Dict[str, Callable[[str], str]]
+69:
+70:
+71: class _CompiledGrammar:
+72:     """"""
+73:     Compiles a grammar. This will take the parse tree of a regular expression
+74:     and compile the grammar.
+75:",state_mutating_reader,,
+EXP-0044,prompt-toolkit,3.0.52,prompt_toolkit-3.0.52\src\prompt_toolkit\input\win32.py,Vt100ConsoleInputReader,MEDIUM,method read() (line 610): mutates self.{_buffer} and returns a value derived from self state,"571:         )
+572:         return [KeyPress(Keys.WindowsMouseEvent, data)]
+573:
+574:
+575: class Vt100ConsoleInputReader:
+576:     """"""
+577:     Similar to `ConsoleInputReader`, but for usage when
+578:     `ENABLE_VIRTUAL_TERMINAL_INPUT` is enabled. This assumes that Windows sends
+579:     us the right vt100 escape sequences and we parse those with our vt100",state_mutating_reader,,
+EXP-0045,prompt-toolkit,3.0.52,prompt_toolkit-3.0.52\src\prompt_toolkit\widgets\base.py,Button,MEDIUM,"method __init__() (line 397): mutates self.{control,handler,left_symbol,right_symbol,text,width,window} and returns a value derived from self state","382:     def __pt_container__(self) -> Container:
+383:         return self.window
+384:
+385:
+386: class Button:
+387:     """"""
+388:     Clickable button.
+389:
+390:     :param text: The caption for the button.",state_mutating_reader,,
+EXP-0046,ipython,9.15.0,ipython-9.15.0\IPython\core\magic.py,MagicAlias,MEDIUM,method __call__() (line 808): mutates self.{_in_call} and returns a value derived from self state,"776:                 args = "" "".join(args)  # type: ignore[assignment]
+777:
+778:         return opts, args
+779:
+780: class MagicAlias:
+781:     """"""An alias to another magic function.
+782:
+783:     An alias is determined by its magic name and magic kind. Lookup
+784:     is done at call time, so if the underlying magic changes the alias",state_mutating_reader,,
+EXP-0047,rich,15.0.0,rich-15.0.0\rich\console.py,Group,MEDIUM,method renderables() (line 464): mutates self.{_render} and returns a value derived from self state,"446:             if self.hide_cursor:
+447:                 self.console.show_cursor(True)
+448:
+449:
+450: class Group:
+451:     """"""Takes a group of renderables and returns a renderable object that renders the group.
+452:
+453:     Args:
+454:         renderables (Iterable[RenderableType]): An iterable of renderable objects.",state_mutating_reader,,
+EXP-0048,sympy,1.14.0,sympy-1.14.0\sympy\plotting\series.py,ImplicitSeries,MEDIUM,method _adaptive_eval() (line 2327): mutates self.{adaptive} and returns a value derived from self state,"2176:     def get_data(self):
+2177:         return self.args
+2178:
+2179:
+2180: class ImplicitSeries(BaseSeries):
+2181:     """"""Representation for 2D Implicit plot.""""""
+2182:
+2183:     is_implicit = True
+2184:     use_cm = False",state_mutating_reader,,
+EXP-0049,networkx,3.6.1,networkx-3.6.1\networkx\algorithms\connectivity\edge_kcomponents.py,EdgeComponentAuxGraph,MEDIUM,"method construct() (line 316): mutates self.{A,H} and returns a value derived from self state","238:     H.remove_edges_from(nx.bridges(G))
+239:     yield from nx.connected_components(H)
+240:
+241:
+242: class EdgeComponentAuxGraph:
+243:     r""""""A simple algorithm to find all k-edge-connected components in a graph.
+244:
+245:     Constructing the auxiliary graph (which may take some time) allows for the
+246:     k-edge-ccs to be found in linear time for arbitrary k.",state_mutating_reader,,
+EXP-0050,pycparser,3.0,pycparser-3.0\pycparser\c_lexer.py,CLexer,MEDIUM,"method token() (line 76): mutates self.{_line_start,_lineno,_pending_tok,_pos} and returns a value derived from self state","19:     lineno: int
+20:     column: int
+21:
+22:
+23: class CLexer:
+24:     """"""A standalone lexer for C.
+25:
+26:     Parameters for construction:
+27:         error_func:",state_mutating_reader,,
+EXP-0051,sympy,1.14.0,sympy-1.14.0\sympy\polys\rootisolation.py,RealInterval,MEDIUM,method b() (line 1786): mutates self.{neg} and returns a value derived from self state,"1724:         return real_part, complex_part
+1725:     else:
+1726:         raise NotImplementedError( ""only trivial square-free polynomials are supported"")
+1727:
+1728: class RealInterval:
+1729:     """"""A fully qualified representation of a real isolation interval. """"""
+1730:
+1731:     def __init__(self, data, f, dom):
+1732:         """"""Initialize new real interval with complete information. """"""",state_mutating_reader,,
+EXP-0052,pytest,9.1.1,pytest-9.1.1\src\_pytest\assertion\rewrite.py,AssertionRewritingHook,MEDIUM,method _early_rewrite_bailout() (line 190): mutates self.{_session_paths_checked} and returns a value derived from self state,"72: # Special marker that denotes we have just left a scope definition
+73: _SCOPE_END_MARKER = Sentinel()
+74:
+75:
+76: class AssertionRewritingHook(importlib.abc.MetaPathFinder, importlib.abc.Loader):
+77:     """"""PEP302/PEP451 import hook which rewrites asserts.""""""
+78:
+79:     def __init__(self, config: Config) -> None:
+80:         self.config = config",state_mutating_reader,,
+EXP-0053,lxml,6.1.1,lxml\html\_difflib.py,SequenceMatcher,MEDIUM,method get_matching_blocks() (line 438): mutates self.{matching_blocks} and returns a value derived from self state,"59:     if length:
+60:         return 2.0 * matches / length
+61:     return 1.0
+62:
+63: class SequenceMatcher:
+64:
+65:     """"""
+66:     SequenceMatcher is a flexible class for comparing pairs of sequences of
+67:     any type, so long as the sequence elements are hashable.  The basic",state_mutating_reader,,
+EXP-0054,hypothesis,6.155.7,hypothesis-6.155.7\src\hypothesis\internal\conjecture\data.py,Spans,MEDIUM,method children() (line 484): mutates self.{__children} and returns a value derived from self state,"428:         # do anything useful with them.
+429:         return [g for g in self.groups.values() if len(g) >= 2]
+430:
+431:
+432: class Spans:
+433:     """"""A lazy collection of ``Span`` objects, derived from
+434:     the record of recorded behaviour in ``SpanRecord``.
+435:
+436:     Behaves logically as if it were a list of ``Span`` objects,",state_mutating_reader,,
+EXP-0055,rich,15.0.0,rich-15.0.0\rich\table.py,Table,MEDIUM,method padding() (line 359): mutates self.{_padding} and returns a value derived from self state,"149:     vertical: VerticalAlignMethod
+150:     """"""Cell vertical alignment.""""""
+151:
+152:
+153: class Table(JupyterMixin):
+154:     """"""A console renderable to draw a table.
+155:
+156:     Args:
+157:         *headers (Union[Column, str]): Column headers, either as a string, or :class:`~rich.table.Column` instance.",state_mutating_reader,,
+EXP-0056,sympy,1.14.0,sympy-1.14.0\sympy\combinatorics\permutations.py,Permutation,MEDIUM,method cyclic_form() (line 1126): mutates self.{_cyclic_form} and returns a value derived from self state,"469:     def copy(self):
+470:         return Cycle(self)
+471:
+472:
+473: class Permutation(Atom):
+474:     r""""""
+475:     A permutation, alternatively known as an 'arrangement number' or 'ordering'
+476:     is an arrangement of the elements of an ordered list into a one-to-one
+477:     mapping with itself. The permutation of a given arrangement is given by",state_mutating_reader,,
+EXP-0057,sympy,1.14.0,sympy-1.14.0\sympy\solvers\ode\single.py,NthLinearEulerEqHomogeneous,MEDIUM,method _matches() (line 2457): mutates self.{r} and returns a value derived from self state,"2383:             gsol = _get_simplified_sol([gsol], f(x), collectterms)
+2384:         return [gsol]
+2385:
+2386:
+2387: class NthLinearEulerEqHomogeneous(SingleODESolver):
+2388:     r""""""
+2389:     Solves an `n`\th order linear homogeneous variable-coefficient
+2390:     Cauchy-Euler equidimensional ordinary differential equation.
+2391:",state_mutating_reader,,
+EXP-0058,tox,4.56.1,tox-4.56.1\src\tox\tox_env\python\pip\req\file.py,RequirementsFile,MEDIUM,method _parser() (line 229): mutates self.{_parser_private} and returns a value derived from self state,"190:         else:
+191:             self.is_requirement = False
+192:
+193:
+194: class RequirementsFile:
+195:     def __init__(self, path: Path, constraint: bool) -> None:  # noqa: FBT001
+196:         self._path = path
+197:         self._is_constraint: bool = constraint
+198:         self._opt = Namespace()",state_mutating_reader,,
+EXP-0059,hypothesis,6.155.7,hypothesis-6.155.7\src\hypothesis\internal\conjecture\pareto.py,ParetoFront,MEDIUM,method add() (line 149): mutates self.{__pending} and returns a value derived from self state,"100:
+101:     return DominanceRelation.LEFT_DOMINATES
+102:
+103:
+104: class ParetoFront:
+105:     """"""Maintains an approximate pareto front of ConjectureData objects. That
+106:     is, we try to maintain a collection of objects such that no element of the
+107:     collection is pareto dominated by any other. In practice we don't quite
+108:     manage that, because doing so is computationally very expensive. Instead",state_mutating_reader,,
+EXP-0060,mpmath,1.4.1,mpmath-1.4.1\mpmath\calculus\extrapolation.py,cohen_alt_class,MEDIUM,method update() (line 808): mutates self.{last} and returns a value derived from self state,"712: levin.__doc__ = levin_class.__doc__
+713: defun(levin)
+714:
+715:
+716: class cohen_alt_class:
+717:     # cohen_alt: Copyright 2013 Timo Hartmann (email address redacted)
+718:     r""""""
+719:     This interface implements the convergence acceleration of alternating series
+720:     as described in H. Cohen, F.R. Villegas, D. Zagier - ""Convergence Acceleration",state_mutating_reader,,
+EXP-0061,virtualenv,21.5.1,virtualenv-21.5.1\src\virtualenv\discovery\discover.py,Discover,MEDIUM,"method interpreter() (line 33): mutates self.{_has_run,_interpreter} and returns a value derived from self state","14:
+15:     from virtualenv.config.cli.parser import VirtualEnvOptions
+16:
+17:
+18: class Discover(ABC):
+19:     @classmethod
+20:     def add_parser_arguments(cls, parser: ArgumentParser) -> None:
+21:         raise NotImplementedError
+22:",state_mutating_reader,,
+EXP-0062,tox,4.56.1,tox-4.56.1\src\tox\tox_env\api.py,ToxEnv,MEDIUM,method environment_variables() (line 355): mutates self.{_resolving_env_vars} and returns a value derived from self state,"44:     journal: EnvJournal
+45:     log_handler: ToxHandler
+46:
+47:
+48: class ToxEnv(ABC):  # noqa: PLR0904
+49:     """"""A tox environment.""""""
+50:
+51:     def __init__(self, create_args: ToxEnvCreateArgs) -> None:
+52:         """"""Create a new tox environment.",state_mutating_reader,,
+EXP-0063,sympy,1.14.0,sympy-1.14.0\sympy\solvers\ode\single.py,LinearCoefficients,MEDIUM,"method _verify() (line 1811): mutates self.{d,e,y} and returns a value derived from self state","1744:         # XXX: not simplify should be not simplify_flag. mypy correctly complains
+1745:         return min([sol1, sol2], key=lambda x: ode_sol_simplicity(x, fx, trysolving=not simplify)) # type: ignore
+1746:
+1747:
+1748: class LinearCoefficients(HomogeneousCoeffBest):
+1749:     r""""""
+1750:     Solves a differential equation with linear coefficients.
+1751:
+1752:     The general form of a differential equation with linear coefficients is",state_mutating_reader,,
+EXP-0064,distlib,0.4.3,distlib-0.4.3\distlib\util.py,Transport,MEDIUM,"method make_connection() (line 1572): mutates self.{_connection,_extra_headers} and returns a value derived from self state","1562:
+1563: #
+1564: # XML-RPC with timeouts
+1565: #
+1566: class Transport(xmlrpclib.Transport):
+1567:
+1568:     def __init__(self, timeout, use_datetime=0):
+1569:         self.timeout = timeout
+1570:         xmlrpclib.Transport.__init__(self, use_datetime)",state_mutating_reader,,
+EXP-0065,httpx,0.28.1,httpx-0.28.1\httpx\_decoders.py,DeflateDecoder,MEDIUM,"method decode() (line 67): mutates self.{decompressor,first_attempt} and returns a value derived from self state","52:     def flush(self) -> bytes:
+53:         return b""""
+54:
+55:
+56: class DeflateDecoder(ContentDecoder):
+57:     """"""
+58:     Handle 'deflate' decoding.
+59:
+60:     See: https://stackoverflow.com/questions/1838699",state_mutating_reader,,
+EXP-0066,cffi,2.0.0,cffi\cparser.py,Parser,MEDIUM,"method _get_struct_union_enum_type() (line 754): mutates self.{_anonymous_counter,_partial_length} and returns a value derived from self state","291:         previous_word = word
+292:     return words_used
+293:
+294:
+295: class Parser(object):
+296:
+297:     def __init__(self):
+298:         self._declarations = {}
+299:         self._included_declarations = set()",state_mutating_reader,,
+EXP-0067,rich,15.0.0,rich-15.0.0\rich\logging.py,RichHandler,MEDIUM,method render_message() (line 190): mutates self.{keywords} and returns a value derived from self state,"20: from .highlighter import ReprHighlighter
+21: from .text import Text
+22:
+23:
+24: class RichHandler(Handler):
+25:     """"""A logging handler that renders output with Rich. The time / level / message and file are displayed in columns.
+26:     The level is color coded, and the message is syntax highlighted.
+27:
+28:     Note:",state_mutating_reader,,
+EXP-0068,ipython,9.15.0,ipython-9.15.0\IPython\core\builtin_trap.py,BuiltinTrap,MEDIUM,method __enter__() (line 46): mutates self.{_nested_level} and returns a value derived from self state,"23:
+24: HideBuiltin = __HideBuiltin()
+25:
+26:
+27: class BuiltinTrap(Configurable):
+28:
+29:     shell = Instance('IPython.core.interactiveshell.InteractiveShellABC',
+30:                      allow_none=True)
+31:",context_manager_bookkeeping,,
+EXP-0069,python-dateutil,2.9.0.post0,python-dateutil-2.9.0.post0\src\dateutil\parser\_parser.py,_timelex,MEDIUM,method get_token() (line 77): mutates self.{eof} and returns a value derived from self state,"54:
+55: # TODO: pandas.core.tools.datetimes imports this explicitly.  Might be worth
+56: # making public and/or figuring out if there is something we can
+57: # take off their plate.
+58: class _timelex(object):
+59:     # Fractional seconds are sometimes split by a comma
+60:     _split_decimal = re.compile(""([.,])"")
+61:
+62:     def __init__(self, instream):",state_mutating_reader,,
+EXP-0070,sympy,1.14.0,sympy-1.14.0\sympy\solvers\ode\single.py,HomogeneousCoeffSubsIndepDivDep,MEDIUM,"method _verify() (line 1653): mutates self.{d,e,u,y} and returns a value derived from self state","1556:         gen_sol = sol.subs(fx, u).subs(((u, u - yarg), (x, x - xarg), (u, fx)))
+1557:         return [gen_sol]
+1558:
+1559:
+1560: class HomogeneousCoeffSubsIndepDivDep(SinglePatternODESolver):
+1561:     r""""""
+1562:     Solves a 1st order differential equation with homogeneous coefficients
+1563:     using the substitution `u_2 = \frac{\text{<independent
+1564:     variable>}}{\text{<dependent variable>}}`.",state_mutating_reader,,
+EXP-0071,sympy,1.14.0,sympy-1.14.0\sympy\combinatorics\free_groups.py,FreeGroupElement,MEDIUM,method __hash__() (line 364): mutates self.{_hash} and returns a value derived from self state,"346: #                          FreeGroupElement                                #
+347: ############################################################################
+348:
+349:
+350: class FreeGroupElement(CantSympify, DefaultPrinting, tuple):
+351:     """"""Used to create elements of FreeGroup. It cannot be used directly to
+352:     create a free group element. It is called by the `dtype` method of the
+353:     `FreeGroup` class.
+354:",state_mutating_reader,,
+EXP-0072,prompt-toolkit,3.0.52,prompt_toolkit-3.0.52\src\prompt_toolkit\layout\menus.py,MultiColumnCompletionMenuControl,MEDIUM,"method create_content() (line 394): mutates self.{_render_left_arrow,_render_pos_to_completion,_render_right_arrow,_render_width,_rendered_columns,_rendered_rows,_total_columns,scroll} and returns a value derived from self state","289:             filter=extra_filter & has_completions & ~is_done,
+290:         )
+291:
+292:
+293: class MultiColumnCompletionMenuControl(UIControl):
+294:     """"""
+295:     Completion menu that displays all the completions in several columns.
+296:     When there are more completions than space for them to be displayed, an
+297:     arrow is shown on the left or right side.",state_mutating_reader,,
+EXP-0073,traitlets,5.15.1,traitlets-5.15.1\traitlets\config\loader.py,LazyConfigValue,MEDIUM,"method merge_into() (line 117): mutates self.{_extend,_inserts,_update} and returns a value derived from self state","81:     with open(fname, ""rb"") as f:
+82:         exec(compile(f.read(), fname, ""exec""), glob, glob)  # noqa: S102
+83:
+84:
+85: class LazyConfigValue(HasTraits):
+86:     """"""Proxy object for exposing methods on configurable containers
+87:
+88:     These methods allow appending/extending/updating
+89:     to add to non-empty defaults instead of clobbering them.",state_mutating_reader,,
+EXP-0074,coverage,7.15.0,coverage-7.15.0\coverage\lcovreport.py,LcovReporter,MEDIUM,method report() (line 169): mutates self.{total} and returns a value derived from self state,"155:         outfile.write(f""BRF:{brf}\n"")
+156:         outfile.write(f""BRH:{brh}\n"")
+157:
+158:
+159: class LcovReporter:
+160:     """"""A reporter for writing LCOV coverage reports.""""""
+161:
+162:     report_type = ""LCOV report""
+163:",state_mutating_reader,,
+EXP-0075,parso,0.8.7,parso-0.8.7\parso\python\errors.py,ErrorFinder,MEDIUM,"method initialize() (line 388): mutates self.{_indentation_count,context} and returns a value derived from self state","375:     def close_child_context(self, child_context):
+376:         self._nonlocal_names_in_subscopes += child_context.finalize()
+377:
+378:
+379: class ErrorFinder(Normalizer):
+380:     """"""
+381:     Searches for errors in the syntax tree.
+382:     """"""
+383:     def __init__(self, *args, **kwargs):",context_manager_bookkeeping,,
+EXP-0076,PyYAML,6.0.3,yaml\scanner.py,Scanner,MEDIUM,method get_token() (line 135): mutates self.{tokens_taken} and returns a value derived from self state,"42:         self.line = line
+43:         self.column = column
+44:         self.mark = mark
+45:
+46: class Scanner:
+47:
+48:     def __init__(self):
+49:         """"""Initialize the scanner.""""""
+50:         # It is assumed that Scanner and Reader will have a common descendant.",state_mutating_reader,,
+EXP-0077,sympy,1.14.0,sympy-1.14.0\sympy\polys\rings.py,PolyElement,MEDIUM,method __hash__() (line 616): mutates self.{_hash} and returns a value derived from self state,"582:                 poly += self.term_new(monom, self.domain.one)
+583:             return poly
+584:
+585:
+586: class PolyElement(DomainElement, DefaultPrinting, CantSympify, dict):
+587:     """"""Element of multivariate distributed polynomial ring. """"""
+588:
+589:     def __init__(self, ring, init):
+590:         super().__init__(init)",state_mutating_reader,,
+EXP-0078,httpcore,1.0.9,httpcore-1.0.9\httpcore\_sync\connection.py,HTTPConnection,MEDIUM,"method handle_request() (line 69): mutates self.{_connect_failed,_connection} and returns a value derived from self state","34:     for n in itertools.count():
+35:         yield factor * 2**n
+36:
+37:
+38: class HTTPConnection(ConnectionInterface):
+39:     def __init__(
+40:         self,
+41:         origin: Origin,
+42:         ssl_context: ssl.SSLContext | None = None,",state_mutating_reader,,
+EXP-0079,sympy,1.14.0,sympy-1.14.0\sympy\printing\codeprinter.py,CodePrinter,MEDIUM,"method doprint() (line 128): mutates self.{_not_supported,_number_symbols} and returns a value derived from self state","49:     else:
+50:         return arg
+51:
+52:
+53: class CodePrinter(StrPrinter):
+54:     """"""
+55:     The base class for code-printing subclasses.
+56:     """"""
+57:",state_mutating_reader,,
+EXP-0080,pytest,9.1.1,pytest-9.1.1\src\_pytest\tmpdir.py,TempPathFactory,MEDIUM,method getbasetemp() (line 145): mutates self.{_basetemp} and returns a value derived from self state,"41:
+42:
+43: @final
+44: @dataclasses.dataclass
+45: class TempPathFactory:
+46:     """"""Factory for temporary directories under the common base temp directory,
+47:     as discussed at :ref:`temporary directory location and retention`.
+48:     """"""
+49:",state_mutating_reader,,
+EXP-0081,sympy,1.14.0,sympy-1.14.0\sympy\solvers\ode\single.py,SinglePatternODESolver,MEDIUM,method _matches() (line 308): mutates self.{_wilds_match} and returns a value derived from self state,"290:         msg = ""Subclasses of SingleODESolver should implement get_general_solution.""
+291:         raise NotImplementedError(msg)
+292:
+293:
+294: class SinglePatternODESolver(SingleODESolver):
+295:     '''Superclass for ODE solvers based on pattern matching'''
+296:
+297:     def wilds(self):
+298:         prob = self.ode_problem",state_mutating_reader,,
+EXP-0082,virtualenv,21.5.1,virtualenv-21.5.1\src\virtualenv\run\plugin\base.py,ComponentBuilder,MEDIUM,method handle_selected_arg_parse() (line 59): mutates self.{_impl_class} and returns a value derived from self state,"35:             PluginLoader._ENTRY_POINTS = entry_points()
+36:         return PluginLoader._ENTRY_POINTS
+37:
+38:
+39: class ComponentBuilder(PluginLoader):
+40:     def __init__(
+41:         self, interpreter: PythonInfo, parser: VirtualEnvConfigParser, name: str, possible: dict[str, type]
+42:     ) -> None:
+43:         self.interpreter = interpreter",builder_or_fluent_mutator,,
+EXP-0083,hypothesis,6.155.7,hypothesis-6.155.7\src\hypothesis\core.py,example,MEDIUM,method xfail() (line 248): mutates self.{_this_example} and returns a value derived from self state,"175:
+176: # TODO_DOCS link to not-yet-existent patch-dumping docs
+177:
+178:
+179: class example:
+180:     """"""
+181:     Add an explicit input to a Hypothesis test, which Hypothesis will always
+182:     try before generating random inputs. This combines the randomized nature of
+183:     Hypothesis generation with a traditional parametrized test.",state_mutating_reader,,
+EXP-0084,pytest,9.1.1,pytest-9.1.1\src\_pytest\python.py,PyobjMixin,MEDIUM,method obj() (line 286): mutates self.{_obj} and returns a value derived from self state,"251:         return None
+252:     return None
+253:
+254:
+255: class PyobjMixin(nodes.Node):
+256:     """"""this mix-in inherits from Node to carry over the typing information
+257:
+258:     as its intended to always mix in before a node
+259:     its position in the mro is unaffected""""""",state_mutating_reader,,
+EXP-0085,pydantic,2.13.4,pydantic-2.13.4\pydantic\_internal\_validate_call.py,ValidateCallWrapper,MEDIUM,"method _create_validators() (line 92): mutates self.{__pydantic_complete__,__pydantic_validator__,__return_pydantic_validator__} and returns a value derived from self state","46:
+47:     return wrapper_function
+48:
+49:
+50: class ValidateCallWrapper:
+51:     """"""This is a wrapper around a function that validates the arguments passed to it, and optionally the return value.""""""
+52:
+53:     __slots__ = (
+54:         'function',",state_mutating_reader,,
+EXP-0086,traitlets,5.15.1,traitlets-5.15.1\traitlets\config\application.py,Application,MEDIUM,"method parse_command_line() (line 841): mutates self.{argv,cli_config,extra_args} and returns a value derived from self state","148:             record.highlevel = """"
+149:         return super().format(record)
+150:
+151:
+152: class Application(SingletonConfigurable):
+153:     """"""A singleton application with full configuration support.""""""
+154:
+155:     # The name of the application, will usually match the name of the command
+156:     # line application",state_mutating_reader,,
+EXP-0087,hypothesis,6.155.7,hypothesis-6.155.7\src\hypothesis\strategies\_internal\recursive.py,LimitedStrategy,MEDIUM,method do_draw() (line 67): mutates self.{marker} and returns a value derived from self state,"35: class LimitReached(BaseException):
+36:     pass
+37:
+38:
+39: class LimitedStrategy(SearchStrategy[T]):
+40:     def __init__(self, strategy: SearchStrategy[T]):
+41:         super().__init__()
+42:         self.base_strategy = strategy
+43:         self._threadlocal = threading.local()",state_mutating_reader,,
+EXP-0088,mpmath,1.4.1,mpmath-1.4.1\mpmath\calculus\optimization.py,MNewton,MEDIUM,"method __init__() (line 120): mutates self.{ctx,d2f,df,f,x0} and returns a value derived from self state","97:             x0, x1 = x1, x1 - f1/s
+98:             f0 = f1
+99:             yield x1, abs(l)
+100:
+101: class MNewton:
+102:     """"""
+103:     1d-solver generating pairs of approximative root and error.
+104:
+105:     Needs starting point x0 close to the root.",state_mutating_reader,,
+EXP-0089,pydantic,2.13.4,pydantic-2.13.4\pydantic\_internal\_decorators.py,PydanticDescriptorProxy,MEDIUM,method _call_wrapped_attr() (line 189): mutates self.{wrapped} and returns a value derived from self state,"161: )
+162:
+163:
+164: @dataclass  # can't use slots here since we set attributes on `__post_init__`
+165: class PydanticDescriptorProxy(Generic[ReturnType]):
+166:     """"""Wrap a classmethod, staticmethod, property or unbound function
+167:     and act as a descriptor that allows us to detect decorated items
+168:     from the class' attributes.
+169:",descriptor_or_proxy,,
+EXP-0090,sympy,1.14.0,sympy-1.14.0\sympy\tensor\array\expressions\array_expressions.py,_EditArrayContraction,MEDIUM,method get_new_contraction_index() (line 1702): mutates self.{number_of_contraction_indices} and returns a value derived from self state,"1622:     def __iter__(self):
+1623:         yield from [self.arg, self.rel]
+1624:
+1625:
+1626: class _EditArrayContraction:
+1627:     """"""
+1628:     Utility class to help manipulate array contraction objects.
+1629:
+1630:     This class takes as input an ``ArrayContraction`` object and turns it into",state_mutating_reader,,
+EXP-0091,tox,4.56.1,tox-4.56.1\src\tox\tox_env\python\api.py,Python,MEDIUM,method register_config() (line 84): mutates self.{_base_python_explicitly_set} and returns a value derived from self state,"74:     re.VERBOSE,
+75: )
+76:
+77:
+78: class Python(ToxEnv, ABC):
+79:     def __init__(self, create_args: ToxEnvCreateArgs) -> None:
+80:         self._base_python: PythonInfo | None = None
+81:         self._base_python_searched: bool = False
+82:         super().__init__(create_args)",state_mutating_reader,,
+EXP-0092,sympy,1.14.0,sympy-1.14.0\sympy\physics\mechanics\system.py,System,MEDIUM,method form_eoms() (line 819): mutates self.{_eom_method} and returns a value derived from self state,"31:
+32:     return wrapper
+33:
+34:
+35: class System(_Methods):
+36:     """"""Class to define a multibody system and form its equations of motion.
+37:
+38:     Explanation
+39:     ===========",state_mutating_reader,,
+EXP-0093,httpcore,1.0.9,httpcore-1.0.9\httpcore\_models.py,Response,MEDIUM,method read() (line 422): mutates self.{_content} and returns a value derived from self state,"362:     def __repr__(self) -> str:
+363:         return f""<{self.__class__.__name__} [{self.method!r}]>""
+364:
+365:
+366: class Response:
+367:     """"""
+368:     An HTTP response.
+369:     """"""
+370:",state_mutating_reader,,
+EXP-0094,traitlets,5.15.1,traitlets-5.15.1\traitlets\traitlets.py,EventHandler,MEDIUM,method _init_call() (line 1245): mutates self.{func} and returns a value derived from self state,"1240:
+1241: FuncT = t.TypeVar(""FuncT"", bound=t.Callable[..., t.Any])
+1242:
+1243:
+1244: class EventHandler(BaseDescriptor):
+1245:     def _init_call(self, func: FuncT) -> EventHandler:
+1246:         self.func = func
+1247:         return self
+1248:",state_mutating_reader,,
+EXP-0095,mpmath,1.4.1,mpmath-1.4.1\mpmath\calculus\inverselaplace.py,FixedTalbot,MEDIUM,method calc_time_domain_solution() (line 146): mutates self.{t} and returns a value derived from self state,"35:         """"""
+36:         raise NotImplementedError
+37:
+38:
+39: class FixedTalbot(InverseLaplaceTransform):
+40:
+41:     def calc_laplace_parameter(self, t, **kwargs):
+42:         r""""""The ""fixed"" Talbot method deforms the Bromwich contour towards
+43:         `-\infty` in the shape of a parabola. Traditionally the Talbot",state_mutating_reader,,
+EXP-0096,hypothesis,6.155.7,hypothesis-6.155.7\src\hypothesis\internal\cache.py,LRUReusedCache,MEDIUM,method tick() (line 280): mutates self.{__tick} and returns a value derived from self state,"255:         assert i == (j - 1) // 2
+256:         return self.data[j].sort_key < self.data[i].sort_key
+257:
+258:
+259: class LRUReusedCache(GenericCache[K, V]):
+260:     """"""The only concrete implementation of GenericCache we use outside of tests
+261:     currently.
+262:
+263:     Adopts a modified least-recently used eviction policy: It evicts the key",cache_or_memoization,,
+EXP-0097,rich,15.0.0,rich-15.0.0\rich\console.py,ScreenContext,MEDIUM,method __enter__() (line 432): mutates self.{_changed} and returns a value derived from self state,"399:             self.pager.show(content)
+400:         self._console._exit_buffer()
+401:
+402:
+403: class ScreenContext:
+404:     """"""A context manager that enables an alternative screen. See :meth:`~rich.console.Console.screen` for usage.""""""
+405:
+406:     def __init__(
+407:         self, console: ""Console"", hide_cursor: bool, style: StyleType = """"",context_manager_bookkeeping,,
+EXP-0098,sympy,1.14.0,sympy-1.14.0\sympy\solvers\ode\single.py,Separable,MEDIUM,"method _verify() (line 1271): mutates self.{m1,m2,y} and returns a value derived from self state","1199:
+1200:         return [gen_sol]
+1201:
+1202:
+1203: class Separable(SinglePatternODESolver):
+1204:     r""""""
+1205:     Solves separable 1st order differential equations.
+1206:
+1207:     This is any differential equation that can be written as `P(y)",state_mutating_reader,,
+EXP-0099,ipython,9.15.0,ipython-9.15.0\IPython\core\shellapp.py,MatplotlibBackendCaselessStrEnum,MEDIUM,method __getattribute__() (line 134): mutates self.{values} and returns a value derived from self state,"113: # Traitlets
+114: # -----------------------------------------------------------------------------
+115:
+116:
+117: class MatplotlibBackendCaselessStrEnum(CaselessStrEnum):
+118:     """"""An enum of Matplotlib backend strings where the case should be ignored.
+119:
+120:     Prior to Matplotlib 3.9.0 the list of valid backends is hardcoded in
+121:     pylabtools.backends. After that, Matplotlib manages backends.",state_mutating_reader,,
+EXP-0100,black,26.5.1,black-26.5.1\src\black\trans.py,StringParser,MEDIUM,"method _next_state() (line 2441): mutates self.{_state,_unmatched_lpars} and returns a value derived from self state","2347:
+2348:         yield Ok(last_line)
+2349:
+2350:
+2351: class StringParser:
+2352:     """"""
+2353:     A state machine that aids in parsing a string's ""trailer"", which can be
+2354:     either non-existent, an old-style formatting sequence (e.g. `% varX` or `%
+2355:     (varX, varY)`), or a method-call / attribute access (e.g. `.format(varX,",state_mutating_reader,,
+EXP-0101,sympy,1.14.0,sympy-1.14.0\sympy\polys\numberfields\modules.py,ModuleElement,MEDIUM,method QQ_col() (line 1368): mutates self.{_QQ_col} and returns a value derived from self state,"1276:     else:
+1277:         return ModuleElement(module, col, denom=denom)
+1278:
+1279:
+1280: class ModuleElement(IntegerPowerable):
+1281:     r""""""
+1282:     Represents an element of a :py:class:`~.Module`.
+1283:
+1284:     NOTE: Should not be constructed directly. Use the",state_mutating_reader,,
+EXP-0102,distlib,0.4.3,distlib-0.4.3\distlib\locators.py,SimpleScrapingLocator,MEDIUM,"method _get_project() (line 675): mutates self.{project_name,result} and returns a value derived from self state","579:         result = sorted(result, key=lambda t: t[0], reverse=True)
+580:         return result
+581:
+582:
+583: class SimpleScrapingLocator(Locator):
+584:     """"""
+585:     A locator which scrapes HTML pages to locate downloads for a distribution.
+586:     This runs multiple threads to do the I/O; performance is at least as good
+587:     as pip's PackageFinder, which works in an analogous fashion.",state_mutating_reader,,
+EXP-0103,sympy,1.14.0,sympy-1.14.0\sympy\solvers\ode\single.py,Factorable,MEDIUM,method _matches() (line 863): mutates self.{eqs} and returns a value derived from self state,"835:             )
+836:         return [gensol]
+837:
+838:
+839: class Factorable(SingleODESolver):
+840:     r""""""
+841:         Solves equations having a solvable factor.
+842:
+843:         This function is used to solve the equation having factors. Factors may be of type algebraic or ode. It",state_mutating_reader,,
+EXP-0104,prompt-toolkit,3.0.52,prompt_toolkit-3.0.52\src\prompt_toolkit\formatted_text\html.py,HTML,MEDIUM,"method __init__() (line 33): mutates self.{formatted_text,value} and returns a value derived from self state","8:
+9: __all__ = [""HTML""]
+10:
+11:
+12: class HTML:
+13:     """"""
+14:     HTML formatted text.
+15:     Take something HTML-like, for use as a formatted string.
+16:",state_mutating_reader,,
+EXP-0105,pytest,9.1.1,pytest-9.1.1\src\_pytest\logging.py,catching_logs,MEDIUM,method __enter__() (line 349): mutates self.{orig_level} and returns a value derived from self state,"335: _HandlerType = TypeVar(""_HandlerType"", bound=logging.Handler)
+336:
+337:
+338: # Not using @contextmanager for performance reasons.
+339: class catching_logs(Generic[_HandlerType]):
+340:     """"""Context manager that prepares the whole logging machinery properly.""""""
+341:
+342:     __slots__ = (""attached_loggers"", ""handler"", ""level"", ""orig_level"")
+343:",context_manager_bookkeeping,,
+EXP-0106,sympy,1.14.0,sympy-1.14.0\sympy\solvers\ode\single.py,NthLinearEulerEqNonhomogeneousVariationOfParameters,MEDIUM,method _matches() (line 2540): mutates self.{r} and returns a value derived from self state,"2479:         homogen_sol = _get_euler_characteristic_eq_sols(eq, fx, self.r)[0]
+2480:         return [homogen_sol]
+2481:
+2482:
+2483: class NthLinearEulerEqNonhomogeneousVariationOfParameters(SingleODESolver):
+2484:     r""""""
+2485:     Solves an `n`\th order linear non homogeneous Cauchy-Euler equidimensional
+2486:     ordinary differential equation using variation of parameters.
+2487:",state_mutating_reader,,
+EXP-0107,hypothesis,6.155.7,hypothesis-6.155.7\src\hypothesis\internal\scrutineer.py,Tracer,MEDIUM,method trace() (line 82): mutates self.{_previous_location} and returns a value derived from self state,"50: if hasattr(sys, ""monitoring""):
+51:     MONITORING_EVENTS = {sys.monitoring.events.LINE: ""trace_line""}
+52:
+53:
+54: class Tracer:
+55:     """"""A super-simple branch coverage tracer.""""""
+56:
+57:     __slots__ = (
+58:         ""_branches"",",state_mutating_reader,,
+EXP-0108,parso,0.8.7,parso-0.8.7\parso\python\diff.py,_NodesTree,MEDIUM,"method _remove_endmarker() (line 642): mutates self.{_prefix_remainder,prefix} and returns a value derived from self state","588:     def __repr__(self):
+589:         return '<%s: %s>' % (self.__class__.__name__, self.tree_node)
+590:
+591:
+592: class _NodesTree:
+593:     def __init__(self, module):
+594:         self._base_node = _NodesTreeNode(module)
+595:         self._working_stack = [self._base_node]
+596:         self._module = module",state_mutating_reader,,
+EXP-0109,black,26.5.1,black-26.5.1\src\blib2to3\pytree.py,Base,MEDIUM,method remove() (line 167): mutates self.{parent} and returns a value derived from self state,"50: Context = tuple[str, tuple[int, int]]
+51: RawNode = tuple[int, Optional[str], Optional[Context], Optional[list[NL]]]
+52:
+53:
+54: class Base:
+55:     """"""
+56:     Abstract base class for Node and Leaf.
+57:
+58:     This provides some default functionality and boilerplate using the",state_mutating_reader,,
+EXP-0110,starlette,1.3.1,starlette-1.3.1\starlette\requests.py,HTTPConnection,MEDIUM,method url() (line 110): mutates self.{_url} and returns a value derived from self state,"76:
+77: StateT = TypeVar(""StateT"", bound=Mapping[str, Any] | State, default=State)
+78:
+79:
+80: class HTTPConnection(Mapping[str, Any], Generic[StateT]):
+81:     """"""
+82:     A base class for incoming HTTP connections, that is used to provide
+83:     any functionality that is common to both `Request` and `WebSocket`.
+84:     """"""",state_mutating_reader,,
+EXP-0111,rich,15.0.0,rich-15.0.0\rich\markdown.py,TableHeaderElement,MEDIUM,method on_child_close() (line 278): mutates self.{row} and returns a value derived from self state,"268:
+269:         yield table
+270:
+271:
+272: class TableHeaderElement(MarkdownElement):
+273:     """"""MarkdownElement corresponding to `thead_open` and `thead_close`.""""""
+274:
+275:     def __init__(self) -> None:
+276:         self.row: TableRowElement | None = None",state_mutating_reader,,
+EXP-0112,sympy,1.14.0,sympy-1.14.0\sympy\combinatorics\perm_groups.py,SymmetricPermutationGroup,MEDIUM,method order() (line 5291): mutates self.{_order} and returns a value derived from self state,"5254:
+5255: PermGroup = PermutationGroup
+5256:
+5257:
+5258: class SymmetricPermutationGroup(Basic):
+5259:     """"""
+5260:     The class defining the lazy form of SymmetricGroup.
+5261:
+5262:     deg : int",state_mutating_reader,,
+EXP-0113,prompt-toolkit,3.0.52,prompt_toolkit-3.0.52\src\prompt_toolkit\widgets\toolbars.py,ArgToolbar,MEDIUM,"method __init__() (line 192): mutates self.{container,window} and returns a value derived from self state","187:     def __pt_container__(self) -> Container:
+188:         return self.container
+189:
+190:
+191: class ArgToolbar:
+192:     def __init__(self) -> None:
+193:         def get_formatted_text() -> StyleAndTextTuples:
+194:             arg = get_app().key_processor.arg or """"
+195:             if arg == ""-"":",state_mutating_reader,,
+EXP-0114,prompt-toolkit,3.0.52,prompt_toolkit-3.0.52\src\prompt_toolkit\input\vt100.py,Vt100Input,MEDIUM,method read_keys() (line 91): mutates self.{_buffer} and returns a value derived from self state,"22:     ""cooked_mode"",
+23: ]
+24:
+25:
+26: class Vt100Input(Input):
+27:     """"""
+28:     Vt100 input for Posix systems.
+29:     (This uses a posix file descriptor that can be registered in the event loop.)
+30:     """"""",state_mutating_reader,,
+EXP-0115,httpx,0.28.1,httpx-0.28.1\httpx\_models.py,Response,MEDIUM,method text() (line 642): mutates self.{_text} and returns a value derived from self state,"511:         self.extensions = {}
+512:         self.stream = UnattachedStream()
+513:
+514:
+515: class Response:
+516:     def __init__(
+517:         self,
+518:         status_code: int,
+519:         *,",state_mutating_reader,,
+EXP-0116,sympy,1.14.0,sympy-1.14.0\sympy\utilities\_compilation\runners.py,CompilerRunner,MEDIUM,"method run() (line 181): mutates self.{cmd_outerr,cmd_returncode,flags} and returns a value derived from self state","11:     find_binary_of_command, unique_list, CompileError
+12: )
+13:
+14:
+15: class CompilerRunner:
+16:     """""" CompilerRunner base class.
+17:
+18:     Parameters
+19:     ==========",state_mutating_reader,,
+EXP-0117,pytest,9.1.1,pytest-9.1.1\src\_pytest\debugging.py,PytestPdbWrapper,MEDIUM,method do_continue() (line 164): mutates self.{_continued} and returns a value derived from self state,"147:     @classmethod
+148:     def _get_pdb_wrapper_class(cls, pdb_cls, capman: CaptureManager | None):
+149:         import _pytest.config
+150:
+151:         class PytestPdbWrapper(pdb_cls):
+152:             _pytest_capman = capman
+153:             _continued = False
+154:
+155:             def do_debug(self, arg):",state_mutating_reader,,
+EXP-0118,virtualenv,21.5.1,virtualenv-21.5.1\tasks\__main__zipapp.py,VersionPlatformSelect,MEDIUM,"method _register_distutils_finder() (line 81): mutates self.{_name,loader,path} and returns a value derived from self state","17:
+18: ABS_HERE = os.path.abspath(os.path.dirname(__file__))
+19:
+20:
+21: class VersionPlatformSelect:
+22:     def __init__(self) -> None:
+23:         zipapp = ABS_HERE
+24:         self.archive = zipapp
+25:         self._zip_file = zipfile.ZipFile(zipapp)",state_mutating_reader,,
+EXP-0119,ipython,9.15.0,ipython-9.15.0\IPython\lib\backgroundjobs.py,BackgroundJobManager,MEDIUM,method new() (line 106): mutates self.{_current_job_id} and returns a value derived from self state,"37: from IPython.core.ultratb import AutoFormattedTB
+38: from logging import error, debug
+39:
+40:
+41: class BackgroundJobManager:
+42:     """"""Class to manage a pool of backgrounded threaded jobs.
+43:
+44:     Below, we assume that 'jobs' is a BackgroundJobManager instance.
+45:",state_mutating_reader,,
+EXP-0120,pytest,9.1.1,pytest-9.1.1\src\_pytest\debugging.py,pytestPDB,MEDIUM,method _get_pdb_wrapper_class() (line 148): mutates self.{_continued} and returns a value derived from self state,"88:
+89:     config.add_cleanup(fin)
+90:
+91:
+92: class pytestPDB:
+93:     """"""Pseudo PDB that defers to the real pdb.""""""
+94:
+95:     _pluginmanager: PytestPluginManager | None = None
+96:     _config: Config | None = None",state_mutating_reader,,
+EXP-0121,tox,4.56.1,tox-4.56.1\src\tox\tox_env\python\pip\req_file.py,PythonConstraints,MEDIUM,method _req_parser() (line 158): mutates self.{_req_parser_} and returns a value derived from self state,"145:             raise TypeError(_factory_type_error(""deps"", raw))
+146:         return cls(cast(""str | list[str] | list[Requirement]"", raw), root)
+147:
+148:
+149: class PythonConstraints(RequirementsFile):
+150:     def __init__(self, raw: str | list[str] | list[Requirement], root: Path) -> None:
+151:         super().__init__(root / ""tox.ini"", constraint=True)
+152:         got = raw if isinstance(raw, str) else ""\n"".join(str(i) for i in raw)
+153:         self._raw = self._normalize_raw(got)",state_mutating_reader,,
+EXP-0122,black,26.5.1,black-26.5.1\src\blib2to3\pgen2\conv.py,Converter,MEDIUM,"method parse_graminit_h() (line 55): mutates self.{number2symbol,symbol2number} and returns a value derived from self state","34: # Local imports
+35: from blib2to3.pgen2 import grammar, token
+36:
+37:
+38: class Converter(grammar.Grammar):
+39:     """"""Grammar subclass that reads classic pgen output files.
+40:
+41:     The run() method reads the tables as produced by the pgen parser
+42:     generator, typically contained in two C files, graminit.h and",state_mutating_reader,,
+EXP-0123,httpx,0.28.1,httpx-0.28.1\httpx\_multipart.py,FileField,MEDIUM,method render_headers() (line 186): mutates self.{_headers} and returns a value derived from self state,"111:         yield self.render_headers()
+112:         yield self.render_data()
+113:
+114:
+115: class FileField:
+116:     """"""
+117:     A single file field item, within a multipart form field.
+118:     """"""
+119:",state_mutating_reader,,
+EXP-0124,prompt-toolkit,3.0.52,prompt_toolkit-3.0.52\src\prompt_toolkit\layout\processors.py,ShowTrailingWhiteSpaceProcessor,MEDIUM,"method __init__() (line 648): mutates self.{get_char,style} and returns a value derived from self state","637:
+638:         return Transformation(fragments)
+639:
+640:
+641: class ShowTrailingWhiteSpaceProcessor(Processor):
+642:     """"""
+643:     Make trailing whitespace visible.
+644:
+645:     :param get_char: Callable that returns one character.",state_mutating_reader,,
+EXP-0125,mpmath,1.4.1,mpmath-1.4.1\mpmath\calculus\inverselaplace.py,Cohen,MEDIUM,method calc_time_domain_solution() (line 605): mutates self.{t} and returns a value derived from self state,"528:
+529:
+530: # ****************************************
+531:
+532: class Cohen(InverseLaplaceTransform):
+533:
+534:     def calc_laplace_parameter(self, t, **kwargs):
+535:         r""""""The Cohen algorithm accelerates the convergence of the nearly
+536:         alternating series resulting from the application of the trapezoidal",state_mutating_reader,,
+EXP-0126,coverage,7.15.0,coverage-7.15.0\coverage\report.py,SummaryReporter,MEDIUM,method report() (line 201): mutates self.{outfile} and returns a value derived from self state,"29:     """"""Prefix all characters meaningful in markdown tables with backslashes.""""""
+30:     return text.translate(MARKDOWN_ESCAPES)
+31:
+32:
+33: class SummaryReporter:
+34:     """"""A reporter for writing the summary report.""""""
+35:
+36:     def __init__(self, coverage: Coverage) -> None:
+37:         self.coverage = coverage",state_mutating_reader,,
+EXP-0127,rich,15.0.0,rich-15.0.0\rich\text.py,Text,MEDIUM,method append() (line 964): mutates self.{_length} and returns a value derived from self state,"114:         else:
+115:             return self
+116:
+117:
+118: class Text(JupyterMixin):
+119:     """"""Text with color / style.
+120:
+121:     Args:
+122:         text (str, optional): Default unstyled text. Defaults to """".",state_mutating_reader,,
+EXP-0128,lxml,6.1.1,lxml\isoschematron\__init__.py,Schematron,MEDIUM,method __call__() (line 304): mutates self.{_validation_report} and returns a value derived from self state,"114:     paramsDict = stylesheet_params(**paramsDict)
+115:     return paramsDict
+116:
+117:
+118: class Schematron(_etree._Validator):
+119:     """"""An ISO Schematron validator.
+120:
+121:     Pass a root Element or an ElementTree to turn it into a validator.
+122:     Alternatively, pass a filename as keyword argument 'file' to parse from",state_mutating_reader,,
+EXP-0129,sympy,1.14.0,sympy-1.14.0\sympy\core\numbers.py,AlgebraicNumber,MEDIUM,method minpoly_of_element() (line 2697): mutates self.{_own_minpoly} and returns a value derived from self state,"2227: # Add sympify converters
+2228: _sympy_converter[int] = Integer
+2229:
+2230:
+2231: class AlgebraicNumber(Expr):
+2232:     r""""""
+2233:     Class for representing algebraic numbers in SymPy.
+2234:
+2235:     Symbolically, an instance of this class represents an element",state_mutating_reader,,
+EXP-0130,prompt-toolkit,3.0.52,prompt_toolkit-3.0.52\src\prompt_toolkit\buffer.py,Buffer,MEDIUM,method _set_cursor_position() (line 444): mutates self.{__cursor_position} and returns a value derived from self state,"151: BufferEventHandler = Callable[[""Buffer""], None]
+152: BufferAcceptHandler = Callable[[""Buffer""], bool]
+153:
+154:
+155: class Buffer:
+156:     """"""
+157:     The core data structure that holds the text and cursor position of the
+158:     current input line and implements all text manipulations on top of it. It
+159:     also implements the history, undo stack and the completion state.",state_mutating_reader,,
+EXP-0131,hypothesis,6.155.7,hypothesis-6.155.7\src\hypothesis\strategies\_internal\strategies.py,FilteredStrategy,MEDIUM,method __repr__() (line 1167): mutates self.{_cached_repr} and returns a value derived from self state,"1137:
+1138: filter_not_satisfied = UniqueIdentifier(""filter not satisfied"")
+1139:
+1140:
+1141: class FilteredStrategy(SearchStrategy[Ex]):
+1142:     def __init__(
+1143:         self, strategy: SearchStrategy[Ex], conditions: tuple[Callable[[Ex], Any], ...]
+1144:     ):
+1145:         super().__init__()",cache_or_memoization,,
+EXP-0132,ipython,9.15.0,ipython-9.15.0\IPython\core\completer.py,Completer,MEDIUM,"method complete() (line 1108): mutates self.{matches,namespace} and returns a value derived from self state","953:         cut_line = line if cursor_pos is None else line[:cursor_pos]
+954:         return self._delim_re.split(cut_line)[-1]
+955:
+956:
+957: class Completer(Configurable):
+958:
+959:     greedy = Bool(
+960:         False,
+961:         help=""""""Activate greedy completion.",state_mutating_reader,,
+EXP-0133,cffi,2.0.0,cffi\backend_ctypes.py,CTypesFunctionPtr,MEDIUM,"method __init__() (line 861): mutates self.{_address,_as_ctype_ptr,_own_callback} and returns a value derived from self state","850:         if has_varargs:
+851:             nameargs.append('...')
+852:         nameargs = ', '.join(nameargs)
+853:         #
+854:         class CTypesFunctionPtr(CTypesGenericPtr):
+855:             __slots__ = ['_own_callback', '_name']
+856:             _ctype = ctypes.CFUNCTYPE(getattr(BResult, '_ctype', None),
+857:                                       *[BArg._ctype for BArg in BArgs],
+858:                                       use_errno=True)",state_mutating_reader,,
+EXP-0134,sympy,1.14.0,sympy-1.14.0\sympy\solvers\ode\single.py,Liouville,MEDIUM,"method _verify() (line 1182): mutates self.{g,h,y} and returns a value derived from self state","1103:         lhs = Integral(1/sqrt(inside), (u, fx))
+1104:         return [Eq(lhs, C2 + x), Eq(lhs, C2 - x)]
+1105:
+1106:
+1107: class Liouville(SinglePatternODESolver):
+1108:     r""""""
+1109:     Solves 2nd order Liouville differential equations.
+1110:
+1111:     The general form of a Liouville ODE is",state_mutating_reader,,
+EXP-0135,rich,15.0.0,rich-15.0.0\rich\ansi.py,AnsiDecoder,MEDIUM,method decode_line() (line 138): mutates self.{style} and returns a value derived from self state,"116:     107: ""on color(15)"",
+117: }
+118:
+119:
+120: class AnsiDecoder:
+121:     """"""Translate ANSI code in to styled Text.""""""
+122:
+123:     def __init__(self) -> None:
+124:         self.style = Style.null()",state_mutating_reader,,
+EXP-0136,fastapi,0.139.0,fastapi-0.139.0\scripts\people.py,RateLimiter,MEDIUM,method __enter__() (line 35): mutates self.{last_request_start_time} and returns a value derived from self state,"23:
+24: MINIMIZED_COMMENTS_REASONS_TO_EXCLUDE = {""abuse"", ""off-topic"", ""duplicate"", ""spam""}
+25:
+26:
+27: class RateLimiter:
+28:     def __init__(self) -> None:
+29:         self.last_query_cost: int = 1
+30:         self.remaining_points: int = 5000
+31:         self.reset_at: datetime = datetime.fromtimestamp(0, timezone.utc)",context_manager_bookkeeping,,
+EXP-0137,httpcore,1.0.9,httpcore-1.0.9\httpcore\_sync\http_proxy.py,TunnelHTTPConnection,MEDIUM,"method handle_request() (line 265): mutates self.{_connected,_connection} and returns a value derived from self state","229:     def __repr__(self) -> str:
+230:         return f""<{self.__class__.__name__} [{self.info()}]>""
+231:
+232:
+233: class TunnelHTTPConnection(ConnectionInterface):
+234:     def __init__(
+235:         self,
+236:         proxy_origin: Origin,
+237:         remote_origin: Origin,",state_mutating_reader,,
+EXP-0138,sympy,1.14.0,sympy-1.14.0\sympy\combinatorics\subsets.py,Subset,MEDIUM,method rank_binary() (line 295): mutates self.{_rank_binary} and returns a value derived from self state,"2:
+3: from sympy.combinatorics.graycode import GrayCode
+4:
+5:
+6: class Subset():
+7:     """"""
+8:     Represents a basic subset object.
+9:
+10:     Explanation",state_mutating_reader,,
+EXP-0139,ipython,9.15.0,ipython-9.15.0\IPython\extensions\deduperreload\deduperreload.py,ConstexprDetector,MEDIUM,method __call__() (line 142): mutates self.{is_constexpr} and returns a value derived from self state,"109:         self.classes.update(other.classes)
+110:         self.unfixable.extend(other.unfixable)
+111:
+112:
+113: class ConstexprDetector(ast.NodeVisitor):
+114:     def __init__(self) -> None:
+115:         self.is_constexpr = True
+116:         self._allow_builtins_exceptions = True
+117:",state_mutating_reader,,
+EXP-0140,virtualenv,21.5.1,virtualenv-21.5.1\src\virtualenv\create\via_global_ref\builtin\ref.py,PathRef,MEDIUM,method can_read() (line 62): mutates self.{_can_read} and returns a value derived from self state,"36:     COPY = ""copy""
+37:     SYMLINK = ""symlink""
+38:
+39:
+40: class PathRef(ABC):
+41:     """"""Base class that checks if a file reference can be symlink/copied.""""""
+42:
+43:     FS_SUPPORTS_SYMLINK = fs_supports_symlink()
+44:     FS_CASE_SENSITIVE = fs_is_case_sensitive()",state_mutating_reader,,
+EXP-0141,ipython,9.15.0,ipython-9.15.0\IPython\utils\text.py,LSString,MEDIUM,method get_list() (line 54): mutates self.{__list} and returns a value derived from self state,"30:
+31: from typing import Self
+32:
+33:
+34: class LSString(str):
+35:     """"""String derivative with a special access attributes.
+36:
+37:     These are normal strings, but with the special attributes:
+38:",state_mutating_reader,,
+EXP-0142,jedi,0.20.0,jedi-0.20.0\jedi\inference\compiled\value.py,CheckAttribute,MEDIUM,"method __call__() (line 31): mutates self.{check_name,func} and returns a value derived from self state","21: from jedi.inference.signature import BuiltinSignature
+22: from jedi.inference.context import CompiledContext, CompiledModuleContext
+23:
+24:
+25: class CheckAttribute:
+26:     """"""Raises :exc:`AttributeError` if the attribute X is not available.""""""
+27:     def __init__(self, check_name=None):
+28:         # Remove the py in front of e.g. py__call__.
+29:         self.check_name = check_name",state_mutating_reader,,
+EXP-0143,pycparser,3.0,pycparser-3.0\pycparser\c_parser.py,_TokenStream,MEDIUM,method next() (line 2326): mutates self.{_index} and returns a value derived from self state,"2299:     ""SEMI"",
+2300: }
+2301:
+2302:
+2303: class _TokenStream:
+2304:     """"""Wraps a lexer to provide convenient, buffered access to the underlying
+2305:     token stream. The lexer is expected to be initialized with the input
+2306:     string already.
+2307:     """"""",state_mutating_reader,,
+EXP-0144,coverage,7.15.0,coverage-7.15.0\coverage\tomlconfig.py,TomlConfigParser,MEDIUM,method read() (line 49): mutates self.{data} and returns a value derived from self state,"34:
+35: TWant = TypeVar(""TWant"")
+36:
+37:
+38: class TomlConfigParser:
+39:     """"""TOML file reading with the interface of HandyConfigParser.""""""
+40:
+41:     # This class has the same interface as config.HandyConfigParser, no
+42:     # need for docstrings.",state_mutating_reader,,
+EXP-0145,sympy,1.14.0,sympy-1.14.0\sympy\polys\domains\algebraicfield.py,AlgebraicField,MEDIUM,method to_sympy() (line 351): mutates self.{_converter} and returns a value derived from self state,"12: from sympy.polys.polyerrors import CoercionFailed, DomainError, NotAlgebraic, IsomorphismFailed
+13: from sympy.utilities import public
+14:
+15: @public
+16: class AlgebraicField(Field, CharacteristicZero, SimpleDomain):
+17:     r""""""Algebraic number field :ref:`QQ(a)`
+18:
+19:     A :ref:`QQ(a)` domain represents an `algebraic number field`_
+20:     `\mathbb{Q}(a)` as a :py:class:`~.Domain` in the domain system (see",state_mutating_reader,,
+EXP-0146,ipython,9.15.0,ipython-9.15.0\IPython\terminal\interactiveshell.py,TerminalInteractiveShell,MEDIUM,method _set_autosuggestions() (line 499): mutates self.{auto_suggest} and returns a value derived from self state,"203:
+204:     def store_string(self, string: str) -> None:
+205:         pass
+206:
+207: class TerminalInteractiveShell(InteractiveShell):
+208:     mime_renderers = Dict().tag(config=True)
+209:
+210:     min_elide = Integer(
+211:         30, help=""minimum characters for filling with ellipsis in file completions""",state_mutating_reader,,
+EXP-0147,networkx,3.6.1,networkx-3.6.1\networkx\readwrite\gexf.py,GEXFReader,MEDIUM,method __call__() (line 717): mutates self.{xml} and returns a value derived from self state,"703:             if level and (not elem.tail or not elem.tail.strip()):
+704:                 elem.tail = i
+705:
+706:
+707: class GEXFReader(GEXF):
+708:     # Class to read GEXF format files
+709:     # use read_gexf() function
+710:     def __init__(self, node_type=None, version=""1.2draft""):
+711:         self.construct_types()",state_mutating_reader,,
+EXP-0148,sympy,1.14.0,sympy-1.14.0\sympy\parsing\sym_expr.py,SymPyExpression,MEDIUM,method convert_to_python() (line 176): mutates self.{_pycode} and returns a value derived from self state,"10: if cin:
+11:     from sympy.parsing.c.c_parser import parse_c
+12:
+13: @doctest_depends_on(modules=['lfortran', 'clang.cindex'])
+14: class SymPyExpression:  # type: ignore
+15:     """"""Class to store and handle SymPy expressions
+16:
+17:     This class will hold SymPy Expressions and handle the API for the
+18:     conversion to and from different languages.",state_mutating_reader,,
+EXP-0149,sympy,1.14.0,sympy-1.14.0\sympy\solvers\ode\single.py,NthLinearConstantCoeffVariationOfParameters,MEDIUM,method _matches() (line 2264): mutates self.{r} and returns a value derived from self state,"2188:
+2189:         return [gsol]
+2190:
+2191:
+2192: class NthLinearConstantCoeffVariationOfParameters(SingleODESolver):
+2193:     r""""""
+2194:     Solves an `n`\th order linear differential equation with constant
+2195:     coefficients using the method of variation of parameters.
+2196:",state_mutating_reader,,
+EXP-0150,coverage,7.15.0,coverage-7.15.0\coverage\inorout.py,InOrOut,MEDIUM,method should_trace() (line 343): mutates self.{last_sys_path} and returns a value derived from self state,"195:         describe = ""not a venv""
+196:     return f""{d!r} ({describe})""
+197:
+198:
+199: class InOrOut:
+200:     """"""Machinery for determining what files to measure.""""""
+201:
+202:     def __init__(
+203:         self,",state_mutating_reader,,
+EXP-0151,sympy,1.14.0,sympy-1.14.0\sympy\stats\crv_types.py,FDistributionDistribution,SAFE,,"1577: #-------------------------------------------------------------------------------
+1578: # F distribution ---------------------------------------------------------------
+1579:
+1580:
+1581: class FDistributionDistribution(SingleContinuousDistribution):
+1582:     _argnames = ('d1', 'd2')
+1583:
+1584:     set = Interval(0, oo)
+1585:",other,,
+EXP-0152,sympy,1.14.0,sympy-1.14.0\sympy\integrals\manualintegrate.py,Sec2Rule,SAFE,,"237:         return -csc(self.variable)
+238:
+239:
+240: @dataclass
+241: class Sec2Rule(TrigRule):
+242:     """"""integrate(sec(x)**2, x) -> tan(x)""""""
+243:     def eval(self) -> Expr:
+244:         return tan(self.variable)
+245:",other,,
+EXP-0153,sympy,1.14.0,sympy-1.14.0\sympy\vector\orienters.py,AxisOrienter,SAFE,line 91: multiplicative chain repeats base(s) {'axis': 2},"20:         """"""
+21:         return self._parent_orient
+22:
+23:
+24: class AxisOrienter(Orienter):
+25:     """"""
+26:     Class to denote an axis orienter.
+27:     """"""
+28:",other,,
+EXP-0154,sympy,1.14.0,sympy-1.14.0\sympy\polys\polyerrors.py,ModularGCDFailed,SAFE,,"67: @public
+68: class HeuristicGCDFailed(BasePolynomialError):
+69:     pass
+70:
+71: class ModularGCDFailed(BasePolynomialError):
+72:     pass
+73:
+74: @public
+75: class HomomorphismFailed(BasePolynomialError):",other,,
+EXP-0155,sympy,1.14.0,sympy-1.14.0\sympy\functions\elementary\trigonometric.py,TrigonometricFunction,SAFE,,"41: ########################## TRIGONOMETRIC FUNCTIONS ############################
+42: ###############################################################################
+43:
+44:
+45: class TrigonometricFunction(DefinedFunction):
+46:     """"""Base class for trigonometric functions. """"""
+47:
+48:     unbranched = True
+49:     _singularities = (S.ComplexInfinity,)",other,,
+EXP-0156,cryptography,49.0.0,cryptography\x509\extensions.py,PolicyInformation,SAFE,,"844:     def public_bytes(self) -> bytes:
+845:         return rust_x509.encode_extension_value(self)
+846:
+847:
+848: class PolicyInformation:
+849:     def __init__(
+850:         self,
+851:         policy_identifier: ObjectIdentifier,
+852:         policy_qualifiers: Iterable[str | UserNotice] | None,",other,,
+EXP-0157,sympy,1.14.0,sympy-1.14.0\sympy\matrices\expressions\factorizations.py,UofSVD,SAFE,,"34:     @property
+35:     def predicates(self):
+36:         return (Q.diagonal,)
+37:
+38: class UofSVD(Factorization):
+39:     @property
+40:     def predicates(self):
+41:         return (Q.orthogonal,)
+42: class SofSVD(Factorization):",other,,
+EXP-0158,fastapi,0.139.0,fastapi-0.139.0\docs_src\server_sent_events\tutorial004_py310.py,Item,SAFE,,"7:
+8: app = FastAPI()
+9:
+10:
+11: class Item(BaseModel):
+12:     name: str
+13:     price: float
+14:
+15:",other,,
+EXP-0159,hypothesis,6.155.7,hypothesis-6.155.7\src\hypothesis\extra\django\_impl.py,SimpleTestCase,SAFE,,"40:         else:
+41:             return dt.SimpleTestCase.__call__(self, result)
+42:
+43:
+44: class SimpleTestCase(HypothesisTestCase, dt.SimpleTestCase):
+45:     pass
+46:
+47:
+48: class TestCase(HypothesisTestCase, dt.TestCase):",other,,
+EXP-0160,ipython,9.15.0,ipython-9.15.0\IPython\utils\PyColorize.py,MyStyle,SAFE,,"63:             base_styles = get_style_by_name(self.base).styles
+64:         else:
+65:             base_styles = {}
+66:
+67:         class MyStyle(Style):
+68:             styles = {**base_styles, **self.extra_style}
+69:
+70:         return MyStyle
+71:",other,,
+EXP-0161,fastapi,0.139.0,fastapi-0.139.0\docs_src\body_nested_models\tutorial007_py310.py,Image,SAFE,,"3:
+4: app = FastAPI()
+5:
+6:
+7: class Image(BaseModel):
+8:     url: HttpUrl
+9:     name: str
+10:
+11:",other,,
+EXP-0162,pydantic,2.13.4,pydantic-2.13.4\pydantic\v1\errors.py,InvalidLengthForBrand,SAFE,,"612:     code = 'payment_card_number.luhn_check'
+613:     msg_template = 'card number is not luhn valid'
+614:
+615:
+616: class InvalidLengthForBrand(PydanticValueError):
+617:     code = 'payment_card_number.invalid_length_for_brand'
+618:     msg_template = 'Length for a {brand} card must be {required_length}'
+619:
+620:",other,,
+EXP-0163,sympy,1.14.0,sympy-1.14.0\sympy\logic\algorithms\lra_theory.py,LRARational,SAFE,,"849:     def __hash__(self):
+850:         return hash((self.var, self.bound, self.strict, self.upper, self.equality))
+851:
+852:
+853: class LRARational():
+854:     """"""
+855:     Represents a rational plus or minus some amount
+856:     of arbitrary small deltas.
+857:     """"""",other,,
+EXP-0164,stack-data,0.6.3,stack_data-0.6.3\stack_data\core.py,BlankLineRange,SAFE,,"229:
+230: LINE_GAP = LineGap()
+231:
+232:
+233: class BlankLineRange:
+234:     """"""
+235:     Records the line number range for blank lines gaps between pieces.
+236:     For a single blank line, begin_lineno == end_lineno.
+237:     """"""",other,,
+EXP-0165,sympy,1.14.0,sympy-1.14.0\sympy\functions\special\polynomials.py,OrthogonalPolynomial,SAFE,,"24:
+25: _x = Dummy('x')
+26:
+27:
+28: class OrthogonalPolynomial(DefinedFunction):
+29:     """"""Base class for orthogonal polynomials.
+30:     """"""
+31:
+32:     @classmethod",other,,
+EXP-0166,PyYAML,6.0.3,yaml\events.py,MappingStartEvent,SAFE,,"77:
+78: class SequenceEndEvent(CollectionEndEvent):
+79:     pass
+80:
+81: class MappingStartEvent(CollectionStartEvent):
+82:     pass
+83:
+84: class MappingEndEvent(CollectionEndEvent):
+85:     pass",other,,
+EXP-0167,hypothesis,6.155.7,hypothesis-6.155.7\src\hypothesis\extra\codemods.py,HypothesisFixPositionalKeywonlyArgs,SAFE,,"110:     mod, fn = import_path.rsplit(""."", 1)
+111:     return getattr(importlib.import_module(mod), fn)
+112:
+113:
+114: class HypothesisFixPositionalKeywonlyArgs(VisitorBasedCodemodCommand):
+115:     """"""Fix positional arguments for newly keyword-only parameters, e.g.::
+116:
+117:         st.fractions(0, 1, 9) -> st.fractions(0, 1, max_denominator=9)
+118:",other,,
+EXP-0168,fastapi,0.139.0,fastapi-0.139.0\docs_src\body_multiple_params\tutorial004_an_py310.py,User,SAFE,,"12:     price: float
+13:     tax: float | None = None
+14:
+15:
+16: class User(BaseModel):
+17:     username: str
+18:     full_name: str | None = None
+19:
+20:",other,,
+EXP-0169,cryptography,49.0.0,cryptography\x509\ocsp.py,OCSPRequestBuilder,SAFE,,"114: OCSPResponse = ocsp.OCSPResponse
+115: OCSPSingleResponse = ocsp.OCSPSingleResponse
+116:
+117:
+118: class OCSPRequestBuilder:
+119:     def __init__(
+120:         self,
+121:         request: tuple[
+122:             x509.Certificate, x509.Certificate, hashes.HashAlgorithm",builder_or_fluent_mutator,,
+EXP-0170,sympy,1.14.0,sympy-1.14.0\sympy\sets\sets.py,UniversalSet,SAFE,,"1889:     def _symmetric_difference(self, other):
+1890:         return other
+1891:
+1892:
+1893: class UniversalSet(Set, metaclass=Singleton):
+1894:     """"""
+1895:     Represents the set of all things.
+1896:     The universal set is available as a singleton as ``S.UniversalSet``.
+1897:",other,,
+EXP-0171,networkx,3.6.1,networkx-3.6.1\networkx\algorithms\coloring\greedy_coloring.py,_Node,SAFE,,"375:     return colors
+376:
+377:
+378: # Tools for coloring with interchanges
+379: class _Node:
+380:     __slots__ = [""node_id"", ""color"", ""adj_list"", ""adj_color""]
+381:
+382:     def __init__(self, node_id, n):
+383:         self.node_id = node_id",other,,
+EXP-0172,pytest,9.1.1,pytest-9.1.1\src\_pytest\cacheprovider.py,NFPlugin,SAFE,,"422:         if saved_lastfailed != self.lastfailed:
+423:             config.cache.set(""cache/lastfailed"", self.lastfailed)
+424:
+425:
+426: class NFPlugin:
+427:     """"""Plugin which implements the --nf (run new-first) option.""""""
+428:
+429:     def __init__(self, config: Config) -> None:
+430:         self.config = config",other,,
+EXP-0173,sympy,1.14.0,sympy-1.14.0\sympy\polys\matrices\exceptions.py,DMNonSquareMatrixError,SAFE,,"49:     """"""shapes are inconsistent""""""
+50:     pass
+51:
+52:
+53: class DMNonSquareMatrixError(DMShapeError):
+54:     """"""The matrix is not square""""""
+55:     pass
+56:
+57:",other,,
+EXP-0174,networkx,3.6.1,networkx-3.6.1\networkx\algorithms\isomorphism\temporalisomorphvf2.py,TimeRespectingDiGraphMatcher,SAFE,,"140:         # Otherwise, this node is semantically feasible!
+141:         return True
+142:
+143:
+144: class TimeRespectingDiGraphMatcher(DiGraphMatcher):
+145:     def __init__(self, G1, G2, temporal_attribute_name, delta):
+146:         """"""Initialize TimeRespectingDiGraphMatcher.
+147:
+148:         G1 and G2 should be nx.DiGraph or nx.MultiDiGraph instances.",other,,
+EXP-0175,isort,8.0.1,isort-8.0.1\isort\io.py,_EmptyIO,SAFE,,"64:             if stream is not None:
+65:                 stream.close()
+66:
+67:
+68: class _EmptyIO(StringIO):
+69:     def write(self, *args: Any, **kwargs: Any) -> None:  # type: ignore # skipcq: PTC-W0049
+70:         pass
+71:
+72:",other,,
+EXP-0176,prompt-toolkit,3.0.52,prompt_toolkit-3.0.52\src\prompt_toolkit\completion\filesystem.py,ExecutableCompleter,SAFE,,"102:         except OSError:
+103:             pass
+104:
+105:
+106: class ExecutableCompleter(PathCompleter):
+107:     """"""
+108:     Complete only executable files in the current path.
+109:     """"""
+110:",other,,
+EXP-0177,fastapi,0.139.0,fastapi-0.139.0\fastapi\sse.py,ServerSentEvent,SAFE,,"48:         raise ValueError(""SSE 'id' must not contain null characters"")
+49:     return _check_single_line(v, ""id"")
+50:
+51:
+52: class ServerSentEvent(BaseModel):
+53:     """"""Represents a single Server-Sent Event.
+54:
+55:     When `yield`ed from a *path operation function* that uses
+56:     `response_class=EventSourceResponse`, each `ServerSentEvent` is encoded",other,,
+EXP-0178,traitlets,5.15.1,traitlets-5.15.1\traitlets\config\configurable.py,SingletonConfigurable,SAFE,,"513:
+514: CT = t.TypeVar(""CT"", bound=""SingletonConfigurable"")
+515:
+516:
+517: class SingletonConfigurable(LoggingConfigurable):
+518:     """"""A configurable that only allows one instance.
+519:
+520:     This class is for classes that should only have one instance of itself
+521:     or *any* subclass. To create and retrieve such a class use the",other,,
+EXP-0179,PyYAML,6.0.3,yaml\representer.py,SafeRepresenter,SAFE,line 168: multiplicative chain repeats base(s) {'inf_value': 2},"130:
+131:     def ignore_aliases(self, data):
+132:         return False
+133:
+134: class SafeRepresenter(BaseRepresenter):
+135:
+136:     def ignore_aliases(self, data):
+137:         if data is None:
+138:             return True",other,,
+EXP-0180,sympy,1.14.0,sympy-1.14.0\sympy\utilities\codegen.py,JuliaCodeGen,SAFE,,"1300:     # functions it has to call.
+1301:     dump_fns = [dump_f95, dump_h]
+1302:
+1303:
+1304: class JuliaCodeGen(CodeGen):
+1305:     """"""Generator for Julia code.
+1306:
+1307:     The .write() method inherited from CodeGen will output a code file
+1308:     <prefix>.jl.",other,,
+EXP-0181,pytest,9.1.1,pytest-9.1.1\src\_pytest\runner.py,SetupState,SAFE,,"435:     rep.call = call  # type: ignore # see collect_one_node
+436:     return rep
+437:
+438:
+439: class SetupState:
+440:     """"""Shared state for setting up/tearing down test items or collectors
+441:     in a session.
+442:
+443:     Suppose we have a collection tree as follows:",other,,
+EXP-0182,fastapi,0.139.0,fastapi-0.139.0\docs_src\security\tutorial004_an_py310.py,TokenData,SAFE,,"30:     access_token: str
+31:     token_type: str
+32:
+33:
+34: class TokenData(BaseModel):
+35:     username: str | None = None
+36:
+37:
+38: class User(BaseModel):",other,,
+EXP-0183,jedi,0.20.0,jedi-0.20.0\jedi\api\classes.py,ParamName,SAFE,,"856:             self._signature.to_string(),
+857:         )
+858:
+859:
+860: class ParamName(Name):
+861:     def infer_default(self):
+862:         """"""
+863:         Returns default values like the ``1`` of ``def foo(x=1):``.
+864:",other,,
+EXP-0184,ipython,9.15.0,ipython-9.15.0\IPython\core\autocall.py,ExitAutocall,SAFE,,"47:         """"""
+48:         self._ip = ip
+49:
+50:
+51: class ExitAutocall(IPyAutocall):
+52:     """"""An autocallable object which will be added to the user namespace so that
+53:     exit, exit(), quit or quit() are all valid ways to close the shell.""""""
+54:     rewrite = False
+55:",other,,
+EXP-0185,sympy,1.14.0,sympy-1.14.0\sympy\logic\algorithms\dpll2.py,Level,SAFE,,"675:         """"""Clean up learned clauses.""""""
+676:         pass
+677:
+678:
+679: class Level:
+680:     """"""
+681:     Represents a single level in the DPLL algorithm, and contains
+682:     enough information for a sound backtracking procedure.
+683:     """"""",other,,
+EXP-0186,rich,15.0.0,rich-15.0.0\rich\pretty.py,Thing,SAFE,,"1008:     from rich import print
+1009:
+1010:     print(Pretty(data, indent_guides=True, max_string=20))
+1011:
+1012:     class Thing:
+1013:         def __repr__(self) -> str:
+1014:             return ""Hello\x1b[38;5;239m World!""
+1015:
+1016:     print(Pretty(Thing()))",other,,
+EXP-0187,ipython,9.15.0,ipython-9.15.0\IPython\core\formatters.py,DisplayFormatter,SAFE,,"86:
+87: from typing import Any
+88:
+89:
+90: class DisplayFormatter(Configurable):
+91:
+92:     active_types = List(Unicode(),
+93:         help=""""""List of currently active mime-types to display.
+94:         You can use this to set a white-list for formats to display.",other,,
+EXP-0188,sympy,1.14.0,sympy-1.14.0\sympy\codegen\abstract_nodes.py,List,SAFE,,"5:
+6: from sympy.core.containers import Tuple
+7:
+8:
+9: class List(Tuple):
+10:     """"""Represents a (frozen) (Python) list (for code printing purposes).""""""
+11:     def __eq__(self, other):
+12:         if isinstance(other, list):
+13:             return self == List(*other)",other,,
+EXP-0189,traitlets,5.15.1,traitlets-5.15.1\traitlets\config\loader.py,ConfigFileNotFound,SAFE,,"30: class ConfigLoaderError(ConfigError):
+31:     pass
+32:
+33:
+34: class ConfigFileNotFound(ConfigError):
+35:     pass
+36:
+37:
+38: class ArgumentError(ConfigLoaderError):",other,,
+EXP-0190,fastapi,0.139.0,fastapi-0.139.0\fastapi\security\http.py,HTTPBasicCredentials,SAFE,,"12: from starlette.requests import Request
+13: from starlette.status import HTTP_401_UNAUTHORIZED
+14:
+15:
+16: class HTTPBasicCredentials(BaseModel):
+17:     """"""
+18:     The HTTP Basic credentials given as the result of using `HTTPBasic` in a
+19:     dependency.
+20:",other,,
+EXP-0191,fastapi,0.139.0,fastapi-0.139.0\fastapi\openapi\models.py,Response,SAFE,,"278:     description: str | None = None
+279:     server: Server | None = None
+280:
+281:
+282: class Response(BaseModelWithConfig):
+283:     description: str
+284:     headers: dict[str, Header | Reference] | None = None
+285:     content: dict[str, MediaType] | None = None
+286:     links: dict[str, Link | Reference] | None = None",other,,
+EXP-0192,ipython,9.15.0,ipython-9.15.0\IPython\core\magics\code.py,InteractivelyDefined,SAFE,,"167:     for line in it:
+168:         yield line
+169:
+170:
+171: class InteractivelyDefined(Exception):
+172:     """"""Exception for interactively defined variable in magic_edit""""""
+173:     def __init__(self, index):
+174:         self.index = index
+175:",other,,
+EXP-0193,sympy,1.14.0,sympy-1.14.0\sympy\core\numbers.py,Catalan,SAFE,,"4016:         elif issubclass(number_cls, Rational):
+4017:             return (S.Half, Rational(3, 5, 1))
+4018:
+4019:
+4020: class Catalan(NumberSymbol, metaclass=Singleton):
+4021:     r""""""Catalan's constant.
+4022:
+4023:     Explanation
+4024:     ===========",other,,
+EXP-0194,python-dateutil,2.9.0.post0,python-dateutil-2.9.0.post0\src\dateutil\tz\win.py,tzwin,SAFE,,"198:     def _dst_base_offset(self):
+199:         return self._dst_base_offset_
+200:
+201:
+202: class tzwin(tzwinbase):
+203:     """"""
+204:     Time zone object created from the zone info in the Windows registry
+205:
+206:     These are similar to :py:class:`dateutil.tz.tzrange` objects in that",other,,
+EXP-0195,sympy,1.14.0,sympy-1.14.0\sympy\assumptions\relation\equality.py,GreaterThanPredicate,SAFE,,"157:             assumptions = None
+158:         return is_gt(*args, assumptions)
+159:
+160:
+161: class GreaterThanPredicate(BinaryRelation):
+162:     """"""
+163:     Binary predicate for $>=$.
+164:
+165:     The purpose of this class is to provide the instance which represent",other,,
+EXP-0196,prompt-toolkit,3.0.52,prompt_toolkit-3.0.52\src\prompt_toolkit\utils.py,Event,SAFE,,"41:
+42: _Sender = TypeVar(""_Sender"", covariant=True)
+43:
+44:
+45: class Event(Generic[_Sender]):
+46:     """"""
+47:     Simple event to which event handlers can be attached. For instance::
+48:
+49:         class Cls:",other,,
+EXP-0197,sympy,1.14.0,sympy-1.14.0\sympy\polys\matrices\_dfm.py,DFM,SAFE,,"66: __all__ = ['DFM']
+67:
+68:
+69: @doctest_depends_on(ground_types=['flint'])
+70: class DFM:
+71:     """"""
+72:     Dense FLINT matrix. This class is a wrapper for matrices from python-flint.
+73:
+74:     >>> from sympy.polys.domains import ZZ",other,,
+EXP-0198,pydantic,2.13.4,pydantic-2.13.4\pydantic\_internal\_utils.py,SafeGetItemProxy,SAFE,,"377:     return a if a is not None else b
+378:
+379:
+380: @dataclasses.dataclass(frozen=True)
+381: class SafeGetItemProxy:
+382:     """"""Wrapper redirecting `__getitem__` to `get` with a sentinel value as default
+383:
+384:     This makes is safe to use in `operator.itemgetter` when some keys may be missing
+385:     """"""",other,,
+EXP-0199,cryptography,49.0.0,cryptography\hazmat\primitives\asymmetric\mldsa.py,MLDSA65PrivateKey,SAFE,,"253: if hasattr(rust_openssl, ""mldsa""):
+254:     MLDSA65PublicKey.register(rust_openssl.mldsa.MLDSA65PublicKey)
+255:
+256:
+257: class MLDSA65PrivateKey(metaclass=abc.ABCMeta):
+258:     @classmethod
+259:     def generate(cls) -> MLDSA65PrivateKey:
+260:         from cryptography.hazmat.backends.openssl.backend import backend
+261:",other,,
+EXP-0200,networkx,3.6.1,networkx-3.6.1\networkx\readwrite\graphml.py,GraphMLWriter,SAFE,,"459:                 f""GraphML does not support type {key} as data values.""
+460:             ) from err
+461:
+462:
+463: class GraphMLWriter(GraphML):
+464:     def __init__(
+465:         self,
+466:         graph=None,
+467:         encoding=""utf-8"",",other,,
+EXP-0201,jedi,0.20.0,jedi-0.20.0\jedi\inference\context.py,ModuleContext,SAFE,,"314:             origin_scope=origin_scope
+315:         )
+316:
+317:
+318: class ModuleContext(TreeContextMixin, ValueContext):
+319:     def py__file__(self) -> Optional[Path]:
+320:         return self._value.py__file__()  # type: ignore[no-any-return]
+321:
+322:     def get_filters(self, until_position=None, origin_scope=None):",context_manager_bookkeeping,,
+EXP-0202,sympy,1.14.0,sympy-1.14.0\sympy\geometry\line.py,Ray,SAFE,,"1339:         t = _symbol(parameter, real=True)
+1340:         return [t, -5, 5]
+1341:
+1342:
+1343: class Ray(LinearEntity):
+1344:     """"""A Ray is a semi-line in the space with a source point and a direction.
+1345:
+1346:     Parameters
+1347:     ==========",other,,
+EXP-0203,sympy,1.14.0,sympy-1.14.0\sympy\utilities\matchpy_connector.py,_WildAbstract,SAFE,,"120:             self.optional = optional
+121:
+122:
+123: @doctest_depends_on(modules=('matchpy',))
+124: class _WildAbstract(Wildcard, Symbol):
+125:     min_length: int  # abstract field required in subclasses
+126:     fixed_size: bool  # abstract field required in subclasses
+127:
+128:     def __init__(self, variable_name=None, optional=None, **assumptions):",other,,
+EXP-0204,six,1.17.0,six-1.17.0\six.py,metaclass,SAFE,,"862:     """"""Create a base class with a metaclass.""""""
+863:     # This requires a bit of explanation: the basic idea is to make a dummy
+864:     # metaclass for one level of class instantiation that replaces itself with
+865:     # the actual metaclass.
+866:     class metaclass(type):
+867:
+868:         def __new__(cls, name, this_bases, d):
+869:             if sys.version_info[:2] >= (3, 7):
+870:                 # This version introduced PEP 560 that requires a bit",other,,
+EXP-0205,rich,15.0.0,rich-15.0.0\rich\highlighter.py,RegexHighlighter,SAFE,,"57:     def highlight(self, text: Text) -> None:
+58:         """"""Nothing to do""""""
+59:
+60:
+61: class RegexHighlighter(Highlighter):
+62:     """"""Applies highlighting from a list of regular expressions.""""""
+63:
+64:     highlights: ClassVar[Sequence[str]] = []
+65:     base_style: ClassVar[str] = """"",other,,
+EXP-0206,cryptography,49.0.0,cryptography\hazmat\primitives\asymmetric\ec.py,SECP384R1,SAFE,,"222:     key_size = 521
+223:     group_order = 0x1FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFA51868783BF2F966B7FCC0148F709A5D03BB5C9B8899C47AEBB6FB71E91386409  # noqa: E501
+224:
+225:
+226: class SECP384R1(EllipticCurve):
+227:     name = ""secp384r1""
+228:     key_size = 384
+229:     group_order = 0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFC7634D81F4372DDF581A0DB248B0A77AECEC196ACCC52973  # noqa: E501
+230:",other,,
+EXP-0207,sympy,1.14.0,sympy-1.14.0\sympy\codegen\numpy_nodes.py,minimum,SAFE,,"160:     def _eval_rewrite_as_Max(self, *args):
+161:         return Max(*self.args)
+162:
+163:
+164: class minimum(Function):
+165:     """""" Element-wise minimum of array elements.
+166:
+167:     Helper class for use with e.g. numpy.minimum
+168:",other,,
+EXP-0208,parso,0.8.7,parso-0.8.7\parso\python\diff.py,_PositionUpdatingFinished,SAFE,,"229:         return False
+230:     return value in ('if', 'for', 'while', 'try', 'with')
+231:
+232:
+233: class _PositionUpdatingFinished(Exception):
+234:     pass
+235:
+236:
+237: def _update_positions(nodes, line_offset, last_leaf):",other,,
+EXP-0209,fastapi,0.139.0,fastapi-0.139.0\docs_src\encoder\tutorial001_py310.py,Item,SAFE,,"6:
+7: fake_db = {}
+8:
+9:
+10: class Item(BaseModel):
+11:     title: str
+12:     timestamp: datetime
+13:     description: str | None = None
+14:",other,,
+EXP-0210,mpmath,1.4.1,mpmath-1.4.1\mpmath\_interactive.py,_WrapFloats,SAFE,,"27:                             [node.left, node.right], [])
+28:         return self.generic_visit(node)
+29:
+30:
+31: class _WrapFloats(ast.NodeTransformer):
+32:     """"""Wrap float literals by calls to specified type.""""""
+33:     def __init__(self, lines, type):
+34:         super().__init__()
+35:         self.lines = lines",other,,
+EXP-0211,pydantic,2.13.4,pydantic-2.13.4\pydantic\types.py,_AllowAnyJson,SAFE,,"3174:     # Fail by returning the type's actual name
+3175:     return getattr(type_, '__name__', '<no type name>')
+3176:
+3177:
+3178: class _AllowAnyJson:
+3179:     @classmethod
+3180:     def __get_pydantic_core_schema__(cls, source_type: Any, handler: GetCoreSchemaHandler) -> CoreSchema:
+3181:         python_schema = handler(source_type)
+3182:         return core_schema.json_or_python_schema(json_schema=core_schema.any_schema(), python_schema=python_schema)",other,,
+EXP-0212,lxml,6.1.1,lxml\html\diff.py,InsensitiveSequenceMatcher,SAFE,,"947:
+948:
+949: @cython.final
+950: @cython.cclass
+951: class InsensitiveSequenceMatcher(SequenceMatcher):
+952:     """"""
+953:     Acts like SequenceMatcher, but tries not to find very small equal
+954:     blocks amidst large spans of changes
+955:     """"""",other,,
+EXP-0213,rich,15.0.0,rich-15.0.0\rich\style.py,StyleStack,SAFE,,"761:
+762: NULL_STYLE = Style()
+763:
+764:
+765: class StyleStack:
+766:     """"""A stack of styles.""""""
+767:
+768:     __slots__ = [""_stack""]
+769:",other,,
+EXP-0214,virtualenv,21.5.1,virtualenv-21.5.1\src\virtualenv\create\via_global_ref\builtin\graalpy\__init__.py,GraalPyWindows,SAFE,,"81:             return lib_dir / ""libpythonvm.dylib""
+82:         return lib_dir / ""libpythonvm.so""
+83:
+84:
+85: class GraalPyWindows(GraalPy, WindowsSupports):
+86:     @classmethod
+87:     def _native_lib(cls, lib_dir: Path, platform: str) -> Path:  # noqa: ARG003
+88:         return lib_dir / ""pythonvm.dll""
+89:",other,,
+EXP-0215,hypothesis,6.155.7,hypothesis-6.155.7\src\hypothesis\internal\conjecture\data.py,_starts_and_ends,SAFE,,"344:         else:
+345:             self.trail.append(TrailType.STOP_SPAN_NO_DISCARD)
+346:
+347:
+348: class _starts_and_ends(SpanProperty):
+349:     def __init__(self, spans: ""Spans"") -> None:
+350:         super().__init__(spans)
+351:         self.starts = IntList.of_length(len(self.spans))
+352:         self.ends = IntList.of_length(len(self.spans))",other,,
+EXP-0216,prompt-toolkit,3.0.52,prompt_toolkit-3.0.52\src\prompt_toolkit\layout\containers.py,MagicContainer,SAFE,,"151:
+152:
+153: if TYPE_CHECKING:
+154:
+155:     class MagicContainer(Protocol):
+156:         """"""
+157:         Any object that implements ``__pt_container__`` represents a container.
+158:         """"""
+159:",other,,
+EXP-0217,sympy,1.14.0,sympy-1.14.0\sympy\tensor\array\ndim_array.py,ArrayKind,SAFE,,"11: import itertools
+12: from collections.abc import Iterable
+13:
+14:
+15: class ArrayKind(Kind):
+16:     """"""
+17:     Kind for N-dimensional array in SymPy.
+18:
+19:     This kind represents the multidimensional array that algebraic",other,,
+EXP-0218,hypothesis,6.155.7,hypothesis-6.155.7\src\hypothesis\database.py,_EDMeta,SAFE,,"109:     path = cast(StrPathT, path)
+110:     return DirectoryBasedExampleDatabase(path)
+111:
+112:
+113: class _EDMeta(abc.ABCMeta):
+114:     def __call__(self, *args: Any, **kwargs: Any) -> ""ExampleDatabase"":
+115:         if self is ExampleDatabase:
+116:             note_deprecation(
+117:                 ""Creating a database using the abstract ExampleDatabase() class """,other,,
+EXP-0219,sympy,1.14.0,sympy-1.14.0\sympy\physics\vector\vector.py,VectorTypeError,SAFE,,"791:             new_args.append([mat, frame])
+792:         return Vector(new_args)
+793:
+794:
+795: class VectorTypeError(TypeError):
+796:
+797:     def __init__(self, other, want):
+798:         msg = filldedent(""Expected an instance of %s, but received object ""
+799:                          ""'%s' of %s."" % (type(want), other, type(other)))",other,,
+EXP-0220,sympy,1.14.0,sympy-1.14.0\sympy\printing\smtlib.py,SMTLibPrinter,SAFE,,"21: from sympy.assumptions.ask import Q
+22: from sympy.assumptions.relation.equality import StrictGreaterThanPredicate, StrictLessThanPredicate, GreaterThanPredicate, LessThanPredicate, EqualityPredicate
+23:
+24:
+25: class SMTLibPrinter(Printer):
+26:     printmethod = ""_smtlib""
+27:
+28:     # based on dReal, an automated reasoning tool for solving problems that can be encoded as first-order logic formulas over the real numbers.
+29:     # dReal's special strength is in handling problems that involve a wide range of nonlinear real functions.",other,,
+EXP-0221,lxml,6.1.1,lxml\html\__init__.py,InputGetter,SAFE,,"1145:             self.__class__.__name__,
+1146:             self.inputs.form._name())
+1147:
+1148:
+1149: class InputGetter:
+1150:
+1151:     """"""
+1152:     An accessor that represents all the input fields in a form.
+1153:",other,,
+EXP-0222,sympy,1.14.0,sympy-1.14.0\sympy\physics\quantum\innerproduct.py,InnerProduct,SAFE,,"18: # (we use _eval_conjugate) and represent (we can use atoms and subs). Having
+19: # it be an Expr, mean that there are no commutative QExpr subclasses,
+20: # which simplifies the design of everything.
+21:
+22: class InnerProduct(Expr):
+23:     """"""An unevaluated inner product between a Bra and a Ket [1].
+24:
+25:     Parameters
+26:     ==========",other,,
+EXP-0223,black,26.5.1,black-26.5.1\src\black\rusty.py,Ok,SAFE,,"8: T = TypeVar(""T"")
+9: E = TypeVar(""E"", bound=Exception)
+10:
+11:
+12: class Ok(Generic[T]):
+13:     def __init__(self, value: T) -> None:
+14:         self._value = value
+15:
+16:     def ok(self) -> T:",other,,
+EXP-0224,sympy,1.14.0,sympy-1.14.0\sympy\codegen\ast.py,_SizedIntType,SAFE,,"1148:     __slots__ = ()
+1149:     cast_nocheck = lambda self, i: Integer(int(i))
+1150:
+1151:
+1152: class _SizedIntType(IntBaseType):
+1153:     __slots__ = ('nbits',)
+1154:     _fields = Type._fields + __slots__
+1155:
+1156:     _construct_nbits = Integer",other,,
+EXP-0225,sympy,1.14.0,sympy-1.14.0\sympy\polys\polyoptions.py,OptionType,SAFE,,"57:         else:
+58:             raise OptionError(""'%s' must have a boolean value assigned, got %s"" % (cls.option, value))
+59:
+60:
+61: class OptionType(type):
+62:     """"""Base type for all options that does registers options. """"""
+63:
+64:     def __init__(cls, *args, **kwargs):
+65:         @property",other,,
+EXP-0226,sympy,1.14.0,sympy-1.14.0\sympy\physics\quantum\qubit.py,IntQubitState,SAFE,,"283:     def dual_class(self):
+284:         return Qubit
+285:
+286:
+287: class IntQubitState(QubitState):
+288:     """"""A base class for qubits that work with binary representations.""""""
+289:
+290:     @classmethod
+291:     def _eval_args(cls, args, nqubits=None):",other,,
+EXP-0227,python-dateutil,2.9.0.post0,python-dateutil-2.9.0.post0\src\dateutil\tz\tz.py,tzlocal,SAFE,,"197:
+198:     __reduce__ = object.__reduce__
+199:
+200:
+201: class tzlocal(_tzinfo):
+202:     """"""
+203:     A :class:`tzinfo` subclass built around the ``time`` timezone functions.
+204:     """"""
+205:     def __init__(self):",other,,
+EXP-0228,sympy,1.14.0,sympy-1.14.0\sympy\series\gruntz.py,Node,SAFE,,"551:     To do this we assemble the nodes into a tree, and sort them by height.
+552:
+553:     This function builds the tree, rewrites then sorts the nodes.
+554:     """"""
+555:     class Node:
+556:         def __init__(self):
+557:             self.before = []
+558:             self.expr = None
+559:             self.var = None",other,,
+EXP-0229,sympy,1.14.0,sympy-1.14.0\sympy\polys\domains\gmpyintegerring.py,GMPYIntegerRing,SAFE,,"11: from sympy.polys.polyerrors import CoercionFailed
+12: from sympy.utilities import public
+13:
+14: @public
+15: class GMPYIntegerRing(IntegerRing):
+16:     """"""Integer ring based on GMPY's ``mpz`` type.
+17:
+18:     This will be the implementation of :ref:`ZZ` if ``gmpy`` or ``gmpy2`` is
+19:     installed. Elements will be of type ``gmpy.mpz``.",other,,
+EXP-0230,cryptography,49.0.0,cryptography\hazmat\decrepit\ciphers\algorithms.py,TripleDES,SAFE,,"25:     def key_size(self) -> int:
+26:         return len(self.key) * 8
+27:
+28:
+29: class TripleDES(BlockCipherAlgorithm):
+30:     name = ""3DES""
+31:     block_size = 64
+32:     key_sizes = frozenset([64, 128, 192])
+33:",other,,
+EXP-0231,ipython,9.15.0,ipython-9.15.0\IPython\core\display.py,Latex,SAFE,,"473:         else:
+474:             return s
+475:
+476:
+477: class Latex(TextDisplayObject):
+478:
+479:     def _repr_latex_(self):
+480:         return self._data_and_metadata()
+481:",other,,
+EXP-0232,cryptography,49.0.0,cryptography\hazmat\primitives\ciphers\modes.py,CBC,SAFE,,"35: )
+36: from cryptography.hazmat.primitives.ciphers import algorithms
+37:
+38:
+39: class CBC(ModeWithInitializationVector):
+40:     name = ""CBC""
+41:
+42:     def __init__(self, initialization_vector: utils.Buffer):
+43:         utils._check_byteslike(""initialization_vector"", initialization_vector)",other,,
+EXP-0233,cryptography,49.0.0,cryptography\hazmat\primitives\asymmetric\ec.py,SECP192R1,SAFE,,"250:     key_size = 224
+251:     group_order = 0xFFFFFFFFFFFFFFFFFFFFFFFFFFFF16A2E0B8F03E13DD29455C5C2A3D
+252:
+253:
+254: class SECP192R1(EllipticCurve):
+255:     name = ""secp192r1""
+256:     key_size = 192
+257:     group_order = 0xFFFFFFFFFFFFFFFFFFFFFFFF99DEF836146BC9B1B4D22831
+258:",other,,
+EXP-0234,sympy,1.14.0,sympy-1.14.0\sympy\integrals\manualintegrate.py,CiRule,SAFE,,"607:     b: Expr
+608:
+609:
+610: @dataclass
+611: class CiRule(IRule):
+612:     def eval(self) -> Expr:
+613:         a, b, x = self.a, self.b, self.variable
+614:         return cos(b)*Ci(a*x) - sin(b)*Si(a*x)
+615:",other,,
+EXP-0235,fastapi,0.139.0,fastapi-0.139.0\scripts\people.py,DiscussionsComments,SAFE,,"148:     minimizedReason: LowerStr | None = None
+149:     replies: Replies
+150:
+151:
+152: class DiscussionsComments(BaseModel):
+153:     totalCount: int
+154:     nodes: list[DiscussionsCommentsNode]
+155:
+156:",other,,
+EXP-0236,jedi,0.20.0,jedi-0.20.0\jedi\plugins\stdlib.py,PartialSignature,SAFE,,"535:             return ValueSet([self])
+536:         return ValueSet([PartialObject(self._wrapped_value, self._arguments, instance)])
+537:
+538:
+539: class PartialSignature(SignatureWrapper):
+540:     def __init__(self, wrapped_signature, skipped_arg_count, skipped_arg_set):
+541:         super().__init__(wrapped_signature)
+542:         self._skipped_arg_count = skipped_arg_count
+543:         self._skipped_arg_set = skipped_arg_set",other,,
+EXP-0237,sympy,1.14.0,sympy-1.14.0\sympy\physics\quantum\operator.py,Operator,SAFE,,"38: # Operators and outer products
+39: #-----------------------------------------------------------------------------
+40:
+41:
+42: class Operator(QExpr):
+43:     """"""Base class for non-commuting quantum operators.
+44:
+45:     An operator maps between quantum states [1]_. In quantum mechanics,
+46:     observables (including, but not limited to, measured physical values) are",other,,
+EXP-0238,sympy,1.14.0,sympy-1.14.0\sympy\polys\domains\gaussiandomains.py,GaussianIntegerRing,SAFE,,"324:         if K0.ext.args[0] == I:
+325:             return K1.from_sympy(K0.to_sympy(a))
+326:
+327:
+328: class GaussianIntegerRing(GaussianDomain, Ring):
+329:     r""""""Ring of Gaussian integers ``ZZ_I``
+330:
+331:     The :ref:`ZZ_I` domain represents the `Gaussian integers`_ `\mathbb{Z}[i]`
+332:     as a :py:class:`~.Domain` in the domain system (see",other,,
+EXP-0239,sympy,1.14.0,sympy-1.14.0\sympy\polys\rootoftools.py,_pure_key_dict,SAFE,,"34: __all__ = ['CRootOf']
+35:
+36:
+37:
+38: class _pure_key_dict:
+39:     """"""A minimal dictionary that makes sure that the key is a
+40:     univariate PurePoly instance.
+41:
+42:     Examples",other,,
+EXP-0240,cffi,2.0.0,cffi\setuptools_ext.py,build_ext_make_mod,SAFE,,"146:         dist.ext_modules = []
+147:     dist.ext_modules.append(ext)
+148:
+149:     base_class = dist.cmdclass.get('build_ext', build_ext)
+150:     class build_ext_make_mod(base_class):
+151:         def run(self):
+152:             if ext.sources[0] == '$PLACEHOLDER':
+153:                 pre_run = getattr(self, 'pre_run', None)
+154:                 ext.sources[0] = make_mod(self.build_temp, pre_run)",other,,
+EXP-0241,coverage,7.15.0,coverage-7.15.0\coverage\files.py,GlobMatcher,SAFE,,"312:
+313:         return False
+314:
+315:
+316: class GlobMatcher(Matcher):
+317:     """"""A matcher for files by file name pattern.""""""
+318:
+319:     def __init__(
+320:         self,",other,,
+EXP-0242,fastapi,0.139.0,fastapi-0.139.0\scripts\contributors.py,Labels,SAFE,,"65: class LabelNode(BaseModel):
+66:     name: str
+67:
+68:
+69: class Labels(BaseModel):
+70:     nodes: list[LabelNode]
+71:
+72:
+73: class ReviewNode(BaseModel):",other,,
+EXP-0243,pydantic,2.13.4,pydantic-2.13.4\pydantic\experimental\pipeline.py,_NotEq,SAFE,,"72:     value: Any
+73:
+74:
+75: @dataclass(**_slots_frozen)
+76: class _NotEq:
+77:     value: Any
+78:
+79:
+80: @dataclass(**_slots_frozen)",other,,
+EXP-0244,sympy,1.14.0,sympy-1.14.0\sympy\polys\numberfields\exceptions.py,ClosureFailure,SAFE,,"1: """"""Special exception classes for numberfields. """"""
+2:
+3:
+4: class ClosureFailure(Exception):
+5:     r""""""
+6:     Signals that a :py:class:`ModuleElement` which we tried to represent in a
+7:     certain :py:class:`Module` cannot in fact be represented there.
+8:",other,,
+EXP-0245,sympy,1.14.0,sympy-1.14.0\sympy\utilities\codegen.py,InputArgument,SAFE,,"366:     """"""
+367:     pass
+368:
+369:
+370: class InputArgument(Argument):
+371:     pass
+372:
+373:
+374: class ResultBase:",other,,
+EXP-0246,asttokens,3.0.1,asttokens-3.0.1\asttokens\util.py,Token,SAFE,,"60:   # repr() prefixes unicode with 'u' on Python2 but not Python3; strip it out for consistency.
+61:   return '%s:%s' % (token.tok_name[tok_type], repr(string).lstrip('u'))
+62:
+63:
+64: class Token(collections.namedtuple('Token', 'type string start end line index startpos endpos')):
+65:   """"""
+66:   TokenInfo is an 8-tuple containing the same 5 fields as the tokens produced by the tokenize
+67:   module, and 3 additional ones useful for this module:
+68:",other,,
+EXP-0247,parso,0.8.7,parso-0.8.7\parso\tree.py,BaseNode,SAFE,,"358:         super().__init__(value, start_pos, prefix)
+359:         self.type = type
+360:
+361:
+362: class BaseNode(NodeOrLeaf):
+363:     """"""
+364:     The super class for all nodes.
+365:     A node has children, a type and possibly a parent node.
+366:     """"""",other,,
+EXP-0248,sympy,1.14.0,sympy-1.14.0\sympy\functions\combinatorial\numbers.py,harmonic,SAFE,,"758: #                                                                            #
+759: #----------------------------------------------------------------------------#
+760:
+761:
+762: class harmonic(DefinedFunction):
+763:     r""""""
+764:     Harmonic numbers
+765:
+766:     The nth harmonic number is given by `\operatorname{H}_{n} =",other,,
+EXP-0249,sympy,1.14.0,sympy-1.14.0\sympy\stats\rv.py,MatrixDomain,SAFE,,"124:         sym, val = tuple(other)[0]
+125:         return self.symbol == sym and val in self.set
+126:
+127:
+128: class MatrixDomain(RandomDomain):
+129:     """"""
+130:     A Random Matrix variable and its domain.
+131:
+132:     """"""",other,,
+EXP-0250,sympy,1.14.0,sympy-1.14.0\sympy\polys\polyerrors.py,GeneratorsError,SAFE,,"125:      having a factor whose solutions are not expressible in radicals
+126:      is encountered.""""""
+127:
+128: @public
+129: class GeneratorsError(BasePolynomialError):
+130:     pass
+131:
+132: @public
+133: class GeneratorsNeeded(GeneratorsError):",other,,

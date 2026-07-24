@@ -1,6 +1,6 @@
 # Formal Core Design
 
-This note defines the proof core used by the SCP manuscript. It is deliberately smaller than the full Hiesenoether implementation, but it preserves the semantic structure needed for the paper's formal claims: deterministic read transitions, deterministic observation transitions, additive body execution, and deterministic caps over the body accumulator.
+This note defines the proof core used by the review artifact. It is deliberately smaller than the full Hiesenoether implementation, but it preserves the semantic structure needed for the paper's formal claims: deterministic read transitions, deterministic observation transitions, additive body execution, and deterministic caps over the body accumulator.
 
 ## Scope of the Formalization
 
@@ -18,7 +18,7 @@ The implementation points are:
 
 - `validation/exact_semantics.py`: `do_read`, `do_obs`, `do_cap`, `evaluate`, and `trace`.
 - `examples/running_example.py`: exact replay of the central two-read, one-observation example.
-- `scripts/scp_new_experiments/common.py`: exact-rational order enumeration, sampled order evaluation, read/observation transitions, and cap evaluation for expanded sweeps.
+- `scripts/review_experiments/common.py`: exact-rational order enumeration, sampled order evaluation, read/observation transitions, and cap evaluation for expanded sweeps.
 - `analyzer/abstract_interpreter.py`: bounded abstract summaries for the straight-line positive-parameter fragment.
 - `tests/paper_evidence` and `results/paper_evidence`: proof-oriented replay checks.
 - `results/running_example.json`: replay output for the running example.
@@ -31,7 +31,7 @@ The core also separates proof claims from computational claims. Nonlinear caps a
 
 ## Why the Simplifications Preserve the Needed Structure
 
-The manuscript's formal propositions concern order sensitivity in the studied template, not all Python behavior. The simplified core preserves the properties needed for those propositions:
+The artifact's formal propositions concern order sensitivity in the studied template, not all Python behavior. The simplified core preserves the properties needed for those propositions:
 
 - fixed operation lists are executed by a deterministic fold;
 - observations expose no additive value;
