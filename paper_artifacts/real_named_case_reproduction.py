@@ -5,12 +5,10 @@ import subprocess
 import sys
 from pathlib import Path
 
-
 OUT_DIR = Path(__file__).resolve().parent
 JSON_OUT = OUT_DIR / "real_named_case_reproduction_output.json"
 
 CASE_URL = "https://github.com/python/cpython/issues/132385"
-
 
 CHILD_CODE = r'''
 import atexit
@@ -36,7 +34,6 @@ atexit.register(A.report)
 A().bar()
 '''
 
-
 def run_child() -> dict[str, object]:
     proc = subprocess.run(
         [sys.executable, "-c", CHILD_CODE],
@@ -61,7 +58,6 @@ def run_child() -> dict[str, object]:
         ),
     }
 
-
 def main() -> int:
     result = run_child()
     JSON_OUT.write_text(json.dumps(result, indent=2), encoding="utf-8")
@@ -69,7 +65,6 @@ def main() -> int:
     print(f"reproduced_locally={result['reproduced_locally']}")
     print(f"returncode={result['returncode']}")
     return 0
-
 
 if __name__ == "__main__":
     raise SystemExit(main())

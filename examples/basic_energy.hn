@@ -1,30 +1,22 @@
-## Example Hiesenoether Program
-## Demonstrates energy budget, unstable values, and stabilization
-
 energy[100]
 
 query energy
 
-## Unstable variable (free)
 x <- 10
 print x
 print x
 print x
 
-## Inspect costs energy
 inspect x
 
-## Stabilize the value
 stabilize x
 print x
 print x
 
-## Stable from the start
 stable y <- 20
 print y
 print y
 
-## Function that costs energy to declare
 declare fn double(n) {
     return n * 2
 }
@@ -32,7 +24,6 @@ declare fn double(n) {
 result <- double(5)
 print result
 
-## Unstable function - cheaper to declare, gains energy on first call
 declare unstable fn evolving(n) {
     return n + 1
 }
@@ -44,7 +35,6 @@ print b
 
 query energy
 
-## Invariant costs energy
 invariant x > 0
 
 query energy

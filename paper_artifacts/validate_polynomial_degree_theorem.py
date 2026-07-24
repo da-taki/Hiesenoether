@@ -12,13 +12,11 @@ sys.path.insert(0, str(REPO))
 
 from validation.exact_semantics import Params, Value, do_cap, do_obs, do_read
 
-
 OUT_DIR = REPO / "paper_artifacts"
 CSV_OUT = OUT_DIR / "polynomial_degree_theorem_validation.csv"
 MD_OUT = OUT_DIR / "polynomial_degree_theorem_validation.md"
 NOTES_OUT = OUT_DIR / "polynomial_degree_theorem_notes.md"
 THEOREM_OUT = OUT_DIR / "THEOREM_UPGRADE_DRAFT.md"
-
 
 @dataclass(frozen=True)
 class Case:
@@ -42,16 +40,13 @@ class Case:
     claim_type: str
     note: str
 
-
 def fraction_text(value: Fraction) -> str:
     return f"{value.numerator}/{value.denominator}"
-
 
 def order_for(L: int, m: int, obs_first: bool) -> tuple[str, ...]:
     if obs_first:
         return ("OBS",) * m + ("READ",) * L
     return ("READ",) * L + ("OBS",) * m
-
 
 def unique_orders(L: int, m: int) -> list[tuple[str, ...]]:
     n = L + m
@@ -60,7 +55,6 @@ def unique_orders(L: int, m: int) -> list[tuple[str, ...]]:
         obs_set = set(obs_positions)
         orders.append(tuple("OBS" if i in obs_set else "READ" for i in range(n)))
     return orders
-
 
 def body_accumulator(order: tuple[str, ...], params: Params) -> tuple[Fraction, Value]:
     x = Value(b=Fraction(10))
@@ -75,11 +69,9 @@ def body_accumulator(order: tuple[str, ...], params: Params) -> tuple[Fraction, 
             raise ValueError(f"unknown op: {op}")
     return y, x
 
-
 def evaluate(order: tuple[str, ...], degree: int, params: Params) -> Fraction:
     y, x = body_accumulator(order, params)
     return do_cap(y, x, degree, params, kind="compositional")
-
 
 def lagrange_polynomial(points: list[tuple[int, Fraction]]) -> list[Fraction]:
     coeffs = [Fraction(0)] * len(points)
@@ -100,18 +92,15 @@ def lagrange_polynomial(points: list[tuple[int, Fraction]]) -> list[Fraction]:
             coeffs[k] += coeff * scale
     return coeffs
 
-
 def polynomial_degree(coeffs: list[Fraction]) -> int:
     for idx in range(len(coeffs) - 1, -1, -1):
         if coeffs[idx] != 0:
             return idx
     return -1
 
-
 def leading_coefficient(coeffs: list[Fraction]) -> Fraction:
     degree = polynomial_degree(coeffs)
     return Fraction(0) if degree < 0 else coeffs[degree]
-
 
 def eval_polynomial(coeffs: list[Fraction], x: int) -> Fraction:
     total = Fraction(0)
@@ -121,7 +110,6 @@ def eval_polynomial(coeffs: list[Fraction], x: int) -> Fraction:
         power *= x
     return total
 
-
 def extrema_are_stable(L: int, m: int, d: int, params: Params) -> bool:
     max_order = order_for(L, m, obs_first=True)
     min_order = order_for(L, m, obs_first=False)
@@ -129,7 +117,6 @@ def extrema_are_stable(L: int, m: int, d: int, params: Params) -> bool:
     min_value = evaluate(min_order, d, params)
     values = [evaluate(order, d, params) for order in unique_orders(L, m)]
     return max_value == max(values) and min_value == min(values)
-
 
 def analyze_case(m: int, d: int) -> Case:
     params = Params()
@@ -219,7 +206,6 @@ def analyze_case(m: int, d: int) -> Case:
         note=note,
     )
 
-
 def case_row(case: Case) -> dict[str, object]:
     return {
         "family": case.family,
@@ -242,14 +228,12 @@ def case_row(case: Case) -> dict[str, object]:
         "note": case.note,
     }
 
-
 def write_csv(cases: list[Case]) -> None:
     rows = [case_row(case) for case in cases]
     with CSV_OUT.open("w", newline="", encoding="utf-8") as f:
         writer = csv.DictWriter(f, fieldnames=list(rows[0]))
         writer.writeheader()
         writer.writerows(rows)
-
 
 def write_validation_md(cases: list[Case]) -> None:
     lines = [
@@ -268,7 +252,6 @@ def write_validation_md(cases: list[Case]) -> None:
             f"{case.leading_terms_cancel} | {case.status} |"
         )
     MD_OUT.write_text("\n".join(lines) + "\n", encoding="utf-8")
-
 
 def write_notes(cases: list[Case]) -> None:
     passes = sum(case.status == "pass_corrected_2d" for case in cases)
@@ -305,7 +288,6 @@ def write_notes(cases: list[Case]) -> None:
         "The existing `validation/rho_infinity_investigation.py` data support a leading-coefficient cancellation formula, rho_infinity = eta/(2*delta), for the external generalized compositional runtime model. This can be presented as a corollary only if the runtime model and extrema assumptions are stated explicitly; otherwise it remains exact bounded computational evidence plus a derivation target.",
     ]
     NOTES_OUT.write_text("\n".join(lines) + "\n", encoding="utf-8")
-
 
 def write_theorem_draft(cases: list[Case]) -> None:
     all_pass = all(case.status == "pass_corrected_2d" for case in cases)
@@ -347,7 +329,6 @@ def write_theorem_draft(cases: list[Case]) -> None:
     ]
     THEOREM_OUT.write_text("\n".join(lines) + "\n", encoding="utf-8")
 
-
 def run() -> list[Case]:
     OUT_DIR.mkdir(exist_ok=True)
     cases = [analyze_case(m, d) for m in range(1, 5) for d in range(1, 6)]
@@ -356,7 +337,6 @@ def run() -> list[Case]:
     write_notes(cases)
     write_theorem_draft(cases)
     return cases
-
 
 def main() -> int:
     cases = run()
@@ -367,7 +347,6 @@ def main() -> int:
     print(f"wrote {THEOREM_OUT}")
     print(f"checked={len(cases)} corrected_2d_failures={len(failures)}")
     return 1 if failures else 0
-
 
 if __name__ == "__main__":
     raise SystemExit(main())

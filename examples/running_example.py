@@ -1,9 +1,3 @@
-"""Exact-rational running example for the SCP paper.
-
-The example is deliberately tiny: two READ operations and one OBS operation
-are arranged in two different orders. The operation multiset is identical,
-but observation changes the later access trajectory.
-"""
 from __future__ import annotations
 
 import json
@@ -18,16 +12,13 @@ if str(REPO) not in sys.path:
 
 from validation.exact_semantics import Params, Value, do_obs
 
-
 BASE_VALUE = Fraction(10)
 CAP_DEGREE = 2
 SEQUENCE_A = ("OBS", "READ", "READ")
 SEQUENCE_B = ("READ", "READ", "OBS")
 
-
 def fraction_text(value: Fraction) -> str:
     return str(value.numerator) if value.denominator == 1 else f"{value.numerator}/{value.denominator}"
-
 
 def state_dict(x: Value) -> dict:
     return {
@@ -36,13 +27,11 @@ def state_dict(x: Value) -> dict:
         "entropy": fraction_text(x.e),
     }
 
-
 def read_with_details(x: Value, p: Params) -> tuple[Fraction, Fraction, Value]:
     drift = Fraction(x.n) * x.e if p.P1 else Fraction(0)
     value = x.b + drift
     next_x = Value(b=x.b, n=x.n + 1, e=x.e + p.de_access)
     return value, drift, next_x
-
 
 def simulate(operations: tuple[str, ...], degree: int = CAP_DEGREE, p: Params | None = None) -> dict:
     if p is None:
@@ -127,7 +116,6 @@ def simulate(operations: tuple[str, ...], degree: int = CAP_DEGREE, p: Params | 
         "final_output_decimal": float(final_output),
     }
 
-
 def build_example() -> dict:
     if Counter(SEQUENCE_A) != Counter(SEQUENCE_B):
         raise AssertionError("running-example sequences must use the same operation multiset")
@@ -171,7 +159,6 @@ def build_example() -> dict:
         ),
     }
 
-
 def write_running_example(path: Path | None = None) -> Path:
     if path is None:
         path = REPO / "results" / "running_example.json"
@@ -179,12 +166,10 @@ def write_running_example(path: Path | None = None) -> Path:
     path.write_text(json.dumps(build_example(), indent=2) + "\n", encoding="utf-8")
     return path
 
-
 def main() -> int:
     path = write_running_example()
     print(f"wrote {path}")
     return 0
-
 
 if __name__ == "__main__":
     raise SystemExit(main())

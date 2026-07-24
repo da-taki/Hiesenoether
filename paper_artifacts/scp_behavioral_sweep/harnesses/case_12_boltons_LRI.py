@@ -17,8 +17,8 @@ META = {
   "mechanisms": "P1_access_sensitive",
   "manual_review_note": "source review found state mutation on a method/property/call path that returns a value or access handle",
   "score": 10,
-  "source_path": "C:\\Users\\Asus\\Desktop\\Profitlo Projects\\Hiesenoether\\paper_artifacts\\scp_realworld_revision\\source_snapshot\\boltons-25.0.0\\boltons\\cacheutils.py",
-  "source_root": "C:\\Users\\Asus\\Desktop\\Profitlo Projects\\Hiesenoether\\paper_artifacts\\scp_realworld_revision\\source_snapshot\\boltons-25.0.0",
+  "source_path": "<home>\\Desktop\\Profitlo Projects\\Hiesenoether\\paper_artifacts\\scp_realworld_revision\\source_snapshot\\boltons-25.0.0\\boltons\\cacheutils.py",
+  "source_root": "<home>\\Desktop\\Profitlo Projects\\Hiesenoether\\paper_artifacts\\scp_realworld_revision\\source_snapshot\\boltons-25.0.0",
   "constructor_feasibility": "simple",
   "import_feasibility": "source_file_available",
   "expected_observer_or_read_operation": "_set_key_and_evict_last_in_ll",
@@ -26,7 +26,7 @@ META = {
   "expected_later_behavior": "repeat the same read-shaped operation and compare result/state",
   "selection_reason": "+4 likely true positive; +2 read/getter-like mutation; +2 later/cache/branch/composition hint; +1 simple constructor; +1 source import path available",
   "sweep_rank": 12,
-  "output_json": "C:\\Users\\Asus\\Desktop\\Profitlo Projects\\Hiesenoether\\paper_artifacts\\scp_behavioral_sweep\\outputs\\case_12_boltons_LRI.json"
+  "output_json": "<home>\\Desktop\\Profitlo Projects\\Hiesenoether\\paper_artifacts\\scp_behavioral_sweep\\outputs\\case_12_boltons_LRI.json"
 }
 
 if __name__ == '__main__':

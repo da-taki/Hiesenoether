@@ -1,0 +1,88 @@
+{
+  "candidate_id": "rc02_PyYAML_SafeRepresenter",
+  "diff": {
+    "branch_changed": false,
+    "classification": "confirmed_output_divergence",
+    "exception_changed": false,
+    "output_changed": true,
+    "state_changed": true
+  },
+  "metadata": {
+    "candidate_id": "rc02_PyYAML_SafeRepresenter",
+    "class_name": "SafeRepresenter",
+    "construction_hint": "SafeRepresenter(); mutable list payload",
+    "expected_boundary": "identity cache returns stale node for mutated object",
+    "fixture_family": "yaml_or_repr",
+    "module_path": "yaml/representer.py",
+    "observation_operation": "represent_data(list) first",
+    "package_name": "PyYAML",
+    "package_version": "6.0.3",
+    "priority": "1",
+    "selected_for_harness": "yes",
+    "source_artifact": "real_case_results.csv",
+    "state_fields_suspected": "represented_objects;object_keeper",
+    "target_read_operation": "represent_data(list)"
+  },
+  "order_A": {
+    "results": [
+      {
+        "kind": "value",
+        "value": "[('tag:yaml.org,2002:str', 'after')]"
+      }
+    ],
+    "state": {
+      "object_keeper": 1,
+      "represented_objects": 1
+    },
+    "steps": [
+      "SafeRepresenter()",
+      "payload[0]='after'",
+      "represent_data(payload)"
+    ]
+  },
+  "order_B": {
+    "results": [
+      {
+        "kind": "value",
+        "value": "[('tag:yaml.org,2002:str', 'before')]"
+      }
+    ],
+    "state": {
+      "object_keeper": 1,
+      "represented_objects": 1,
+      "same_node_returned": true
+    },
+    "steps": [
+      "SafeRepresenter()",
+      "represent_data(payload)",
+      "payload[0]='after'",
+      "represent_data(payload)"
+    ]
+  },
+  "record": {
+    "boundary_note": "identity cache returns stale node for mutated object",
+    "branch_changed": false,
+    "candidate_id": "rc02_PyYAML_SafeRepresenter",
+    "class_name": "SafeRepresenter",
+    "classification": "confirmed_output_divergence",
+    "constructed": true,
+    "exception_changed": false,
+    "failure_reason": "",
+    "fixture_family": "yaml_or_repr",
+    "observation_operation": "represent_data(list) first",
+    "order_A_exception": "[]",
+    "order_A_output": "[\"[('tag:yaml.org,2002:str', 'after')]\"]",
+    "order_A_state": "{\"represented_objects\": 1, \"object_keeper\": 1}",
+    "order_A_steps": "SafeRepresenter() | payload[0]='after' | represent_data(payload)",
+    "order_B_exception": "[]",
+    "order_B_output": "[\"[('tag:yaml.org,2002:str', 'before')]\"]",
+    "order_B_state": "{\"represented_objects\": 1, \"object_keeper\": 1, \"same_node_returned\": true}",
+    "order_B_steps": "SafeRepresenter() | represent_data(payload) | payload[0]='after' | represent_data(payload)",
+    "output_changed": true,
+    "package_name": "PyYAML",
+    "package_version": "6.0.3",
+    "pair_type": "pair1",
+    "state_changed": true,
+    "target_read_operation": "represent_data(list)"
+  }
+}

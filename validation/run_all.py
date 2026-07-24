@@ -1,4 +1,3 @@
-"""Run every theorem verifier in order. Exit 0 iff all pass."""
 import json, sys
 from validation import (theorem_D_determinism, theorem_C_conservation,
                         theorem_P_permutation_sensitivity,
@@ -31,7 +30,6 @@ for label, fn in steps:
     r = fn()
     results[label] = r
 
-    # T4 has no top-level 'status'; gate it on family R^2 instead.
     if label.startswith("T4"):
         comp_r2 = r.get("compositional_family", {}).get("R_squared", 0)
         sref_r2 = r.get("self_referential_family", {}).get("R_squared", 0)

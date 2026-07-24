@@ -1,8 +1,6 @@
-"""Theorem C (Conservation): n, e are monotone non-decreasing along every trace."""
 from __future__ import annotations
 from itertools import permutations
 from validation.exact_semantics import trace, Params
-
 
 def check(L_max: int = 4, m_max: int = 3, degrees=(1, 2, 3, 4)) -> dict:
     p = Params()
@@ -23,7 +21,6 @@ def check(L_max: int = 4, m_max: int = 3, degrees=(1, 2, 3, 4)) -> dict:
     return {"theorem": "C", "status": "VERIFIED",
             "configurations_checked": checked,
             "scope": f"L<={L_max}, m<={m_max}, d in {degrees}"}
-
 
 if __name__ == "__main__":
     import json

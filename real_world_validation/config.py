@@ -1,5 +1,3 @@
-# config.py
-
 from pathlib import Path
 
 RANDOM_SEED: int = 42

@@ -4,19 +4,15 @@ from dataclasses import dataclass
 from fractions import Fraction
 from typing import Union
 
-
 Number = Union[int, Fraction]
-
 
 def as_fraction(value: Number) -> Fraction:
     if isinstance(value, Fraction):
         return value
     return Fraction(value)
 
-
 @dataclass(frozen=True)
 class Interval:
-    """Closed rational interval [lo, hi]."""
 
     lo: Fraction
     hi: Fraction
@@ -69,24 +65,17 @@ class Interval:
     def __str__(self) -> str:
         return f"[{self.lo}, {self.hi}]"
 
-
 @dataclass(frozen=True)
 class AbstractUnstable:
-    """Intervals for an unstable value's base, access count, and entropy."""
 
     b: Interval
     n: Interval
     e: Interval
 
-
 def abstract_read(
     value: AbstractUnstable,
     delta: Fraction = Fraction(1, 10),
 ) -> tuple[Interval, AbstractUnstable]:
-    """Abstract rule for concrete read(b, n, e) = b + n*e.
-
-    Concrete read also advances the unstable state to (b, n + 1, e + delta).
-    """
 
     exposed = value.b + (value.n * value.e)
     updated = AbstractUnstable(
@@ -96,12 +85,10 @@ def abstract_read(
     )
     return exposed, updated
 
-
 def abstract_inspect(
     value: AbstractUnstable,
     eta: Fraction = Fraction(1, 1),
 ) -> AbstractUnstable:
-    """Abstract rule for concrete inspect(b, n, e) = (b, n, e + eta)."""
 
     return AbstractUnstable(
         b=value.b,
@@ -109,17 +96,14 @@ def abstract_inspect(
         e=value.e + Interval.point(eta),
     )
 
-
 def abstract_additive_update(
     y: Interval,
     x: AbstractUnstable,
     delta: Fraction = Fraction(1, 10),
 ) -> tuple[Interval, AbstractUnstable]:
-    """Abstract rule for y <- y + x, where x is read once."""
 
     exposed, x_updated = abstract_read(x, delta)
     return y + exposed, x_updated
-
 
 def abstract_cap(
     y: Interval,
@@ -127,7 +111,6 @@ def abstract_cap(
     degree: int,
     delta: Fraction = Fraction(1, 10),
 ) -> tuple[Interval, AbstractUnstable]:
-    """Abstract rule for the compositional cap y * read(x)^(degree - 1)."""
 
     if degree < 1:
         raise ValueError("degree must be at least 1")

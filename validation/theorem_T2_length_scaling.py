@@ -3,14 +3,12 @@ import math
 from itertools import permutations
 from validation.exact_semantics import evaluate, Params
 
-
 def exact_range(L: int, m: int = 1, d: int = 2) -> float:
     body = ("READ",) * L + ("OBS",) * m
     p = Params()
     perms = list(set(permutations(body)))
     vals = [float(evaluate(perm, d, p)) for perm in perms]
     return max(vals) - min(vals)
-
 
 def fit_power_law(Ls, ranges):
     xs = [math.log(L) for L in Ls]
@@ -26,7 +24,6 @@ def fit_power_law(Ls, ranges):
     r2 = 1.0 - ss_res / ss_tot if ss_tot else 0.0
     return alpha, r2
 
-
 def check(L_max: int = 8) -> dict:
     Ls = list(range(3, L_max + 1))
     ranges = [exact_range(L) for L in Ls]
@@ -40,7 +37,6 @@ def check(L_max: int = 8) -> dict:
             "empirical_R2_E5":    0.995774,
             "consistent_with_E5": abs(alpha - 3.272676) < 0.5,
             "status": "VERIFIED" if r2 > 0.98 else "WEAK_FIT"}
-
 
 if __name__ == "__main__":
     import json

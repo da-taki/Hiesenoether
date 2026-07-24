@@ -8,7 +8,6 @@ import sys
 from collections import Counter
 from pathlib import Path
 
-
 REPO = Path(__file__).resolve().parents[2]
 OUT = Path(__file__).resolve().parent
 CANDIDATES = OUT / "behavioral_sweep_candidates.csv"
@@ -22,16 +21,13 @@ FINAL = OUT / "SCP_BEHAVIORAL_SWEEP_RESULTS.md"
 PREV_HARNESS_DIR = REPO / "paper_artifacts" / "scp_realworld_revision" / "real_case_harnesses"
 PREV_OUTPUT_DIR = REPO / "paper_artifacts" / "scp_realworld_revision" / "real_case_outputs"
 
-
 def read_csv(path: Path) -> list[dict[str, str]]:
     with path.open(newline="", encoding="utf-8") as fh:
         return list(csv.DictReader(fh))
 
-
 def short_result(value: object, limit: int = 300) -> str:
     text = json.dumps(value, sort_keys=True) if not isinstance(value, str) else value
     return text if len(text) <= limit else text[: limit - 3] + "..."
-
 
 def run_harness(path: Path, timeout: int = 20) -> dict[str, object]:
     try:
@@ -47,7 +43,6 @@ def run_harness(path: Path, timeout: int = 20) -> dict[str, object]:
         return json.loads(stem_json.read_text(encoding="utf-8"))
     except json.JSONDecodeError as exc:
         return {"classification": "could_not_construct", "failure_reason": f"invalid JSON: {exc}"}
-
 
 def aggregate() -> list[dict[str, object]]:
     candidates = {int(row["sweep_rank"]): row for row in read_csv(CANDIDATES)}
@@ -84,13 +79,11 @@ def aggregate() -> list[dict[str, object]]:
     rows.sort(key=lambda row: int(row["sweep_rank"]))
     return rows
 
-
 def write_csv(path: Path, rows: list[dict[str, object]]) -> None:
     with path.open("w", newline="", encoding="utf-8") as fh:
         writer = csv.DictWriter(fh, fieldnames=list(rows[0]))
         writer.writeheader()
         writer.writerows(rows)
-
 
 def conversion_rates(rows: list[dict[str, object]]) -> dict[str, str]:
     selected = len(rows)
@@ -103,7 +96,6 @@ def conversion_rates(rows: list[dict[str, object]]) -> dict[str, str]:
         "visible_per_selected": f"{visible}/{selected}",
         "visible_per_runnable": f"{visible}/{runnable}",
     }
-
 
 def write_summary(rows: list[dict[str, object]]) -> None:
     counts = Counter(str(row["classification"]) for row in rows)
@@ -147,7 +139,6 @@ def write_summary(rows: list[dict[str, object]]) -> None:
         lines.append("| none | none | none | none | none | no confirmed cases |")
     SUMMARY.write_text("\n".join(lines) + "\n", encoding="utf-8")
 
-
 def run_controls() -> list[dict[str, object]]:
     CONTROL_OUT.mkdir(parents=True, exist_ok=True)
     rows = []
@@ -177,7 +168,6 @@ def run_controls() -> list[dict[str, object]]:
         )
     write_csv(CONTROL_CSV, rows)
     return rows
-
 
 def write_final(rows: list[dict[str, object]], controls: list[dict[str, object]]) -> None:
     counts = Counter(str(row["classification"]) for row in rows)
@@ -250,7 +240,6 @@ def write_final(rows: list[dict[str, object]], controls: list[dict[str, object]]
     )
     FINAL.write_text("\n".join(lines) + "\n", encoding="utf-8")
 
-
 def main() -> int:
     OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
     rows = aggregate()
@@ -264,7 +253,6 @@ def main() -> int:
     print(f"wrote {FINAL}")
     print(f"selected={len(rows)} confirmed={sum(str(row['classification']).startswith('confirmed') for row in rows)} controls_passed={sum(row['rerun_status']=='passed' for row in controls)}/{len(controls)}")
     return 0
-
 
 if __name__ == "__main__":
     raise SystemExit(main())

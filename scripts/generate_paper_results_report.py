@@ -24,11 +24,9 @@ STATUS_NO_SCRIPT = "missing_reproduction_script"
 STATUS_NO_DATA = "missing_raw_data"
 STATUS_MISMATCH = "mismatch"
 
-
 def read_csv(path: Path) -> list[dict]:
     with path.open(newline="", encoding="utf-8") as handle:
         return list(csv.DictReader(handle))
-
 
 def number_entry(name: str, expected, actual, status: str, source: str, note: str = "") -> dict:
     return {
@@ -40,10 +38,8 @@ def number_entry(name: str, expected, actual, status: str, source: str, note: st
         "note": note,
     }
 
-
 def status_for_match(expected, actual, base_status: str) -> str:
     return base_status if expected == actual else STATUS_MISMATCH
-
 
 def collect_execution_count(entries: list[dict]) -> dict:
     path = REPO / "results" / "summary.csv"
@@ -66,7 +62,6 @@ def collect_execution_count(entries: list[dict]) -> dict:
     )
     return {"status": status, "configuration_count": len(rows), "total_executions": total}
 
-
 def collect_table(path: Path, table_name: str, key_fields: list[str], value_fields: list[str]) -> dict:
     rel = str(path.relative_to(REPO))
     if not path.exists():
@@ -78,7 +73,6 @@ def collect_table(path: Path, table_name: str, key_fields: list[str], value_fiel
         slim["status"] = STATUS_EXISTING
         slim_rows.append(slim)
     return {"status": STATUS_EXISTING, "source": rel, "rows": slim_rows}
-
 
 def collect_exhaustive(entries: list[dict]) -> dict:
     path = REPO / "results" / "exhaustive_enumeration_summary.json"
@@ -117,7 +111,6 @@ def collect_exhaustive(entries: list[dict]) -> dict:
     )
     data["status"] = STATUS_CODE if total == 112 and mismatches == 0 else STATUS_MISMATCH
     return data
-
 
 def collect_analyzer_benchmark(entries: list[dict]) -> dict:
     report = evaluate_benchmark()
@@ -175,7 +168,6 @@ def collect_analyzer_benchmark(entries: list[dict]) -> dict:
     )
     return metrics
 
-
 def write_gaps(gaps: list[str]) -> None:
     if not gaps:
         return
@@ -183,7 +175,6 @@ def write_gaps(gaps: list[str]) -> None:
     for gap in gaps:
         lines.append(f"- {gap}")
     GAPS_MD.write_text("\n".join(lines) + "\n", encoding="utf-8")
-
 
 def collect_pypi(entries: list[dict], gaps: list[str]) -> dict:
     summary_path = REPO / "results_static" / "pypi_static_benchmark.csv"
@@ -272,7 +263,6 @@ def collect_pypi(entries: list[dict], gaps: list[str]) -> dict:
         "reviewed_precision": precision,
     }
 
-
 def write_markdown(summary: dict) -> None:
     lines = [
         "# Paper Results Tables",
@@ -314,7 +304,6 @@ def write_markdown(summary: dict) -> None:
         ]
     )
     TABLES_MD.write_text("\n".join(lines) + "\n", encoding="utf-8")
-
 
 def generate() -> dict:
     entries: list[dict] = []
@@ -372,7 +361,6 @@ def generate() -> dict:
     write_gaps(gaps)
     return summary
 
-
 def main() -> int:
     summary = generate()
     reproduced = [entry for entry in summary["paper_numbers"] if entry["status"] in {STATUS_CODE, STATUS_EXISTING}]
@@ -388,7 +376,6 @@ def main() -> int:
     print(f"mismatches: {len(mismatches)}")
     print(f"missing: {len(missing)}")
     return 1 if mismatches else 0
-
 
 if __name__ == "__main__":
     raise SystemExit(main())

@@ -11,10 +11,8 @@ from typing import List, Tuple
 from validation.exact_semantics import evaluate as osds_eval, Params
 from validation.exact_semantics_runtime import run_program as rt_eval
 
-
 def _log(msg: str):
     print(msg, file=sys.stderr, flush=True)
-
 
 def kind_for(d: int):
     if d == 4:
@@ -25,14 +23,12 @@ def _osds_worker(args):
     perm, d, kind, self_k = args
     return osds_eval(perm, d, Params(), kind=kind, self_k=self_k)
 
-
 def _rt_worker(args):
     perm, d = args
     return rt_eval(perm, d)
 
 POOL_THRESHOLD = 5000
 _POOL = None
-
 
 def _get_pool():
     global _POOL
@@ -41,7 +37,6 @@ def _get_pool():
         _log(f"  [pool] spawning {n} workers")
         _POOL = Pool(processes=n)
     return _POOL
-
 
 def divergence_osds(L: int, m: int, d: int) -> Fraction:
     kind, self_k = kind_for(d)
@@ -60,7 +55,6 @@ def divergence_osds(L: int, m: int, d: int) -> Fraction:
     _log(f"    osds  L={L} m={m} d={d}  perms={n}  {dt:.1f}s")
     return max(vals) - min(vals)
 
-
 def divergence_runtime(L: int, m: int, d: int) -> Fraction:
     body = ("READ",) * L + ("OBS",) * m
     perms = list(set(permutations(body)))
@@ -76,7 +70,6 @@ def divergence_runtime(L: int, m: int, d: int) -> Fraction:
     _log(f"    rt    L={L} m={m} d={d}  perms={n}  {dt:.1f}s")
     return max(vals) - min(vals)
 
-
 def forward_differences(seq: List[Fraction]) -> List[List[Fraction]]:
     rows = [seq[:]]
     while len(rows[-1]) > 1:
@@ -86,7 +79,6 @@ def forward_differences(seq: List[Fraction]) -> List[List[Fraction]]:
         if all(x == 0 for x in nxt):
             break
     return rows
-
 
 def detect_polynomial_degree(seq: List[Fraction]) -> int:
     rows = forward_differences(seq)
@@ -98,7 +90,6 @@ def detect_polynomial_degree(seq: List[Fraction]) -> int:
                 return k
             return k
     return -1
-
 
 def lagrange_polynomial(points: List[Tuple[int, Fraction]]) -> List[Fraction]:
     n = len(points)
@@ -122,13 +113,11 @@ def lagrange_polynomial(points: List[Tuple[int, Fraction]]) -> List[Fraction]:
             coeffs[k] += c * scale
     return coeffs
 
-
 def leading_coefficient(coeffs: List[Fraction]) -> Fraction:
     for c in reversed(coeffs):
         if c != 0:
             return c
     return Fraction(0)
-
 
 def polynomial_degree(coeffs: List[Fraction]) -> int:
     for i in range(len(coeffs) - 1, -1, -1):
@@ -136,11 +125,9 @@ def polynomial_degree(coeffs: List[Fraction]) -> int:
             return i
     return -1
 
-
 def eval_polynomial(coeffs: List[Fraction], x: int) -> Fraction:
     return sum((c * Fraction(x) ** k for k, c in enumerate(coeffs)),
                Fraction(0))
-
 
 def analyze_case(m: int, d: int,
                  L_min: int = 2, L_max: int = 8,
@@ -208,7 +195,6 @@ def analyze_case(m: int, d: int,
                              for c in rt_poly],
     }
 
-
 def check() -> dict:
     t0 = time.time()
     cases = []
@@ -236,7 +222,6 @@ def check() -> dict:
             "grid; structural induction in the proof handles all (m, d).",
         "cases": cases,
     }
-
 
 if __name__ == "__main__":
     r = check()

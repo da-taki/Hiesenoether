@@ -1,6 +1,6 @@
 # Case 43: docutils Reader
 
-- Runnable harness: `C:\Users\Asus\Desktop\Profitlo Projects\Hiesenoether\paper_artifacts\scp_behavioral_sweep\harnesses\case_43_docutils_Reader.py`
+- Runnable harness: `<repo>\paper_artifacts\scp_behavioral_sweep\harnesses\case_43_docutils_Reader.py`
 - Expected operation: `read`
 - Expected latent state: `input,parser,settings,source`
 - Construction feasibility: `simple`

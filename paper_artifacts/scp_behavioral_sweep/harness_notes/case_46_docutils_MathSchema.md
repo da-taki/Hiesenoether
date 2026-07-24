@@ -1,6 +1,6 @@
 # Case 46: docutils MathSchema
 
-- Runnable harness: `C:\Users\Asus\Desktop\Profitlo Projects\Hiesenoether\paper_artifacts\scp_behavioral_sweep\harnesses\case_46_docutils_MathSchema.py`
+- Runnable harness: `<repo>\paper_artifacts\scp_behavioral_sweep\harnesses\case_46_docutils_MathSchema.py`
 - Expected operation: `append`
 - Expected latent state: `switch`
 - Construction feasibility: `simple`

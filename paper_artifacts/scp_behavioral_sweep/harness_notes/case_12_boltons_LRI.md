@@ -1,6 +1,6 @@
 # Case 12: boltons LRI
 
-- Runnable harness: `C:\Users\Asus\Desktop\Profitlo Projects\Hiesenoether\paper_artifacts\scp_behavioral_sweep\harnesses\case_12_boltons_LRI.py`
+- Runnable harness: `<repo>\paper_artifacts\scp_behavioral_sweep\harnesses\case_12_boltons_LRI.py`
 - Expected operation: `_set_key_and_evict_last_in_ll`
 - Expected latent state: `_anchor`
 - Construction feasibility: `simple`

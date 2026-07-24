@@ -7,7 +7,6 @@ import re
 import textwrap
 from pathlib import Path
 
-
 REPO = Path(__file__).resolve().parents[2]
 OUT = Path(__file__).resolve().parent
 FINDINGS = REPO / "results_static" / "pypi_static_benchmark_findings.csv"
@@ -22,23 +21,18 @@ OUTPUT_DIR = OUT / "outputs"
 PACKET = OUT / "MANUAL_REVIEW_PACKET.md"
 INTEGRATION = OUT / "MANUSCRIPT_INTEGRATION_NOTES.md"
 
-
 def read_csv(path: Path) -> list[dict[str, str]]:
     with path.open(newline="", encoding="utf-8") as fh:
         return list(csv.DictReader(fh))
 
-
 def norm_path(text: str) -> str:
     return text.replace("\\", "/")
-
 
 def source_manifest() -> dict[str, dict[str, str]]:
     return {row["package"]: row for row in read_csv(MANIFEST)}
 
-
 def path_parts(text: str) -> list[str]:
     return [part for part in norm_path(text).split("/") if part]
-
 
 def find_source_file(root: Path, finding_path: str) -> Path | None:
     wanted = path_parts(finding_path)
@@ -56,7 +50,6 @@ def find_source_file(root: Path, finding_path: str) -> Path | None:
             return path
     return None
 
-
 def parse_class(path: Path, class_name: str, line: int) -> ast.ClassDef | None:
     try:
         tree = ast.parse(path.read_text(encoding="utf-8", errors="replace"))
@@ -68,16 +61,13 @@ def parse_class(path: Path, class_name: str, line: int) -> ast.ClassDef | None:
             return node
     return candidates[0] if candidates else None
 
-
 def method_from_reason(reason: str) -> str:
     match = re.search(r"method ([^(]+)\(\)", reason)
     return match.group(1) if match else ""
 
-
 def mutated_state(reason: str) -> str:
     match = re.search(r"mutates self\.\{([^}]*)\}", reason)
     return match.group(1) if match else ""
-
 
 def simple_constructor(node: ast.ClassDef | None) -> str:
     if node is None:
@@ -92,7 +82,6 @@ def simple_constructor(node: ast.ClassDef | None) -> str:
             return "requires_args"
     return "simple"
 
-
 def abstract_like(node: ast.ClassDef | None, class_name: str) -> bool:
     if node is None:
         return False
@@ -104,7 +93,6 @@ def abstract_like(node: ast.ClassDef | None, class_name: str) -> bool:
         if name in {"ABC", "Protocol"}:
             return True
     return False
-
 
 def score(row: dict[str, str], node: ast.ClassDef | None, source_file: Path | None) -> tuple[int, list[str], str, str, str]:
     reason = row["short_reason"]
@@ -148,7 +136,6 @@ def score(row: dict[str, str], node: ast.ClassDef | None, source_file: Path | No
         s -= 3
         reasons.append("-3 external service/framework likelihood")
     return s, reasons, ctor, import_feasibility, method or ""
-
 
 def select_candidates() -> tuple[list[dict[str, object]], dict[str, int]]:
     OUT.mkdir(parents=True, exist_ok=True)
@@ -203,7 +190,6 @@ def select_candidates() -> tuple[list[dict[str, object]], dict[str, int]]:
     }
     return selected, counts
 
-
 def write_candidates(selected: list[dict[str, object]]) -> None:
     cols = [
         "sweep_rank", "package", "version", "file_path", "class_name", "line_start",
@@ -218,10 +204,8 @@ def write_candidates(selected: list[dict[str, object]]) -> None:
         for item in selected:
             writer.writerow({key: item.get(key, "") for key in cols})
 
-
 def clean_name(text: str) -> str:
     return re.sub(r"[^A-Za-z0-9_]+", "_", text).strip("_")[:80] or "case"
-
 
 def write_harnesses(selected: list[dict[str, object]]) -> None:
     HARNESS_DIR.mkdir(parents=True, exist_ok=True)
@@ -261,13 +245,11 @@ def write_harnesses(selected: list[dict[str, object]]) -> None:
             encoding="utf-8",
         )
 
-
 def source_snippet(path: str, line: int, limit: int = 40) -> str:
     lines = Path(path).read_text(encoding="utf-8", errors="replace").splitlines()
     start = max(1, line - 5)
     end = min(len(lines), start + limit - 1)
     return "\n".join(f"{idx}: {lines[idx - 1]}" for idx in range(start, end + 1))
-
 
 def write_packet(selected: list[dict[str, object]]) -> None:
     lines = ["# Manual Review Packet", ""]
@@ -292,7 +274,6 @@ def write_packet(selected: list[dict[str, object]]) -> None:
             ]
         )
     PACKET.write_text("\n".join(lines), encoding="utf-8")
-
 
 def write_rule(counts: dict[str, int], selected: list[dict[str, object]]) -> None:
     previous = set()
@@ -337,7 +318,6 @@ def write_rule(counts: dict[str, int], selected: list[dict[str, object]]) -> Non
         encoding="utf-8",
     )
 
-
 def write_integration_notes() -> None:
     INTEGRATION.write_text(
         """# Manuscript Integration Notes
@@ -362,7 +342,6 @@ Do not claim:
         encoding="utf-8",
     )
 
-
 def main() -> int:
     selected, counts = select_candidates()
     write_candidates(selected)
@@ -373,7 +352,6 @@ def main() -> int:
     print(f"wrote {CANDIDATES}")
     print(f"selected={len(selected)}")
     return 0
-
 
 if __name__ == "__main__":
     raise SystemExit(main())

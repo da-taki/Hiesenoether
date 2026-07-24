@@ -1,0 +1,92 @@
+{
+  "candidate_id": "re13_h11_ReceiveBuffer",
+  "diff": {
+    "branch_changed": false,
+    "classification": "confirmed_output_divergence",
+    "exception_changed": false,
+    "output_changed": true,
+    "state_changed": false
+  },
+  "metadata": {
+    "candidate_id": "re13_h11_ReceiveBuffer",
+    "class_name": "ReceiveBuffer",
+    "construction_hint": "ReceiveBuffer(header bytes)",
+    "expected_boundary": "line extraction is destructive",
+    "fixture_family": "buffer",
+    "module_path": "h11/_receivebuffer.py",
+    "observation_operation": "maybe_extract_next_line()",
+    "package_name": "h11",
+    "package_version": "0.16.0",
+    "priority": "1",
+    "selected_for_harness": "yes",
+    "source_artifact": "rescue_results.csv",
+    "state_fields_suspected": "data;next_line_search",
+    "target_read_operation": "maybe_extract_lines()"
+  },
+  "order_A": {
+    "results": [
+      {
+        "kind": "value",
+        "value": [
+          "b'GET / HTTP/1.1'",
+          "b'Host: x'"
+        ]
+      }
+    ],
+    "state": {
+      "buffer": "b'BODY'"
+    },
+    "steps": [
+      "construct ReceiveBuffer",
+      "maybe_extract_lines()"
+    ]
+  },
+  "order_B": {
+    "observation": {
+      "kind": "value",
+      "value": "b'GET / HTTP/1.1\\r\\n'"
+    },
+    "results": [
+      {
+        "kind": "value",
+        "value": [
+          "b'Host: x'"
+        ]
+      }
+    ],
+    "state": {
+      "buffer": "b'BODY'"
+    },
+    "steps": [
+      "construct ReceiveBuffer",
+      "maybe_extract_next_line()",
+      "maybe_extract_lines()"
+    ]
+  },
+  "record": {
+    "boundary_note": "line extraction is destructive",
+    "branch_changed": false,
+    "candidate_id": "re13_h11_ReceiveBuffer",
+    "class_name": "ReceiveBuffer",
+    "classification": "confirmed_output_divergence",
+    "constructed": true,
+    "exception_changed": false,
+    "failure_reason": "",
+    "fixture_family": "buffer",
+    "observation_operation": "maybe_extract_next_line()",
+    "order_A_exception": "[]",
+    "order_A_output": "[[\"b'GET / HTTP/1.1'\", \"b'Host: x'\"]]",
+    "order_A_state": "{\"buffer\": \"b'BODY'\"}",
+    "order_A_steps": "construct ReceiveBuffer | maybe_extract_lines()",
+    "order_B_exception": "[]",
+    "order_B_output": "[[\"b'Host: x'\"]]",
+    "order_B_state": "{\"buffer\": \"b'BODY'\"}",
+    "order_B_steps": "construct ReceiveBuffer | maybe_extract_next_line() | maybe_extract_lines()",
+    "output_changed": true,
+    "package_name": "h11",
+    "package_version": "0.16.0",
+    "pair_type": "pair1",
+    "state_changed": false,
+    "target_read_operation": "maybe_extract_lines()"
+  }
+}

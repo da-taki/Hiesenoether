@@ -7,7 +7,6 @@ import sys
 from collections import Counter
 from pathlib import Path
 
-
 BASE = Path(__file__).resolve().parent
 HARNESS_DIR = BASE / "harnesses"
 OUTPUT_DIR = BASE / "outputs"
@@ -30,23 +29,19 @@ RESULT_COLUMNS = [
     "operation_A", "operation_B", "failure_reason", "boundary_note", "harness_path", "json_output_path",
 ]
 
-
 def load_selection():
     with SELECTION_CSV.open(newline="", encoding="utf-8") as handle:
         return list(csv.DictReader(handle))
-
 
 def harness_name(row):
     package = row["package"].replace("-", "_")
     cls = row["class_name"].lstrip("_")
     return f"rescue_{int(row['rescue_rank']):02d}_{package}_{cls}.py"
 
-
 def output_name(row):
     package = row["package"].replace("-", "_")
     cls = row["class_name"].lstrip("_")
     return f"rescue_{int(row['rescue_rank']):02d}_{package}_{cls}.json"
-
 
 def run_harnesses(selection):
     OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
@@ -63,7 +58,6 @@ def run_harnesses(selection):
         attempts.append((row, harness, completed.returncode, completed.stdout, completed.stderr))
     return attempts
 
-
 def load_outputs(selection):
     payloads = []
     errors = []
@@ -78,7 +72,6 @@ def load_outputs(selection):
         except Exception as exc:
             errors.append(f"{path}: {type(exc).__name__}: {exc}")
     return payloads, errors
-
 
 def write_results_csv(payloads):
     with RESULTS_CSV.open("w", newline="", encoding="utf-8") as handle:
@@ -106,12 +99,10 @@ def write_results_csv(payloads):
                 "json_output_path": str(json_path.resolve()),
             })
 
-
 def counts(payloads):
     c = Counter(payload["classification"] for _, _, payload in payloads)
     branch_output = c["confirmed_branch_flip"] + c["confirmed_output_divergence"]
     return c, branch_output
-
 
 def md_table(rows, columns):
     out = []
@@ -120,7 +111,6 @@ def md_table(rows, columns):
     for row in rows:
         out.append("| " + " | ".join(str(row.get(col, "")) for col in columns) + " |")
     return "\n".join(out)
-
 
 def write_summary(selection, payloads, validation_errors, attempts):
     c, branch_output = counts(payloads)
@@ -201,7 +191,6 @@ def write_summary(selection, payloads, validation_errors, attempts):
         encoding="utf-8",
     )
 
-
 def write_manual_notes(selection, payloads):
     by_rank = {int(payload["rescue_rank"]): (row, payload) for row, _, payload in payloads}
     parts = ["# Rescue Manual Review Notes\n"]
@@ -221,7 +210,6 @@ def write_manual_notes(selection, payloads):
             f"- Exact caution language: {payload['boundary_note']}\n"
         )
     MANUAL_NOTES_MD.write_text("\n".join(parts) + "\n", encoding="utf-8")
-
 
 def write_decision(payloads):
     _, branch_output = counts(payloads)
@@ -251,7 +239,6 @@ def write_decision(payloads):
         f"{case_b_wording}\n",
         encoding="utf-8",
     )
-
 
 def write_final_report(selection, payloads):
     c, branch_output = counts(payloads)
@@ -306,7 +293,6 @@ def write_final_report(selection, payloads):
         encoding="utf-8",
     )
 
-
 def main():
     selection = load_selection()
     attempts = run_harnesses(selection)
@@ -324,7 +310,6 @@ def main():
             print(f"{harness} exited {code}\nSTDOUT:\n{stdout}\nSTDERR:\n{stderr}", file=sys.stderr)
             return 1
     return 0
-
 
 if __name__ == "__main__":
     raise SystemExit(main())

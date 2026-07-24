@@ -1,5 +1,3 @@
-# summarize.py
-
 import csv
 import math
 import statistics
@@ -14,7 +12,6 @@ except ImportError:
     RAW_DIR = Path("real_world_validation/results/raw")
     SUMMARY_DIR = Path("real_world_validation/results/summary")
     LOGS_DIR = Path("real_world_validation/results/logs")
-
 
 def compute_stats(values: list) -> dict:
     n = len(values)
@@ -45,7 +42,6 @@ def compute_stats(values: list) -> dict:
         "n": n,
     }
 
-
 def _read_raw_csv(path: Path) -> list:
     if not path.exists():
         return []
@@ -59,7 +55,6 @@ def _read_raw_csv(path: Path) -> list:
                 continue
     return values
 
-
 def _read_csv_rows(path: Path) -> list:
     if not path.exists():
         return []
@@ -67,14 +62,12 @@ def _read_csv_rows(path: Path) -> list:
         reader = csv.DictReader(f)
         return list(reader)
 
-
 def write_summary_csv(rows: list, path: Path) -> None:
     if not rows:
         return
 
     path.parent.mkdir(parents=True, exist_ok=True)
 
-    # union of all possible keys across heterogeneous rows
     fieldnames = sorted({key for row in rows for key in row.keys()})
 
     with open(path, "w", newline="", encoding="utf-8") as f:
@@ -134,7 +127,6 @@ def _summarize_descriptor_raw() -> list:
         })
     return rows
 
-
 def _summarize_sle_raw() -> list:
     try:
         import config
@@ -168,7 +160,6 @@ def _summarize_sle_raw() -> list:
                 r["r_squared"] = r2
     return rows
 
-
 def _summarize_cache_raw() -> list:
     path = RAW_DIR / "cache_invalidation_cases.csv"
     raw_rows = _read_csv_rows(path)
@@ -185,7 +176,6 @@ def _summarize_cache_raw() -> list:
             "cache_error_pct": row.get("cache_error_pct", ""),
         })
     return summary
-
 
 def _write_findings_txt(descriptor_rows: list, sle_rows: list,
                         cache_rows: list, path: Path) -> None:
@@ -239,7 +229,6 @@ def _write_findings_txt(descriptor_rows: list, sle_rows: list,
     with open(path, "w", encoding="utf-8") as f:
         f.write("\n".join(lines))
     print(f"  -> {path} written")
-
 
 def summarize_all(descriptor_rows: list = None, sle_result_dict: dict = None,
                   cache_rows: list = None) -> dict:

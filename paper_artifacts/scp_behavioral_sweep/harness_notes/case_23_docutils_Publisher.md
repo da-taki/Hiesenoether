@@ -1,6 +1,6 @@
 # Case 23: docutils Publisher
 
-- Runnable harness: `C:\Users\Asus\Desktop\Profitlo Projects\Hiesenoether\paper_artifacts\scp_behavioral_sweep\harnesses\case_23_docutils_Publisher.py`
+- Runnable harness: `<repo>\paper_artifacts\scp_behavioral_sweep\harnesses\case_23_docutils_Publisher.py`
 - Expected operation: `get_settings`
 - Expected latent state: `settings`
 - Construction feasibility: `simple`

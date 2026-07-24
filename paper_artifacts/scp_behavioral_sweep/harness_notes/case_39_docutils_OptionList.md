@@ -1,6 +1,6 @@
 # Case 39: docutils OptionList
 
-- Runnable harness: `C:\Users\Asus\Desktop\Profitlo Projects\Hiesenoether\paper_artifacts\scp_behavioral_sweep\harnesses\case_39_docutils_OptionList.py`
+- Runnable harness: `<repo>\paper_artifacts\scp_behavioral_sweep\harnesses\case_39_docutils_OptionList.py`
 - Expected operation: `option_marker`
 - Expected latent state: `blank_finish,parent`
 - Construction feasibility: `simple`

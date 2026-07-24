@@ -1,6 +1,6 @@
 # Case 19: dnspython EntropyPool
 
-- Runnable harness: `C:\Users\Asus\Desktop\Profitlo Projects\Hiesenoether\paper_artifacts\scp_behavioral_sweep\harnesses\case_19_dnspython_EntropyPool.py`
+- Runnable harness: `<repo>\paper_artifacts\scp_behavioral_sweep\harnesses\case_19_dnspython_EntropyPool.py`
 - Expected operation: `random_8`
 - Expected latent state: `digest,next_byte`
 - Construction feasibility: `simple`

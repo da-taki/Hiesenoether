@@ -1,6 +1,6 @@
 # Case 20: dnspython Message
 
-- Runnable harness: `C:\Users\Asus\Desktop\Profitlo Projects\Hiesenoether\paper_artifacts\scp_behavioral_sweep\harnesses\case_20_dnspython_Message.py`
+- Runnable harness: `<repo>\paper_artifacts\scp_behavioral_sweep\harnesses\case_20_dnspython_Message.py`
 - Expected operation: `to_wire`
 - Expected latent state: `tsig_ctx,wire`
 - Construction feasibility: `simple`

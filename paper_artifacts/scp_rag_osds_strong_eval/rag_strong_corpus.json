@@ -1,0 +1,1850 @@
+[
+  {
+    "answer_span": "LRU",
+    "body": "cache eviction policy final answer controlled evidence query anchor. The marked answer span is LRU. This is the target record for cache policy: LRU vs LRI vs LFU.",
+    "doc_id": "f01_cache_policy_a_target",
+    "is_close_distractor": false,
+    "is_observation_boostable": false,
+    "is_target": true,
+    "tags": [
+      "cache_policy",
+      "target",
+      "final_answer",
+      "controlled"
+    ],
+    "title": "cache eviction policy final answer target",
+    "topic_family": "cache_policy"
+  },
+  {
+    "answer_span": "LFU",
+    "body": "cache eviction policy final answer controlled evidence query anchor. The marked answer span is LFU. This close record is intentionally score-adjacent.",
+    "doc_id": "f01_cache_policy_b_close_distractor",
+    "is_close_distractor": true,
+    "is_observation_boostable": false,
+    "is_target": false,
+    "tags": [
+      "cache_policy",
+      "close_distractor",
+      "final_answer",
+      "controlled"
+    ],
+    "title": "cache eviction policy final answer close distractor",
+    "topic_family": "cache_policy"
+  },
+  {
+    "answer_span": "LRI",
+    "body": "cache eviction policy final answer controlled evidence query anchor. The marked answer span is LRI. Observation preview logging explanation cache trace why-selected rationale obs_cache_policy.",
+    "doc_id": "f01_cache_policy_c_observation_boostable",
+    "is_close_distractor": true,
+    "is_observation_boostable": true,
+    "is_target": false,
+    "tags": [
+      "cache_policy",
+      "observation_boostable",
+      "obs_cache_policy",
+      "final_answer",
+      "controlled"
+    ],
+    "title": "cache eviction policy final answer observation draft",
+    "topic_family": "cache_policy"
+  },
+  {
+    "answer_span": "LRU",
+    "body": "cache eviction policy final answer controlled evidence query anchor. The marked answer span is LRU. Secondary duplicate support same answer retrieval order probe duplicate_cache_policy.",
+    "doc_id": "f01_cache_policy_d_same_answer_support",
+    "is_close_distractor": true,
+    "is_observation_boostable": true,
+    "is_target": false,
+    "tags": [
+      "cache_policy",
+      "same_answer_support",
+      "duplicate_cache_policy",
+      "final_answer",
+      "controlled"
+    ],
+    "title": "cache eviction policy final answer supporting LRU note",
+    "topic_family": "cache_policy"
+  },
+  {
+    "answer_span": "unrelated cache_policy note",
+    "body": "Unrelated telemetry sandbox diagnostic note for cache_policy. This record is designed to mutate state without sharing the later answer query anchor.",
+    "doc_id": "f01_cache_policy_e_unrelated_observation",
+    "is_close_distractor": false,
+    "is_observation_boostable": true,
+    "is_target": false,
+    "tags": [
+      "cache_policy",
+      "unrelated_observation",
+      "state_only_probe"
+    ],
+    "title": "unrelated observation scratchpad cache_policy",
+    "topic_family": "cache_policy"
+  },
+  {
+    "answer_span": "neutral ttl",
+    "body": "Neutral background note about ttl in the cache policy: LRU vs LRI vs LFU family. It lacks the controlled final answer anchor used by the answer query.",
+    "doc_id": "f01_cache_policy_n01_neutral",
+    "is_close_distractor": false,
+    "is_observation_boostable": false,
+    "is_target": false,
+    "tags": [
+      "cache_policy",
+      "neutral",
+      "ttl"
+    ],
+    "title": "cache_policy neutral ttl",
+    "topic_family": "cache_policy"
+  },
+  {
+    "answer_span": "neutral clock",
+    "body": "Neutral background note about clock in the cache policy: LRU vs LRI vs LFU family. It lacks the controlled final answer anchor used by the answer query.",
+    "doc_id": "f01_cache_policy_n02_neutral",
+    "is_close_distractor": false,
+    "is_observation_boostable": false,
+    "is_target": false,
+    "tags": [
+      "cache_policy",
+      "neutral",
+      "clock"
+    ],
+    "title": "cache_policy neutral clock",
+    "topic_family": "cache_policy"
+  },
+  {
+    "answer_span": "neutral fifo",
+    "body": "Neutral background note about fifo in the cache policy: LRU vs LRI vs LFU family. It lacks the controlled final answer anchor used by the answer query.",
+    "doc_id": "f01_cache_policy_n03_neutral",
+    "is_close_distractor": false,
+    "is_observation_boostable": false,
+    "is_target": false,
+    "tags": [
+      "cache_policy",
+      "neutral",
+      "fifo"
+    ],
+    "title": "cache_policy neutral fifo",
+    "topic_family": "cache_policy"
+  },
+  {
+    "answer_span": "neutral arc",
+    "body": "Neutral background note about arc in the cache policy: LRU vs LRI vs LFU family. It lacks the controlled final answer anchor used by the answer query.",
+    "doc_id": "f01_cache_policy_n04_neutral",
+    "is_close_distractor": false,
+    "is_observation_boostable": false,
+    "is_target": false,
+    "tags": [
+      "cache_policy",
+      "neutral",
+      "arc"
+    ],
+    "title": "cache_policy neutral arc",
+    "topic_family": "cache_policy"
+  },
+  {
+    "answer_span": "neutral scan",
+    "body": "Neutral background note about scan in the cache policy: LRU vs LRI vs LFU family. It lacks the controlled final answer anchor used by the answer query.",
+    "doc_id": "f01_cache_policy_n05_neutral",
+    "is_close_distractor": false,
+    "is_observation_boostable": false,
+    "is_target": false,
+    "tags": [
+      "cache_policy",
+      "neutral",
+      "scan"
+    ],
+    "title": "cache_policy neutral scan",
+    "topic_family": "cache_policy"
+  },
+  {
+    "answer_span": "neutral pin",
+    "body": "Neutral background note about pin in the cache policy: LRU vs LRI vs LFU family. It lacks the controlled final answer anchor used by the answer query.",
+    "doc_id": "f01_cache_policy_n06_neutral",
+    "is_close_distractor": false,
+    "is_observation_boostable": false,
+    "is_target": false,
+    "tags": [
+      "cache_policy",
+      "neutral",
+      "pin"
+    ],
+    "title": "cache_policy neutral pin",
+    "topic_family": "cache_policy"
+  },
+  {
+    "answer_span": "neutral ttl window",
+    "body": "Neutral background note about ttl window in the cache policy: LRU vs LRI vs LFU family. It lacks the controlled final answer anchor used by the answer query.",
+    "doc_id": "f01_cache_policy_n07_neutral",
+    "is_close_distractor": false,
+    "is_observation_boostable": false,
+    "is_target": false,
+    "tags": [
+      "cache_policy",
+      "neutral",
+      "ttl_window"
+    ],
+    "title": "cache_policy neutral ttl window",
+    "topic_family": "cache_policy"
+  },
+  {
+    "answer_span": "neutral batch",
+    "body": "Neutral background note about batch in the cache policy: LRU vs LRI vs LFU family. It lacks the controlled final answer anchor used by the answer query.",
+    "doc_id": "f01_cache_policy_n08_neutral",
+    "is_close_distractor": false,
+    "is_observation_boostable": false,
+    "is_target": false,
+    "tags": [
+      "cache_policy",
+      "neutral",
+      "batch"
+    ],
+    "title": "cache_policy neutral batch",
+    "topic_family": "cache_policy"
+  },
+  {
+    "answer_span": "neutral tier",
+    "body": "Neutral background note about tier in the cache policy: LRU vs LRI vs LFU family. It lacks the controlled final answer anchor used by the answer query.",
+    "doc_id": "f01_cache_policy_n09_neutral",
+    "is_close_distractor": false,
+    "is_observation_boostable": false,
+    "is_target": false,
+    "tags": [
+      "cache_policy",
+      "neutral",
+      "tier"
+    ],
+    "title": "cache_policy neutral tier",
+    "topic_family": "cache_policy"
+  },
+  {
+    "answer_span": "neutral quota",
+    "body": "Neutral background note about quota in the cache policy: LRU vs LRI vs LFU family. It lacks the controlled final answer anchor used by the answer query.",
+    "doc_id": "f01_cache_policy_n10_neutral",
+    "is_close_distractor": false,
+    "is_observation_boostable": false,
+    "is_target": false,
+    "tags": [
+      "cache_policy",
+      "neutral",
+      "quota"
+    ],
+    "title": "cache_policy neutral quota",
+    "topic_family": "cache_policy"
+  },
+  {
+    "answer_span": "reader",
+    "body": "streaming response tool final answer controlled evidence query anchor. The marked answer span is reader. This is the target record for streaming response tool: reader vs logger vs tracer.",
+    "doc_id": "f02_streaming_response_tool_a_target",
+    "is_close_distractor": false,
+    "is_observation_boostable": false,
+    "is_target": true,
+    "tags": [
+      "streaming_response_tool",
+      "target",
+      "final_answer",
+      "controlled"
+    ],
+    "title": "streaming response tool final answer target",
+    "topic_family": "streaming_response_tool"
+  },
+  {
+    "answer_span": "tracer",
+    "body": "streaming response tool final answer controlled evidence query anchor. The marked answer span is tracer. This close record is intentionally score-adjacent.",
+    "doc_id": "f02_streaming_response_tool_b_close_distractor",
+    "is_close_distractor": true,
+    "is_observation_boostable": false,
+    "is_target": false,
+    "tags": [
+      "streaming_response_tool",
+      "close_distractor",
+      "final_answer",
+      "controlled"
+    ],
+    "title": "streaming response tool final answer close distractor",
+    "topic_family": "streaming_response_tool"
+  },
+  {
+    "answer_span": "logger",
+    "body": "streaming response tool final answer controlled evidence query anchor. The marked answer span is logger. Observation preview logging explanation cache trace why-selected rationale obs_streaming_response_tool.",
+    "doc_id": "f02_streaming_response_tool_c_observation_boostable",
+    "is_close_distractor": true,
+    "is_observation_boostable": true,
+    "is_target": false,
+    "tags": [
+      "streaming_response_tool",
+      "observation_boostable",
+      "obs_streaming_response_tool",
+      "final_answer",
+      "controlled"
+    ],
+    "title": "streaming response tool final answer observation draft",
+    "topic_family": "streaming_response_tool"
+  },
+  {
+    "answer_span": "reader",
+    "body": "streaming response tool final answer controlled evidence query anchor. The marked answer span is reader. Secondary duplicate support same answer retrieval order probe duplicate_streaming_response_tool.",
+    "doc_id": "f02_streaming_response_tool_d_same_answer_support",
+    "is_close_distractor": true,
+    "is_observation_boostable": true,
+    "is_target": false,
+    "tags": [
+      "streaming_response_tool",
+      "same_answer_support",
+      "duplicate_streaming_response_tool",
+      "final_answer",
+      "controlled"
+    ],
+    "title": "streaming response tool final answer reader handoff note",
+    "topic_family": "streaming_response_tool"
+  },
+  {
+    "answer_span": "unrelated streaming_response_tool note",
+    "body": "Unrelated telemetry sandbox diagnostic note for streaming_response_tool. This record is designed to mutate state without sharing the later answer query anchor.",
+    "doc_id": "f02_streaming_response_tool_e_unrelated_observation",
+    "is_close_distractor": false,
+    "is_observation_boostable": true,
+    "is_target": false,
+    "tags": [
+      "streaming_response_tool",
+      "unrelated_observation",
+      "state_only_probe"
+    ],
+    "title": "unrelated observation scratchpad streaming_response_tool",
+    "topic_family": "streaming_response_tool"
+  },
+  {
+    "answer_span": "neutral chunk",
+    "body": "Neutral background note about chunk in the streaming response tool: reader vs logger vs tracer family. It lacks the controlled final answer anchor used by the answer query.",
+    "doc_id": "f02_streaming_response_tool_n01_neutral",
+    "is_close_distractor": false,
+    "is_observation_boostable": false,
+    "is_target": false,
+    "tags": [
+      "streaming_response_tool",
+      "neutral",
+      "chunk"
+    ],
+    "title": "streaming_response_tool neutral chunk",
+    "topic_family": "streaming_response_tool"
+  },
+  {
+    "answer_span": "neutral cursor",
+    "body": "Neutral background note about cursor in the streaming response tool: reader vs logger vs tracer family. It lacks the controlled final answer anchor used by the answer query.",
+    "doc_id": "f02_streaming_response_tool_n02_neutral",
+    "is_close_distractor": false,
+    "is_observation_boostable": false,
+    "is_target": false,
+    "tags": [
+      "streaming_response_tool",
+      "neutral",
+      "cursor"
+    ],
+    "title": "streaming_response_tool neutral cursor",
+    "topic_family": "streaming_response_tool"
+  },
+  {
+    "answer_span": "neutral flush",
+    "body": "Neutral background note about flush in the streaming response tool: reader vs logger vs tracer family. It lacks the controlled final answer anchor used by the answer query.",
+    "doc_id": "f02_streaming_response_tool_n03_neutral",
+    "is_close_distractor": false,
+    "is_observation_boostable": false,
+    "is_target": false,
+    "tags": [
+      "streaming_response_tool",
+      "neutral",
+      "flush"
+    ],
+    "title": "streaming_response_tool neutral flush",
+    "topic_family": "streaming_response_tool"
+  },
+  {
+    "answer_span": "neutral socket",
+    "body": "Neutral background note about socket in the streaming response tool: reader vs logger vs tracer family. It lacks the controlled final answer anchor used by the answer query.",
+    "doc_id": "f02_streaming_response_tool_n04_neutral",
+    "is_close_distractor": false,
+    "is_observation_boostable": false,
+    "is_target": false,
+    "tags": [
+      "streaming_response_tool",
+      "neutral",
+      "socket"
+    ],
+    "title": "streaming_response_tool neutral socket",
+    "topic_family": "streaming_response_tool"
+  },
+  {
+    "answer_span": "neutral watch",
+    "body": "Neutral background note about watch in the streaming response tool: reader vs logger vs tracer family. It lacks the controlled final answer anchor used by the answer query.",
+    "doc_id": "f02_streaming_response_tool_n05_neutral",
+    "is_close_distractor": false,
+    "is_observation_boostable": false,
+    "is_target": false,
+    "tags": [
+      "streaming_response_tool",
+      "neutral",
+      "watch"
+    ],
+    "title": "streaming_response_tool neutral watch",
+    "topic_family": "streaming_response_tool"
+  },
+  {
+    "answer_span": "neutral frame",
+    "body": "Neutral background note about frame in the streaming response tool: reader vs logger vs tracer family. It lacks the controlled final answer anchor used by the answer query.",
+    "doc_id": "f02_streaming_response_tool_n06_neutral",
+    "is_close_distractor": false,
+    "is_observation_boostable": false,
+    "is_target": false,
+    "tags": [
+      "streaming_response_tool",
+      "neutral",
+      "frame"
+    ],
+    "title": "streaming_response_tool neutral frame",
+    "topic_family": "streaming_response_tool"
+  },
+  {
+    "answer_span": "neutral buffer",
+    "body": "Neutral background note about buffer in the streaming response tool: reader vs logger vs tracer family. It lacks the controlled final answer anchor used by the answer query.",
+    "doc_id": "f02_streaming_response_tool_n07_neutral",
+    "is_close_distractor": false,
+    "is_observation_boostable": false,
+    "is_target": false,
+    "tags": [
+      "streaming_response_tool",
+      "neutral",
+      "buffer"
+    ],
+    "title": "streaming_response_tool neutral buffer",
+    "topic_family": "streaming_response_tool"
+  },
+  {
+    "answer_span": "neutral header",
+    "body": "Neutral background note about header in the streaming response tool: reader vs logger vs tracer family. It lacks the controlled final answer anchor used by the answer query.",
+    "doc_id": "f02_streaming_response_tool_n08_neutral",
+    "is_close_distractor": false,
+    "is_observation_boostable": false,
+    "is_target": false,
+    "tags": [
+      "streaming_response_tool",
+      "neutral",
+      "header"
+    ],
+    "title": "streaming_response_tool neutral header",
+    "topic_family": "streaming_response_tool"
+  },
+  {
+    "answer_span": "neutral drain",
+    "body": "Neutral background note about drain in the streaming response tool: reader vs logger vs tracer family. It lacks the controlled final answer anchor used by the answer query.",
+    "doc_id": "f02_streaming_response_tool_n09_neutral",
+    "is_close_distractor": false,
+    "is_observation_boostable": false,
+    "is_target": false,
+    "tags": [
+      "streaming_response_tool",
+      "neutral",
+      "drain"
+    ],
+    "title": "streaming_response_tool neutral drain",
+    "topic_family": "streaming_response_tool"
+  },
+  {
+    "answer_span": "neutral mirror",
+    "body": "Neutral background note about mirror in the streaming response tool: reader vs logger vs tracer family. It lacks the controlled final answer anchor used by the answer query.",
+    "doc_id": "f02_streaming_response_tool_n10_neutral",
+    "is_close_distractor": false,
+    "is_observation_boostable": false,
+    "is_target": false,
+    "tags": [
+      "streaming_response_tool",
+      "neutral",
+      "mirror"
+    ],
+    "title": "streaming_response_tool neutral mirror",
+    "topic_family": "streaming_response_tool"
+  },
+  {
+    "answer_span": "Denver",
+    "body": "accessibility workshop city final answer controlled evidence query anchor. The marked answer span is Denver. This is the target record for accessibility workshop city: final city vs planning city.",
+    "doc_id": "f03_accessibility_workshop_city_a_target",
+    "is_close_distractor": false,
+    "is_observation_boostable": false,
+    "is_target": true,
+    "tags": [
+      "accessibility_workshop_city",
+      "target",
+      "final_answer",
+      "controlled"
+    ],
+    "title": "accessibility workshop city final answer target",
+    "topic_family": "accessibility_workshop_city"
+  },
+  {
+    "answer_span": "Austin",
+    "body": "accessibility workshop city final answer controlled evidence query anchor. The marked answer span is Austin. This close record is intentionally score-adjacent.",
+    "doc_id": "f03_accessibility_workshop_city_b_close_distractor",
+    "is_close_distractor": true,
+    "is_observation_boostable": false,
+    "is_target": false,
+    "tags": [
+      "accessibility_workshop_city",
+      "close_distractor",
+      "final_answer",
+      "controlled"
+    ],
+    "title": "accessibility workshop city final answer close distractor",
+    "topic_family": "accessibility_workshop_city"
+  },
+  {
+    "answer_span": "Boston",
+    "body": "accessibility workshop city final answer controlled evidence query anchor. The marked answer span is Boston. Observation preview logging explanation cache trace why-selected rationale obs_accessibility_workshop_city.",
+    "doc_id": "f03_accessibility_workshop_city_c_observation_boostable",
+    "is_close_distractor": true,
+    "is_observation_boostable": true,
+    "is_target": false,
+    "tags": [
+      "accessibility_workshop_city",
+      "observation_boostable",
+      "obs_accessibility_workshop_city",
+      "final_answer",
+      "controlled"
+    ],
+    "title": "accessibility workshop city final answer observation draft",
+    "topic_family": "accessibility_workshop_city"
+  },
+  {
+    "answer_span": "Denver",
+    "body": "accessibility workshop city final answer controlled evidence query anchor. The marked answer span is Denver. Secondary duplicate support same answer retrieval order probe duplicate_accessibility_workshop_city.",
+    "doc_id": "f03_accessibility_workshop_city_d_same_answer_support",
+    "is_close_distractor": true,
+    "is_observation_boostable": true,
+    "is_target": false,
+    "tags": [
+      "accessibility_workshop_city",
+      "same_answer_support",
+      "duplicate_accessibility_workshop_city",
+      "final_answer",
+      "controlled"
+    ],
+    "title": "accessibility workshop city final answer Denver venue memo",
+    "topic_family": "accessibility_workshop_city"
+  },
+  {
+    "answer_span": "unrelated accessibility_workshop_city note",
+    "body": "Unrelated telemetry sandbox diagnostic note for accessibility_workshop_city. This record is designed to mutate state without sharing the later answer query anchor.",
+    "doc_id": "f03_accessibility_workshop_city_e_unrelated_observation",
+    "is_close_distractor": false,
+    "is_observation_boostable": true,
+    "is_target": false,
+    "tags": [
+      "accessibility_workshop_city",
+      "unrelated_observation",
+      "state_only_probe"
+    ],
+    "title": "unrelated observation scratchpad accessibility_workshop_city",
+    "topic_family": "accessibility_workshop_city"
+  },
+  {
+    "answer_span": "neutral survey",
+    "body": "Neutral background note about survey in the accessibility workshop city: final city vs planning city family. It lacks the controlled final answer anchor used by the answer query.",
+    "doc_id": "f03_accessibility_workshop_city_n01_neutral",
+    "is_close_distractor": false,
+    "is_observation_boostable": false,
+    "is_target": false,
+    "tags": [
+      "accessibility_workshop_city",
+      "neutral",
+      "survey"
+    ],
+    "title": "accessibility_workshop_city neutral survey",
+    "topic_family": "accessibility_workshop_city"
+  },
+  {
+    "answer_span": "neutral ramp",
+    "body": "Neutral background note about ramp in the accessibility workshop city: final city vs planning city family. It lacks the controlled final answer anchor used by the answer query.",
+    "doc_id": "f03_accessibility_workshop_city_n02_neutral",
+    "is_close_distractor": false,
+    "is_observation_boostable": false,
+    "is_target": false,
+    "tags": [
+      "accessibility_workshop_city",
+      "neutral",
+      "ramp"
+    ],
+    "title": "accessibility_workshop_city neutral ramp",
+    "topic_family": "accessibility_workshop_city"
+  },
+  {
+    "answer_span": "neutral caption",
+    "body": "Neutral background note about caption in the accessibility workshop city: final city vs planning city family. It lacks the controlled final answer anchor used by the answer query.",
+    "doc_id": "f03_accessibility_workshop_city_n03_neutral",
+    "is_close_distractor": false,
+    "is_observation_boostable": false,
+    "is_target": false,
+    "tags": [
+      "accessibility_workshop_city",
+      "neutral",
+      "caption"
+    ],
+    "title": "accessibility_workshop_city neutral caption",
+    "topic_family": "accessibility_workshop_city"
+  },
+  {
+    "answer_span": "neutral travel",
+    "body": "Neutral background note about travel in the accessibility workshop city: final city vs planning city family. It lacks the controlled final answer anchor used by the answer query.",
+    "doc_id": "f03_accessibility_workshop_city_n04_neutral",
+    "is_close_distractor": false,
+    "is_observation_boostable": false,
+    "is_target": false,
+    "tags": [
+      "accessibility_workshop_city",
+      "neutral",
+      "travel"
+    ],
+    "title": "accessibility_workshop_city neutral travel",
+    "topic_family": "accessibility_workshop_city"
+  },
+  {
+    "answer_span": "neutral badge",
+    "body": "Neutral background note about badge in the accessibility workshop city: final city vs planning city family. It lacks the controlled final answer anchor used by the answer query.",
+    "doc_id": "f03_accessibility_workshop_city_n05_neutral",
+    "is_close_distractor": false,
+    "is_observation_boostable": false,
+    "is_target": false,
+    "tags": [
+      "accessibility_workshop_city",
+      "neutral",
+      "badge"
+    ],
+    "title": "accessibility_workshop_city neutral badge",
+    "topic_family": "accessibility_workshop_city"
+  },
+  {
+    "answer_span": "neutral room",
+    "body": "Neutral background note about room in the accessibility workshop city: final city vs planning city family. It lacks the controlled final answer anchor used by the answer query.",
+    "doc_id": "f03_accessibility_workshop_city_n06_neutral",
+    "is_close_distractor": false,
+    "is_observation_boostable": false,
+    "is_target": false,
+    "tags": [
+      "accessibility_workshop_city",
+      "neutral",
+      "room"
+    ],
+    "title": "accessibility_workshop_city neutral room",
+    "topic_family": "accessibility_workshop_city"
+  },
+  {
+    "answer_span": "neutral speaker",
+    "body": "Neutral background note about speaker in the accessibility workshop city: final city vs planning city family. It lacks the controlled final answer anchor used by the answer query.",
+    "doc_id": "f03_accessibility_workshop_city_n07_neutral",
+    "is_close_distractor": false,
+    "is_observation_boostable": false,
+    "is_target": false,
+    "tags": [
+      "accessibility_workshop_city",
+      "neutral",
+      "speaker"
+    ],
+    "title": "accessibility_workshop_city neutral speaker",
+    "topic_family": "accessibility_workshop_city"
+  },
+  {
+    "answer_span": "neutral hotel",
+    "body": "Neutral background note about hotel in the accessibility workshop city: final city vs planning city family. It lacks the controlled final answer anchor used by the answer query.",
+    "doc_id": "f03_accessibility_workshop_city_n08_neutral",
+    "is_close_distractor": false,
+    "is_observation_boostable": false,
+    "is_target": false,
+    "tags": [
+      "accessibility_workshop_city",
+      "neutral",
+      "hotel"
+    ],
+    "title": "accessibility_workshop_city neutral hotel",
+    "topic_family": "accessibility_workshop_city"
+  },
+  {
+    "answer_span": "neutral agenda",
+    "body": "Neutral background note about agenda in the accessibility workshop city: final city vs planning city family. It lacks the controlled final answer anchor used by the answer query.",
+    "doc_id": "f03_accessibility_workshop_city_n09_neutral",
+    "is_close_distractor": false,
+    "is_observation_boostable": false,
+    "is_target": false,
+    "tags": [
+      "accessibility_workshop_city",
+      "neutral",
+      "agenda"
+    ],
+    "title": "accessibility_workshop_city neutral agenda",
+    "topic_family": "accessibility_workshop_city"
+  },
+  {
+    "answer_span": "neutral transit",
+    "body": "Neutral background note about transit in the accessibility workshop city: final city vs planning city family. It lacks the controlled final answer anchor used by the answer query.",
+    "doc_id": "f03_accessibility_workshop_city_n10_neutral",
+    "is_close_distractor": false,
+    "is_observation_boostable": false,
+    "is_target": false,
+    "tags": [
+      "accessibility_workshop_city",
+      "neutral",
+      "transit"
+    ],
+    "title": "accessibility_workshop_city neutral transit",
+    "topic_family": "accessibility_workshop_city"
+  },
+  {
+    "answer_span": "reset",
+    "body": "markdown reuse action final answer controlled evidence query anchor. The marked answer span is reset. This is the target record for markdown reuse: reset vs build_parser.",
+    "doc_id": "f04_markdown_reuse_a_target",
+    "is_close_distractor": false,
+    "is_observation_boostable": false,
+    "is_target": true,
+    "tags": [
+      "markdown_reuse",
+      "target",
+      "final_answer",
+      "controlled"
+    ],
+    "title": "markdown reuse action final answer target",
+    "topic_family": "markdown_reuse"
+  },
+  {
+    "answer_span": "clear_cache",
+    "body": "markdown reuse action final answer controlled evidence query anchor. The marked answer span is clear_cache. This close record is intentionally score-adjacent.",
+    "doc_id": "f04_markdown_reuse_b_close_distractor",
+    "is_close_distractor": true,
+    "is_observation_boostable": false,
+    "is_target": false,
+    "tags": [
+      "markdown_reuse",
+      "close_distractor",
+      "final_answer",
+      "controlled"
+    ],
+    "title": "markdown reuse action final answer close distractor",
+    "topic_family": "markdown_reuse"
+  },
+  {
+    "answer_span": "build_parser",
+    "body": "markdown reuse action final answer controlled evidence query anchor. The marked answer span is build_parser. Observation preview logging explanation cache trace why-selected rationale obs_markdown_reuse.",
+    "doc_id": "f04_markdown_reuse_c_observation_boostable",
+    "is_close_distractor": true,
+    "is_observation_boostable": true,
+    "is_target": false,
+    "tags": [
+      "markdown_reuse",
+      "observation_boostable",
+      "obs_markdown_reuse",
+      "final_answer",
+      "controlled"
+    ],
+    "title": "markdown reuse action final answer observation draft",
+    "topic_family": "markdown_reuse"
+  },
+  {
+    "answer_span": "reset",
+    "body": "markdown reuse action final answer controlled evidence query anchor. The marked answer span is reset. Secondary duplicate support same answer retrieval order probe duplicate_markdown_reuse.",
+    "doc_id": "f04_markdown_reuse_d_same_answer_support",
+    "is_close_distractor": true,
+    "is_observation_boostable": true,
+    "is_target": false,
+    "tags": [
+      "markdown_reuse",
+      "same_answer_support",
+      "duplicate_markdown_reuse",
+      "final_answer",
+      "controlled"
+    ],
+    "title": "markdown reuse action final answer reset reuse note",
+    "topic_family": "markdown_reuse"
+  },
+  {
+    "answer_span": "unrelated markdown_reuse note",
+    "body": "Unrelated telemetry sandbox diagnostic note for markdown_reuse. This record is designed to mutate state without sharing the later answer query anchor.",
+    "doc_id": "f04_markdown_reuse_e_unrelated_observation",
+    "is_close_distractor": false,
+    "is_observation_boostable": true,
+    "is_target": false,
+    "tags": [
+      "markdown_reuse",
+      "unrelated_observation",
+      "state_only_probe"
+    ],
+    "title": "unrelated observation scratchpad markdown_reuse",
+    "topic_family": "markdown_reuse"
+  },
+  {
+    "answer_span": "neutral inline",
+    "body": "Neutral background note about inline in the markdown reuse: reset vs build_parser family. It lacks the controlled final answer anchor used by the answer query.",
+    "doc_id": "f04_markdown_reuse_n01_neutral",
+    "is_close_distractor": false,
+    "is_observation_boostable": false,
+    "is_target": false,
+    "tags": [
+      "markdown_reuse",
+      "neutral",
+      "inline"
+    ],
+    "title": "markdown_reuse neutral inline",
+    "topic_family": "markdown_reuse"
+  },
+  {
+    "answer_span": "neutral block",
+    "body": "Neutral background note about block in the markdown reuse: reset vs build_parser family. It lacks the controlled final answer anchor used by the answer query.",
+    "doc_id": "f04_markdown_reuse_n02_neutral",
+    "is_close_distractor": false,
+    "is_observation_boostable": false,
+    "is_target": false,
+    "tags": [
+      "markdown_reuse",
+      "neutral",
+      "block"
+    ],
+    "title": "markdown_reuse neutral block",
+    "topic_family": "markdown_reuse"
+  },
+  {
+    "answer_span": "neutral extension",
+    "body": "Neutral background note about extension in the markdown reuse: reset vs build_parser family. It lacks the controlled final answer anchor used by the answer query.",
+    "doc_id": "f04_markdown_reuse_n03_neutral",
+    "is_close_distractor": false,
+    "is_observation_boostable": false,
+    "is_target": false,
+    "tags": [
+      "markdown_reuse",
+      "neutral",
+      "extension"
+    ],
+    "title": "markdown_reuse neutral extension",
+    "topic_family": "markdown_reuse"
+  },
+  {
+    "answer_span": "neutral heading",
+    "body": "Neutral background note about heading in the markdown reuse: reset vs build_parser family. It lacks the controlled final answer anchor used by the answer query.",
+    "doc_id": "f04_markdown_reuse_n04_neutral",
+    "is_close_distractor": false,
+    "is_observation_boostable": false,
+    "is_target": false,
+    "tags": [
+      "markdown_reuse",
+      "neutral",
+      "heading"
+    ],
+    "title": "markdown_reuse neutral heading",
+    "topic_family": "markdown_reuse"
+  },
+  {
+    "answer_span": "neutral renderer",
+    "body": "Neutral background note about renderer in the markdown reuse: reset vs build_parser family. It lacks the controlled final answer anchor used by the answer query.",
+    "doc_id": "f04_markdown_reuse_n05_neutral",
+    "is_close_distractor": false,
+    "is_observation_boostable": false,
+    "is_target": false,
+    "tags": [
+      "markdown_reuse",
+      "neutral",
+      "renderer"
+    ],
+    "title": "markdown_reuse neutral renderer",
+    "topic_family": "markdown_reuse"
+  },
+  {
+    "answer_span": "neutral escape",
+    "body": "Neutral background note about escape in the markdown reuse: reset vs build_parser family. It lacks the controlled final answer anchor used by the answer query.",
+    "doc_id": "f04_markdown_reuse_n06_neutral",
+    "is_close_distractor": false,
+    "is_observation_boostable": false,
+    "is_target": false,
+    "tags": [
+      "markdown_reuse",
+      "neutral",
+      "escape"
+    ],
+    "title": "markdown_reuse neutral escape",
+    "topic_family": "markdown_reuse"
+  },
+  {
+    "answer_span": "neutral table",
+    "body": "Neutral background note about table in the markdown reuse: reset vs build_parser family. It lacks the controlled final answer anchor used by the answer query.",
+    "doc_id": "f04_markdown_reuse_n07_neutral",
+    "is_close_distractor": false,
+    "is_observation_boostable": false,
+    "is_target": false,
+    "tags": [
+      "markdown_reuse",
+      "neutral",
+      "table"
+    ],
+    "title": "markdown_reuse neutral table",
+    "topic_family": "markdown_reuse"
+  },
+  {
+    "answer_span": "neutral footnote",
+    "body": "Neutral background note about footnote in the markdown reuse: reset vs build_parser family. It lacks the controlled final answer anchor used by the answer query.",
+    "doc_id": "f04_markdown_reuse_n08_neutral",
+    "is_close_distractor": false,
+    "is_observation_boostable": false,
+    "is_target": false,
+    "tags": [
+      "markdown_reuse",
+      "neutral",
+      "footnote"
+    ],
+    "title": "markdown_reuse neutral footnote",
+    "topic_family": "markdown_reuse"
+  },
+  {
+    "answer_span": "neutral quote",
+    "body": "Neutral background note about quote in the markdown reuse: reset vs build_parser family. It lacks the controlled final answer anchor used by the answer query.",
+    "doc_id": "f04_markdown_reuse_n09_neutral",
+    "is_close_distractor": false,
+    "is_observation_boostable": false,
+    "is_target": false,
+    "tags": [
+      "markdown_reuse",
+      "neutral",
+      "quote"
+    ],
+    "title": "markdown_reuse neutral quote",
+    "topic_family": "markdown_reuse"
+  },
+  {
+    "answer_span": "neutral link",
+    "body": "Neutral background note about link in the markdown reuse: reset vs build_parser family. It lacks the controlled final answer anchor used by the answer query.",
+    "doc_id": "f04_markdown_reuse_n10_neutral",
+    "is_close_distractor": false,
+    "is_observation_boostable": false,
+    "is_target": false,
+    "tags": [
+      "markdown_reuse",
+      "neutral",
+      "link"
+    ],
+    "title": "markdown_reuse neutral link",
+    "topic_family": "markdown_reuse"
+  },
+  {
+    "answer_span": "alpha memory",
+    "body": "memory system answer final answer controlled evidence query anchor. The marked answer span is alpha memory. This is the target record for memory system: alpha vs beta memory.",
+    "doc_id": "f05_memory_system_a_target",
+    "is_close_distractor": false,
+    "is_observation_boostable": false,
+    "is_target": true,
+    "tags": [
+      "memory_system",
+      "target",
+      "final_answer",
+      "controlled"
+    ],
+    "title": "memory system answer final answer target",
+    "topic_family": "memory_system"
+  },
+  {
+    "answer_span": "gamma memory",
+    "body": "memory system answer final answer controlled evidence query anchor. The marked answer span is gamma memory. This close record is intentionally score-adjacent.",
+    "doc_id": "f05_memory_system_b_close_distractor",
+    "is_close_distractor": true,
+    "is_observation_boostable": false,
+    "is_target": false,
+    "tags": [
+      "memory_system",
+      "close_distractor",
+      "final_answer",
+      "controlled"
+    ],
+    "title": "memory system answer final answer close distractor",
+    "topic_family": "memory_system"
+  },
+  {
+    "answer_span": "beta memory",
+    "body": "memory system answer final answer controlled evidence query anchor. The marked answer span is beta memory. Observation preview logging explanation cache trace why-selected rationale obs_memory_system.",
+    "doc_id": "f05_memory_system_c_observation_boostable",
+    "is_close_distractor": true,
+    "is_observation_boostable": true,
+    "is_target": false,
+    "tags": [
+      "memory_system",
+      "observation_boostable",
+      "obs_memory_system",
+      "final_answer",
+      "controlled"
+    ],
+    "title": "memory system answer final answer observation draft",
+    "topic_family": "memory_system"
+  },
+  {
+    "answer_span": "alpha memory",
+    "body": "memory system answer final answer controlled evidence query anchor. The marked answer span is alpha memory. Secondary duplicate support same answer retrieval order probe duplicate_memory_system.",
+    "doc_id": "f05_memory_system_d_same_answer_support",
+    "is_close_distractor": true,
+    "is_observation_boostable": true,
+    "is_target": false,
+    "tags": [
+      "memory_system",
+      "same_answer_support",
+      "duplicate_memory_system",
+      "final_answer",
+      "controlled"
+    ],
+    "title": "memory system answer final answer alpha memory support",
+    "topic_family": "memory_system"
+  },
+  {
+    "answer_span": "unrelated memory_system note",
+    "body": "Unrelated telemetry sandbox diagnostic note for memory_system. This record is designed to mutate state without sharing the later answer query anchor.",
+    "doc_id": "f05_memory_system_e_unrelated_observation",
+    "is_close_distractor": false,
+    "is_observation_boostable": true,
+    "is_target": false,
+    "tags": [
+      "memory_system",
+      "unrelated_observation",
+      "state_only_probe"
+    ],
+    "title": "unrelated observation scratchpad memory_system",
+    "topic_family": "memory_system"
+  },
+  {
+    "answer_span": "neutral epoch",
+    "body": "Neutral background note about epoch in the memory system: alpha vs beta memory family. It lacks the controlled final answer anchor used by the answer query.",
+    "doc_id": "f05_memory_system_n01_neutral",
+    "is_close_distractor": false,
+    "is_observation_boostable": false,
+    "is_target": false,
+    "tags": [
+      "memory_system",
+      "neutral",
+      "epoch"
+    ],
+    "title": "memory_system neutral epoch",
+    "topic_family": "memory_system"
+  },
+  {
+    "answer_span": "neutral slot",
+    "body": "Neutral background note about slot in the memory system: alpha vs beta memory family. It lacks the controlled final answer anchor used by the answer query.",
+    "doc_id": "f05_memory_system_n02_neutral",
+    "is_close_distractor": false,
+    "is_observation_boostable": false,
+    "is_target": false,
+    "tags": [
+      "memory_system",
+      "neutral",
+      "slot"
+    ],
+    "title": "memory_system neutral slot",
+    "topic_family": "memory_system"
+  },
+  {
+    "answer_span": "neutral decay",
+    "body": "Neutral background note about decay in the memory system: alpha vs beta memory family. It lacks the controlled final answer anchor used by the answer query.",
+    "doc_id": "f05_memory_system_n03_neutral",
+    "is_close_distractor": false,
+    "is_observation_boostable": false,
+    "is_target": false,
+    "tags": [
+      "memory_system",
+      "neutral",
+      "decay"
+    ],
+    "title": "memory_system neutral decay",
+    "topic_family": "memory_system"
+  },
+  {
+    "answer_span": "neutral merge",
+    "body": "Neutral background note about merge in the memory system: alpha vs beta memory family. It lacks the controlled final answer anchor used by the answer query.",
+    "doc_id": "f05_memory_system_n04_neutral",
+    "is_close_distractor": false,
+    "is_observation_boostable": false,
+    "is_target": false,
+    "tags": [
+      "memory_system",
+      "neutral",
+      "merge"
+    ],
+    "title": "memory_system neutral merge",
+    "topic_family": "memory_system"
+  },
+  {
+    "answer_span": "neutral window",
+    "body": "Neutral background note about window in the memory system: alpha vs beta memory family. It lacks the controlled final answer anchor used by the answer query.",
+    "doc_id": "f05_memory_system_n05_neutral",
+    "is_close_distractor": false,
+    "is_observation_boostable": false,
+    "is_target": false,
+    "tags": [
+      "memory_system",
+      "neutral",
+      "window"
+    ],
+    "title": "memory_system neutral window",
+    "topic_family": "memory_system"
+  },
+  {
+    "answer_span": "neutral index",
+    "body": "Neutral background note about index in the memory system: alpha vs beta memory family. It lacks the controlled final answer anchor used by the answer query.",
+    "doc_id": "f05_memory_system_n06_neutral",
+    "is_close_distractor": false,
+    "is_observation_boostable": false,
+    "is_target": false,
+    "tags": [
+      "memory_system",
+      "neutral",
+      "index"
+    ],
+    "title": "memory_system neutral index",
+    "topic_family": "memory_system"
+  },
+  {
+    "answer_span": "neutral scope",
+    "body": "Neutral background note about scope in the memory system: alpha vs beta memory family. It lacks the controlled final answer anchor used by the answer query.",
+    "doc_id": "f05_memory_system_n07_neutral",
+    "is_close_distractor": false,
+    "is_observation_boostable": false,
+    "is_target": false,
+    "tags": [
+      "memory_system",
+      "neutral",
+      "scope"
+    ],
+    "title": "memory_system neutral scope",
+    "topic_family": "memory_system"
+  },
+  {
+    "answer_span": "neutral ledger",
+    "body": "Neutral background note about ledger in the memory system: alpha vs beta memory family. It lacks the controlled final answer anchor used by the answer query.",
+    "doc_id": "f05_memory_system_n08_neutral",
+    "is_close_distractor": false,
+    "is_observation_boostable": false,
+    "is_target": false,
+    "tags": [
+      "memory_system",
+      "neutral",
+      "ledger"
+    ],
+    "title": "memory_system neutral ledger",
+    "topic_family": "memory_system"
+  },
+  {
+    "answer_span": "neutral pin",
+    "body": "Neutral background note about pin in the memory system: alpha vs beta memory family. It lacks the controlled final answer anchor used by the answer query.",
+    "doc_id": "f05_memory_system_n09_neutral",
+    "is_close_distractor": false,
+    "is_observation_boostable": false,
+    "is_target": false,
+    "tags": [
+      "memory_system",
+      "neutral",
+      "pin"
+    ],
+    "title": "memory_system neutral pin",
+    "topic_family": "memory_system"
+  },
+  {
+    "answer_span": "neutral sample",
+    "body": "Neutral background note about sample in the memory system: alpha vs beta memory family. It lacks the controlled final answer anchor used by the answer query.",
+    "doc_id": "f05_memory_system_n10_neutral",
+    "is_close_distractor": false,
+    "is_observation_boostable": false,
+    "is_target": false,
+    "tags": [
+      "memory_system",
+      "neutral",
+      "sample"
+    ],
+    "title": "memory_system neutral sample",
+    "topic_family": "memory_system"
+  },
+  {
+    "answer_span": "pure inspection",
+    "body": "package diagnostic behavior final answer controlled evidence query anchor. The marked answer span is pure inspection. This is the target record for package diagnostic behavior: pure inspection vs diagnostic mutation.",
+    "doc_id": "f06_package_diagnostic_behavior_a_target",
+    "is_close_distractor": false,
+    "is_observation_boostable": false,
+    "is_target": true,
+    "tags": [
+      "package_diagnostic_behavior",
+      "target",
+      "final_answer",
+      "controlled"
+    ],
+    "title": "package diagnostic behavior final answer target",
+    "topic_family": "package_diagnostic_behavior"
+  },
+  {
+    "answer_span": "lazy inspection",
+    "body": "package diagnostic behavior final answer controlled evidence query anchor. The marked answer span is lazy inspection. This close record is intentionally score-adjacent.",
+    "doc_id": "f06_package_diagnostic_behavior_b_close_distractor",
+    "is_close_distractor": true,
+    "is_observation_boostable": false,
+    "is_target": false,
+    "tags": [
+      "package_diagnostic_behavior",
+      "close_distractor",
+      "final_answer",
+      "controlled"
+    ],
+    "title": "package diagnostic behavior final answer close distractor",
+    "topic_family": "package_diagnostic_behavior"
+  },
+  {
+    "answer_span": "diagnostic mutation",
+    "body": "package diagnostic behavior final answer controlled evidence query anchor. The marked answer span is diagnostic mutation. Observation preview logging explanation cache trace why-selected rationale obs_package_diagnostic_behavior.",
+    "doc_id": "f06_package_diagnostic_behavior_c_observation_boostable",
+    "is_close_distractor": true,
+    "is_observation_boostable": true,
+    "is_target": false,
+    "tags": [
+      "package_diagnostic_behavior",
+      "observation_boostable",
+      "obs_package_diagnostic_behavior",
+      "final_answer",
+      "controlled"
+    ],
+    "title": "package diagnostic behavior final answer observation draft",
+    "topic_family": "package_diagnostic_behavior"
+  },
+  {
+    "answer_span": "pure inspection",
+    "body": "package diagnostic behavior final answer controlled evidence query anchor. The marked answer span is pure inspection. Secondary duplicate support same answer retrieval order probe duplicate_package_diagnostic_behavior.",
+    "doc_id": "f06_package_diagnostic_behavior_d_same_answer_support",
+    "is_close_distractor": true,
+    "is_observation_boostable": true,
+    "is_target": false,
+    "tags": [
+      "package_diagnostic_behavior",
+      "same_answer_support",
+      "duplicate_package_diagnostic_behavior",
+      "final_answer",
+      "controlled"
+    ],
+    "title": "package diagnostic behavior final answer pure inspection support",
+    "topic_family": "package_diagnostic_behavior"
+  },
+  {
+    "answer_span": "unrelated package_diagnostic_behavior note",
+    "body": "Unrelated telemetry sandbox diagnostic note for package_diagnostic_behavior. This record is designed to mutate state without sharing the later answer query anchor.",
+    "doc_id": "f06_package_diagnostic_behavior_e_unrelated_observation",
+    "is_close_distractor": false,
+    "is_observation_boostable": true,
+    "is_target": false,
+    "tags": [
+      "package_diagnostic_behavior",
+      "unrelated_observation",
+      "state_only_probe"
+    ],
+    "title": "unrelated observation scratchpad package_diagnostic_behavior",
+    "topic_family": "package_diagnostic_behavior"
+  },
+  {
+    "answer_span": "neutral version",
+    "body": "Neutral background note about version in the package diagnostic behavior: pure inspection vs diagnostic mutation family. It lacks the controlled final answer anchor used by the answer query.",
+    "doc_id": "f06_package_diagnostic_behavior_n01_neutral",
+    "is_close_distractor": false,
+    "is_observation_boostable": false,
+    "is_target": false,
+    "tags": [
+      "package_diagnostic_behavior",
+      "neutral",
+      "version"
+    ],
+    "title": "package_diagnostic_behavior neutral version",
+    "topic_family": "package_diagnostic_behavior"
+  },
+  {
+    "answer_span": "neutral wheel",
+    "body": "Neutral background note about wheel in the package diagnostic behavior: pure inspection vs diagnostic mutation family. It lacks the controlled final answer anchor used by the answer query.",
+    "doc_id": "f06_package_diagnostic_behavior_n02_neutral",
+    "is_close_distractor": false,
+    "is_observation_boostable": false,
+    "is_target": false,
+    "tags": [
+      "package_diagnostic_behavior",
+      "neutral",
+      "wheel"
+    ],
+    "title": "package_diagnostic_behavior neutral wheel",
+    "topic_family": "package_diagnostic_behavior"
+  },
+  {
+    "answer_span": "neutral import",
+    "body": "Neutral background note about import in the package diagnostic behavior: pure inspection vs diagnostic mutation family. It lacks the controlled final answer anchor used by the answer query.",
+    "doc_id": "f06_package_diagnostic_behavior_n03_neutral",
+    "is_close_distractor": false,
+    "is_observation_boostable": false,
+    "is_target": false,
+    "tags": [
+      "package_diagnostic_behavior",
+      "neutral",
+      "import"
+    ],
+    "title": "package_diagnostic_behavior neutral import",
+    "topic_family": "package_diagnostic_behavior"
+  },
+  {
+    "answer_span": "neutral metadata",
+    "body": "Neutral background note about metadata in the package diagnostic behavior: pure inspection vs diagnostic mutation family. It lacks the controlled final answer anchor used by the answer query.",
+    "doc_id": "f06_package_diagnostic_behavior_n04_neutral",
+    "is_close_distractor": false,
+    "is_observation_boostable": false,
+    "is_target": false,
+    "tags": [
+      "package_diagnostic_behavior",
+      "neutral",
+      "metadata"
+    ],
+    "title": "package_diagnostic_behavior neutral metadata",
+    "topic_family": "package_diagnostic_behavior"
+  },
+  {
+    "answer_span": "neutral plugin",
+    "body": "Neutral background note about plugin in the package diagnostic behavior: pure inspection vs diagnostic mutation family. It lacks the controlled final answer anchor used by the answer query.",
+    "doc_id": "f06_package_diagnostic_behavior_n05_neutral",
+    "is_close_distractor": false,
+    "is_observation_boostable": false,
+    "is_target": false,
+    "tags": [
+      "package_diagnostic_behavior",
+      "neutral",
+      "plugin"
+    ],
+    "title": "package_diagnostic_behavior neutral plugin",
+    "topic_family": "package_diagnostic_behavior"
+  },
+  {
+    "answer_span": "neutral resolver",
+    "body": "Neutral background note about resolver in the package diagnostic behavior: pure inspection vs diagnostic mutation family. It lacks the controlled final answer anchor used by the answer query.",
+    "doc_id": "f06_package_diagnostic_behavior_n06_neutral",
+    "is_close_distractor": false,
+    "is_observation_boostable": false,
+    "is_target": false,
+    "tags": [
+      "package_diagnostic_behavior",
+      "neutral",
+      "resolver"
+    ],
+    "title": "package_diagnostic_behavior neutral resolver",
+    "topic_family": "package_diagnostic_behavior"
+  },
+  {
+    "answer_span": "neutral lock",
+    "body": "Neutral background note about lock in the package diagnostic behavior: pure inspection vs diagnostic mutation family. It lacks the controlled final answer anchor used by the answer query.",
+    "doc_id": "f06_package_diagnostic_behavior_n07_neutral",
+    "is_close_distractor": false,
+    "is_observation_boostable": false,
+    "is_target": false,
+    "tags": [
+      "package_diagnostic_behavior",
+      "neutral",
+      "lock"
+    ],
+    "title": "package_diagnostic_behavior neutral lock",
+    "topic_family": "package_diagnostic_behavior"
+  },
+  {
+    "answer_span": "neutral cache",
+    "body": "Neutral background note about cache in the package diagnostic behavior: pure inspection vs diagnostic mutation family. It lacks the controlled final answer anchor used by the answer query.",
+    "doc_id": "f06_package_diagnostic_behavior_n08_neutral",
+    "is_close_distractor": false,
+    "is_observation_boostable": false,
+    "is_target": false,
+    "tags": [
+      "package_diagnostic_behavior",
+      "neutral",
+      "cache"
+    ],
+    "title": "package_diagnostic_behavior neutral cache",
+    "topic_family": "package_diagnostic_behavior"
+  },
+  {
+    "answer_span": "neutral probe",
+    "body": "Neutral background note about probe in the package diagnostic behavior: pure inspection vs diagnostic mutation family. It lacks the controlled final answer anchor used by the answer query.",
+    "doc_id": "f06_package_diagnostic_behavior_n09_neutral",
+    "is_close_distractor": false,
+    "is_observation_boostable": false,
+    "is_target": false,
+    "tags": [
+      "package_diagnostic_behavior",
+      "neutral",
+      "probe"
+    ],
+    "title": "package_diagnostic_behavior neutral probe",
+    "topic_family": "package_diagnostic_behavior"
+  },
+  {
+    "answer_span": "neutral audit",
+    "body": "Neutral background note about audit in the package diagnostic behavior: pure inspection vs diagnostic mutation family. It lacks the controlled final answer anchor used by the answer query.",
+    "doc_id": "f06_package_diagnostic_behavior_n10_neutral",
+    "is_close_distractor": false,
+    "is_observation_boostable": false,
+    "is_target": false,
+    "tags": [
+      "package_diagnostic_behavior",
+      "neutral",
+      "audit"
+    ],
+    "title": "package_diagnostic_behavior neutral audit",
+    "topic_family": "package_diagnostic_behavior"
+  },
+  {
+    "answer_span": "calculator",
+    "body": "agent tool routing final answer controlled evidence query anchor. The marked answer span is calculator. This is the target record for agent tool routing: calculator vs retriever vs logger.",
+    "doc_id": "f07_agent_tool_routing_a_target",
+    "is_close_distractor": false,
+    "is_observation_boostable": false,
+    "is_target": true,
+    "tags": [
+      "agent_tool_routing",
+      "target",
+      "final_answer",
+      "controlled"
+    ],
+    "title": "agent tool routing final answer target",
+    "topic_family": "agent_tool_routing"
+  },
+  {
+    "answer_span": "retriever",
+    "body": "agent tool routing final answer controlled evidence query anchor. The marked answer span is retriever. This close record is intentionally score-adjacent.",
+    "doc_id": "f07_agent_tool_routing_b_close_distractor",
+    "is_close_distractor": true,
+    "is_observation_boostable": false,
+    "is_target": false,
+    "tags": [
+      "agent_tool_routing",
+      "close_distractor",
+      "final_answer",
+      "controlled"
+    ],
+    "title": "agent tool routing final answer close distractor",
+    "topic_family": "agent_tool_routing"
+  },
+  {
+    "answer_span": "logger",
+    "body": "agent tool routing final answer controlled evidence query anchor. The marked answer span is logger. Observation preview logging explanation cache trace why-selected rationale obs_agent_tool_routing.",
+    "doc_id": "f07_agent_tool_routing_c_observation_boostable",
+    "is_close_distractor": true,
+    "is_observation_boostable": true,
+    "is_target": false,
+    "tags": [
+      "agent_tool_routing",
+      "observation_boostable",
+      "obs_agent_tool_routing",
+      "final_answer",
+      "controlled"
+    ],
+    "title": "agent tool routing final answer observation draft",
+    "topic_family": "agent_tool_routing"
+  },
+  {
+    "answer_span": "calculator",
+    "body": "agent tool routing final answer controlled evidence query anchor. The marked answer span is calculator. Secondary duplicate support same answer retrieval order probe duplicate_agent_tool_routing.",
+    "doc_id": "f07_agent_tool_routing_d_same_answer_support",
+    "is_close_distractor": true,
+    "is_observation_boostable": true,
+    "is_target": false,
+    "tags": [
+      "agent_tool_routing",
+      "same_answer_support",
+      "duplicate_agent_tool_routing",
+      "final_answer",
+      "controlled"
+    ],
+    "title": "agent tool routing final answer calculator support route",
+    "topic_family": "agent_tool_routing"
+  },
+  {
+    "answer_span": "unrelated agent_tool_routing note",
+    "body": "Unrelated telemetry sandbox diagnostic note for agent_tool_routing. This record is designed to mutate state without sharing the later answer query anchor.",
+    "doc_id": "f07_agent_tool_routing_e_unrelated_observation",
+    "is_close_distractor": false,
+    "is_observation_boostable": true,
+    "is_target": false,
+    "tags": [
+      "agent_tool_routing",
+      "unrelated_observation",
+      "state_only_probe"
+    ],
+    "title": "unrelated observation scratchpad agent_tool_routing",
+    "topic_family": "agent_tool_routing"
+  },
+  {
+    "answer_span": "neutral planner",
+    "body": "Neutral background note about planner in the agent tool routing: calculator vs retriever vs logger family. It lacks the controlled final answer anchor used by the answer query.",
+    "doc_id": "f07_agent_tool_routing_n01_neutral",
+    "is_close_distractor": false,
+    "is_observation_boostable": false,
+    "is_target": false,
+    "tags": [
+      "agent_tool_routing",
+      "neutral",
+      "planner"
+    ],
+    "title": "agent_tool_routing neutral planner",
+    "topic_family": "agent_tool_routing"
+  },
+  {
+    "answer_span": "neutral delegate",
+    "body": "Neutral background note about delegate in the agent tool routing: calculator vs retriever vs logger family. It lacks the controlled final answer anchor used by the answer query.",
+    "doc_id": "f07_agent_tool_routing_n02_neutral",
+    "is_close_distractor": false,
+    "is_observation_boostable": false,
+    "is_target": false,
+    "tags": [
+      "agent_tool_routing",
+      "neutral",
+      "delegate"
+    ],
+    "title": "agent_tool_routing neutral delegate",
+    "topic_family": "agent_tool_routing"
+  },
+  {
+    "answer_span": "neutral timeout",
+    "body": "Neutral background note about timeout in the agent tool routing: calculator vs retriever vs logger family. It lacks the controlled final answer anchor used by the answer query.",
+    "doc_id": "f07_agent_tool_routing_n03_neutral",
+    "is_close_distractor": false,
+    "is_observation_boostable": false,
+    "is_target": false,
+    "tags": [
+      "agent_tool_routing",
+      "neutral",
+      "timeout"
+    ],
+    "title": "agent_tool_routing neutral timeout",
+    "topic_family": "agent_tool_routing"
+  },
+  {
+    "answer_span": "neutral schema",
+    "body": "Neutral background note about schema in the agent tool routing: calculator vs retriever vs logger family. It lacks the controlled final answer anchor used by the answer query.",
+    "doc_id": "f07_agent_tool_routing_n04_neutral",
+    "is_close_distractor": false,
+    "is_observation_boostable": false,
+    "is_target": false,
+    "tags": [
+      "agent_tool_routing",
+      "neutral",
+      "schema"
+    ],
+    "title": "agent_tool_routing neutral schema",
+    "topic_family": "agent_tool_routing"
+  },
+  {
+    "answer_span": "neutral argument",
+    "body": "Neutral background note about argument in the agent tool routing: calculator vs retriever vs logger family. It lacks the controlled final answer anchor used by the answer query.",
+    "doc_id": "f07_agent_tool_routing_n05_neutral",
+    "is_close_distractor": false,
+    "is_observation_boostable": false,
+    "is_target": false,
+    "tags": [
+      "agent_tool_routing",
+      "neutral",
+      "argument"
+    ],
+    "title": "agent_tool_routing neutral argument",
+    "topic_family": "agent_tool_routing"
+  },
+  {
+    "answer_span": "neutral ranker",
+    "body": "Neutral background note about ranker in the agent tool routing: calculator vs retriever vs logger family. It lacks the controlled final answer anchor used by the answer query.",
+    "doc_id": "f07_agent_tool_routing_n06_neutral",
+    "is_close_distractor": false,
+    "is_observation_boostable": false,
+    "is_target": false,
+    "tags": [
+      "agent_tool_routing",
+      "neutral",
+      "ranker"
+    ],
+    "title": "agent_tool_routing neutral ranker",
+    "topic_family": "agent_tool_routing"
+  },
+  {
+    "answer_span": "neutral router",
+    "body": "Neutral background note about router in the agent tool routing: calculator vs retriever vs logger family. It lacks the controlled final answer anchor used by the answer query.",
+    "doc_id": "f07_agent_tool_routing_n07_neutral",
+    "is_close_distractor": false,
+    "is_observation_boostable": false,
+    "is_target": false,
+    "tags": [
+      "agent_tool_routing",
+      "neutral",
+      "router"
+    ],
+    "title": "agent_tool_routing neutral router",
+    "topic_family": "agent_tool_routing"
+  },
+  {
+    "answer_span": "neutral scratchpad",
+    "body": "Neutral background note about scratchpad in the agent tool routing: calculator vs retriever vs logger family. It lacks the controlled final answer anchor used by the answer query.",
+    "doc_id": "f07_agent_tool_routing_n08_neutral",
+    "is_close_distractor": false,
+    "is_observation_boostable": false,
+    "is_target": false,
+    "tags": [
+      "agent_tool_routing",
+      "neutral",
+      "scratchpad"
+    ],
+    "title": "agent_tool_routing neutral scratchpad",
+    "topic_family": "agent_tool_routing"
+  },
+  {
+    "answer_span": "neutral handoff",
+    "body": "Neutral background note about handoff in the agent tool routing: calculator vs retriever vs logger family. It lacks the controlled final answer anchor used by the answer query.",
+    "doc_id": "f07_agent_tool_routing_n09_neutral",
+    "is_close_distractor": false,
+    "is_observation_boostable": false,
+    "is_target": false,
+    "tags": [
+      "agent_tool_routing",
+      "neutral",
+      "handoff"
+    ],
+    "title": "agent_tool_routing neutral handoff",
+    "topic_family": "agent_tool_routing"
+  },
+  {
+    "answer_span": "neutral retry",
+    "body": "Neutral background note about retry in the agent tool routing: calculator vs retriever vs logger family. It lacks the controlled final answer anchor used by the answer query.",
+    "doc_id": "f07_agent_tool_routing_n10_neutral",
+    "is_close_distractor": false,
+    "is_observation_boostable": false,
+    "is_target": false,
+    "tags": [
+      "agent_tool_routing",
+      "neutral",
+      "retry"
+    ],
+    "title": "agent_tool_routing neutral retry",
+    "topic_family": "agent_tool_routing"
+  },
+  {
+    "answer_span": "final policy",
+    "body": "retrieval safety policy final answer controlled evidence query anchor. The marked answer span is final policy. This is the target record for retrieval safety note: final policy vs draft policy.",
+    "doc_id": "f08_retrieval_safety_note_a_target",
+    "is_close_distractor": false,
+    "is_observation_boostable": false,
+    "is_target": true,
+    "tags": [
+      "retrieval_safety_note",
+      "target",
+      "final_answer",
+      "controlled"
+    ],
+    "title": "retrieval safety policy final answer target",
+    "topic_family": "retrieval_safety_note"
+  },
+  {
+    "answer_span": "review policy",
+    "body": "retrieval safety policy final answer controlled evidence query anchor. The marked answer span is review policy. This close record is intentionally score-adjacent.",
+    "doc_id": "f08_retrieval_safety_note_b_close_distractor",
+    "is_close_distractor": true,
+    "is_observation_boostable": false,
+    "is_target": false,
+    "tags": [
+      "retrieval_safety_note",
+      "close_distractor",
+      "final_answer",
+      "controlled"
+    ],
+    "title": "retrieval safety policy final answer close distractor",
+    "topic_family": "retrieval_safety_note"
+  },
+  {
+    "answer_span": "draft policy",
+    "body": "retrieval safety policy final answer controlled evidence query anchor. The marked answer span is draft policy. Observation preview logging explanation cache trace why-selected rationale obs_retrieval_safety_note.",
+    "doc_id": "f08_retrieval_safety_note_c_observation_boostable",
+    "is_close_distractor": true,
+    "is_observation_boostable": true,
+    "is_target": false,
+    "tags": [
+      "retrieval_safety_note",
+      "observation_boostable",
+      "obs_retrieval_safety_note",
+      "final_answer",
+      "controlled"
+    ],
+    "title": "retrieval safety policy final answer observation draft",
+    "topic_family": "retrieval_safety_note"
+  },
+  {
+    "answer_span": "final policy",
+    "body": "retrieval safety policy final answer controlled evidence query anchor. The marked answer span is final policy. Secondary duplicate support same answer retrieval order probe duplicate_retrieval_safety_note.",
+    "doc_id": "f08_retrieval_safety_note_d_same_answer_support",
+    "is_close_distractor": true,
+    "is_observation_boostable": true,
+    "is_target": false,
+    "tags": [
+      "retrieval_safety_note",
+      "same_answer_support",
+      "duplicate_retrieval_safety_note",
+      "final_answer",
+      "controlled"
+    ],
+    "title": "retrieval safety policy final answer final policy support",
+    "topic_family": "retrieval_safety_note"
+  },
+  {
+    "answer_span": "unrelated retrieval_safety_note note",
+    "body": "Unrelated telemetry sandbox diagnostic note for retrieval_safety_note. This record is designed to mutate state without sharing the later answer query anchor.",
+    "doc_id": "f08_retrieval_safety_note_e_unrelated_observation",
+    "is_close_distractor": false,
+    "is_observation_boostable": true,
+    "is_target": false,
+    "tags": [
+      "retrieval_safety_note",
+      "unrelated_observation",
+      "state_only_probe"
+    ],
+    "title": "unrelated observation scratchpad retrieval_safety_note",
+    "topic_family": "retrieval_safety_note"
+  },
+  {
+    "answer_span": "neutral redaction",
+    "body": "Neutral background note about redaction in the retrieval safety note: final policy vs draft policy family. It lacks the controlled final answer anchor used by the answer query.",
+    "doc_id": "f08_retrieval_safety_note_n01_neutral",
+    "is_close_distractor": false,
+    "is_observation_boostable": false,
+    "is_target": false,
+    "tags": [
+      "retrieval_safety_note",
+      "neutral",
+      "redaction"
+    ],
+    "title": "retrieval_safety_note neutral redaction",
+    "topic_family": "retrieval_safety_note"
+  },
+  {
+    "answer_span": "neutral scope",
+    "body": "Neutral background note about scope in the retrieval safety note: final policy vs draft policy family. It lacks the controlled final answer anchor used by the answer query.",
+    "doc_id": "f08_retrieval_safety_note_n02_neutral",
+    "is_close_distractor": false,
+    "is_observation_boostable": false,
+    "is_target": false,
+    "tags": [
+      "retrieval_safety_note",
+      "neutral",
+      "scope"
+    ],
+    "title": "retrieval_safety_note neutral scope",
+    "topic_family": "retrieval_safety_note"
+  },
+  {
+    "answer_span": "neutral review",
+    "body": "Neutral background note about review in the retrieval safety note: final policy vs draft policy family. It lacks the controlled final answer anchor used by the answer query.",
+    "doc_id": "f08_retrieval_safety_note_n03_neutral",
+    "is_close_distractor": false,
+    "is_observation_boostable": false,
+    "is_target": false,
+    "tags": [
+      "retrieval_safety_note",
+      "neutral",
+      "review"
+    ],
+    "title": "retrieval_safety_note neutral review",
+    "topic_family": "retrieval_safety_note"
+  },
+  {
+    "answer_span": "neutral hold",
+    "body": "Neutral background note about hold in the retrieval safety note: final policy vs draft policy family. It lacks the controlled final answer anchor used by the answer query.",
+    "doc_id": "f08_retrieval_safety_note_n04_neutral",
+    "is_close_distractor": false,
+    "is_observation_boostable": false,
+    "is_target": false,
+    "tags": [
+      "retrieval_safety_note",
+      "neutral",
+      "hold"
+    ],
+    "title": "retrieval_safety_note neutral hold",
+    "topic_family": "retrieval_safety_note"
+  },
+  {
+    "answer_span": "neutral ticket",
+    "body": "Neutral background note about ticket in the retrieval safety note: final policy vs draft policy family. It lacks the controlled final answer anchor used by the answer query.",
+    "doc_id": "f08_retrieval_safety_note_n05_neutral",
+    "is_close_distractor": false,
+    "is_observation_boostable": false,
+    "is_target": false,
+    "tags": [
+      "retrieval_safety_note",
+      "neutral",
+      "ticket"
+    ],
+    "title": "retrieval_safety_note neutral ticket",
+    "topic_family": "retrieval_safety_note"
+  },
+  {
+    "answer_span": "neutral digest",
+    "body": "Neutral background note about digest in the retrieval safety note: final policy vs draft policy family. It lacks the controlled final answer anchor used by the answer query.",
+    "doc_id": "f08_retrieval_safety_note_n06_neutral",
+    "is_close_distractor": false,
+    "is_observation_boostable": false,
+    "is_target": false,
+    "tags": [
+      "retrieval_safety_note",
+      "neutral",
+      "digest"
+    ],
+    "title": "retrieval_safety_note neutral digest",
+    "topic_family": "retrieval_safety_note"
+  },
+  {
+    "answer_span": "neutral label",
+    "body": "Neutral background note about label in the retrieval safety note: final policy vs draft policy family. It lacks the controlled final answer anchor used by the answer query.",
+    "doc_id": "f08_retrieval_safety_note_n07_neutral",
+    "is_close_distractor": false,
+    "is_observation_boostable": false,
+    "is_target": false,
+    "tags": [
+      "retrieval_safety_note",
+      "neutral",
+      "label"
+    ],
+    "title": "retrieval_safety_note neutral label",
+    "topic_family": "retrieval_safety_note"
+  },
+  {
+    "answer_span": "neutral consent",
+    "body": "Neutral background note about consent in the retrieval safety note: final policy vs draft policy family. It lacks the controlled final answer anchor used by the answer query.",
+    "doc_id": "f08_retrieval_safety_note_n08_neutral",
+    "is_close_distractor": false,
+    "is_observation_boostable": false,
+    "is_target": false,
+    "tags": [
+      "retrieval_safety_note",
+      "neutral",
+      "consent"
+    ],
+    "title": "retrieval_safety_note neutral consent",
+    "topic_family": "retrieval_safety_note"
+  },
+  {
+    "answer_span": "neutral audit",
+    "body": "Neutral background note about audit in the retrieval safety note: final policy vs draft policy family. It lacks the controlled final answer anchor used by the answer query.",
+    "doc_id": "f08_retrieval_safety_note_n09_neutral",
+    "is_close_distractor": false,
+    "is_observation_boostable": false,
+    "is_target": false,
+    "tags": [
+      "retrieval_safety_note",
+      "neutral",
+      "audit"
+    ],
+    "title": "retrieval_safety_note neutral audit",
+    "topic_family": "retrieval_safety_note"
+  },
+  {
+    "answer_span": "neutral handover",
+    "body": "Neutral background note about handover in the retrieval safety note: final policy vs draft policy family. It lacks the controlled final answer anchor used by the answer query.",
+    "doc_id": "f08_retrieval_safety_note_n10_neutral",
+    "is_close_distractor": false,
+    "is_observation_boostable": false,
+    "is_target": false,
+    "tags": [
+      "retrieval_safety_note",
+      "neutral",
+      "handover"
+    ],
+    "title": "retrieval_safety_note neutral handover",
+    "topic_family": "retrieval_safety_note"
+  }
+]

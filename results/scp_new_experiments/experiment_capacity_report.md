@@ -1,6 +1,6 @@
 # Experiment Capacity Report
 
-Repository audited: `C:\Users\Asus\Desktop\Profitlo Projects\Hiesenoether`
+Repository audited: `<repo>`
 
 Remote: `https://github.com/da-taki/Hiesenoether.git`
 

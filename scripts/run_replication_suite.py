@@ -6,7 +6,6 @@ import sys
 import time
 from dataclasses import dataclass
 
-
 LOCAL_COMMANDS = [
     ("core validation", [sys.executable, "-m", "validation.run_all"]),
     ("toy static analyzer benchmark", [sys.executable, "-m", "analysis.oc_static_benchmark"]),
@@ -16,14 +15,12 @@ LOCAL_COMMANDS = [
 
 PYPI_COMMAND = ("PyPI static analyzer benchmark", [sys.executable, "-m", "analysis.pypi_static_benchmark"])
 
-
 @dataclass
 class CommandResult:
     name: str
     command: list[str]
     returncode: int
     elapsed_seconds: float
-
 
 def run_command(name: str, command: list[str]) -> CommandResult:
     print(f"[run] {name}: {' '.join(command)}", flush=True)
@@ -33,7 +30,6 @@ def run_command(name: str, command: list[str]) -> CommandResult:
     status = "PASS" if proc.returncode == 0 else "FAIL"
     print(f"[{status}] {name} ({elapsed:.1f}s)", flush=True)
     return CommandResult(name, command, proc.returncode, elapsed)
-
 
 def main() -> int:
     parser = argparse.ArgumentParser(description="Run author-implemented replication checks.")
@@ -55,7 +51,6 @@ def main() -> int:
         print(f"- {status}: {result.name} ({result.elapsed_seconds:.1f}s)")
 
     return 0 if all(result.returncode == 0 for result in results) else 1
-
 
 if __name__ == "__main__":
     raise SystemExit(main())

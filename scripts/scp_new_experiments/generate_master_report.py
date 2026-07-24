@@ -8,12 +8,10 @@ from common import GAPS_PATH, RESULTS_DIR
 
 REPORT_PATH = RESULTS_DIR / "scp_new_experiments_master_report.md"
 
-
 def read_json(path: Path) -> dict:
     if not path.exists():
         return {}
     return json.loads(path.read_text(encoding="utf-8"))
-
 
 def read_csv(path: Path) -> list[dict]:
     if not path.exists():
@@ -21,10 +19,8 @@ def read_csv(path: Path) -> list[dict]:
     with path.open(newline="", encoding="utf-8") as handle:
         return list(csv.DictReader(handle))
 
-
 def count_rows(path: Path) -> int:
     return len(read_csv(path))
-
 
 def compute_new_total_executions() -> int:
     expanded = read_json(RESULTS_DIR / "expanded_mechanism_sweep_summary.json")
@@ -39,7 +35,6 @@ def compute_new_total_executions() -> int:
     sampling_rows = read_csv(RESULTS_DIR / "sampling_convergence.csv")
     total += sum(int(row.get("sampled_permutations", 0)) for row in sampling_rows)
     return total
-
 
 def generate() -> dict:
     expanded = read_json(RESULTS_DIR / "expanded_mechanism_sweep_summary.json")
@@ -170,7 +165,6 @@ def generate() -> dict:
         "gaps_present": bool(gaps_text.strip()),
     }
 
-
 def main() -> int:
     summary = generate()
     print(f"wrote {REPORT_PATH}")
@@ -178,7 +172,6 @@ def main() -> int:
     print(f"manual_review_queue_size={summary['manual_review_queue_size']}")
     print(f"gaps_present={summary['gaps_present']}")
     return 0
-
 
 if __name__ == "__main__":
     raise SystemExit(main())

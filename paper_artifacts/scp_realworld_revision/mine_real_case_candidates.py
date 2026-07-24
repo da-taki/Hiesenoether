@@ -4,13 +4,11 @@ import csv
 import re
 from pathlib import Path
 
-
 REPO = Path(__file__).resolve().parents[2]
 OUT = Path(__file__).resolve().parent
 REVIEWED = REPO / "results_static" / "pypi_static_benchmark_findings.csv"
 EXPANDED = REPO / "results" / "scp_new_experiments" / "pypi_expanded_manual_review_queue.csv"
 CSV_OUT = OUT / "real_case_candidates.csv"
-
 
 HAND_CURATED = {
     ("httpcore", "Response"): ("high", "easy", "response.read() changes later response.content from exception to bytes"),
@@ -19,23 +17,19 @@ HAND_CURATED = {
     ("rich", "RichHandler"): ("medium", "easy", "render_message() initializes keyword state"),
 }
 
-
 def read_csv(path: Path) -> list[dict[str, str]]:
     if not path.exists():
         return []
     with path.open(newline="", encoding="utf-8") as fh:
         return list(csv.DictReader(fh))
 
-
 def mutated_state(reason: str) -> str:
     match = re.search(r"mutates self\.\{([^}]*)\}", reason)
     return match.group(1) if match else ""
 
-
 def method(reason: str) -> str:
     match = re.search(r"method ([^(]+)\(\)", reason)
     return match.group(1) if match else ""
-
 
 def base_row(row: dict[str, str], provenance: str) -> dict[str, object]:
     package = row.get("package", "")
@@ -60,7 +54,6 @@ def base_row(row: dict[str, str], provenance: str) -> dict[str, object]:
         "harness_feasibility": feasibility,
         "notes": f"source={provenance}; {row.get('manual_review_note') or row.get('suspected_pattern') or ''}",
     }
-
 
 def run() -> list[dict[str, object]]:
     rows: list[dict[str, object]] = []
@@ -87,13 +80,11 @@ def run() -> list[dict[str, object]]:
         writer.writerows(rows)
     return rows
 
-
 def main() -> int:
     rows = run()
     print(f"wrote {CSV_OUT}")
     print(f"candidates={len(rows)}")
     return 0
-
 
 if __name__ == "__main__":
     raise SystemExit(main())

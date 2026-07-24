@@ -1,6 +1,6 @@
 # Case 27: docutils LineBlock
 
-- Runnable harness: `C:\Users\Asus\Desktop\Profitlo Projects\Hiesenoether\paper_artifacts\scp_behavioral_sweep\harnesses\case_27_docutils_LineBlock.py`
+- Runnable harness: `<repo>\paper_artifacts\scp_behavioral_sweep\harnesses\case_27_docutils_LineBlock.py`
 - Expected operation: `run`
 - Expected latent state: `content_offset`
 - Construction feasibility: `simple`

@@ -1,6 +1,6 @@
 # Case 8: anyio ContextManagerMixin
 
-- Runnable harness: `C:\Users\Asus\Desktop\Profitlo Projects\Hiesenoether\paper_artifacts\scp_behavioral_sweep\harnesses\case_08_anyio_ContextManagerMixin.py`
+- Runnable harness: `<repo>\paper_artifacts\scp_behavioral_sweep\harnesses\case_08_anyio_ContextManagerMixin.py`
 - Expected operation: `__enter__`
 - Expected latent state: `__cm`
 - Construction feasibility: `simple`

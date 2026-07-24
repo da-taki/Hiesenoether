@@ -1,20 +1,15 @@
-# unstable_object.py
-
 from dataclasses import dataclass
 
 INITIAL_ENTROPY: float = 1.0
 ENTROPY_INCREMENT: float = 0.1
 OBSERVE_ENTROPY_BUMP: float = 1.0
 
-
 @dataclass
 class UnstableObjectConfig:
     base: float
     initial_entropy: float = INITIAL_ENTROPY
 
-
 class UnstableObject:
-    """Access-count-sensitive value with observation-induced entropy perturbation."""
 
     __slots__ = ("base", "access_count", "entropy", "_initial_entropy")
 

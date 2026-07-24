@@ -1,13 +1,10 @@
-
 from __future__ import annotations
 from itertools import permutations
 from validation.exact_semantics import evaluate, Params
 
-
 def divergence(body: tuple, degree: int, p: Params):
     vals = [evaluate(perm, degree, p) for perm in set(permutations(body))]
     return max(vals) - min(vals)
-
 
 def check(L: int = 3, m: int = 2, d: int = 2) -> dict:
     body = ("READ",) * L + ("OBS",) * m
@@ -35,7 +32,6 @@ def check(L: int = 3, m: int = 2, d: int = 2) -> dict:
             "correction_note":
                 "P3 is NOT individually necessary; reclassified as "
                 "amplifying. P1, P2 remain necessary."}
-
 
 if __name__ == "__main__":
     import json

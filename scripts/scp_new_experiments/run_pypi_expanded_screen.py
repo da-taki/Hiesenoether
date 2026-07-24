@@ -66,7 +66,6 @@ EXTRA_PACKAGES = [
     "pdfplumber", "chardet", "regex", "rapidfuzz",
 ]
 
-
 def package_candidates() -> list[str]:
     seen = set()
     out = []
@@ -76,7 +75,6 @@ def package_candidates() -> list[str]:
             seen.add(normalized)
             out.append(name)
     return out
-
 
 def existing_archive(package: str) -> Path | None:
     normalized = normalize_name(package)
@@ -88,11 +86,9 @@ def existing_archive(package: str) -> Path | None:
     ]
     return matches[-1] if matches else None
 
-
 def source_root(package: str) -> Path | None:
     target = SOURCE_DIR / normalize_name(package)
     return target if target.exists() else None
-
 
 def download_package(package: str) -> tuple[Path | None, str | None]:
     DOWNLOAD_DIR.mkdir(parents=True, exist_ok=True)
@@ -124,7 +120,6 @@ def download_package(package: str) -> tuple[Path | None, str | None]:
         last_error = (proc.stderr or proc.stdout or "").strip()
     return None, last_error or "download failed"
 
-
 def get_package_root(package: str, allow_downloads: bool) -> tuple[Path | None, str, str]:
     existing_root = source_root(package)
     if existing_root is not None:
@@ -148,7 +143,6 @@ def get_package_root(package: str, allow_downloads: bool) -> tuple[Path | None, 
     except Exception as exc:
         return None, "extract_failed", str(exc)
 
-
 def mechanisms_for(cls: dict) -> str:
     bits = []
     if cls["P1_access_sensitive"]:
@@ -159,14 +153,12 @@ def mechanisms_for(cls: dict) -> str:
         bits.append("P3_nonlinear_composition")
     return "; ".join(bits)
 
-
 def short_reason(cls: dict) -> str:
     for key in ("P1", "P2", "P3"):
         values = cls.get("evidence", {}).get(key) or []
         if values:
             return values[0]
     return ""
-
 
 def suspected_pattern(row: dict) -> str:
     text = " ".join(str(row.get(key, "")) for key in ("class", "short_reason", "detected_mechanisms")).lower()
@@ -182,7 +174,6 @@ def suspected_pattern(row: dict) -> str:
         return "state_mutating_reader"
     return "other"
 
-
 def code_excerpt(path: Path, line: int, radius: int = 4) -> str:
     try:
         lines = path.read_text(encoding="utf-8", errors="replace").splitlines()
@@ -195,7 +186,6 @@ def code_excerpt(path: Path, line: int, radius: int = 4) -> str:
         source_line = lines[idx - 1].rstrip()
         excerpt_lines.append(f"{idx}: {source_line}" if source_line else f"{idx}:")
     return "\n".join(excerpt_lines)
-
 
 def scan_package(package: str, root: Path, source: str) -> tuple[dict, list[dict]]:
     version = version_from_metadata(root)
@@ -247,7 +237,6 @@ def scan_package(package: str, root: Path, source: str) -> tuple[dict, list[dict
     }
     return package_row, class_rows
 
-
 def build_review_queue(class_rows: list[dict]) -> list[dict]:
     rng = random.Random(20260705)
     high = [row for row in class_rows if row["analyzer_label"] == "HIGH"]
@@ -290,7 +279,6 @@ def build_review_queue(class_rows: list[dict]) -> list[dict]:
         )
     return queue
 
-
 def write_tables(package_rows: list[dict], summary: dict) -> None:
     largest = sorted(package_rows, key=lambda row: int(row["MEDIUM"]) + int(row["HIGH"]), reverse=True)[:25]
     lines = [
@@ -330,7 +318,6 @@ def write_tables(package_rows: list[dict], summary: dict) -> None:
     ]
     lines.extend(markdown_table(["pattern", "count"], pattern_rows))
     TABLES_PATH.write_text("\n".join(lines) + "\n", encoding="utf-8")
-
 
 def run(target_packages: int = TARGET_PACKAGES, allow_downloads: bool = True) -> dict:
     started = time.time()
@@ -427,7 +414,6 @@ def run(target_packages: int = TARGET_PACKAGES, allow_downloads: bool = True) ->
 
     return summary
 
-
 def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--target", type=int, default=TARGET_PACKAGES)
@@ -446,7 +432,6 @@ def main() -> int:
     if not summary["target_met"]:
         print(f"target_not_met: {summary['stopped_reason']}")
     return 0
-
 
 if __name__ == "__main__":
     raise SystemExit(main())

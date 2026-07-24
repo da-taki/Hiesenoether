@@ -55,7 +55,7 @@ Failed or constrained:
 
 Python executable:
 
-`C:\Users\Asus\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\python.exe`
+`python`
 
 Python version:
 

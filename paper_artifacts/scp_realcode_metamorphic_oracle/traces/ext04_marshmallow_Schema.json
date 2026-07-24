@@ -1,0 +1,97 @@
+{
+  "candidate_id": "ext04_marshmallow_Schema",
+  "diff": {
+    "branch_changed": false,
+    "classification": "no_divergence",
+    "exception_changed": false,
+    "output_changed": false,
+    "state_changed": false
+  },
+  "metadata": {
+    "candidate_id": "ext04_marshmallow_Schema",
+    "class_name": "Schema",
+    "construction_hint": "Schema subclass with String field",
+    "expected_boundary": "load/dump share no order-dependent state",
+    "fixture_family": "list_or_dict",
+    "module_path": "marshmallow/schema.py",
+    "observation_operation": "load({'name':'ok'})",
+    "package_name": "marshmallow",
+    "package_version": "4.3.0",
+    "priority": "3",
+    "selected_for_harness": "yes",
+    "source_artifact": "source_snapshot",
+    "state_fields_suspected": "fields cache",
+    "target_read_operation": "dump({'name':'again'})"
+  },
+  "order_A": {
+    "results": [
+      {
+        "kind": "value",
+        "value": {
+          "name": "again"
+        }
+      }
+    ],
+    "state": {
+      "declared": [
+        "name"
+      ]
+    },
+    "steps": [
+      "construct Schema",
+      "dump({'name':'again'})"
+    ]
+  },
+  "order_B": {
+    "observation": {
+      "kind": "value",
+      "value": {
+        "name": "ok"
+      }
+    },
+    "results": [
+      {
+        "kind": "value",
+        "value": {
+          "name": "again"
+        }
+      }
+    ],
+    "state": {
+      "declared": [
+        "name"
+      ]
+    },
+    "steps": [
+      "construct Schema",
+      "load({'name':'ok'})",
+      "dump({'name':'again'})"
+    ]
+  },
+  "record": {
+    "boundary_note": "load/dump share no order-dependent state",
+    "branch_changed": false,
+    "candidate_id": "ext04_marshmallow_Schema",
+    "class_name": "Schema",
+    "classification": "no_divergence",
+    "constructed": true,
+    "exception_changed": false,
+    "failure_reason": "",
+    "fixture_family": "list_or_dict",
+    "observation_operation": "load({'name':'ok'})",
+    "order_A_exception": "[]",
+    "order_A_output": "[{\"name\": \"again\"}]",
+    "order_A_state": "{\"declared\": [\"name\"]}",
+    "order_A_steps": "construct Schema | dump({'name':'again'})",
+    "order_B_exception": "[]",
+    "order_B_output": "[{\"name\": \"again\"}]",
+    "order_B_state": "{\"declared\": [\"name\"]}",
+    "order_B_steps": "construct Schema | load({'name':'ok'}) | dump({'name':'again'})",
+    "output_changed": false,
+    "package_name": "marshmallow",
+    "package_version": "4.3.0",
+    "pair_type": "pair1",
+    "state_changed": false,
+    "target_read_operation": "dump({'name':'again'})"
+  }
+}

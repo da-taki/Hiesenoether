@@ -10,14 +10,11 @@ if str(REPO) not in sys.path:
 
 from validation.exact_semantics import evaluate, Params
 
-
 def unique_orders(L: int, m: int):
-    """Generate unique READ/OBS orderings without materializing factorials."""
     n = L + m
     for obs_positions in combinations(range(n), m):
         obs_positions = set(obs_positions)
         yield tuple("OBS" if i in obs_positions else "READ" for i in range(n))
-
 
 def fit_loglinear(xs, ys):
     n = len(xs)
@@ -30,7 +27,6 @@ def fit_loglinear(xs, ys):
     ss_tot = sum((y - ym) ** 2 for y in ys)
     r2 = 1.0 - ss_res / ss_tot if ss_tot else 0.0
     return slope, intercept, r2
-
 
 def family_sweep(family: str, degrees: list, L: int = 6, m: int = 1) -> dict:
     p = Params()
@@ -66,7 +62,6 @@ def family_sweep(family: str, degrees: list, L: int = 6, m: int = 1) -> dict:
             "intercept": intercept,
             "R_squared": r2}
 
-
 def _pooled_vs_stratified_legacy() -> dict:
     comp = family_sweep("compositional", list(range(1, 9)))
     selfref = family_sweep("self_referential", list(range(9, 13)))
@@ -88,7 +83,6 @@ def _pooled_vs_stratified_legacy() -> dict:
                  "(R² < 0.95) because the two families have different "
                  "intercepts and slightly different slopes. Report "
                  "stratified. Resolves v2 Open Problem 4.")}
-
 
 def pooled_vs_stratified() -> dict:
     comp = family_sweep("compositional", list(range(1, 9)))
@@ -115,11 +109,8 @@ def pooled_vs_stratified() -> dict:
                  "as the reported model, because mixed-family caps have "
                  "different slopes and intercepts.")}
 
-
 def check() -> dict:
-    """Alias for run_all.py compatibility."""
     return pooled_vs_stratified()
-
 
 if __name__ == "__main__":
     import json

@@ -1,0 +1,123 @@
+{
+  "candidate_id": "ext08_boltons_LRU_pair2",
+  "diff": {
+    "branch_changed": false,
+    "classification": "confirmed_output_divergence",
+    "exception_changed": false,
+    "output_changed": true,
+    "state_changed": false
+  },
+  "metadata": {
+    "candidate_id": "ext08_boltons_LRU_pair2",
+    "class_name": "LRU",
+    "construction_hint": "LRU(max_size=2) pair2",
+    "expected_boundary": "access between reads changes eviction victim",
+    "fixture_family": "cache",
+    "module_path": "boltons/cacheutils.py",
+    "observation_operation": "get('a') between two reads",
+    "package_name": "boltons",
+    "package_version": "25.0.0",
+    "priority": "2",
+    "selected_for_harness": "yes",
+    "source_artifact": "source_snapshot",
+    "state_fields_suspected": "recency",
+    "target_read_operation": "popitem-order after insert"
+  },
+  "order_A": {
+    "results": [
+      {
+        "kind": "value",
+        "value": [
+          [
+            "y",
+            2
+          ],
+          [
+            "z",
+            3
+          ]
+        ]
+      }
+    ],
+    "state": {
+      "first": [
+        [
+          "x",
+          1
+        ],
+        [
+          "y",
+          2
+        ]
+      ]
+    },
+    "steps": [
+      "LRU x,y",
+      "items()",
+      "insert z",
+      "items()"
+    ]
+  },
+  "order_B": {
+    "results": [
+      {
+        "kind": "value",
+        "value": [
+          [
+            "x",
+            1
+          ],
+          [
+            "z",
+            3
+          ]
+        ]
+      }
+    ],
+    "state": {
+      "first": [
+        [
+          "x",
+          1
+        ],
+        [
+          "y",
+          2
+        ]
+      ]
+    },
+    "steps": [
+      "LRU x,y",
+      "items()",
+      "get('x') [observe]",
+      "insert z",
+      "items()"
+    ]
+  },
+  "record": {
+    "boundary_note": "access between reads changes eviction victim",
+    "branch_changed": false,
+    "candidate_id": "ext08_boltons_LRU_pair2",
+    "class_name": "LRU",
+    "classification": "confirmed_output_divergence",
+    "constructed": true,
+    "exception_changed": false,
+    "failure_reason": "",
+    "fixture_family": "cache",
+    "observation_operation": "get('a') between two reads",
+    "order_A_exception": "[]",
+    "order_A_output": "[[[\"y\", 2], [\"z\", 3]]]",
+    "order_A_state": "{\"first\": [[\"x\", 1], [\"y\", 2]]}",
+    "order_A_steps": "LRU x,y | items() | insert z | items()",
+    "order_B_exception": "[]",
+    "order_B_output": "[[[\"x\", 1], [\"z\", 3]]]",
+    "order_B_state": "{\"first\": [[\"x\", 1], [\"y\", 2]]}",
+    "order_B_steps": "LRU x,y | items() | get('x') [observe] | insert z | items()",
+    "output_changed": true,
+    "package_name": "boltons",
+    "package_version": "25.0.0",
+    "pair_type": "pair1",
+    "state_changed": false,
+    "target_read_operation": "popitem-order after insert"
+  }
+}

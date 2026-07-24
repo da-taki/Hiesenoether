@@ -1,6 +1,6 @@
 # Case 47: docutils Writer
 
-- Runnable harness: `C:\Users\Asus\Desktop\Profitlo Projects\Hiesenoether\paper_artifacts\scp_behavioral_sweep\harnesses\case_47_docutils_Writer.py`
+- Runnable harness: `<repo>\paper_artifacts\scp_behavioral_sweep\harnesses\case_47_docutils_Writer.py`
 - Expected operation: `write`
 - Expected latent state: `destination,document,language`
 - Construction feasibility: `simple`

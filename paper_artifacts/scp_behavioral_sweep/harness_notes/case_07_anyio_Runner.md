@@ -1,6 +1,6 @@
 # Case 7: anyio Runner
 
-- Runnable harness: `C:\Users\Asus\Desktop\Profitlo Projects\Hiesenoether\paper_artifacts\scp_behavioral_sweep\harnesses\case_07_anyio_Runner.py`
+- Runnable harness: `<repo>\paper_artifacts\scp_behavioral_sweep\harnesses\case_07_anyio_Runner.py`
 - Expected operation: `run`
 - Expected latent state: `_interrupt_count`
 - Construction feasibility: `simple`

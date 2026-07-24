@@ -1,6 +1,6 @@
 # Case 16: cerberus BareValidator
 
-- Runnable harness: `C:\Users\Asus\Desktop\Profitlo Projects\Hiesenoether\paper_artifacts\scp_behavioral_sweep\harnesses\case_16_cerberus_BareValidator.py`
+- Runnable harness: `<repo>\paper_artifacts\scp_behavioral_sweep\harnesses\case_16_cerberus_BareValidator.py`
 - Expected operation: `__normalize_mapping`
 - Expected latent state: `_is_normalized`
 - Construction feasibility: `simple`

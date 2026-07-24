@@ -10,10 +10,6 @@ os.makedirs(RESULTS_DIR, exist_ok=True)
 
 NUM_RUNS = 50000
 
-# ─────────────────────────────────────────────
-# Core model (simulating your mechanism)
-# ─────────────────────────────────────────────
-
 class UnstableValue:
     def __init__(self, base):
         self.base = base
@@ -29,11 +25,6 @@ class UnstableValue:
 
     def inspect(self):
         self.entropy += 1
-
-
-# ─────────────────────────────────────────────
-# Program execution
-# ─────────────────────────────────────────────
 
 def run_program(order, nonlinearity):
     x = UnstableValue(10)
@@ -54,11 +45,6 @@ def run_program(order, nonlinearity):
     elif nonlinearity == "extreme":
         return y * y * x.get()
 
-
-# ─────────────────────────────────────────────
-# Experiment configs
-# ─────────────────────────────────────────────
-
 CONFIGS = [
     ("inspect_0", 6, 0, "quadratic"),
     ("inspect_1", 6, 1, "quadratic"),
@@ -78,10 +64,6 @@ CONFIGS = [
     ("steps_12", 12, 1, "quadratic"),
 ]
 
-# ─────────────────────────────────────────────
-# Helpers
-# ─────────────────────────────────────────────
-
 def build_order(add_steps, inspect_count):
     ops = ["add"] * add_steps + ["inspect"] * inspect_count
     random.shuffle(ops)
@@ -96,10 +78,6 @@ def compute_stats(results):
         "range": round(max(results) - min(results), 4)
     }
 
-# ─────────────────────────────────────────────
-# Main runner
-# ─────────────────────────────────────────────
-
 def run_config(name, steps, inspects, nonlin):
     results = []
 
@@ -110,7 +88,6 @@ def run_config(name, steps, inspects, nonlin):
 
     stats = compute_stats(results)
 
-    # save raw
     with open(os.path.join(RESULTS_DIR, f"raw_{name}.csv"), "w", newline="") as f:
         writer = csv.writer(f)
         writer.writerow(["value"])

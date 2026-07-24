@@ -1,6 +1,6 @@
 # Case 11: beautifulsoup4 PageElement
 
-- Runnable harness: `C:\Users\Asus\Desktop\Profitlo Projects\Hiesenoether\paper_artifacts\scp_behavioral_sweep\harnesses\case_11_beautifulsoup4_PageElement.py`
+- Runnable harness: `<repo>\paper_artifacts\scp_behavioral_sweep\harnesses\case_11_beautifulsoup4_PageElement.py`
 - Expected operation: `extract`
 - Expected latent state: `next_sibling,parent,previous_element,previous_sibling`
 - Construction feasibility: `simple`

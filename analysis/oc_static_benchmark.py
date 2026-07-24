@@ -6,10 +6,8 @@ from typing import Dict, List
 
 from analysis.oc_static import analyze_file
 
-
 EXPECTED_ORDER = {"SAFE": 0, "LOW": 1, "MEDIUM": 2, "HIGH": 3}
 BENCHMARK_FILE = Path(__file__).with_name("benchmark_examples.py")
-
 
 def expected_labels(path: Path) -> Dict[str, str]:
     labels: Dict[str, str] = {}
@@ -20,7 +18,6 @@ def expected_labels(path: Path) -> Dict[str, str]:
         if label is not None:
             labels[name] = label
     return labels
-
 
 def evaluate_benchmark(path: Path = BENCHMARK_FILE) -> dict:
     expected = expected_labels(path)
@@ -66,12 +63,10 @@ def evaluate_benchmark(path: Path = BENCHMARK_FILE) -> dict:
         "module_level_nonlinear_uses": result["module_level_nonlinear_uses"],
     }
 
-
 def main() -> int:
     report = evaluate_benchmark()
     print(json.dumps(report, indent=2))
     return 0 if report["false_negatives"] == 0 else 1
-
 
 if __name__ == "__main__":
     raise SystemExit(main())

@@ -13,8 +13,6 @@ if str(REPO) not in sys.path:
 from validation.exact_semantics import evaluate, Params
 from real_world_validation.core.unstable_object import UnstableObject
 
-
-# Hiesenoether interpreter (the actual runtime that produced summary.csv).
 try:
     import io
     from contextlib import redirect_stdout
@@ -23,7 +21,6 @@ try:
     HIESENOETHER_INTERPRETER_AVAILABLE = True
 except ImportError:
     HIESENOETHER_INTERPRETER_AVAILABLE = False
-
 
 TEMPLATE = """\
 energy[100]
@@ -43,13 +40,7 @@ NONLINEAR_LINE = {
     4: "y <- y * y * x",
 }
 
-
 def _perm_to_hn_body(perm: tuple, degree: int) -> str:
-    """Translate an OSDS permutation into the Hiesenoether program body
-    used by run_experiments.py: READ becomes 'y <- y + x',
-    OBS becomes 'inspect x'. The nonlinear cap line is appended last
-    (matching run_experiments.py's build_body, which appends after
-    shuffle so the cap is never interleaved)."""
     lines = []
     for op in perm:
         if op == "READ":
@@ -63,13 +54,7 @@ def _perm_to_hn_body(perm: tuple, degree: int) -> str:
         lines.append(nl)
     return "\n".join(lines)
 
-
 def run_hiesenoether(perm: tuple, degree: int) -> float:
-    """Execute a permutation by running the actual Hiesenoether
-    interpreter (src.runtime). Returns the float printed by `print y`.
-
-    This is the function that should agree with the exact Fraction
-    emulator in exact_semantics_runtime.py and with summary.csv."""
     if not HIESENOETHER_INTERPRETER_AVAILABLE:
         raise RuntimeError("Hiesenoether interpreter not importable; "
                            "run from repo root with src/ on path")
@@ -81,7 +66,6 @@ def run_hiesenoether(perm: tuple, degree: int) -> float:
     with redirect_stdout(buf):
         rt.run(ast)
     out_lines = [ln for ln in buf.getvalue().strip().split("\n") if ln]
-    # Last non-empty line is the print y output (some inspects also print).
     for ln in reversed(out_lines):
         try:
             return float(ln)
@@ -89,19 +73,8 @@ def run_hiesenoether(perm: tuple, degree: int) -> float:
             continue
     raise RuntimeError(f"no numeric output from interpreter for perm={perm}, d={degree}")
 
-
 def cross_check(L: int = 3, m: int = 1, degree: int = 2,
                 tol: float = 1e-9) -> dict:
-    """Cross-check the exact Fraction emulator against the actual
-    Hiesenoether interpreter on the same permutation+template that
-    summary.csv was generated from.
-
-    Agreement here means: the exact Fraction emulator in
-    exact_semantics_runtime.py is a faithful symbolic model of
-    src/runtime.py. Combined with check_against_summary_csv, this
-    closes the loop: emulator <-> interpreter <-> summary.csv all
-    agree to machine precision.
-    """
     from validation.exact_semantics_runtime import run_program as rt_exact
     body = ("READ",) * L + ("OBS",) * m
     rows = []
@@ -126,17 +99,7 @@ def cross_check(L: int = 3, m: int = 1, degree: int = 2,
                     "the run_experiments.py program template. Must "
                     "agree to machine precision."}
 
-
 def check_against_summary_csv() -> dict:
-    """Compare summary.csv 'range' against TWO exact semantics:
-
-      (a) OSDS abstract calculus     (validation.exact_semantics)
-      (b) Hiesenoether runtime calculus (validation.exact_semantics_runtime)
-
-    The runtime calculus must agree with summary.csv to floating-point
-    precision. The OSDS calculus is expected to differ systematically;
-    we report the ratio for paper Table N.
-    """
     from validation.exact_semantics_runtime import divergence_runtime
     csv_path = REPO / "results" / "summary.csv"
     if not csv_path.exists():
@@ -154,11 +117,9 @@ def check_against_summary_csv() -> dict:
                 if L < 1 or m < 0 or L > 6 or m > 5:
                     continue
                 body = ("READ",) * L + ("OBS",) * m
-                # OSDS abstract
                 vals_osds = [float(evaluate(perm, d, p))
                              for perm in set(permutations(body))]
                 osds_range = max(vals_osds) - min(vals_osds)
-                # Hiesenoether runtime exact
                 rt_range = float(divergence_runtime(body, d))
                 csv_range = float(row["range"])
                 rt_rel  = (abs(rt_range  - csv_range) / csv_range

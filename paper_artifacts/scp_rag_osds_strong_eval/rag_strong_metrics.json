@@ -1,0 +1,177 @@
+{
+  "by_observation_operation": {
+    "explain": {
+      "answer_divergences": 7,
+      "no_divergence_cases": 1,
+      "retrieval_order_divergences": 1,
+      "scenarios": 9,
+      "state_only_divergences": 0,
+      "top1_changes": 8,
+      "topk_changes": 8
+    },
+    "inspect": {
+      "answer_divergences": 0,
+      "no_divergence_cases": 1,
+      "retrieval_order_divergences": 0,
+      "scenarios": 2,
+      "state_only_divergences": 1,
+      "top1_changes": 0,
+      "topk_changes": 0
+    },
+    "log": {
+      "answer_divergences": 8,
+      "no_divergence_cases": 2,
+      "retrieval_order_divergences": 1,
+      "scenarios": 11,
+      "state_only_divergences": 0,
+      "top1_changes": 9,
+      "topk_changes": 9
+    },
+    "materialize cache": {
+      "answer_divergences": 2,
+      "no_divergence_cases": 1,
+      "retrieval_order_divergences": 1,
+      "scenarios": 4,
+      "state_only_divergences": 0,
+      "top1_changes": 3,
+      "topk_changes": 3
+    },
+    "preview": {
+      "answer_divergences": 8,
+      "no_divergence_cases": 2,
+      "retrieval_order_divergences": 1,
+      "scenarios": 13,
+      "state_only_divergences": 2,
+      "top1_changes": 9,
+      "topk_changes": 9
+    },
+    "trace tool call": {
+      "answer_divergences": 6,
+      "no_divergence_cases": 1,
+      "retrieval_order_divergences": 1,
+      "scenarios": 9,
+      "state_only_divergences": 1,
+      "top1_changes": 7,
+      "topk_changes": 7
+    }
+  },
+  "by_variant": {
+    "access_count_feedback": {
+      "answer_divergence_ci95": {
+        "high": 0.9285,
+        "low": 0.4093
+      },
+      "answer_divergences": 6,
+      "default_feedback_divergences": 8,
+      "disabled_feedback_divergences": 0,
+      "no_divergence_cases": 0,
+      "retrieval_order_divergences": 1,
+      "scenarios": 8,
+      "state_only_divergences": 1,
+      "strong_feedback_divergences": 8,
+      "top1_changes": 7,
+      "topk_changes": 7
+    },
+    "agent_trace_feedback": {
+      "answer_divergence_ci95": {
+        "high": 0.9285,
+        "low": 0.4093
+      },
+      "answer_divergences": 6,
+      "default_feedback_divergences": 8,
+      "disabled_feedback_divergences": 0,
+      "no_divergence_cases": 0,
+      "retrieval_order_divergences": 1,
+      "scenarios": 8,
+      "state_only_divergences": 1,
+      "strong_feedback_divergences": 8,
+      "top1_changes": 7,
+      "topk_changes": 7
+    },
+    "cache_materialization_feedback": {
+      "answer_divergence_ci95": {
+        "high": 0.9285,
+        "low": 0.4093
+      },
+      "answer_divergences": 6,
+      "default_feedback_divergences": 8,
+      "disabled_feedback_divergences": 0,
+      "no_divergence_cases": 0,
+      "retrieval_order_divergences": 1,
+      "scenarios": 8,
+      "state_only_divergences": 1,
+      "strong_feedback_divergences": 8,
+      "top1_changes": 7,
+      "topk_changes": 7
+    },
+    "explanation_focus_feedback": {
+      "answer_divergence_ci95": {
+        "high": 0.9776,
+        "low": 0.5291
+      },
+      "answer_divergences": 7,
+      "default_feedback_divergences": 8,
+      "disabled_feedback_divergences": 0,
+      "no_divergence_cases": 0,
+      "retrieval_order_divergences": 1,
+      "scenarios": 8,
+      "state_only_divergences": 0,
+      "strong_feedback_divergences": 8,
+      "top1_changes": 8,
+      "topk_changes": 8
+    },
+    "pure_baseline": {
+      "answer_divergence_ci95": {
+        "high": 0.3244,
+        "low": 0.0
+      },
+      "answer_divergences": 0,
+      "default_feedback_divergences": 0,
+      "disabled_feedback_divergences": 0,
+      "no_divergence_cases": 8,
+      "retrieval_order_divergences": 0,
+      "scenarios": 8,
+      "state_only_divergences": 0,
+      "strong_feedback_divergences": 0,
+      "top1_changes": 0,
+      "topk_changes": 0
+    },
+    "recency_memory_feedback": {
+      "answer_divergence_ci95": {
+        "high": 0.9285,
+        "low": 0.4093
+      },
+      "answer_divergences": 6,
+      "default_feedback_divergences": 8,
+      "disabled_feedback_divergences": 0,
+      "no_divergence_cases": 0,
+      "retrieval_order_divergences": 1,
+      "scenarios": 8,
+      "state_only_divergences": 1,
+      "strong_feedback_divergences": 8,
+      "top1_changes": 7,
+      "topk_changes": 7
+    }
+  },
+  "overall": {
+    "ablation_removal_rate": 1.0,
+    "answer_divergence_ci95": {
+      "high": 0.7657,
+      "low": 0.5044
+    },
+    "answer_divergences": 31,
+    "baseline_stability_rate": 1.0,
+    "negative_control_stability_rate": 1.0,
+    "no_divergence_cases": 8,
+    "retrieval_order_divergences": 5,
+    "state_only_divergences": 4,
+    "top1_changes": 36,
+    "topk_change_ci95": {
+      "high": 0.8508,
+      "low": 0.6122
+    },
+    "topk_order_changes": 36
+  },
+  "total_documents": 120,
+  "total_scenarios": 48
+}

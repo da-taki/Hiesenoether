@@ -25,10 +25,8 @@ SCHEDULES: dict[str, Fraction] = {
     "exponential_decay": Fraction(1, 20),
 }
 
-
 def ensure_results_dir() -> None:
     RESULTS_DIR.mkdir(parents=True, exist_ok=True)
-
 
 def repo_relative(path: Path) -> str:
     try:
@@ -36,14 +34,11 @@ def repo_relative(path: Path) -> str:
     except ValueError:
         return str(path)
 
-
 def fraction_text(value: Fraction) -> str:
     return str(value.numerator) if value.denominator == 1 else f"{value.numerator}/{value.denominator}"
 
-
 def fraction_decimal(value: Fraction) -> float:
     return float(value)
-
 
 def write_csv(path: Path, rows: list[dict], fieldnames: list[str] | None = None) -> None:
     ensure_results_dir()
@@ -56,11 +51,9 @@ def write_csv(path: Path, rows: list[dict], fieldnames: list[str] | None = None)
         writer.writeheader()
         writer.writerows(rows)
 
-
 def write_json(path: Path, payload: dict) -> None:
     ensure_results_dir()
     path.write_text(json.dumps(payload, indent=2, default=str) + "\n", encoding="utf-8")
-
 
 def append_gap(title: str, detail: str) -> None:
     ensure_results_dir()
@@ -71,10 +64,8 @@ def append_gap(title: str, detail: str) -> None:
     updated = pruned + "\n\n" + entry
     GAPS_PATH.write_text(updated.rstrip() + "\n", encoding="utf-8")
 
-
 def unique_order_count(reads: int, observations: int) -> int:
     return math.comb(reads + observations, observations)
-
 
 def unique_orders(reads: int, observations: int) -> Iterable[tuple[str, ...]]:
     total = reads + observations
@@ -82,12 +73,10 @@ def unique_orders(reads: int, observations: int) -> Iterable[tuple[str, ...]]:
         obs_positions = set(obs_positions)
         yield tuple("OBS" if index in obs_positions else "READ" for index in range(total))
 
-
 def random_order(reads: int, observations: int, rng: random.Random) -> tuple[str, ...]:
     order = ["READ"] * reads + ["OBS"] * observations
     rng.shuffle(order)
     return tuple(order)
-
 
 def sampled_orders(reads: int, observations: int, budget: int, seed: int) -> list[tuple[str, ...]]:
     total_unique = unique_order_count(reads, observations)
@@ -103,7 +92,6 @@ def sampled_orders(reads: int, observations: int, budget: int, seed: int) -> lis
         attempts += 1
     return sorted(seen)
 
-
 def entropy_increment(schedule: str, beta: Fraction, access_count: int, de_access: Fraction) -> Fraction:
     if schedule == "constant":
         return de_access
@@ -113,7 +101,6 @@ def entropy_increment(schedule: str, beta: Fraction, access_count: int, de_acces
     if schedule == "exponential_decay":
         return de_access * (Fraction(1) / (Fraction(1) + beta)) ** access_count
     raise ValueError(f"unknown drift schedule: {schedule}")
-
 
 def read_value(state: tuple[Fraction, int, Fraction], schedule: str, beta: Fraction) -> tuple[Fraction, tuple[Fraction, int, Fraction]]:
     base, access_count, entropy = state
@@ -126,11 +113,9 @@ def read_value(state: tuple[Fraction, int, Fraction], schedule: str, beta: Fract
     )
     return value, next_state
 
-
 def observe_state(state: tuple[Fraction, int, Fraction]) -> tuple[Fraction, int, Fraction]:
     base, access_count, entropy = state
     return base, access_count, entropy + Fraction(1)
-
 
 def evaluate_order(
     order: tuple[str, ...],
@@ -159,7 +144,6 @@ def evaluate_order(
         output *= value
     return output
 
-
 def evaluate_orders(
     orders: Iterable[tuple[str, ...]],
     degree: int,
@@ -167,7 +151,6 @@ def evaluate_orders(
     beta: Fraction | None = None,
 ) -> list[Fraction]:
     return [evaluate_order(order, degree, schedule, beta) for order in orders]
-
 
 def output_stats(values: list[Fraction]) -> dict:
     if not values:
@@ -203,7 +186,6 @@ def output_stats(values: list[Fraction]) -> dict:
         "exact_max_output": fraction_text(exact_max),
         "exact_range": fraction_text(exact_range),
     }
-
 
 def evaluate_configuration(
     reads: int,
@@ -243,7 +225,6 @@ def evaluate_configuration(
     }
     row.update(output_stats(values))
     return row, values
-
 
 def markdown_table(headers: list[str], rows: list[dict], max_rows: int | None = None) -> list[str]:
     selected = rows if max_rows is None else rows[:max_rows]

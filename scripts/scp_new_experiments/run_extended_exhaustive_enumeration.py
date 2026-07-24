@@ -26,7 +26,6 @@ CSV_PATH = RESULTS_DIR / "extended_exhaustive_enumeration.csv"
 SUMMARY_PATH = RESULTS_DIR / "extended_exhaustive_enumeration_summary.json"
 TABLES_PATH = RESULTS_DIR / "extended_exhaustive_enumeration_tables.md"
 
-
 def row_for_config(reads: int, observations: int, degree: int) -> dict:
     unique_count = unique_order_count(reads, observations)
     feasible = unique_count <= EXHAUSTIVE_CUTOFF
@@ -85,7 +84,6 @@ def row_for_config(reads: int, observations: int, degree: int) -> dict:
     )
     return row
 
-
 def summarize(rows: list[dict]) -> dict:
     feasible = [row for row in rows if row["exhaustive_feasible"]]
     infeasible = [row for row in rows if not row["exhaustive_feasible"]]
@@ -110,7 +108,6 @@ def summarize(rows: list[dict]) -> dict:
         "max_unique_permutations": max(int(row["unique_permutations"]) for row in rows),
         "exact_rational_arithmetic_used": True,
     }
-
 
 def write_tables(rows: list[dict], summary: dict) -> None:
     largest = sorted(rows, key=lambda row: int(row["unique_permutations"]), reverse=True)[:20]
@@ -174,7 +171,6 @@ def write_tables(rows: list[dict], summary: dict) -> None:
     )
     TABLES_PATH.write_text("\n".join(lines) + "\n", encoding="utf-8")
 
-
 def run() -> dict:
     rows = [
         row_for_config(reads, observations, degree)
@@ -189,7 +185,6 @@ def run() -> dict:
     write_tables(rows, summary)
     return summary
 
-
 def main() -> int:
     summary = run()
     print(f"wrote {CSV_PATH}")
@@ -199,7 +194,6 @@ def main() -> int:
     print(f"exhaustive_feasible={summary['exhaustive_feasible_configurations']}")
     print(f"sample_range_mismatches={summary['sample_range_mismatches_when_exact_known']}")
     return 0
-
 
 if __name__ == "__main__":
     raise SystemExit(main())

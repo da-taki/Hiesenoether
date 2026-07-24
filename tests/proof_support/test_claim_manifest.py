@@ -31,22 +31,18 @@ REQUIRED_CLAIMS = {
     "production prevalence",
 }
 
-
 def load_manifest() -> dict:
     subprocess.run([sys.executable, str(SCRIPT)], cwd=REPO, check=True)
     assert RESULT.exists()
     return json.loads(RESULT.read_text(encoding="utf-8"))
 
-
 def by_claim(manifest: dict) -> dict[str, dict]:
     return {row["claim"]: row for row in manifest["claims"]}
-
 
 def test_manifest_exists_and_has_required_claims() -> None:
     manifest = load_manifest()
     claims = by_claim(manifest)
     assert REQUIRED_CLAIMS <= set(claims)
-
 
 def test_unsupported_claim_is_not_proved() -> None:
     claims = by_claim(load_manifest())
@@ -54,14 +50,12 @@ def test_unsupported_claim_is_not_proved() -> None:
     assert production["classification"] == "unsupported / should not be claimed"
     assert production["evidence_level"] != "Formal proof"
 
-
 def test_empirical_and_bounded_claims_are_not_theorems() -> None:
     claims = by_claim(load_manifest())
     assert claims["nonlinear cap amplification"]["evidence_level"] != "Formal proof"
     assert claims["nonlinear cap amplification"]["classification"] == "empirical finding"
     assert claims["degree relationship"]["classification"] == "bounded exact computational finding"
     assert claims["divergence-ratio relationship"]["classification"] == "bounded exact computational finding"
-
 
 def test_analyzer_is_not_marked_sound() -> None:
     claims = by_claim(load_manifest())

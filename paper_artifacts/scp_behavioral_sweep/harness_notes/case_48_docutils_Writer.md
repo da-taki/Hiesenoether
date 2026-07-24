@@ -1,6 +1,6 @@
 # Case 48: docutils Writer
 
-- Runnable harness: `C:\Users\Asus\Desktop\Profitlo Projects\Hiesenoether\paper_artifacts\scp_behavioral_sweep\harnesses\case_48_docutils_Writer.py`
+- Runnable harness: `<repo>\paper_artifacts\scp_behavioral_sweep\harnesses\case_48_docutils_Writer.py`
 - Expected operation: `interpolation_dict`
 - Expected latent state: `pepnum,title`
 - Construction feasibility: `simple`

@@ -7,9 +7,7 @@ from dataclasses import dataclass
 from pathlib import Path
 from typing import Any, Iterable
 
-
 TOKEN_RE = re.compile(r"[a-z0-9]+")
-
 
 @dataclass(frozen=True)
 class Document:
@@ -23,10 +21,8 @@ class Document:
     def text(self) -> str:
         return f"{self.title} {self.body} {' '.join(self.tags)}"
 
-
 def tokenize(text: str) -> list[str]:
     return TOKEN_RE.findall(text.lower())
-
 
 def load_corpus(path: str | Path) -> list[Document]:
     raw = json.loads(Path(path).read_text(encoding="utf-8"))
@@ -41,9 +37,7 @@ def load_corpus(path: str | Path) -> list[Document]:
         for item in raw
     ]
 
-
 class RagSimulator:
-    """Small deterministic RAG simulator for observation-shaped state tests."""
 
     def __init__(
         self,
@@ -185,7 +179,6 @@ class RagSimulator:
 
     def inspect_memory(self) -> dict[str, Any]:
         if self.feedback_weight != 0 and self.variant == "recency_memory_feedback" and self.session_memory:
-            # Inspection is observational-looking but refreshes recency.
             last = self.session_memory[-1]
             self.session_memory.append(last)
         snapshot = self.state_snapshot()
@@ -232,7 +225,6 @@ class RagSimulator:
                 return doc
         raise KeyError(doc_id)
 
-
 def run_order(
     corpus: list[Document],
     scenario: dict[str, Any],
@@ -256,7 +248,6 @@ def run_order(
         "state": simulator.state_snapshot(),
     }
 
-
 def compare_orders(order_a: dict[str, Any], order_b: dict[str, Any]) -> dict[str, Any]:
     top1_changed = (order_a["topk"][0] if order_a["topk"] else None) != (order_b["topk"][0] if order_b["topk"] else None)
     topk_order_changed = order_a["topk"] != order_b["topk"]
@@ -277,7 +268,6 @@ def compare_orders(order_a: dict[str, Any], order_b: dict[str, Any]) -> dict[str
         "state_changed": state_changed,
         "classification": classification,
     }
-
 
 def run_scenario(corpus: list[Document], scenario: dict[str, Any], *, feedback_weight: float | None = None) -> dict[str, Any]:
     order_a = run_order(corpus, scenario, feedback_weight=feedback_weight, order="A")

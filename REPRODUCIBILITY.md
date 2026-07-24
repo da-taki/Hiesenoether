@@ -1,19 +1,13 @@
 # Reproducibility
 
-Run commands from the repository root.
+Run all commands from the repository root. Use `python` (or `py` on Windows) with Python 3.10+.
 
-On this machine, use the bundled Python runtime:
+## Core tests and validation
 
-```powershell
-& 'C:\Users\Asus\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\python.exe' --version
-```
-
-## Existing Validation
-
-```powershell
-& 'C:\Users\Asus\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\python.exe' run_tests.py
-& 'C:\Users\Asus\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\python.exe' -m pytest tests -q
-& 'C:\Users\Asus\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\python.exe' -m validation.run_all
+```bash
+python run_tests.py
+python -m pytest tests -q
+python -m validation.run_all
 ```
 
 Expected outputs:
@@ -22,14 +16,12 @@ Expected outputs:
 - pytest summary on stdout
 - `validation/results.json`
 
-Approximate runtimes observed here: 2 seconds, 6 seconds, and 81 seconds.
+## SCP revision artifacts
 
-## New SCP Revision Artifacts
-
-```powershell
-& 'C:\Users\Asus\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\python.exe' paper_artifacts\validate_polynomial_degree_theorem.py
-& 'C:\Users\Asus\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\python.exe' paper_artifacts\sample_unflagged_recall_audit.py
-& 'C:\Users\Asus\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\python.exe' paper_artifacts\real_named_case_reproduction.py
+```bash
+python paper_artifacts/validate_polynomial_degree_theorem.py
+python paper_artifacts/sample_unflagged_recall_audit.py
+python paper_artifacts/real_named_case_reproduction.py
 ```
 
 Expected outputs:
@@ -43,9 +35,8 @@ Expected outputs:
 - `paper_artifacts/unflagged_audit_report.md`
 - `paper_artifacts/real_named_case_reproduction_output.json`
 
-Approximate runtimes observed here: 9 seconds, 3 seconds, and 1 second.
+## Real-world corpus
 
-## Data Limitation For Recall Audit
+The real-world experiments in `paper_artifacts/scp_realworld_revision/` ran against a snapshot of third-party PyPI packages. That vendored source is not committed. To rebuild it, download the exact package versions listed in `paper_artifacts/scp_realworld_revision/corpus_manifest.csv` (each row has the package name, version, wheel filename, SHA-256, and a PyPI URL) into `paper_artifacts/scp_realworld_revision/downloads/`, then run `build_source_snapshot.py`.
 
-The reviewed PyPI corpus source files are required to compute a true 200-class unflagged reviewed-corpus audit. They were not available in this checkout/cache. The audit script therefore reports `not_computed_missing_reviewed_source` for recall fields and uses available expanded SAFE queue rows only as an uncertainty fallback.
-
+The reviewed-corpus recall audit reports `not_computed_missing_reviewed_source` for recall fields when the reviewed source snapshot is not present.

@@ -1,9 +1,7 @@
-"""Theorem D (Determinism): evaluate(P, pi) is functional."""
 from __future__ import annotations
 from itertools import permutations
 from fractions import Fraction
 from validation.exact_semantics import evaluate, Params
-
 
 def check(L_max: int = 4, m_max: int = 3,
           degrees=(1, 2, 3, 4), trials: int = 5) -> dict:
@@ -22,7 +20,6 @@ def check(L_max: int = 4, m_max: int = 3,
     return {"theorem": "D", "status": "VERIFIED",
             "configurations_checked": checked,
             "scope": f"L<={L_max}, m<={m_max}, d in {degrees}, trials={trials}"}
-
 
 if __name__ == "__main__":
     import json

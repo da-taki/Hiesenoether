@@ -1,6 +1,6 @@
 # Case 29: docutils MetaBody
 
-- Runnable harness: `C:\Users\Asus\Desktop\Profitlo Projects\Hiesenoether\paper_artifacts\scp_behavioral_sweep\harnesses\case_29_docutils_MetaBody.py`
+- Runnable harness: `<repo>\paper_artifacts\scp_behavioral_sweep\harnesses\case_29_docutils_MetaBody.py`
 - Expected operation: `field_marker`
 - Expected latent state: `parent`
 - Construction feasibility: `simple`

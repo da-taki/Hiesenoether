@@ -1,6 +1,6 @@
 # Case 34: docutils Explicit
 
-- Runnable harness: `C:\Users\Asus\Desktop\Profitlo Projects\Hiesenoether\paper_artifacts\scp_behavioral_sweep\harnesses\case_34_docutils_Explicit.py`
+- Runnable harness: `<repo>\paper_artifacts\scp_behavioral_sweep\harnesses\case_34_docutils_Explicit.py`
 - Expected operation: `explicit_markup`
 - Expected latent state: `blank_finish,parent`
 - Construction feasibility: `simple`

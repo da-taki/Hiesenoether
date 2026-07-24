@@ -1,4 +1,4 @@
-import real_world_validation  # noqa: F401 — triggers sys.path patch in real_world_validation/__init__.py
+import real_world_validation
 
 from .exp_descriptor import run_experiment as run_descriptor_experiment
 from .exp_cache_invalidation import run_experiment as run_cache_experiment

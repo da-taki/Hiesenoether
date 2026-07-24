@@ -1,6 +1,6 @@
 # Case 37: docutils Line
 
-- Runnable harness: `C:\Users\Asus\Desktop\Profitlo Projects\Hiesenoether\paper_artifacts\scp_behavioral_sweep\harnesses\case_37_docutils_Line.py`
+- Runnable harness: `<repo>\paper_artifacts\scp_behavioral_sweep\harnesses\case_37_docutils_Line.py`
 - Expected operation: `eof`
 - Expected latent state: `parent`
 - Construction feasibility: `simple`

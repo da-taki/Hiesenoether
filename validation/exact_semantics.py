@@ -1,16 +1,13 @@
-"""Fraction-based exact OSDS semantics. Zero floating-point error."""
 from __future__ import annotations
 from dataclasses import dataclass, replace
 from fractions import Fraction
 from typing import Tuple
-
 
 @dataclass(frozen=True)
 class Value:
     b: Fraction
     n: int = 0
     e: Fraction = Fraction(1, 1)
-
 
 @dataclass(frozen=True)
 class Params:
@@ -20,19 +17,16 @@ class Params:
     P2: bool = True
     P3: bool = True
 
-
 def do_read(x: Value, p: Params) -> Tuple[Fraction, Value]:
     drift = Fraction(x.n) * x.e if p.P1 else Fraction(0)
     v = x.b + drift
     x2 = Value(b=x.b, n=x.n + 1, e=x.e + p.de_access)
     return v, x2
 
-
 def do_obs(x: Value, p: Params) -> Value:
     if not p.P2:
         return x
     return Value(b=x.b, n=x.n, e=x.e + p.de_obs)
-
 
 def do_cap(y: Fraction, x: Value, degree: int, p: Params,
            kind: str = "compositional", self_k: int = 0) -> Fraction:
@@ -54,7 +48,6 @@ def do_cap(y: Fraction, x: Value, degree: int, p: Params,
         return out
     raise ValueError(f"unknown cap kind: {kind}")
 
-
 def evaluate(body: Tuple[str, ...], degree: int, p: Params,
              x0: Fraction = Fraction(10),
              kind: str = "compositional",
@@ -70,7 +63,6 @@ def evaluate(body: Tuple[str, ...], degree: int, p: Params,
         else:
             raise ValueError(f"unknown op: {op}")
     return do_cap(y, x, degree, p, kind, self_k)
-
 
 def trace(body: Tuple[str, ...], degree: int, p: Params,
           x0: Fraction = Fraction(10)) -> list:

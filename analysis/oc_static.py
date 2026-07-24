@@ -6,12 +6,10 @@ from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Dict, List, Optional, Set, Tuple
 
-
 OBSERVER_NAME_HINTS = {"observe", "inspect", "peek", "sample",
                        "watch", "snapshot"}
 READER_NAME_HINTS   = {"read", "get", "__get__", "value", "current",
                        "__next__", "fetch"}
-
 
 @dataclass
 class ClassReport:
@@ -24,16 +22,12 @@ class ClassReport:
     counters_mutated: Set[str] = field(default_factory=set)
 
     def risk_score(self) -> int:
-        """Per-CLASS risk based on intrinsic class properties (P1, P2).
-        P3 is reported separately as a call-site finding because the
-        nonlinear composition usually lives in user code, not in the
-        class body itself."""
         p1 = bool(self.P1_evidence)
         p2 = bool(self.P2_evidence)
-        if p1 and p2: return 3   # HIGH: class is a chaos source
-        if p1:        return 2   # MEDIUM: drifty reader, no observer
-        if p2:        return 1   # LOW: observer present but no drift
-        return 0                 # SAFE
+        if p1 and p2: return 3
+        if p1:        return 2
+        if p2:        return 1
+        return 0
 
     def to_dict(self) -> dict:
         return {"class": self.name, "file": self.file, "line": self.line,
@@ -47,17 +41,14 @@ class ClassReport:
                 "risk_score": self.risk_score(),
                 "risk_label": ["SAFE", "LOW", "MEDIUM", "HIGH"][self.risk_score()]}
 
-
 def _is_self_attr(node: ast.AST) -> Optional[str]:
     if isinstance(node, ast.Attribute) and isinstance(node.value, ast.Name) \
        and node.value.id == "self":
         return node.attr
     return None
 
-
 def _method_mutates_self_and_returns(method: ast.FunctionDef
                                      ) -> Tuple[bool, Set[str], bool]:
-    """Returns (mutates_self, fields_mutated, has_return_value)."""
     fields: Set[str] = set()
     has_return = False
     for node in ast.walk(method):
@@ -73,21 +64,18 @@ def _method_mutates_self_and_returns(method: ast.FunctionDef
     return (len(fields) > 0, fields, has_return)
 
 def _method_uses_self_anywhere(method: ast.FunctionDef) -> bool:
-    """Method body reads at least one self.<attr>."""
     for node in ast.walk(method):
         if _is_self_attr(node) is not None:
             return True
     return False
 
 def _method_returns_self_attr_expr(method: ast.FunctionDef) -> bool:
-    """Return is an expression involving self.<attr> reads (not constants)."""
     for node in ast.walk(method):
         if isinstance(node, ast.Return) and node.value is not None:
             for sub in ast.walk(node.value):
                 if _is_self_attr(sub) is not None:
                     return True
     return False
-
 
 class ClassAnalyzer(ast.NodeVisitor):
     def __init__(self, file: str):
@@ -125,7 +113,6 @@ class ClassAnalyzer(ast.NodeVisitor):
                     f"and returns a value derived from self state")
                 rep.counters_mutated.update(fields)
 
-            # P2: observation-sensitive method that mutates self.
             if looks_like_observer and mutates:
                 rep.P2_evidence.append(
                     f"method {m.name}() (line {m.lineno}): "
@@ -136,10 +123,6 @@ class ClassAnalyzer(ast.NodeVisitor):
         self.generic_visit(node)
 
     def _find_nonlinear_uses_in(self, classdef: ast.ClassDef) -> List[str]:
-        """Look for multiplicative chains x.attr * x.attr or x.f() * x.f()
-        IGNORING base == 'self' (those are class-internal arithmetic on
-        scalar fields, not the multiplicative composition of repeated
-        observable reads we are looking for)."""
         evidence = []
         for node in ast.walk(classdef):
             if isinstance(node, ast.BinOp) and isinstance(node.op, ast.Mult):
@@ -177,20 +160,10 @@ class ClassAnalyzer(ast.NodeVisitor):
             return n.id
         return None
 
-
-# ── module-level P3 scan (calls to method) ──
-
 def find_module_level_nonlinear_uses(tree: ast.Module, file: str) -> List[dict]:
-    """Catch usage patterns like  y = x.read() * x.read() * x.read()
-    that occur outside a class definition. Skips bases that are inside
-    function/class bodies; only top-level (module-scope) chains count,
-    so internal class arithmetic doesn't dominate the report."""
     findings = []
-    # Collect AST nodes that are NOT inside ClassDef or FunctionDef.
     def at_module_scope(target_node):
-        # We re-walk and check ancestry by linking parents below.
         return True
-    # Walk with parents.
     for parent in ast.walk(tree):
         for child in ast.iter_child_nodes(parent):
             child.__oc_parent__ = parent
@@ -219,7 +192,6 @@ def find_module_level_nonlinear_uses(tree: ast.Module, file: str) -> List[dict]:
                                  "repeated_bases": hot})
     return findings
 
-
 def analyze_file(path: Path) -> dict:
     src = path.read_text()
     tree = ast.parse(src, filename=str(path))
@@ -232,7 +204,6 @@ def analyze_file(path: Path) -> dict:
             "high_risk_classes":
                 [r.name for r in ca.reports if r.risk_score() == 3]}
 
-
 def analyze_path(path: Path) -> List[dict]:
     if path.is_file() and path.suffix == ".py":
         return [analyze_file(path)]
@@ -244,7 +215,6 @@ def analyze_path(path: Path) -> List[dict]:
             except SyntaxError as e:
                 results.append({"file": str(f), "error": f"parse: {e}"})
     return results
-
 
 def main(argv: List[str]) -> int:
     json_out = False
@@ -282,7 +252,6 @@ def main(argv: List[str]) -> int:
             print(f"   .. module-level nonlinear use at "
                   f"{Path(mp['file']).name}:{mp['line']} -> {mp['repeated_bases']}")
     return 1 if any_high else 0
-
 
 if __name__ == "__main__":
     sys.exit(main(sys.argv))

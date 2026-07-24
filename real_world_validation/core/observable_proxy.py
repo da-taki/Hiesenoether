@@ -1,20 +1,11 @@
-# observable_proxy.py
-
 from dataclasses import dataclass, field
 from .unstable_object import UnstableObject, INITIAL_ENTROPY
-
 
 @dataclass
 class ObservableProxyConfig:
     backend: str = "unstable_object"
 
-
 class ObservableProxy:
-    """Generic proxy wrapping UnstableObject.
-
-    Provides a stable interface for future NumPy or alternative backends.
-    Currently delegates all operations to UnstableObject unchanged.
-    """
 
     def __init__(
         self,

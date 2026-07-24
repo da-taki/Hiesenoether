@@ -1,6 +1,6 @@
 # Case 24: docutils OptionParser
 
-- Runnable harness: `C:\Users\Asus\Desktop\Profitlo Projects\Hiesenoether\paper_artifacts\scp_behavioral_sweep\harnesses\case_24_docutils_OptionParser.py`
+- Runnable harness: `<repo>\paper_artifacts\scp_behavioral_sweep\harnesses\case_24_docutils_OptionParser.py`
 - Expected operation: `get_config_file_settings`
 - Expected latent state: `config_files`
 - Construction feasibility: `simple`

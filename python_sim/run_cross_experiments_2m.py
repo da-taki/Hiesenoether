@@ -4,21 +4,11 @@ import csv
 import os
 from tqdm import tqdm
 
-# ─────────────────────────────────────────────
-# SAFE PATH (fixes your earlier bug)
-# ─────────────────────────────────────────────
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 RESULTS_DIR = os.path.join(BASE_DIR, "results_2m")
 os.makedirs(RESULTS_DIR, exist_ok=True)
 
-# ─────────────────────────────────────────────
-# CONFIG
-# ─────────────────────────────────────────────
-NUM_RUNS = 157143  # 14 configs → ~2.2M total
-
-# ─────────────────────────────────────────────
-# CORE MODEL
-# ─────────────────────────────────────────────
+NUM_RUNS = 157143
 
 class UnstableValue:
     def __init__(self, base):
@@ -35,10 +25,6 @@ class UnstableValue:
 
     def inspect(self):
         self.entropy += 1
-
-# ─────────────────────────────────────────────
-# PROGRAM EXECUTION
-# ─────────────────────────────────────────────
 
 def run_program(order, nonlinearity):
     x = UnstableValue(10)
@@ -59,10 +45,6 @@ def run_program(order, nonlinearity):
     elif nonlinearity == "extreme":
         return y * y * x.get()
 
-# ─────────────────────────────────────────────
-# CONFIGS (same as before)
-# ─────────────────────────────────────────────
-
 CONFIGS = [
     ("inspect_0", 6, 0, "quadratic"),
     ("inspect_1", 6, 1, "quadratic"),
@@ -82,10 +64,6 @@ CONFIGS = [
     ("steps_12", 12, 1, "quadratic"),
 ]
 
-# ─────────────────────────────────────────────
-# HELPERS
-# ─────────────────────────────────────────────
-
 def build_order(add_steps, inspect_count):
     ops = ["add"] * add_steps + ["inspect"] * inspect_count
     random.shuffle(ops)
@@ -99,10 +77,6 @@ def compute_stats(results):
         "max": round(max(results), 4),
         "range": round(max(results) - min(results), 4)
     }
-
-# ─────────────────────────────────────────────
-# MAIN
-# ─────────────────────────────────────────────
 
 def run_config(name, steps, inspects, nonlin):
     results = []

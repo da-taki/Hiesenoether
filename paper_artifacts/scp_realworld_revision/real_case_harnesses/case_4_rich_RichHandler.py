@@ -5,7 +5,6 @@ import logging
 import sys
 from pathlib import Path
 
-
 SNAPSHOT = Path(__file__).resolve().parents[1] / "source_snapshot" / "rich-15.0.0"
 TEMP = Path.home() / "AppData" / "Local" / "Temp" / "hiesenoether_pypi_static_benchmark" / "sources" / "rich" / "rich-15.0.0"
 if SNAPSHOT.exists():
@@ -16,9 +15,7 @@ elif TEMP.exists():
 import rich
 from rich.logging import RichHandler
 
-
 OUT = Path(__file__).resolve().parents[1] / "real_case_outputs" / "case_4_rich_RichHandler.json"
-
 
 def run_sequence(observe_first: bool) -> dict[str, object]:
     handler = RichHandler(markup=True, highlighter=None)
@@ -29,7 +26,6 @@ def run_sequence(observe_first: bool) -> dict[str, object]:
         rendered = str(handler.render_message(record, record.getMessage()))
     after = {"keywords": handler.keywords, "rendered": rendered}
     return {"before": before, "after": after}
-
 
 def main() -> int:
     a = run_sequence(False)
@@ -58,7 +54,6 @@ def main() -> int:
     OUT.write_text(json.dumps(data, indent=2), encoding="utf-8")
     print(json.dumps(data, indent=2))
     return 0
-
 
 if __name__ == "__main__":
     raise SystemExit(main())

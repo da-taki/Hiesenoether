@@ -18,7 +18,7 @@
 System `python` and `py` were not available. The Codex bundled runtime was used:
 
 - Python: `3.12.13`
-- Executable: `C:\Users\Asus\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\python.exe`
+- Executable: `python`
 - Selected packages: `pytest 8.3.5`, `pandas 3.0.1`, `numpy 2.3.5`, `requests 2.32.4`, `packaging 26.2`, `ruff 0.15.20`
 
 ## Exact Rational Replay

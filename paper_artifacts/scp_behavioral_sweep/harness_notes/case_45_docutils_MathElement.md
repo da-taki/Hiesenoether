@@ -1,6 +1,6 @@
 # Case 45: docutils MathElement
 
-- Runnable harness: `C:\Users\Asus\Desktop\Profitlo Projects\Hiesenoether\paper_artifacts\scp_behavioral_sweep\harnesses\case_45_docutils_MathElement.py`
+- Runnable harness: `<repo>\paper_artifacts\scp_behavioral_sweep\harnesses\case_45_docutils_MathElement.py`
 - Expected operation: `close`
 - Expected latent state: `nchildren`
 - Construction feasibility: `simple`

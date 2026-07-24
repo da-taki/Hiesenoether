@@ -1,6 +1,6 @@
 # Case 18: dnspython BTree
 
-- Runnable harness: `C:\Users\Asus\Desktop\Profitlo Projects\Hiesenoether\paper_artifacts\scp_behavioral_sweep\harnesses\case_18_dnspython_BTree.py`
+- Runnable harness: `<repo>\paper_artifacts\scp_behavioral_sweep\harnesses\case_18_dnspython_BTree.py`
 - Expected operation: `insert_element`
 - Expected latent state: `root,size`
 - Construction feasibility: `simple`

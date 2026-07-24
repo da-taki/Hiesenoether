@@ -15,14 +15,11 @@ from validation.exhaustive_permutation_check import exact_row
 CSV_PATH = REPO / "results" / "exhaustive_enumeration_report.csv"
 SUMMARY_PATH = REPO / "results" / "exhaustive_enumeration_summary.json"
 
-
 def parse_fraction(text: str) -> Fraction:
     return Fraction(text)
 
-
 def fraction_text(value: Fraction) -> str:
     return str(value.numerator) if value.denominator == 1 else f"{value.numerator}/{value.denominator}"
-
 
 def generate() -> dict:
     rows = []
@@ -80,7 +77,6 @@ def generate() -> dict:
     SUMMARY_PATH.write_text(json.dumps(summary, indent=2) + "\n", encoding="utf-8")
     return summary
 
-
 def main() -> int:
     summary = generate()
     print(f"wrote {CSV_PATH}")
@@ -90,7 +86,6 @@ def main() -> int:
         "mismatched={mismatched_configurations}".format(**summary)
     )
     return 0
-
 
 if __name__ == "__main__":
     raise SystemExit(main())

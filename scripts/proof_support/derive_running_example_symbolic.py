@@ -22,10 +22,8 @@ CAP_DEGREE = 2
 ORDER_A = ("OBS", "READ", "READ")
 ORDER_B = ("READ", "READ", "OBS")
 
-
 def fraction_text(value: Fraction) -> str:
     return str(value.numerator) if value.denominator == 1 else f"{value.numerator}/{value.denominator}"
-
 
 def state_payload(base: Fraction, access_count: int, entropy: Fraction) -> dict:
     return {
@@ -34,12 +32,10 @@ def state_payload(base: Fraction, access_count: int, entropy: Fraction) -> dict:
         "drift_state": fraction_text(entropy),
     }
 
-
 def read_step(base: Fraction, access_count: int, entropy: Fraction) -> tuple[Fraction, Fraction, int, Fraction]:
     drift = Fraction(access_count) * entropy
     exposed = base + drift
     return exposed, drift, access_count + 1, entropy + ACCESS_DELTA
-
 
 def derive_order(name: str, operations: tuple[str, ...]) -> dict:
     base = BASE
@@ -115,7 +111,6 @@ def derive_order(name: str, operations: tuple[str, ...]) -> dict:
         "steps": steps,
     }
 
-
 def build_derivation() -> dict:
     if Counter(ORDER_A) != Counter(ORDER_B):
         raise AssertionError("operation orders must have the same multiset")
@@ -142,7 +137,6 @@ def build_derivation() -> dict:
             "divergence 72/5."
         ),
     }
-
 
 def write_markdown(payload: dict) -> None:
     order_a, order_b = payload["orders"]
@@ -194,7 +188,6 @@ def write_markdown(payload: dict) -> None:
     lines.extend(["## Paper Explanation", "", payload["paper_explanation"], ""])
     MD_PATH.write_text("\n".join(lines), encoding="utf-8")
 
-
 def main() -> int:
     RESULTS_DIR.mkdir(parents=True, exist_ok=True)
     payload = build_derivation()
@@ -204,7 +197,6 @@ def main() -> int:
     print(f"wrote {MD_PATH}")
     print(f"final_divergence={payload['final_divergence']}")
     return 0
-
 
 if __name__ == "__main__":
     raise SystemExit(main())

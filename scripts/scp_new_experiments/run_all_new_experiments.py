@@ -21,7 +21,6 @@ COMMANDS = [
     ("master report", [sys.executable, "scripts/scp_new_experiments/generate_master_report.py"]),
 ]
 
-
 def run_command(label: str, command: list[str]) -> dict:
     print(f"[run] {label}", flush=True)
     proc = subprocess.run(command, cwd=REPO, text=True, capture_output=True)
@@ -37,13 +36,11 @@ def run_command(label: str, command: list[str]) -> dict:
         "output": output,
     }
 
-
 def read_json(name: str) -> dict:
     path = RESULTS_DIR / name
     if not path.exists():
         return {}
     return json.loads(path.read_text(encoding="utf-8"))
-
 
 def print_final_summary(results: list[dict]) -> None:
     expanded = read_json("expanded_mechanism_sweep_summary.json")
@@ -81,12 +78,10 @@ def print_final_summary(results: list[dict]) -> None:
     print(f"- manual review queue rows: {pypi.get('manual_review_queue_rows', 'missing')}")
     print(f"- master report: {master_path}")
 
-
 def main() -> int:
     results = [run_command(label, command) for label, command in COMMANDS]
     print_final_summary(results)
     return 1 if any(result["returncode"] != 0 for result in results) else 0
-
 
 if __name__ == "__main__":
     raise SystemExit(main())

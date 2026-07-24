@@ -16,23 +16,19 @@ from validation.exact_semantics_runtime import divergence_runtime
 
 RESULTS_DIR = REPO / "results" / "paper_evidence"
 
-
 def fraction_text(value: Fraction) -> str:
     return str(value.numerator) if value.denominator == 1 else f"{value.numerator}/{value.denominator}"
-
 
 def parse_fraction(value: str | int | float | None) -> Fraction | None:
     if value is None:
         return None
     return Fraction(str(value))
 
-
 def unique_orders(reads: int, observations: int) -> Iterable[tuple[str, ...]]:
     total = reads + observations
     for obs_positions in combinations(range(total), observations):
         obs_positions = set(obs_positions)
         yield tuple("OBS" if index in obs_positions else "READ" for index in range(total))
-
 
 def write_summary(name: str, payload: dict) -> dict:
     RESULTS_DIR.mkdir(parents=True, exist_ok=True)
@@ -41,13 +37,11 @@ def write_summary(name: str, payload: dict) -> dict:
     payload["summary_path"] = str(path.relative_to(REPO))
     return payload
 
-
 def read_json(path: Path) -> dict:
     data = path.read_bytes()
     if data.startswith(b"\xff\xfe") or data.startswith(b"\xfe\xff"):
         return json.loads(data.decode("utf-16"))
     return json.loads(data.decode("utf-8-sig"))
-
 
 def evaluate_with_state(order: tuple[str, ...], degree: int, params: Params) -> tuple[Fraction, tuple]:
     x = Value(b=Fraction(10))
@@ -64,14 +58,12 @@ def evaluate_with_state(order: tuple[str, ...], degree: int, params: Params) -> 
     state = (x.b, x.n, x.e, y)
     return output, state
 
-
 def divergence(reads: int, observations: int, degree: int, params: Params) -> Fraction:
     outputs = [
         evaluate(order, degree, params)
         for order in unique_orders(reads, observations)
     ]
     return max(outputs) - min(outputs)
-
 
 def check_fixed_order_determinism() -> dict:
     repeats = 4
@@ -116,7 +108,6 @@ def check_fixed_order_determinism() -> dict:
         },
     )
 
-
 def check_identity_observation_zero_divergence() -> dict:
     params = Params(P2=False)
     counterexamples = []
@@ -151,7 +142,6 @@ def check_identity_observation_zero_divergence() -> dict:
             "counterexamples": counterexamples,
         },
     )
-
 
 def check_access_insensitive_reads_zero_divergence() -> dict:
     params = Params(P1=False)
@@ -188,7 +178,6 @@ def check_access_insensitive_reads_zero_divergence() -> dict:
         },
     )
 
-
 def check_composition_amplification() -> dict:
     rows = []
     failures = []
@@ -220,14 +209,12 @@ def check_composition_amplification() -> dict:
         },
     )
 
-
 def _table_kind(kind_text: str | None, degree: int) -> tuple[str, int]:
     if kind_text == "self_referential_k2":
         return "self_referential", 2
     if degree == 4 and kind_text == "self_referential":
         return "self_referential", 2
     return "compositional", 0
-
 
 def _osds_divergence_from_table_row(row: dict) -> Fraction:
     reads = int(row["L"])
@@ -239,7 +226,6 @@ def _osds_divergence_from_table_row(row: dict) -> Fraction:
         for order in unique_orders(reads, observations)
     ]
     return max(values) - min(values)
-
 
 def check_bounded_computational_claims() -> dict:
     polynomial_path = REPO / "validation" / "theorem_R_polynomial.json"

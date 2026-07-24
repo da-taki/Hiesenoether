@@ -14,12 +14,10 @@ from validation.polynomial_degree_extended import (
     polynomial_degree,
 )
 
-
 REPO = Path(__file__).resolve().parents[1]
 RESULTS_DIR = REPO / "results_validation"
 CSV_OUT = RESULTS_DIR / "rho_infinity_investigation.csv"
 SUMMARY_OUT = RESULTS_DIR / "rho_infinity_investigation_summary.md"
-
 
 @dataclass(frozen=True)
 class RhoCase:
@@ -41,10 +39,8 @@ class RhoCase:
     holdout_osds_pass: bool
     holdout_runtime_pass: bool
 
-
 def runtime_read_value(base: Fraction, n: int, delta: Fraction) -> Fraction:
     return base + Fraction(n) * (Fraction(1) + Fraction(n) * delta)
-
 
 def runtime_compositional_delta(
     L: int,
@@ -53,12 +49,6 @@ def runtime_compositional_delta(
     delta: Fraction = Fraction(1, 10),
     base: Fraction = Fraction(10),
 ) -> Fraction:
-    """Generalized compositional runtime model used for investigation.
-
-    It matches the exact historical runtime helper for compositional d=1..3,
-    but it is intentionally kept in this external investigation script rather
-    than added to core validation semantics.
-    """
 
     body_delta = sum(
         runtime_read_value(base, i + m, delta) - runtime_read_value(base, i, delta)
@@ -69,13 +59,11 @@ def runtime_compositional_delta(
         cap *= runtime_read_value(base, L + m + r, delta)
     return body_delta * cap
 
-
 def leading_data(values: list[tuple[int, Fraction]]) -> tuple[list[Fraction], int, Fraction]:
     coeffs = lagrange_polynomial(values)
     degree = polynomial_degree(coeffs)
     leading = Fraction(0) if degree < 0 else coeffs[degree]
     return coeffs, degree, leading
-
 
 def analyze_case(
     experiment: str,
@@ -119,7 +107,6 @@ def analyze_case(
         holdout_runtime_pass=eval_polynomial(runtime_coeffs, holdout) == runtime_holdout,
     )
 
-
 def row(case: RhoCase) -> dict:
     return {
         "experiment": case.experiment,
@@ -142,7 +129,6 @@ def row(case: RhoCase) -> dict:
         "holdout_runtime_pass": case.holdout_runtime_pass,
     }
 
-
 def write_csv(cases: list[RhoCase]) -> None:
     RESULTS_DIR.mkdir(exist_ok=True)
     rows = [row(case) for case in cases]
@@ -150,7 +136,6 @@ def write_csv(cases: list[RhoCase]) -> None:
         writer = csv.DictWriter(f, fieldnames=list(rows[0]))
         writer.writeheader()
         writer.writerows(rows)
-
 
 def write_summary(cases: list[RhoCase]) -> None:
     default = [c for c in cases if c.experiment == "default"]
@@ -219,7 +204,6 @@ def write_summary(cases: list[RhoCase]) -> None:
 
     SUMMARY_OUT.write_text("\n".join(lines) + "\n", encoding="utf-8")
 
-
 def run() -> list[RhoCase]:
     cases: list[RhoCase] = []
     for m in range(1, 6):
@@ -237,7 +221,6 @@ def run() -> list[RhoCase]:
     write_summary(cases)
     return cases
 
-
 def main() -> int:
     cases = run()
     failures = [c for c in cases if not c.rho_matches_expected or not c.holdout_osds_pass or not c.holdout_runtime_pass]
@@ -245,7 +228,6 @@ def main() -> int:
     print(f"wrote {SUMMARY_OUT}")
     print(f"checked={len(cases)} failures={len(failures)}")
     return 1 if failures else 0
-
 
 if __name__ == "__main__":
     raise SystemExit(main())

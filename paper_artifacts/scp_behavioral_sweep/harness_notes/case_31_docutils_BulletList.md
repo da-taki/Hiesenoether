@@ -1,6 +1,6 @@
 # Case 31: docutils BulletList
 
-- Runnable harness: `C:\Users\Asus\Desktop\Profitlo Projects\Hiesenoether\paper_artifacts\scp_behavioral_sweep\harnesses\case_31_docutils_BulletList.py`
+- Runnable harness: `<repo>\paper_artifacts\scp_behavioral_sweep\harnesses\case_31_docutils_BulletList.py`
 - Expected operation: `bullet`
 - Expected latent state: `blank_finish,parent`
 - Construction feasibility: `simple`

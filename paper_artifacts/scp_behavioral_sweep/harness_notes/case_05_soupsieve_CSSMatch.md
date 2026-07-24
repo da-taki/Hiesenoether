@@ -1,6 +1,6 @@
 # Case 5: soupsieve CSSMatch
 
-- Runnable harness: `C:\Users\Asus\Desktop\Profitlo Projects\Hiesenoether\paper_artifacts\scp_behavioral_sweep\harnesses\case_05_soupsieve_CSSMatch.py`
+- Runnable harness: `<repo>\paper_artifacts\scp_behavioral_sweep\harnesses\case_05_soupsieve_CSSMatch.py`
 - Expected operation: `match_selectors`
 - Expected latent state: `iframe_restrict,namespaces`
 - Construction feasibility: `requires_args`

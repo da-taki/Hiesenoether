@@ -1,0 +1,97 @@
+{
+  "candidate_id": "re09_boltons_MultiFileReader",
+  "diff": {
+    "branch_changed": false,
+    "classification": "confirmed_output_divergence",
+    "exception_changed": false,
+    "output_changed": true,
+    "state_changed": false
+  },
+  "metadata": {
+    "candidate_id": "re09_boltons_MultiFileReader",
+    "class_name": "MultiFileReader",
+    "construction_hint": "MultiFileReader(BytesIO x3)",
+    "expected_boundary": "stream cursor advances",
+    "fixture_family": "io_bytes",
+    "module_path": "boltons/ioutils.py",
+    "observation_operation": "read(3)",
+    "package_name": "boltons",
+    "package_version": "25.0.0",
+    "priority": "1",
+    "selected_for_harness": "yes",
+    "source_artifact": "rescue_results.csv",
+    "state_fields_suspected": "_index",
+    "target_read_operation": "read(3)"
+  },
+  "order_A": {
+    "results": [
+      {
+        "kind": "value",
+        "value": "b'abc'"
+      },
+      {
+        "kind": "value",
+        "value": "b'de'"
+      }
+    ],
+    "state": {
+      "index": 3
+    },
+    "steps": [
+      "construct",
+      "read(3)",
+      "read(3)"
+    ]
+  },
+  "order_B": {
+    "observation": {
+      "kind": "value",
+      "value": "b'abc'"
+    },
+    "results": [
+      {
+        "kind": "value",
+        "value": "b'de'"
+      },
+      {
+        "kind": "value",
+        "value": "b''"
+      }
+    ],
+    "state": {
+      "index": 3
+    },
+    "steps": [
+      "construct",
+      "read(3)",
+      "read(3)",
+      "read(3)"
+    ]
+  },
+  "record": {
+    "boundary_note": "stream cursor advances",
+    "branch_changed": false,
+    "candidate_id": "re09_boltons_MultiFileReader",
+    "class_name": "MultiFileReader",
+    "classification": "confirmed_output_divergence",
+    "constructed": true,
+    "exception_changed": false,
+    "failure_reason": "",
+    "fixture_family": "io_bytes",
+    "observation_operation": "read(3)",
+    "order_A_exception": "[]",
+    "order_A_output": "[\"b'abc'\", \"b'de'\"]",
+    "order_A_state": "{\"index\": 3}",
+    "order_A_steps": "construct | read(3) | read(3)",
+    "order_B_exception": "[]",
+    "order_B_output": "[\"b'de'\", \"b''\"]",
+    "order_B_state": "{\"index\": 3}",
+    "order_B_steps": "construct | read(3) | read(3) | read(3)",
+    "output_changed": true,
+    "package_name": "boltons",
+    "package_version": "25.0.0",
+    "pair_type": "pair3",
+    "state_changed": false,
+    "target_read_operation": "read(3)"
+  }
+}

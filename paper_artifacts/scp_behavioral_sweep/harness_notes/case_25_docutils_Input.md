@@ -1,6 +1,6 @@
 # Case 25: docutils Input
 
-- Runnable harness: `C:\Users\Asus\Desktop\Profitlo Projects\Hiesenoether\paper_artifacts\scp_behavioral_sweep\harnesses\case_25_docutils_Input.py`
+- Runnable harness: `<repo>\paper_artifacts\scp_behavioral_sweep\harnesses\case_25_docutils_Input.py`
 - Expected operation: `decode`
 - Expected latent state: `successful_encoding`
 - Construction feasibility: `simple`

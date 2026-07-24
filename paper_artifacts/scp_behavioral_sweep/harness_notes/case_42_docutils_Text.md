@@ -1,6 +1,6 @@
 # Case 42: docutils Text
 
-- Runnable harness: `C:\Users\Asus\Desktop\Profitlo Projects\Hiesenoether\paper_artifacts\scp_behavioral_sweep\harnesses\case_42_docutils_Text.py`
+- Runnable harness: `<repo>\paper_artifacts\scp_behavioral_sweep\harnesses\case_42_docutils_Text.py`
 - Expected operation: `blank`
 - Expected latent state: `parent`
 - Construction feasibility: `simple`

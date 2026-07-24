@@ -1,6 +1,6 @@
 # Case 4: docutils Transformer
 
-- Runnable harness: `C:\Users\Asus\Desktop\Profitlo Projects\Hiesenoether\paper_artifacts\scp_behavioral_sweep\harnesses\case_04_docutils_Transformer.py`
+- Runnable harness: `<repo>\paper_artifacts\scp_behavioral_sweep\harnesses\case_04_docutils_Transformer.py`
 - Expected operation: `get_priority_string`
 - Expected latent state: `serialno`
 - Construction feasibility: `requires_args`

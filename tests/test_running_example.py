@@ -5,12 +5,10 @@ from fractions import Fraction
 
 from examples.running_example import SEQUENCE_A, SEQUENCE_B, build_example
 
-
 def test_running_example_uses_same_multiset_with_observation_and_reads():
     assert Counter(SEQUENCE_A) == Counter(SEQUENCE_B)
     assert Counter(SEQUENCE_A)["OBS"] == 1
     assert Counter(SEQUENCE_A)["READ"] >= 2
-
 
 def test_running_example_diverges_exactly():
     example = build_example()
@@ -23,7 +21,6 @@ def test_running_example_diverges_exactly():
     assert output_b == Fraction(7596, 25)
     assert divergence == Fraction(72, 5)
     assert output_a != output_b
-
 
 def test_running_example_records_intermediate_exact_states():
     example = build_example()

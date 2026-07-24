@@ -20,5 +20,5 @@
 
 ## Project Test Gates
 
-- `C:\Users\Asus\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\python.exe run_tests.py`: passed, 28/28.
-- `C:\Users\Asus\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\python.exe -m pytest tests`: passed, 44/44.
+- `python run_tests.py`: passed, 28/28.
+- `python -m pytest tests`: passed, 44/44.

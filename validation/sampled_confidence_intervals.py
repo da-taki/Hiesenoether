@@ -13,11 +13,9 @@ if str(REPO) not in sys.path:
 from validation.exact_semantics import Params, evaluate
 from validation.theorem_T4_SDR import fit_loglinear
 
-
 SEEDS = [3101, 3109, 3119, 3137, 3163, 3181, 3203]
 SAMPLES_PER_SEED = 1000
 T95_DF6 = 2.447
-
 
 def sampled_orders(L: int, m: int, draws: int, seed: int):
     rng = random.Random(seed)
@@ -28,7 +26,6 @@ def sampled_orders(L: int, m: int, draws: int, seed: int):
         rng.shuffle(order)
         seen.add(tuple(order))
     return seen
-
 
 def sampled_range(L: int, m: int, degree: int, seed: int,
                   kind: str = "compositional") -> dict:
@@ -50,7 +47,6 @@ def sampled_range(L: int, m: int, degree: int, seed: int,
         "log_range": math.log(rng) if rng > 1.0 else 0.0,
     }
 
-
 def summarize(values: list[float]) -> dict:
     n = len(values)
     avg = mean(values)
@@ -66,7 +62,6 @@ def summarize(values: list[float]) -> dict:
         "ci95_high": avg + half_width,
     }
 
-
 def fit_alpha_for_seed(seed: int, Ls: list[int], m: int, degree: int) -> dict:
     rows = []
     for L in Ls:
@@ -77,7 +72,6 @@ def fit_alpha_for_seed(seed: int, Ls: list[int], m: int, degree: int) -> dict:
     alpha, intercept, r2 = fit_loglinear(xs, ys)
     return {"seed": seed, "alpha": alpha, "intercept": intercept,
             "R_squared": r2, "rows": rows}
-
 
 def fit_sdr_for_seed(seed: int, family: str, degrees: list[int],
                      L: int, m: int) -> dict:
@@ -91,7 +85,6 @@ def fit_sdr_for_seed(seed: int, family: str, degrees: list[int],
     return {"seed": seed, "SDR_slope": slope, "intercept": intercept,
             "R_squared": r2, "rows": rows}
 
-
 def _range_config_summary(seed_runs: list[dict], key: str) -> list[dict]:
     buckets: dict[int, list[float]] = {}
     order_counts: dict[int, list[int]] = {}
@@ -104,7 +97,6 @@ def _range_config_summary(seed_runs: list[dict], key: str) -> list[dict]:
         "sampled_unique_orderings_mean": mean(order_counts[config]),
         "range_stats": summarize(vals),
     } for config, vals in sorted(buckets.items())]
-
 
 def check() -> dict:
     length_Ls = [12, 20, 30, 50]
@@ -151,7 +143,6 @@ def check() -> dict:
             },
         },
     }
-
 
 if __name__ == "__main__":
     import json

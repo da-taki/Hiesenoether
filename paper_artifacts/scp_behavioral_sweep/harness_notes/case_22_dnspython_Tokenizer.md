@@ -1,6 +1,6 @@
 # Case 22: dnspython Tokenizer
 
-- Runnable harness: `C:\Users\Asus\Desktop\Profitlo Projects\Hiesenoether\paper_artifacts\scp_behavioral_sweep\harnesses\case_22_dnspython_Tokenizer.py`
+- Runnable harness: `<repo>\paper_artifacts\scp_behavioral_sweep\harnesses\case_22_dnspython_Tokenizer.py`
 - Expected operation: `_get_char`
 - Expected latent state: `eof,line_number,ungotten_char`
 - Construction feasibility: `simple`

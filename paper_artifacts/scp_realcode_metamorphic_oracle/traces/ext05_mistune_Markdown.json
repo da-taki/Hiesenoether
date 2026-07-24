@@ -1,0 +1,79 @@
+{
+  "candidate_id": "ext05_mistune_Markdown",
+  "diff": {
+    "branch_changed": false,
+    "classification": "no_divergence",
+    "exception_changed": false,
+    "output_changed": false,
+    "state_changed": false
+  },
+  "metadata": {
+    "candidate_id": "ext05_mistune_Markdown",
+    "class_name": "Markdown",
+    "construction_hint": "mistune.create_markdown()",
+    "expected_boundary": "reference-style link resolution across calls",
+    "fixture_family": "string_text",
+    "module_path": "mistune/markdown.py",
+    "observation_operation": "parse ref-def first",
+    "package_name": "mistune",
+    "package_version": "3.2.1",
+    "priority": "2",
+    "selected_for_harness": "yes",
+    "source_artifact": "source_snapshot",
+    "state_fields_suspected": "block state",
+    "target_read_operation": "render '[a][]'"
+  },
+  "order_A": {
+    "results": [
+      {
+        "kind": "value",
+        "value": "<p>[a][]</p>"
+      }
+    ],
+    "state": {},
+    "steps": [
+      "create_markdown()",
+      "render('[a][]')"
+    ]
+  },
+  "order_B": {
+    "results": [
+      {
+        "kind": "value",
+        "value": "<p>[a][]</p>"
+      }
+    ],
+    "state": {},
+    "steps": [
+      "create_markdown()",
+      "render ref-def",
+      "render('[a][]')"
+    ]
+  },
+  "record": {
+    "boundary_note": "reference-style link resolution across calls",
+    "branch_changed": false,
+    "candidate_id": "ext05_mistune_Markdown",
+    "class_name": "Markdown",
+    "classification": "no_divergence",
+    "constructed": true,
+    "exception_changed": false,
+    "failure_reason": "",
+    "fixture_family": "string_text",
+    "observation_operation": "parse ref-def first",
+    "order_A_exception": "[]",
+    "order_A_output": "[\"<p>[a][]</p>\"]",
+    "order_A_state": "{}",
+    "order_A_steps": "create_markdown() | render('[a][]')",
+    "order_B_exception": "[]",
+    "order_B_output": "[\"<p>[a][]</p>\"]",
+    "order_B_state": "{}",
+    "order_B_steps": "create_markdown() | render ref-def | render('[a][]')",
+    "output_changed": false,
+    "package_name": "mistune",
+    "package_version": "3.2.1",
+    "pair_type": "pair1",
+    "state_changed": false,
+    "target_read_operation": "render '[a][]'"
+  }
+}

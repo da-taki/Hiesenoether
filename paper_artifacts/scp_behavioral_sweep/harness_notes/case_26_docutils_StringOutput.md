@@ -1,6 +1,6 @@
 # Case 26: docutils StringOutput
 
-- Runnable harness: `C:\Users\Asus\Desktop\Profitlo Projects\Hiesenoether\paper_artifacts\scp_behavioral_sweep\harnesses\case_26_docutils_StringOutput.py`
+- Runnable harness: `<repo>\paper_artifacts\scp_behavioral_sweep\harnesses\case_26_docutils_StringOutput.py`
 - Expected operation: `write`
 - Expected latent state: `destination`
 - Construction feasibility: `simple`

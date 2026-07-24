@@ -24,10 +24,8 @@ CSV_PATH = RESULTS_DIR / "expanded_mechanism_sweep.csv"
 SUMMARY_PATH = RESULTS_DIR / "expanded_mechanism_sweep_summary.json"
 TABLES_PATH = RESULTS_DIR / "expanded_mechanism_sweep_tables.md"
 
-
 def as_fraction(text: str) -> Fraction:
     return Fraction(text) if text else Fraction(0)
-
 
 def summarize(rows: list[dict]) -> dict:
     total_executions = sum(int(row["executions"]) for row in rows)
@@ -100,7 +98,6 @@ def summarize(rows: list[dict]) -> dict:
         "exact_rational_arithmetic_used": True,
     }
 
-
 def write_tables(rows: list[dict], summary: dict) -> None:
     top_ranges = sorted(rows, key=lambda row: float(row["range"]), reverse=True)[:20]
     zero_rows = [row for row in rows if int(row["observation_count"]) == 0][:12]
@@ -162,7 +159,6 @@ def write_tables(rows: list[dict], summary: dict) -> None:
     )
     TABLES_PATH.write_text("\n".join(lines) + "\n", encoding="utf-8")
 
-
 def run() -> dict:
     rows: list[dict] = []
     for schedule in DRIFT_SCHEDULES:
@@ -187,7 +183,6 @@ def run() -> dict:
     write_tables(rows, summary)
     return summary
 
-
 def main() -> int:
     summary = run()
     print(f"wrote {CSV_PATH}")
@@ -198,7 +193,6 @@ def main() -> int:
     print(f"zero_observation_all_zero_divergence={summary['zero_observation_all_zero_divergence']}")
     print(f"counterexamples={len(summary['nonlinear_cap_counterexamples'])}")
     return 0 if not summary["zero_observation_counterexamples"] else 1
-
 
 if __name__ == "__main__":
     raise SystemExit(main())

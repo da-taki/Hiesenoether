@@ -1,6 +1,6 @@
 # Case 41: docutils RFC2822List
 
-- Runnable harness: `C:\Users\Asus\Desktop\Profitlo Projects\Hiesenoether\paper_artifacts\scp_behavioral_sweep\harnesses\case_41_docutils_RFC2822List.py`
+- Runnable harness: `<repo>\paper_artifacts\scp_behavioral_sweep\harnesses\case_41_docutils_RFC2822List.py`
 - Expected operation: `rfc2822`
 - Expected latent state: `blank_finish,parent`
 - Construction feasibility: `simple`

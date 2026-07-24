@@ -1,14 +1,6 @@
-# descriptor_protocol.py
-
 from .unstable_object import UnstableObject, INITIAL_ENTROPY
 
-
 class UnstableDescriptor:
-    """Python data descriptor wrapping UnstableObject.
-
-    Every attribute read on an owning instance calls UnstableObject.read(),
-    making each access non-idempotent at the Python runtime level.
-    """
 
     def __init__(self, base: float, initial_entropy: float = INITIAL_ENTROPY) -> None:
         self._obj = UnstableObject(base, initial_entropy)
@@ -34,13 +26,7 @@ class UnstableDescriptor:
     def state_snapshot(self) -> dict:
         return self._obj.state_snapshot()
 
-
 class DescriptorHost:
-    """Concrete host class exposing two UnstableDescriptors.
-
-    Descriptors are class-level: all instances share the same UnstableObject.
-    Call DescriptorHost.x.reset() between runs.
-    """
 
     x = UnstableDescriptor(base=10.0)
     accumulator = UnstableDescriptor(base=0.0)

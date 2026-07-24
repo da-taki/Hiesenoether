@@ -52,16 +52,16 @@ Case A: add the rescue sweep to main Section 9 with strong boundary language; ke
 
 ## 10. Exact Command Log
 
-- `Get-Content C:\Users\Asus\.codex\attachments\7bce507f-8443-4b56-9f9e-df937605e55f\pasted-text.txt`
+- `Get-Content <home>\.codex\attachments\7bce507f-8443-4b56-9f9e-df937605e55f\pasted-text.txt`
 - `Import-Csv paper_artifacts\scp_behavioral_sweep\behavioral_sweep_results.csv`
 - `Get-Content paper_artifacts\scp_behavioral_sweep\MANUAL_REVIEW_PACKET.md`
 - `Get-Content paper_artifacts\scp_behavioral_sweep\SCP_BEHAVIORAL_SWEEP_RESULTS.md`
 - Source inspection with `Select-String` over selected files in `paper_artifacts\scp_realworld_revision\source_snapshot\`.
-- Exploratory harness probes with `C:\Users\Asus\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\python.exe -`.
-- `C:\Users\Asus\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\python.exe paper_artifacts\scp_behavioral_sweep_rescue\create_rescue_artifacts.py`
-- `C:\Users\Asus\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\python.exe paper_artifacts\scp_behavioral_sweep_rescue\run_rescue_harnesses.py`
-- `C:\Users\Asus\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\python.exe run_tests.py`
-- `C:\Users\Asus\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\python.exe -m pytest` (collection failed in third-party source snapshot tests; see `QUALITY_GATE_REPORT.md`)
-- `C:\Users\Asus\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\python.exe -m pytest tests`
-- `C:\Users\Asus\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\python.exe paper_artifacts\scp_realworld_revision\run_real_case_harnesses.py`
-- `C:\Users\Asus\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\python.exe paper_artifacts\scp_behavioral_sweep_rescue\run_rescue_harnesses.py`
+- Exploratory harness probes with `python -`.
+- `python paper_artifacts\scp_behavioral_sweep_rescue\create_rescue_artifacts.py`
+- `python paper_artifacts\scp_behavioral_sweep_rescue\run_rescue_harnesses.py`
+- `python run_tests.py`
+- `python -m pytest` (collection failed in third-party source snapshot tests; see `QUALITY_GATE_REPORT.md`)
+- `python -m pytest tests`
+- `python paper_artifacts\scp_realworld_revision\run_real_case_harnesses.py`
+- `python paper_artifacts\scp_behavioral_sweep_rescue\run_rescue_harnesses.py`

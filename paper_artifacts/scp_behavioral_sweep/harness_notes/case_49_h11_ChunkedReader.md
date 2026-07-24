@@ -1,6 +1,6 @@
 # Case 49: h11 ChunkedReader
 
-- Runnable harness: `C:\Users\Asus\Desktop\Profitlo Projects\Hiesenoether\paper_artifacts\scp_behavioral_sweep\harnesses\case_49_h11_ChunkedReader.py`
+- Runnable harness: `<repo>\paper_artifacts\scp_behavioral_sweep\harnesses\case_49_h11_ChunkedReader.py`
 - Expected operation: `__call__`
 - Expected latent state: `_bytes_in_chunk,_bytes_to_discard,_reading_trailer`
 - Construction feasibility: `simple`

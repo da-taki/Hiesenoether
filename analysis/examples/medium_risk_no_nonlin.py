@@ -1,5 +1,3 @@
-"""Example: MEDIUM risk. P1 + P2 present, no nonlinear chain in this file."""
-
 class DriftingCounter:
     def __init__(self):
         self.n = 0
@@ -13,7 +11,6 @@ class DriftingCounter:
 
     def observe(self):
         self.e += 1.0
-
 
 def hot_path():
     c = DriftingCounter()

@@ -1,27 +1,20 @@
 #!/usr/bin/env python3
-"""
-Standalone test runner — no pytest dependency.
-Runs all tests and reports results.
-"""
-
+import os
 import sys
 import traceback
 
-sys.path.insert(0, '/home/claude')
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
 from src.runtime import Runtime
 from src.parser import parse
 from src.values import UnstableValue, StableValue
 
-
 def approx(a, b, tol=1e-9):
     return abs(a - b) < tol
-
 
 passed = 0
 failed = 0
 errors = []
-
 
 def run_test(name, fn):
     global passed, failed
@@ -34,17 +27,12 @@ def run_test(name, fn):
         errors.append((name, e))
         print(f"  FAIL  {name}: {e}")
 
-
 def expect_raises(fn):
-    """Returns True if fn raises an exception."""
     try:
         fn()
         return False
     except Exception:
         return True
-
-
-# ======== Unstable Value Unit Tests ========
 
 def test_unstable_value_basic():
     x = UnstableValue(10)
@@ -55,7 +43,6 @@ def test_unstable_value_basic():
     assert approx(v1, 11.1), f"access 1: expected 11.1, got {v1}"
     assert approx(v2, 12.4), f"access 2: expected 12.4, got {v2}"
 
-
 def test_unstable_value_deterministic():
     a = UnstableValue(10)
     b = UnstableValue(10)
@@ -64,19 +51,14 @@ def test_unstable_value_deterministic():
         vb = b.get()
         assert approx(va, vb), f"access {i}: {va} != {vb}"
 
-
 def test_unstable_value_stabilize():
     x = UnstableValue(10)
-    x.get()   # access 0: 10.0, count→1, entropy→1.1
-    x.get()   # access 1: 11.1, count→2, entropy→1.2
-    # Stabilize captures access 2: drift = 2 * 1.2 = 2.4 → 12.4
+    x.get()
+    x.get()
     x.stabilize()
     assert approx(x.get(), 12.4), f"expected 12.4 after stabilize, got {x.get()}"
     assert approx(x.get(), 12.4), f"expected 12.4 on repeated access"
     assert approx(x.get(), 12.4), f"expected 12.4 on repeated access"
-
-
-# ======== Stable Value Unit Tests ========
 
 def test_stable_value_basic():
     y = StableValue(5)
@@ -84,14 +66,10 @@ def test_stable_value_basic():
     assert y.get() == 5
     assert y.get() == 5
 
-
 def test_stable_value_never_degrades():
     y = StableValue(42)
     for i in range(1000):
         assert y.get() == 42, f"degraded at access {i}"
-
-
-# ======== Energy Declaration ========
 
 def test_energy_declaration():
     runtime = Runtime()
@@ -99,16 +77,12 @@ def test_energy_declaration():
     runtime.run(ast)
     assert runtime.energy.get_energy() == 100
 
-
-# ======== Assignment Semantics ========
-
 def test_unstable_assignment():
     source = "energy[100]\nx <- 5"
     runtime = Runtime()
     runtime.run(parse(source))
     var = runtime.get_var('x')
     assert isinstance(var, UnstableValue), f"expected UnstableValue, got {type(var)}"
-
 
 def test_stable_assignment():
     source = "energy[100]\nstable y <- 10"
@@ -119,7 +93,6 @@ def test_stable_assignment():
     assert var.get() == 10
     assert runtime.energy.get_energy() == 95, f"expected 95, got {runtime.energy.get_energy()}"
 
-
 def test_stabilize():
     source = "energy[100]\nx <- 5\nstabilize x"
     runtime = Runtime()
@@ -128,15 +101,11 @@ def test_stabilize():
     assert var.is_stable == True
     assert runtime.energy.get_energy() == 95
 
-
-# ======== Function Declaration & Calling ========
-
 def test_function_declaration():
     source = "energy[100]\ndeclare fn add(a, b) {\n    return a + b\n}"
     runtime = Runtime()
     runtime.run(parse(source))
     assert runtime.energy.get_energy() == 97, f"expected 97, got {runtime.energy.get_energy()}"
-
 
 def test_function_call():
     source = "energy[100]\ndeclare fn double(n) {\n    return n * 2\n}\nresult <- double(5)"
@@ -145,14 +114,11 @@ def test_function_call():
     result = runtime.get_var('result')
     assert result.get() == 10.0, f"expected 10.0, got {result.get()}"
 
-
 def test_unstable_function_escrow():
     source = "energy[100]\ndeclare unstable fn evolve(n) {\n    return n + 1\n}\nx <- evolve(5)"
     runtime = Runtime()
     runtime.run(parse(source))
-    # declare unstable: -1, first call escrow release: +4 → net 103
     assert runtime.energy.get_energy() == 103, f"expected 103, got {runtime.energy.get_energy()}"
-
 
 def test_unstable_function_penalty():
     source = """energy[100]
@@ -163,9 +129,7 @@ a <- constant(5)
 b <- constant(5)"""
     runtime = Runtime()
     runtime.run(parse(source))
-    # declare: -1, first call: +4, second call same output: -6 → 100-1+4-6 = 97
     assert runtime.energy.get_energy() == 97, f"expected 97, got {runtime.energy.get_energy()}"
-
 
 def test_pure_function_energy_gain():
     source = """energy[100]
@@ -175,9 +139,7 @@ declare pure fn square(n) {
 result <- square(5)"""
     runtime = Runtime()
     runtime.run(parse(source))
-    # declare pure: -3, first call gain: +4 → 101
     assert runtime.energy.get_energy() == 101, f"expected 101, got {runtime.energy.get_energy()}"
-
 
 def test_pure_function_caching():
     source = """energy[100]
@@ -190,11 +152,7 @@ b <- square(5)"""
     runtime.run(parse(source))
     assert runtime.get_var('a').get() == 25.0
     assert runtime.get_var('b').get() == 25.0
-    # gain only awarded once
     assert runtime.energy.get_energy() == 101, f"expected 101, got {runtime.energy.get_energy()}"
-
-
-# ======== Inspect ========
 
 def test_inspect_costs_energy():
     source = "energy[100]\nx <- 5\ninspect x"
@@ -202,22 +160,16 @@ def test_inspect_costs_energy():
     runtime.run(parse(source))
     assert runtime.energy.get_energy() == 98, f"expected 98, got {runtime.energy.get_energy()}"
 
-
 def test_inspect_no_mutation_on_failure():
     x = UnstableValue(10)
     initial_entropy = x.entropy
-    # Don't call observe — simulates failed inspection
     assert x.entropy == initial_entropy
-
 
 def test_inspect_mutation_on_success():
     x = UnstableValue(10)
-    initial_entropy = x.entropy  # 1.0
+    initial_entropy = x.entropy
     x.observe()
     assert x.entropy == initial_entropy + 1.0, f"expected {initial_entropy + 1.0}, got {x.entropy}"
-
-
-# ======== Invariants ========
 
 def test_invariant_costs_energy():
     source = "energy[100]\nx <- 5\ninvariant x > 0"
@@ -225,15 +177,11 @@ def test_invariant_costs_energy():
     runtime.run(parse(source))
     assert runtime.energy.get_energy() == 90, f"expected 90, got {runtime.energy.get_energy()}"
 
-
 def test_invariant_violation():
     source = "energy[100]\nx <- 5\ninvariant x > 10"
     runtime = Runtime()
     ast = parse(source)
     assert expect_raises(lambda: runtime.run(ast)), "expected invariant violation to raise"
-
-
-# ======== Remove Capability ========
 
 def test_remove_capability():
     source = "energy[100]\nremove[invariants]"
@@ -241,9 +189,6 @@ def test_remove_capability():
     runtime.run(parse(source))
     assert runtime.energy.get_energy() == 120, f"expected 120, got {runtime.energy.get_energy()}"
     assert not runtime.energy.has_capability('invariants')
-
-
-# ======== Binary Operations ========
 
 def test_binary_operations():
     source = "energy[100]\na <- 10 + 5\nb <- 20 - 3\nc <- 4 * 2\nd <- 10 / 2"
@@ -254,19 +199,7 @@ def test_binary_operations():
     assert runtime.get_var('c').get() == 8.0
     assert runtime.get_var('d').get() == 5.0
 
-
-# ======== While Loop ========
-
 def test_while_loop_deterministic():
-    """
-    While loops with unstable reassignment produce drift — this is correct
-    language behavior. What matters is that the result is DETERMINISTIC:
-    same program, same output every time.
-
-    Note: `sum <- sum + counter` creates a new UnstableValue each iteration.
-    Reading the previous iteration's unstable sum/counter causes evolution.
-    This is the expected cost of not using stable variables.
-    """
     source = """energy[100]
 stable counter <- 0
 stable sum <- 0
@@ -281,13 +214,8 @@ while counter < 5 {
         runtime.run(parse(source))
         results.append(runtime.get_var('sum').get())
 
-    # All runs must produce identical output
     assert all(approx(r, results[0]) for r in results), f"non-deterministic: {results}"
-    # The result should be a specific deterministic value (not 10.0 due to drift)
     assert approx(results[0], 7.6), f"expected 7.6, got {results[0]}"
-
-
-# ======== Insufficient Energy ========
 
 def test_insufficient_energy():
     source = "energy[5]\nstable x <- 10\nstable y <- 20"
@@ -295,17 +223,11 @@ def test_insufficient_energy():
     ast = parse(source)
     assert expect_raises(lambda: runtime.run(ast)), "expected insufficient energy to raise"
 
-
-# ======== Fixed Costs (No Inflation) ========
-
 def test_energy_costs_are_fixed():
     source = "energy[20]\nstable a <- 1\nstable b <- 2"
     runtime = Runtime()
     runtime.run(parse(source))
     assert runtime.energy.get_energy() == 10, f"expected 10, got {runtime.energy.get_energy()}"
-
-
-# ======== Determinism ========
 
 def test_determinism_across_runs():
     source = "energy[100]\nx <- 10\nstable y <- 5\ninspect x\ninvariant y > 0"
@@ -316,20 +238,14 @@ def test_determinism_across_runs():
         results.append(runtime.energy.get_energy())
     assert all(r == results[0] for r in results), f"non-deterministic results: {results}"
 
-
-# ======== Stable Values Under Pressure ========
-
 def test_stable_value_under_pressure():
-    """Stable values must NOT degrade even when energy is nearly exhausted."""
     source = """energy[15]
 stable x <- 42
 stable y <- 99
 stable z <- 7"""
-    # After 3 stable vars: 15 - 5 - 5 - 5 = 0 energy (max pressure)
     runtime = Runtime()
     runtime.run(parse(source))
     assert runtime.energy.get_energy() == 0
-    # Pressure is at maximum — stable values must still be exact
     x = runtime.get_var('x')
     y = runtime.get_var('y')
     z = runtime.get_var('z')
@@ -338,11 +254,7 @@ stable z <- 7"""
     assert y.get() == 99, f"stable y degraded: {y.get()}"
     assert z.get() == 7, f"stable z degraded: {z.get()}"
 
-
-# ======== Closure Semantics ========
-
 def test_closure_captures_environment():
-    """Functions should see the environment at declaration time via closure."""
     source = """energy[100]
 stable outer <- 42
 declare fn get_outer() {
@@ -353,13 +265,8 @@ result <- get_outer()"""
     runtime = Runtime()
     runtime.run(parse(source))
     result = runtime.get_var('result')
-    # Closure captured outer as StableValue(42) at declaration time
-    # So get_outer should return 42, not 999
     val = result.get()
     assert val == 42, f"expected closure to capture 42, got {val}"
-
-
-# ============================================================
 
 if __name__ == '__main__':
     print("=" * 60)
@@ -367,22 +274,17 @@ if __name__ == '__main__':
     print("=" * 60)
 
     tests = [
-        # Unstable values
         ("unstable_value_basic", test_unstable_value_basic),
         ("unstable_value_deterministic", test_unstable_value_deterministic),
         ("unstable_value_stabilize", test_unstable_value_stabilize),
-        # Stable values
         ("stable_value_basic", test_stable_value_basic),
         ("stable_value_never_degrades", test_stable_value_never_degrades),
         ("stable_value_under_pressure", test_stable_value_under_pressure),
-        # Energy
         ("energy_declaration", test_energy_declaration),
         ("energy_costs_are_fixed", test_energy_costs_are_fixed),
-        # Assignment
         ("unstable_assignment", test_unstable_assignment),
         ("stable_assignment", test_stable_assignment),
         ("stabilize", test_stabilize),
-        # Functions
         ("function_declaration", test_function_declaration),
         ("function_call", test_function_call),
         ("unstable_function_escrow", test_unstable_function_escrow),
@@ -390,22 +292,15 @@ if __name__ == '__main__':
         ("pure_function_energy_gain", test_pure_function_energy_gain),
         ("pure_function_caching", test_pure_function_caching),
         ("closure_captures_environment", test_closure_captures_environment),
-        # Inspect
         ("inspect_costs_energy", test_inspect_costs_energy),
         ("inspect_no_mutation_on_failure", test_inspect_no_mutation_on_failure),
         ("inspect_mutation_on_success", test_inspect_mutation_on_success),
-        # Invariants
         ("invariant_costs_energy", test_invariant_costs_energy),
         ("invariant_violation", test_invariant_violation),
-        # Remove
         ("remove_capability", test_remove_capability),
-        # Operations
         ("binary_operations", test_binary_operations),
-        # Loops
         ("while_loop_deterministic", test_while_loop_deterministic),
-        # Edge cases
         ("insufficient_energy", test_insufficient_energy),
-        # Determinism
         ("determinism_across_runs", test_determinism_across_runs),
     ]
 

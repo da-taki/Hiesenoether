@@ -1,6 +1,6 @@
 # Case 17: click-option-group _OptGroup
 
-- Runnable harness: `C:\Users\Asus\Desktop\Profitlo Projects\Hiesenoether\paper_artifacts\scp_behavioral_sweep\harnesses\case_17_click_option_group_OptGroup.py`
+- Runnable harness: `<repo>\paper_artifacts\scp_behavioral_sweep\harnesses\case_17_click_option_group_OptGroup.py`
 - Expected operation: `__call__`
 - Expected latent state: `_outer_frame_index`
 - Construction feasibility: `simple`

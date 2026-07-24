@@ -1,15 +1,3 @@
-"""Reactive-substrate validation runner.
-
-Reproduces Hiesenoether axes A1/A2/A3 in a MobX-pattern reactive
-substrate (Observable + Computed + reaction). Tests whether the three
-preconditions {P1, P2, P3} produce ordered chaos when re-instantiated
-in a reactive-framework shape rather than the Python descriptor shape
-used in real_world_validation/.
-
-Usage:
-    python -m substrates.reactive_py.run_validation              # 100k runs
-    python -m substrates.reactive_py.run_validation --runs 1000  # smoke
-"""
 from __future__ import annotations
 import argparse
 import sys
@@ -23,7 +11,6 @@ if str(ROOT) not in sys.path:
 from substrates.reactive_py.experiments.exp_reactive_axes import (
     run_experiment, NUM_RUNS,
 )
-
 
 def main():
     parser = argparse.ArgumentParser(
@@ -56,7 +43,6 @@ def main():
 
     print(f"\nTotal runtime: {time.time() - t0:.1f}s")
     print("=" * 60)
-
 
 if __name__ == "__main__":
     main()

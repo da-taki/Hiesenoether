@@ -5,20 +5,16 @@ from pathlib import Path
 
 import httpcore
 
-
 OUT = Path(__file__).resolve().parents[1] / "real_case_outputs" / "case_1_httpcore_Response.json"
-
 
 def make_response() -> httpcore.Response:
     return httpcore.Response(200, content=[b"alpha", b"beta"])
-
 
 def state(resp: httpcore.Response) -> dict[str, object]:
     return {
         "has__content": hasattr(resp, "_content"),
         "stream_consumed": getattr(resp, "_stream_consumed", None),
     }
-
 
 def order_a() -> dict[str, object]:
     resp = make_response()
@@ -29,7 +25,6 @@ def order_a() -> dict[str, object]:
     except Exception as exc:
         result = {"kind": "exception", "type": type(exc).__name__, "message": str(exc)}
     return {"before": before, "after": state(resp), "result": result}
-
 
 def order_b() -> dict[str, object]:
     resp = make_response()
@@ -48,7 +43,6 @@ def order_b() -> dict[str, object]:
         "after": state(resp),
         "result": result,
     }
-
 
 def main() -> int:
     a = order_a()
@@ -78,7 +72,6 @@ def main() -> int:
     OUT.write_text(json.dumps(data, indent=2), encoding="utf-8")
     print(json.dumps(data, indent=2))
     return 0
-
 
 if __name__ == "__main__":
     raise SystemExit(main())

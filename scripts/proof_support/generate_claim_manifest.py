@@ -8,7 +8,6 @@ RESULTS_DIR = REPO / "results" / "proof_support"
 JSON_PATH = RESULTS_DIR / "claim_manifest.json"
 MD_PATH = RESULTS_DIR / "claim_manifest.md"
 
-
 CLAIMS: list[dict] = [
     {"claim": "fixed-order determinism", "classification": "proved in paper", "evidence_level": "Formal proof", "artifact": "docs/formal_proof_appendix.md#3-proposition-1-fixed-order-determinism", "scope": "fixed initial configuration, fixed operation sequence, deterministic transitions", "non_claim": "not a claim about nondeterministic hosts or arbitrary Python effects"},
     {"claim": "identity-observation zero divergence", "classification": "proved in paper", "evidence_level": "Formal proof", "artifact": "docs/formal_proof_appendix.md#4-proposition-2-identity-observation-zero-divergence", "scope": "studied template with g(d) = d and identical read/add operation multiset", "non_claim": "not a claim about observations that mutate latent state"},
@@ -31,7 +30,6 @@ CLAIMS: list[dict] = [
     {"claim": "production prevalence", "classification": "unsupported / should not be claimed", "evidence_level": "Screening-scale evidence", "artifact": "none", "scope": "no production-prevalence design is present", "non_claim": "should not be claimed"},
 ]
 
-
 def write_markdown(payload: dict) -> None:
     lines = [
         "# Claim Manifest",
@@ -50,7 +48,6 @@ def write_markdown(payload: dict) -> None:
     lines.append("")
     MD_PATH.write_text("\n".join(lines), encoding="utf-8")
 
-
 def build_manifest() -> dict:
     return {
         "schema_version": 1,
@@ -58,7 +55,6 @@ def build_manifest() -> dict:
         "machine_checked_reason": "Lean version/build commands timed out locally; no compiled theorem is claimed.",
         "claims": CLAIMS,
     }
-
 
 def main() -> int:
     RESULTS_DIR.mkdir(parents=True, exist_ok=True)
@@ -69,7 +65,6 @@ def main() -> int:
     print(f"wrote {MD_PATH}")
     print(f"claims={len(payload['claims'])}")
     return 0
-
 
 if __name__ == "__main__":
     raise SystemExit(main())

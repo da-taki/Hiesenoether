@@ -1,13 +1,10 @@
-
 from __future__ import annotations
 from itertools import permutations
 from validation.exact_semantics import evaluate, Params
 
-
 def divergence(body: tuple, degree: int, p: Params):
     vals = [evaluate(perm, degree, p) for perm in set(permutations(body))]
     return max(vals) - min(vals)
-
 
 def check(L_max: int = 5, m_max: int = 3) -> dict:
     p = Params()
@@ -34,7 +31,6 @@ def check(L_max: int = 5, m_max: int = 3) -> dict:
             "correction_note":
                 "Original Theorem 1 stated L>=1; corrected to L>=2. "
                 "L=1 is provably a boundary case (no permutation freedom)."}
-
 
 if __name__ == "__main__":
     import json

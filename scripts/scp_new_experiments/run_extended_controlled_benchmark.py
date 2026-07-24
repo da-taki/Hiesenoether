@@ -24,7 +24,6 @@ CSV_PATH = RESULTS_DIR / "extended_controlled_benchmark.csv"
 SUMMARY_PATH = RESULTS_DIR / "extended_controlled_benchmark_summary.json"
 TABLES_PATH = RESULTS_DIR / "extended_controlled_benchmark_tables.md"
 
-
 def expected_labels(path: Path) -> dict[str, str]:
     namespace: dict = {}
     exec(path.read_text(encoding="utf-8"), namespace)
@@ -34,14 +33,12 @@ def expected_labels(path: Path) -> dict[str, str]:
         if getattr(obj, "expected_risk", None) is not None
     }
 
-
 def evidence_text(cls: dict) -> str:
     parts = []
     for key, values in cls.get("evidence", {}).items():
         for value in values:
             parts.append(f"{key}: {value}")
     return " | ".join(parts)
-
 
 def evaluate_files() -> tuple[list[dict], list[dict]]:
     rows: list[dict] = []
@@ -75,7 +72,6 @@ def evaluate_files() -> tuple[list[dict], list[dict]]:
                 }
             )
     return rows, module_findings
-
 
 def summarize(rows: list[dict], module_findings: list[dict]) -> dict:
     tp = fp = tn = fn = 0
@@ -123,7 +119,6 @@ def summarize(rows: list[dict], module_findings: list[dict]) -> dict:
         "mismatches": [row for row in rows if not row["exact_match"]],
     }
 
-
 def write_tables(rows: list[dict], summary: dict) -> None:
     metric_rows = [
         {"metric": key, "value": summary[key]}
@@ -152,7 +147,6 @@ def write_tables(rows: list[dict], summary: dict) -> None:
         lines.append("None.")
     TABLES_PATH.write_text("\n".join(lines) + "\n", encoding="utf-8")
 
-
 def run() -> dict:
     rows, module_findings = evaluate_files()
     write_csv(CSV_PATH, rows)
@@ -161,7 +155,6 @@ def run() -> dict:
     write_json(SUMMARY_PATH, summary)
     write_tables(rows, summary)
     return summary
-
 
 def main() -> int:
     summary = run()
@@ -175,7 +168,6 @@ def main() -> int:
     print(f"specificity={summary['specificity']}")
     print(f"F1={summary['F1']}")
     return 0
-
 
 if __name__ == "__main__":
     raise SystemExit(main())

@@ -1,6 +1,6 @@
 # Case 44: docutils ViewList
 
-- Runnable harness: `C:\Users\Asus\Desktop\Profitlo Projects\Hiesenoether\paper_artifacts\scp_behavioral_sweep\harnesses\case_44_docutils_ViewList.py`
+- Runnable harness: `<repo>\paper_artifacts\scp_behavioral_sweep\harnesses\case_44_docutils_ViewList.py`
 - Expected operation: `__iadd__`
 - Expected latent state: `data`
 - Construction feasibility: `simple`

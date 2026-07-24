@@ -9,7 +9,6 @@ import tarfile
 import zipfile
 from pathlib import Path
 
-
 REPO = Path(__file__).resolve().parents[2]
 OUT = Path(__file__).resolve().parent
 SNAPSHOT = OUT / "source_snapshot"
@@ -19,14 +18,11 @@ NOTES = OUT / "SOURCE_SNAPSHOT_NOTES.md"
 STATIC_SUMMARY = REPO / "results_static" / "pypi_static_benchmark.csv"
 TEMP_SOURCES = Path.home() / "AppData" / "Local" / "Temp" / "hiesenoether_pypi_static_benchmark" / "sources"
 
-
 def norm(name: str) -> str:
     return name.replace("_", "-").lower()
 
-
 def count_py(root: Path) -> int:
     return sum(1 for _ in root.rglob("*.py")) if root.exists() else 0
-
 
 def count_classes(root: Path) -> int:
     total = 0
@@ -38,7 +34,6 @@ def count_classes(root: Path) -> int:
         total += sum(isinstance(node, ast.ClassDef) for node in ast.walk(tree))
     return total
 
-
 def version_from_metadata(root: Path) -> str:
     for name in ("METADATA", "PKG-INFO"):
         for path in root.rglob(name):
@@ -49,7 +44,6 @@ def version_from_metadata(root: Path) -> str:
             except OSError:
                 pass
     return ""
-
 
 def original_root(package: str) -> Path | None:
     root = TEMP_SOURCES / norm(package)
@@ -63,12 +57,10 @@ def original_root(package: str) -> Path | None:
             return child
     return None
 
-
 def safe_copy(src: Path, dst: Path) -> None:
     if dst.exists():
         shutil.rmtree(dst)
     shutil.copytree(src, dst, ignore=shutil.ignore_patterns("__pycache__", "*.pyc"))
-
 
 def unpack(archive: Path, dest: Path) -> None:
     if dest.exists():
@@ -82,7 +74,6 @@ def unpack(archive: Path, dest: Path) -> None:
             tf.extractall(dest)
     else:
         raise ValueError(f"unsupported archive: {archive}")
-
 
 def download_package(package: str, version: str, timeout: int) -> tuple[Path | None, str]:
     DOWNLOADS.mkdir(parents=True, exist_ok=True)
@@ -110,7 +101,6 @@ def download_package(package: str, version: str, timeout: int) -> tuple[Path | N
         after = matches
     return (after[-1] if after else None), "downloaded exact version"
 
-
 def write_csv(rows: list[dict[str, object]]) -> None:
     with MANIFEST.open("w", newline="", encoding="utf-8") as f:
         writer = csv.DictWriter(
@@ -128,7 +118,6 @@ def write_csv(rows: list[dict[str, object]]) -> None:
         )
         writer.writeheader()
         writer.writerows(rows)
-
 
 def run(download: bool, timeout: int) -> list[dict[str, object]]:
     OUT.mkdir(parents=True, exist_ok=True)
@@ -176,7 +165,6 @@ def run(download: bool, timeout: int) -> list[dict[str, object]]:
     write_notes(rows, download)
     return rows
 
-
 def write_notes(rows: list[dict[str, object]], download: bool) -> None:
     statuses: dict[str, int] = {}
     for row in rows:
@@ -202,7 +190,6 @@ def write_notes(rows: list[dict[str, object]], download: bool) -> None:
     )
     NOTES.write_text("\n".join(lines) + "\n", encoding="utf-8")
 
-
 def main() -> int:
     download = "--download" in sys.argv
     timeout = 45
@@ -213,7 +200,6 @@ def main() -> int:
     print(f"wrote {MANIFEST}")
     print(f"missing={missing} total={len(rows)}")
     return 0
-
 
 if __name__ == "__main__":
     raise SystemExit(main())

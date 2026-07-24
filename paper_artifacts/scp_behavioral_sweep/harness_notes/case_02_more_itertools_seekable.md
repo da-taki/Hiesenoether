@@ -1,6 +1,6 @@
 # Case 2: more-itertools seekable
 
-- Runnable harness: `C:\Users\Asus\Desktop\Profitlo Projects\Hiesenoether\paper_artifacts\scp_behavioral_sweep\harnesses\case_02_more_itertools_seekable.py`
+- Runnable harness: `<repo>\paper_artifacts\scp_behavioral_sweep\harnesses\case_02_more_itertools_seekable.py`
 - Expected operation: `__next__`
 - Expected latent state: `_index`
 - Construction feasibility: `requires_args`

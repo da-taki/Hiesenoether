@@ -3,25 +3,10 @@ from src.ast_nodes import *
 from src.values import UnstableValue, StableValue, Function
 from src.energy import EnergySystem
 
-
 class RuntimeError(Exception):
     pass
 
-
 class Runtime:
-    """
-    The runtime interpreter for Hiesenoether.
-
-    Executes the AST and manages:
-    - Variable environments (with closure support)
-    - Energy budget (fixed costs, no hidden inflation)
-    - Function calls (pure caching, unstable escrow)
-    - Invariant checking (deterministic)
-
-    Determinism guarantee:
-        The same program will always produce the same output.
-        There is no use of hash(), random, or any process-dependent state.
-    """
 
     def __init__(self):
         self.energy = EnergySystem()
@@ -32,43 +17,25 @@ class Runtime:
         self.returning = False
 
     def set_var(self, name: str, value: Any, is_local: bool = False):
-        """Set variable in current scope."""
         if is_local and self.locals_stack:
             self.locals_stack[-1][name] = value
         else:
             self.globals[name] = value
 
     def push_scope(self):
-        """Push a new local scope."""
         self.locals_stack.append({})
 
     def pop_scope(self):
-        """Pop the current local scope."""
         if self.locals_stack:
             self.locals_stack.pop()
 
     def check_invariants(self):
-        """
-        Check all registered invariants.
-
-        Behavior under energy pressure:
-            When pressure > 0.5, invariants are checked in a degraded mode:
-            every other invariant (by list index) is skipped. This is
-            DETERMINISTIC — the same invariant at the same index is always
-            either checked or skipped for a given pressure level.
-
-            When a checked invariant fails under pressure > 0.3, a warning
-            is printed instead of raising an error (weakened enforcement).
-
-        When pressure <= 0.5, all invariants are fully enforced.
-        """
         if not self.energy.has_capability('invariants'):
             return
 
         pressure = self.energy.pressure()
 
         for idx, invariant in enumerate(self.invariants):
-            # Deterministic skip: use list index, not hash
             if pressure > 0.5 and idx % 2 == 0:
                 continue
 
@@ -80,18 +47,15 @@ class Runtime:
                     print("## Invariant weakened under energy pressure")
 
     def run(self, program: Program):
-        """Execute a program."""
         for stmt in program.statements:
             self.exec_stmt(stmt)
             self.check_invariants()
 
-        # Burn unreleased escrows at end
         burned = self.energy.burn_unreleased_escrows()
         if burned > 0:
             print(f"## Warning: {burned} energy burned from unreleased escrows")
 
     def exec_stmt(self, stmt: ASTNode):
-        """Execute a statement."""
         if self.returning:
             return
 
@@ -109,7 +73,6 @@ class Runtime:
                     )
                 wrapped_value = StableValue(value)
             else:
-                # Unstable by default (free)
                 wrapped_value = UnstableValue(value)
 
             self.set_var(stmt.name, wrapped_value)
@@ -140,7 +103,6 @@ class Runtime:
                     f"(need {self.energy.check_cost(cost_key)})"
                 )
 
-            # Capture current global environment as closure snapshot
             func = Function(
                 name=stmt.name,
                 params=stmt.params,
@@ -167,21 +129,19 @@ class Runtime:
             print(value)
 
         elif isinstance(stmt, Inspect):
-            value = self.eval_expr(stmt.value)
-
-            # Inspect rule: observation ONLY mutates state if energy is paid.
-            # If energy spend fails, inspection is partial (read-only).
-            # If energy spend succeeds, entropy increases (observer effect).
-            if self.energy.spend('inspect'):
-                # Successful inspection: observer effect applies
-                if hasattr(value, 'observe'):
-                    value.observe()
-                if hasattr(value, 'inspect'):
-                    print(f"[INSPECT] {value.inspect()}")
-                else:
-                    print(f"[INSPECT] {value}")
+            if isinstance(stmt.value, Identifier):
+                target = self.get_var(stmt.value.name)
             else:
-                # Failed inspection: read-only, no mutation
+                target = self.eval_expr(stmt.value)
+
+            if self.energy.spend('inspect'):
+                if hasattr(target, 'observe'):
+                    target.observe()
+                if hasattr(target, 'inspect'):
+                    print(f"[INSPECT] {target.inspect()}")
+                else:
+                    print(f"[INSPECT] {target}")
+            else:
                 print("[INSPECT] Partial inspection (energy starved)")
 
         elif isinstance(stmt, QueryEnergy):
@@ -199,7 +159,6 @@ class Runtime:
 
             self.invariants.append(stmt.condition)
 
-            # Check immediately
             if not self.eval_expr(stmt.condition):
                 raise RuntimeError(f"Invariant violated on declaration: {stmt.condition}")
 
@@ -214,8 +173,6 @@ class Runtime:
                 raise RuntimeError(f"Assertion failed: {stmt.condition}")
 
         elif isinstance(stmt, If):
-            # Note: the parser does not produce stable if statements.
-            # All if statements are free control flow.
             condition = self.eval_expr(stmt.condition)
 
             if condition:
@@ -226,9 +183,6 @@ class Runtime:
                     self.exec_stmt(s)
 
         elif isinstance(stmt, While):
-            # While loops are free control flow.
-            # Energy is spent by operations inside the loop body,
-            # not by the loop structure itself.
             while self.eval_expr(stmt.condition):
                 for s in stmt.body:
                     self.exec_stmt(s)
@@ -261,7 +215,6 @@ class Runtime:
             self.eval_expr(stmt)
 
     def eval_expr(self, expr: ASTNode) -> Any:
-        """Evaluate an expression."""
         if isinstance(expr, Number):
             return expr.value
 
@@ -272,9 +225,6 @@ class Runtime:
             var = self.get_var(expr.name)
 
             if isinstance(var, StableValue):
-                # Stable values ALWAYS return their stored value.
-                # No degradation. No pressure effects. This is the
-                # guarantee the programmer paid energy for.
                 return var.get()
             if isinstance(var, UnstableValue):
                 return var.get()
@@ -329,7 +279,6 @@ class Runtime:
                     f"got {len(args)}"
                 )
 
-            # Pure function caching
             cache_key = None
             if func.is_pure:
                 cache_key = tuple(args)
@@ -337,17 +286,11 @@ class Runtime:
                 if cache_key in cache:
                     return cache[cache_key]
 
-            # Create new scope
             self.push_scope()
 
-            # Bind parameters
             for param, arg in zip(func.params, args):
                 self.set_var(param, StableValue(arg), is_local=True)
 
-            # Execute body — variable resolution uses closure
-            # The closure is accessed through get_var's resolution chain:
-            # locals → closure → globals. We temporarily store the active
-            # closure so get_var can use it.
             prev_closure = getattr(self, '_active_closure', None)
             self._active_closure = func.closure
 
@@ -364,13 +307,11 @@ class Runtime:
             self._active_closure = prev_closure
             self.pop_scope()
 
-            # Cache result for pure functions and award energy gain
             if func.is_pure:
                 func._cache = getattr(func, "_cache", {})
                 func._cache[cache_key] = result
                 self.energy.release_pure_fn_gain(func.name)
 
-            # Handle escrow for unstable functions
             if func.is_unstable:
                 gained = self.energy.release_escrow(func.name, result)
                 if gained < 0:
@@ -382,29 +323,20 @@ class Runtime:
             raise RuntimeError(f"Cannot evaluate: {type(expr)}")
 
     def get_var(self, name: str, closure: dict = None) -> Any:
-        """
-        Get variable from current scope.
-        Resolution order: locals → active closure → globals
-        """
-        # Check locals first
         if self.locals_stack:
             if name in self.locals_stack[-1]:
                 return self.locals_stack[-1][name]
 
-        # Then active closure (set during function execution)
         active_closure = getattr(self, '_active_closure', None)
         if active_closure is not None and name in active_closure:
             return active_closure[name]
 
-        # Then globals
         if name in self.globals:
             return self.globals[name]
 
         raise RuntimeError(f"Undefined variable: {name}")
 
-
 def run_program(source: str):
-    """Parse and execute a Hiesenoether program."""
     from src.parser import parse
 
     try:

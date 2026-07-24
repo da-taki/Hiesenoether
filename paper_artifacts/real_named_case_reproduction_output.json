@@ -1,9 +1,9 @@
 {
   "case_name": "CPython issue #132385: instance attribute error suggestions can execute __getattr__",
   "source_url": "https://github.com/python/cpython/issues/132385",
-  "python_executable": "C:\\Users\\Asus\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe",
+  "python_executable": "python",
   "python_version": "3.12.13 (main, Mar  3 2026, 15:01:35) [MSC v.1944 64 bit (AMD64)]",
-  "command": "C:\\Users\\Asus\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe -c <embedded CPython issue #132385 harness>",
+  "command": "python -c <embedded CPython issue #132385 harness>",
   "returncode": 1,
   "stdout": "GETATTR_CALLED:foo\nTOUCHED_COUNT:1\n",
   "stderr": "Traceback (most recent call last):\n  File \"<string>\", line 22, in <module>\n  File \"<string>\", line 19, in bar\nNameError: name 'foo' is not defined\n",

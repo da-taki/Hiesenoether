@@ -4,11 +4,9 @@ import csv
 import textwrap
 from pathlib import Path
 
-
 ROOT = Path(__file__).resolve().parent
 HARNESS_DIR = ROOT / "harnesses"
 OUTPUT_DIR = ROOT / "outputs"
-
 
 SELECTION_ROWS = [
     {
@@ -252,7 +250,6 @@ SELECTION_ROWS = [
         "expected_fixture_needed": "HTTP-like bytes in ReceiveBuffer.",
     },
 ]
-
 
 COMMON = r'''
 from __future__ import annotations
@@ -664,7 +661,6 @@ if __name__ == "__main__":
     raise SystemExit(main(sys.argv))
 '''
 
-
 RUNNER = r'''
 from __future__ import annotations
 
@@ -998,11 +994,9 @@ if __name__ == "__main__":
     raise SystemExit(main())
 '''
 
-
 def write_text(path: Path, content: str) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text(textwrap.dedent(content).lstrip(), encoding="utf-8")
-
 
 def main() -> int:
     HARNESS_DIR.mkdir(parents=True, exist_ok=True)
@@ -1046,7 +1040,6 @@ def main() -> int:
             ''',
         )
     return 0
-
 
 if __name__ == "__main__":
     raise SystemExit(main())

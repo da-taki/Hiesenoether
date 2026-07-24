@@ -1,11 +1,8 @@
-# exp_cache_invalidation.py
-
 import csv
 import functools
 import sys
 from pathlib import Path
 
-# Path guard: ensures 'core' is importable when called from repo root
 _RWV = Path(__file__).parent.parent
 if str(_RWV) not in sys.path:
     sys.path.insert(0, str(_RWV))
@@ -23,19 +20,16 @@ except ImportError:
 
 STEPS_BETWEEN_SWEEP = [0, 1, 2, 3, 5, 10, 20]
 
-
 def _make_fresh_obj_at_state(base: float, target_access: int,
                               target_entropy: float) -> UnstableObject:
     obj = UnstableObject(base=base, initial_entropy=target_entropy)
     obj.access_count = target_access
     return obj
 
-
 def _compute_true_result(base: float, access_count_at_call: int,
                           entropy_at_call: float, multiplier: float) -> float:
     obj = _make_fresh_obj_at_state(base, access_count_at_call, entropy_at_call)
     return obj.read() * multiplier
-
 
 def run_manual_dict_cache_case(steps_between: int) -> dict:
     multiplier = 2.0
@@ -67,7 +61,6 @@ def run_manual_dict_cache_case(steps_between: int) -> dict:
         "cache_error": round(cache_error, 6),
         "cache_error_pct": round(cache_error_pct, 4),
     }
-
 
 def run_lru_cache_case(steps_between: int) -> dict:
     multiplier = 2.0
@@ -109,7 +102,6 @@ def run_lru_cache_case(steps_between: int) -> dict:
         "cache_error_pct": round(cache_error_pct, 4),
     }
 
-
 def run_observe_invalidation_case() -> dict:
     obj = UnstableObject(base=BASE_VALUE)
     first_val = obj.read()
@@ -136,14 +128,12 @@ def run_observe_invalidation_case() -> dict:
         "cache_error_pct": round(cache_error_pct, 4),
     }
 
-
 def run_invalidation_sweep() -> list:
     rows = []
     for steps in STEPS_BETWEEN_SWEEP:
         rows.append(run_manual_dict_cache_case(steps))
         rows.append(run_lru_cache_case(steps))
     return rows
-
 
 def _write_csv(rows: list, path: Path) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
@@ -153,7 +143,6 @@ def _write_csv(rows: list, path: Path) -> None:
         writer = csv.DictWriter(f, fieldnames=rows[0].keys())
         writer.writeheader()
         writer.writerows(rows)
-
 
 def run_experiment() -> list:
     rows = run_invalidation_sweep()

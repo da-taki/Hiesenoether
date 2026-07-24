@@ -6,25 +6,20 @@ from itertools import combinations
 from pathlib import Path
 import sys
 
-
 REPO = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(REPO))
 
 from validation.exact_semantics import Params, Value, do_cap, do_obs, do_read
 
-
 OUT = Path(__file__).resolve().parent
 CSV_OUT = OUT / "adjacent_swap_validation.csv"
 NOTES = OUT / "ADJACENT_SWAP_THEOREM_NOTES.md"
 
-
 def f(value: Fraction) -> str:
     return f"{value.numerator}/{value.denominator}"
 
-
 def adjacent_delta(n: int, eta: Fraction) -> Fraction:
     return Fraction(n) * eta
-
 
 def eval_order(order: tuple[str, ...], d: int, p: Params) -> Fraction:
     x = Value(b=Fraction(10))
@@ -37,14 +32,12 @@ def eval_order(order: tuple[str, ...], d: int, p: Params) -> Fraction:
             x = do_obs(x, p)
     return do_cap(y, x, d, p)
 
-
 def all_orders(L: int, m: int) -> list[tuple[str, ...]]:
     out = []
     for obs_pos in combinations(range(L + m), m):
         obs = set(obs_pos)
         out.append(tuple("OBS" if idx in obs else "READ" for idx in range(L + m)))
     return out
-
 
 def validate_grid() -> list[dict[str, object]]:
     rows = []
@@ -82,7 +75,6 @@ def validate_grid() -> list[dict[str, object]]:
                     }
                 )
     return rows
-
 
 def write_outputs(rows: list[dict[str, object]]) -> None:
     OUT.mkdir(parents=True, exist_ok=True)
@@ -125,7 +117,6 @@ def write_outputs(rows: list[dict[str, object]]) -> None:
             lines.append(f"- {row}")
     NOTES.write_text("\n".join(lines) + "\n", encoding="utf-8")
 
-
 def main() -> int:
     rows = validate_grid()
     write_outputs(rows)
@@ -134,7 +125,6 @@ def main() -> int:
     print(f"wrote {NOTES}")
     print(f"rows={len(rows)} failures={len(failed)}")
     return 1 if failed else 0
-
 
 if __name__ == "__main__":
     raise SystemExit(main())

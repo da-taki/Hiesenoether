@@ -1,5 +1,3 @@
-# plot.py
-
 import math
 from pathlib import Path
 
@@ -13,7 +11,6 @@ except ImportError:
 
 COLORS = ["#2C7BB6", "#D7191C", "#1A9641", "#FDAE61"]
 _MPL_CONFIGURED = False
-
 
 def _configure_mpl():
     global _MPL_CONFIGURED
@@ -33,7 +30,6 @@ def _configure_mpl():
     })
     _MPL_CONFIGURED = True
 
-
 def _save(fig, name: str) -> None:
     FIGURES_DIR.mkdir(parents=True, exist_ok=True)
     png = FIGURES_DIR / f"{name}.png"
@@ -41,7 +37,6 @@ def _save(fig, name: str) -> None:
     fig.savefig(png, bbox_inches="tight")
     fig.savefig(pdf, bbox_inches="tight")
     print(f"  -> {png} written")
-
 
 def plot_a1_analogue(rows: list) -> None:
     _configure_mpl()
@@ -87,7 +82,6 @@ def plot_a1_analogue(rows: list) -> None:
 
     _save(fig, "python_a1_observation")
     plt.close(fig)
-
 
 def plot_sle(sle_rows: list) -> None:
     _configure_mpl()
@@ -136,7 +130,6 @@ def plot_sle(sle_rows: list) -> None:
 
     _save(fig, "python_sle_fit")
     plt.close(fig)
-
 
 def plot_cache_invalidation(cache_rows: list) -> None:
     _configure_mpl()
@@ -189,7 +182,6 @@ def plot_cache_invalidation(cache_rows: list) -> None:
     _save(fig, "python_cache_invalidation")
     plt.close(fig)
 
-
 def plot_a3_analogue(rows: list) -> None:
     _configure_mpl()
     import matplotlib.pyplot as plt
@@ -223,7 +215,6 @@ def plot_a3_analogue(rows: list) -> None:
 
     _save(fig, "python_a3_length_scaling")
     plt.close(fig)
-
 
 def plot_all(descriptor_rows: list = None, sle_rows: list = None,
              cache_rows: list = None, sweep_rows: list = None) -> None:

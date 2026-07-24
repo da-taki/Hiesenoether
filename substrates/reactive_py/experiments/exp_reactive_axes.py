@@ -26,9 +26,7 @@ SUMMARY = _ROOT / "results" / "summary"
 RAW.mkdir(parents=True, exist_ok=True)
 SUMMARY.mkdir(parents=True, exist_ok=True)
 
-
 def _cap(y: float, x: Observable, nonlin: str) -> float:
-    """The P3 site: nonlinear composition over fresh reads of x."""
     if nonlin == "linear":
         return y
     if nonlin == "quadratic":
@@ -39,12 +37,10 @@ def _cap(y: float, x: Observable, nonlin: str) -> float:
         return y * y * x.get()
     raise ValueError(nonlin)
 
-
 def _build_ops(L: int, m: int, rng: random.Random) -> list:
     ops = ["add"] * L + ["observe"] * m
     rng.shuffle(ops)
     return ops
-
 
 def _one_run(L: int, m: int, nonlin: str, rng: random.Random) -> float:
     x = Observable(BASE, name="x")
@@ -60,7 +56,6 @@ def _one_run(L: int, m: int, nonlin: str, rng: random.Random) -> float:
 
     c = Computed(body, name="output")
     return c.get()
-
 
 def _stats(values: list) -> dict:
     n = len(values)
@@ -79,7 +74,6 @@ def _stats(values: list) -> dict:
             "range": round(rng_, 4), "log_range": round(log_r, 6),
             "cv": round(cv, 6), "n": n}
 
-
 def _write_raw(values: list, name: str) -> None:
     p = RAW / f"{name}.csv"
     with open(p, "w", newline="") as f:
@@ -87,7 +81,6 @@ def _write_raw(values: list, name: str) -> None:
         w.writerow(["value"])
         for v in values:
             w.writerow([round(v, 6)])
-
 
 def _write_summary(rows: list, name: str) -> None:
     if not rows:
@@ -98,7 +91,6 @@ def _write_summary(rows: list, name: str) -> None:
         w = csv.DictWriter(f, fieldnames=fields, extrasaction="ignore")
         w.writeheader()
         w.writerows(rows)
-
 
 def run_a1(num_runs: int = NUM_RUNS) -> list:
     rows = []
@@ -111,7 +103,6 @@ def run_a1(num_runs: int = NUM_RUNS) -> list:
                      "nonlinearity": "quadratic", **_stats(vals)})
     return rows
 
-
 def run_a2(num_runs: int = NUM_RUNS) -> list:
     rows = []
     for nonlin in NONLINEARITIES:
@@ -123,7 +114,6 @@ def run_a2(num_runs: int = NUM_RUNS) -> list:
                      "steps": 6, "observes": 1, **_stats(vals)})
     return rows
 
-
 def run_a3(num_runs: int = NUM_RUNS) -> list:
     rows = []
     for L in STEP_COUNTS:
@@ -134,7 +124,6 @@ def run_a3(num_runs: int = NUM_RUNS) -> list:
                      "steps": L, "observes": 1,
                      "nonlinearity": "quadratic", **_stats(vals)})
     return rows
-
 
 def fit_sle(rows: list) -> dict:
     valid = [(r["degree"], r["log_range"]) for r in rows
@@ -153,7 +142,6 @@ def fit_sle(rows: list) -> dict:
     ss_tot = sum((y - ym) ** 2 for y in ys)
     r2 = 1 - ss_res / ss_tot if ss_tot else 0.0
     return {"sle": round(slope, 6), "r_squared": round(r2, 6)}
-
 
 def run_experiment(num_runs: int = NUM_RUNS) -> dict:
     random.seed(SEED)
@@ -177,7 +165,6 @@ def run_experiment(num_runs: int = NUM_RUNS) -> dict:
     _write_summary(merged, "all_experiments_merged.csv")
 
     return {"a1": a1, "a2": a2, "a3": a3, "sle": sle}
-
 
 if __name__ == "__main__":
     import argparse

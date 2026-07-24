@@ -9,14 +9,12 @@ from fractions import Fraction
 from itertools import combinations
 from pathlib import Path
 
-
 REPO = Path(__file__).resolve().parents[1]
 if str(REPO) not in sys.path:
     sys.path.insert(0, str(REPO))
 
 from analyzer.abstract_interpreter import AnalysisResult, analyze_program_result
 from validation.exact_semantics import Params, evaluate
-
 
 @dataclass(frozen=True)
 class Case:
@@ -32,7 +30,6 @@ class Case:
             return f"L={self.L}, m={self.m}, cap=y^{self.self_power} * read(x)"
         return f"L={self.L}, m={self.m}, d={self.d}"
 
-
 @dataclass(frozen=True)
 class TimedResult:
     case: Case
@@ -42,7 +39,6 @@ class TimedResult:
     abstract_ms: Fraction
     concrete_ms: Fraction
     concrete_mode: str
-
 
 CASES = (
     Case(4, 2, 3),
@@ -54,13 +50,11 @@ CASES = (
     Case(1, 5, 3),
 )
 
-
 def unique_orders(L: int, m: int):
     n = L + m
     for obs_positions in combinations(range(n), m):
         obs_positions = set(obs_positions)
         yield tuple("OBS" if i in obs_positions else "READ" for i in range(n))
-
 
 def sampled_orders(L: int, m: int, draws: int = 10_000):
     rng = random.Random(L * 10_000 + m * 100)
@@ -72,12 +66,10 @@ def sampled_orders(L: int, m: int, draws: int = 10_000):
         seen.add(tuple(order))
     return seen
 
-
 def orders_for_case(case: Case):
     if case.L + case.m > 8:
         return sampled_orders(case.L, case.m), "sampled"
     return list(unique_orders(case.L, case.m)), "exhaustive"
-
 
 def concrete_value(order: tuple[str, ...], case: Case) -> Fraction:
     if case.cap_kind == "self_referential":
@@ -90,20 +82,16 @@ def concrete_value(order: tuple[str, ...], case: Case) -> Fraction:
         )
     return evaluate(order, case.d, Params(), kind="compositional")
 
-
 def concrete_divergence(case: Case) -> tuple[Fraction, str]:
     orders, mode = orders_for_case(case)
     values = [concrete_value(order, case) for order in orders]
     return max(values) - min(values), mode
 
-
 def elapsed_ms(start_ns: int, end_ns: int) -> Fraction:
     return Fraction(end_ns - start_ns, 1_000_000)
 
-
 def fraction_text(value: Fraction) -> str:
     return str(value.numerator) if value.denominator == 1 else f"{value.numerator}/{value.denominator}"
-
 
 def decimal_text(value: Fraction, places: int = 3) -> str:
     sign = "-" if value < 0 else ""
@@ -117,12 +105,10 @@ def decimal_text(value: Fraction, places: int = 3) -> str:
         rem %= value.denominator
     return f"{sign}{whole}.{''.join(digits)}"
 
-
 def ratio_for(bound: Fraction, concrete: Fraction) -> Fraction:
     if concrete == 0:
         return Fraction(1) if bound == 0 else math.inf
     return bound / concrete
-
 
 def run_case(case: Case) -> TimedResult:
     start = time.perf_counter_ns()
@@ -151,12 +137,10 @@ def run_case(case: Case) -> TimedResult:
         concrete_mode=mode,
     )
 
-
 def ratio_text(result: TimedResult) -> str:
     if result.ratio is math.inf:
         return f"slack {fraction_text(result.abstract.divergence_bound)}"
     return fraction_text(result.ratio)
-
 
 def markdown_table(results: list[TimedResult]) -> str:
     rows = [
@@ -179,7 +163,6 @@ def markdown_table(results: list[TimedResult]) -> str:
             f"{decimal_text(result.concrete_ms)} |"
         )
     return "\n".join(rows)
-
 
 def main() -> int:
     results = [run_case(case) for case in CASES]
@@ -208,7 +191,6 @@ def main() -> int:
     print()
     print(markdown_table(results))
     return 0
-
 
 if __name__ == "__main__":
     raise SystemExit(main())

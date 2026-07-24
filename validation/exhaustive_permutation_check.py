@@ -13,13 +13,11 @@ if str(REPO) not in sys.path:
 
 from validation.exact_semantics import Params, evaluate
 
-
 def unique_orders(L: int, m: int):
     n = L + m
     for obs_positions in combinations(range(n), m):
         obs_positions = set(obs_positions)
         yield tuple("OBS" if i in obs_positions else "READ" for i in range(n))
-
 
 def sampled_orders(L: int, m: int, draws: int, seed: int):
     rng = random.Random(seed)
@@ -31,10 +29,8 @@ def sampled_orders(L: int, m: int, draws: int, seed: int):
         seen.add(tuple(order))
     return seen
 
-
 def _num(x: Fraction) -> str:
     return str(x.numerator) if x.denominator == 1 else f"{x.numerator}/{x.denominator}"
-
 
 def exact_row(L: int, m: int, degree: int, sample_draws: int = 10_000) -> dict:
     p = Params()
@@ -65,7 +61,6 @@ def exact_row(L: int, m: int, degree: int, sample_draws: int = 10_000) -> dict:
         "sampled_range_matched_exact": sampled_min == exact_min and sampled_max == exact_max,
     }
 
-
 def check(L_min: int = 2, L_max: int = 8, m_min: int = 1, m_max: int = 4,
           degree_min: int = 1, degree_max: int = 4) -> dict:
     rows = []
@@ -88,7 +83,6 @@ def check(L_min: int = 2, L_max: int = 8, m_min: int = 1, m_max: int = 4,
         "mismatches": mismatches,
         "rows": rows,
     }
-
 
 if __name__ == "__main__":
     import json

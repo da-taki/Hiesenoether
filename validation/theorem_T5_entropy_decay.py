@@ -4,7 +4,6 @@ from fractions import Fraction
 from itertools import permutations
 from validation.exact_semantics import Value, Params, do_obs, do_cap
 
-
 def do_read_decay(x: Value, p: Params, schedule: str, beta: Fraction):
     drift = Fraction(x.n) * x.e if p.P1 else Fraction(0)
     v = x.b + drift
@@ -14,15 +13,11 @@ def do_read_decay(x: Value, p: Params, schedule: str, beta: Fraction):
         factor = max(Fraction(0), Fraction(1) - beta * x.n)
         inc = p.de_access * factor
     elif schedule == "exponential_decay":
-        # Use a rational approximation: exp(-beta*n) ~ 1 / (1 + beta*n)^k
-        # We use the exact identity inc = de * (1/(1+beta))^n is wrong;
-        # instead approximate via Fraction-friendly multiplicative decay:
         inc = p.de_access * (Fraction(1) / (Fraction(1) + beta)) ** x.n
     else:
         raise ValueError(schedule)
     x2 = Value(b=x.b, n=x.n + 1, e=x.e + inc)
     return v, x2
-
 
 def evaluate_decay(body, degree, p: Params,
                    schedule: str, beta: Fraction,
@@ -35,7 +30,6 @@ def evaluate_decay(body, degree, p: Params,
             x = do_obs(x, p)
     return do_cap(y, x, degree, p)
 
-
 def exact_range(L: int, schedule: str, beta: Fraction,
                 m: int = 1, d: int = 2) -> float:
     body = ("READ",) * L + ("OBS",) * m
@@ -44,7 +38,6 @@ def exact_range(L: int, schedule: str, beta: Fraction,
     vals = [float(evaluate_decay(perm, d, p, schedule, beta))
             for perm in perms]
     return max(vals) - min(vals)
-
 
 def fit_gamma(Ls, ranges):
     xs = [math.log(L) for L in Ls]
@@ -60,10 +53,9 @@ def fit_gamma(Ls, ranges):
     r2 = 1.0 - ss_res / ss_tot if ss_tot else 0.0
     return gamma, r2
 
-
 def check() -> dict:
     Ls = [3, 4, 5]
-    E4 = {  # E4 empirical from extended_findings.json
+    E4 = {
         ("constant",          Fraction(0)):       (3.330216, 0.998566),
         ("linear_decay",      Fraction(1, 20)):   (2.945859, 0.999997),
         ("linear_decay",      Fraction(1, 10)):   (2.876384, 0.99994),
@@ -97,7 +89,6 @@ def check() -> dict:
                 "Absolute gamma values differ slightly between exact "
                 "small-L and empirical large-L Monte Carlo; the "
                 "ORDERING of gammas across schedules is preserved."}
-
 
 if __name__ == "__main__":
     import json

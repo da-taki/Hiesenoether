@@ -1,0 +1,83 @@
+{
+  "candidate_id": "ext07_dnspython_Tokenizer_concat",
+  "diff": {
+    "branch_changed": false,
+    "classification": "confirmed_output_divergence",
+    "exception_changed": false,
+    "output_changed": true,
+    "state_changed": false
+  },
+  "metadata": {
+    "candidate_id": "ext07_dnspython_Tokenizer_concat",
+    "class_name": "Tokenizer",
+    "construction_hint": "Tokenizer(StringIO('a b c'))",
+    "expected_boundary": "consuming tokens changes remaining concatenation",
+    "fixture_family": "parser_tokenizer",
+    "module_path": "dns/tokenizer.py",
+    "observation_operation": "get() twice",
+    "package_name": "dnspython",
+    "package_version": "2.8.0",
+    "priority": "2",
+    "selected_for_harness": "yes",
+    "source_artifact": "source_snapshot",
+    "state_fields_suspected": "cursor",
+    "target_read_operation": "concatenate_remaining_identifiers"
+  },
+  "order_A": {
+    "results": [
+      {
+        "kind": "value",
+        "value": "aabbcc"
+      }
+    ],
+    "state": {
+      "eof": true
+    },
+    "steps": [
+      "Tokenizer('aa bb cc')",
+      "concatenate_remaining_identifiers()"
+    ]
+  },
+  "order_B": {
+    "results": [
+      {
+        "kind": "value",
+        "value": "bbcc"
+      }
+    ],
+    "state": {
+      "eof": true
+    },
+    "steps": [
+      "Tokenizer('aa bb cc')",
+      "get() [observe]",
+      "concatenate_remaining_identifiers()"
+    ]
+  },
+  "record": {
+    "boundary_note": "consuming tokens changes remaining concatenation",
+    "branch_changed": false,
+    "candidate_id": "ext07_dnspython_Tokenizer_concat",
+    "class_name": "Tokenizer",
+    "classification": "confirmed_output_divergence",
+    "constructed": true,
+    "exception_changed": false,
+    "failure_reason": "",
+    "fixture_family": "parser_tokenizer",
+    "observation_operation": "get() twice",
+    "order_A_exception": "[]",
+    "order_A_output": "[\"aabbcc\"]",
+    "order_A_state": "{\"eof\": true}",
+    "order_A_steps": "Tokenizer('aa bb cc') | concatenate_remaining_identifiers()",
+    "order_B_exception": "[]",
+    "order_B_output": "[\"bbcc\"]",
+    "order_B_state": "{\"eof\": true}",
+    "order_B_steps": "Tokenizer('aa bb cc') | get() [observe] | concatenate_remaining_identifiers()",
+    "output_changed": true,
+    "package_name": "dnspython",
+    "package_version": "2.8.0",
+    "pair_type": "pair1",
+    "state_changed": false,
+    "target_read_operation": "concatenate_remaining_identifiers"
+  }
+}

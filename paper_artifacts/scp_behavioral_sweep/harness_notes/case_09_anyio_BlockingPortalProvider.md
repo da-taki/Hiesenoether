@@ -1,6 +1,6 @@
 # Case 9: anyio BlockingPortalProvider
 
-- Runnable harness: `C:\Users\Asus\Desktop\Profitlo Projects\Hiesenoether\paper_artifacts\scp_behavioral_sweep\harnesses\case_09_anyio_BlockingPortalProvider.py`
+- Runnable harness: `<repo>\paper_artifacts\scp_behavioral_sweep\harnesses\case_09_anyio_BlockingPortalProvider.py`
 - Expected operation: `__enter__`
 - Expected latent state: `_leases,_portal,_portal_cm`
 - Construction feasibility: `simple`

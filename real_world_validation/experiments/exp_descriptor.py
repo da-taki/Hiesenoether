@@ -1,5 +1,3 @@
-# exp_descriptor.py
-
 import csv
 import math
 import random
@@ -7,7 +5,6 @@ import statistics
 import sys
 from pathlib import Path
 
-# Path guard: ensures 'core' is importable when called from repo root
 _RWV = Path(__file__).parent.parent
 if str(_RWV) not in sys.path:
     sys.path.insert(0, str(_RWV))
@@ -37,9 +34,7 @@ except ImportError:
     NONLINEARITY_LEVELS = ["linear", "quadratic", "cubic", "extreme"]
     RANDOM_SEED = 42
 
-
 DEGREE_MAP = {"linear": 1, "quadratic": 2, "cubic": 3, "extreme": 4}
-
 
 def _apply_cap(y: float, obj: UnstableObject, nonlinearity: str) -> float:
     if nonlinearity == "linear":
@@ -52,12 +47,10 @@ def _apply_cap(y: float, obj: UnstableObject, nonlinearity: str) -> float:
         return y * y * obj.read()
     raise ValueError(f"Unknown nonlinearity: {nonlinearity}")
 
-
 def build_op_sequence(add_steps: int, observe_count: int) -> list:
     ops = ["add"] * add_steps + ["observe"] * observe_count
     random.shuffle(ops)
     return ops
-
 
 def run_single(ops: list, nonlinearity: str) -> float:
     obj = UnstableObject(base=BASE_VALUE)
@@ -69,13 +62,11 @@ def run_single(ops: list, nonlinearity: str) -> float:
             obj.observe()
     return _apply_cap(y, obj, nonlinearity)
 
-
 def run_single_cached(add_steps: int, nonlinearity: str) -> float:
     obj = UnstableObject(base=BASE_VALUE)
     cached_val = obj.read()
     y = cached_val * add_steps
     return _apply_cap(y, obj, nonlinearity)
-
 
 def _compute_stats(values: list) -> dict:
     n = len(values)
@@ -101,7 +92,6 @@ def _compute_stats(values: list) -> dict:
         "n": n,
     }
 
-
 def _write_raw_csv(values: list, path: Path) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
     with open(path, "w", newline="") as f:
@@ -109,7 +99,6 @@ def _write_raw_csv(values: list, path: Path) -> None:
         writer.writerow(["value"])
         for v in values:
             writer.writerow([v])
-
 
 def run_axis_a1_analogue(num_runs: int = NUM_RUNS) -> list:
     rows = []
@@ -150,7 +139,6 @@ def run_axis_a1_analogue(num_runs: int = NUM_RUNS) -> list:
         })
     return rows
 
-
 def run_axis_a3_analogue(num_runs: int = NUM_RUNS) -> list:
     rows = []
     nonlinearity = "quadratic"
@@ -172,7 +160,6 @@ def run_axis_a3_analogue(num_runs: int = NUM_RUNS) -> list:
             **stats,
         })
     return rows
-
 
 def run_experiment(num_runs: int = NUM_RUNS) -> list:
     random.seed(RANDOM_SEED)

@@ -1,0 +1,87 @@
+{
+  "candidate_id": "ext01_more_itertools_peekable",
+  "diff": {
+    "branch_changed": false,
+    "classification": "no_divergence",
+    "exception_changed": false,
+    "output_changed": false,
+    "state_changed": false
+  },
+  "metadata": {
+    "candidate_id": "ext01_more_itertools_peekable",
+    "class_name": "peekable",
+    "construction_hint": "peekable(iter(['x','y','z']))",
+    "expected_boundary": "peek caches but next still consumes head",
+    "fixture_family": "iterator",
+    "module_path": "more_itertools/more.py",
+    "observation_operation": "peek()",
+    "package_name": "more-itertools",
+    "package_version": "11.0.2",
+    "priority": "2",
+    "selected_for_harness": "yes",
+    "source_artifact": "source_snapshot",
+    "state_fields_suspected": "_cache",
+    "target_read_operation": "next(it)"
+  },
+  "order_A": {
+    "results": [
+      {
+        "kind": "value",
+        "value": "x"
+      }
+    ],
+    "state": {
+      "has_cache": false
+    },
+    "steps": [
+      "construct peekable",
+      "next(it)"
+    ]
+  },
+  "order_B": {
+    "observation": {
+      "kind": "value",
+      "value": "x"
+    },
+    "results": [
+      {
+        "kind": "value",
+        "value": "x"
+      }
+    ],
+    "state": {
+      "has_cache": false
+    },
+    "steps": [
+      "construct peekable",
+      "peek()",
+      "next(it)"
+    ]
+  },
+  "record": {
+    "boundary_note": "peek caches but next still consumes head",
+    "branch_changed": false,
+    "candidate_id": "ext01_more_itertools_peekable",
+    "class_name": "peekable",
+    "classification": "no_divergence",
+    "constructed": true,
+    "exception_changed": false,
+    "failure_reason": "",
+    "fixture_family": "iterator",
+    "observation_operation": "peek()",
+    "order_A_exception": "[]",
+    "order_A_output": "[\"x\"]",
+    "order_A_state": "{\"has_cache\": false}",
+    "order_A_steps": "construct peekable | next(it)",
+    "order_B_exception": "[]",
+    "order_B_output": "[\"x\"]",
+    "order_B_state": "{\"has_cache\": false}",
+    "order_B_steps": "construct peekable | peek() | next(it)",
+    "output_changed": false,
+    "package_name": "more-itertools",
+    "package_version": "11.0.2",
+    "pair_type": "pair1",
+    "state_changed": false,
+    "target_read_operation": "next(it)"
+  }
+}

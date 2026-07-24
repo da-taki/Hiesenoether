@@ -1,6 +1,6 @@
 # Case 36: docutils Inliner
 
-- Runnable harness: `C:\Users\Asus\Desktop\Profitlo Projects\Hiesenoether\paper_artifacts\scp_behavioral_sweep\harnesses\case_36_docutils_Inliner.py`
+- Runnable harness: `<repo>\paper_artifacts\scp_behavioral_sweep\harnesses\case_36_docutils_Inliner.py`
 - Expected operation: `parse`
 - Expected latent state: `document,language,parent,reporter`
 - Construction feasibility: `simple`

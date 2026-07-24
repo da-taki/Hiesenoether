@@ -1,6 +1,6 @@
 # Case 1: markdown Markdown
 
-- Runnable harness: `C:\Users\Asus\Desktop\Profitlo Projects\Hiesenoether\paper_artifacts\scp_behavioral_sweep\harnesses\case_01_markdown_Markdown.py`
+- Runnable harness: `<repo>\paper_artifacts\scp_behavioral_sweep\harnesses\case_01_markdown_Markdown.py`
 - Expected operation: `build_parser`
 - Expected latent state: `inlinePatterns,parser,postprocessors,preprocessors,treeprocessors`
 - Construction feasibility: `simple`

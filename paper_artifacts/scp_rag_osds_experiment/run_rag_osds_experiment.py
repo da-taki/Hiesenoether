@@ -9,7 +9,6 @@ from typing import Any
 
 from rag_osds_simulator import load_corpus, run_scenario
 
-
 BASE = Path(__file__).resolve().parent
 CORPUS_PATH = BASE / "rag_corpus.json"
 RESULTS_JSON = BASE / "rag_osds_results.json"
@@ -18,7 +17,6 @@ ABLATION_CSV = BASE / "rag_osds_ablation.csv"
 REPLAY_JSON = BASE / "rag_osds_replay_check.json"
 REPORT_MD = BASE / "RAG_OSDS_EXPERIMENT_REPORT.md"
 QUALITY_MD = BASE / "QUALITY_GATE_REPORT.md"
-
 
 SCENARIOS = [
     {
@@ -79,7 +77,6 @@ SCENARIOS = [
     },
 ]
 
-
 CSV_COLUMNS = [
     "scenario_id",
     "variant",
@@ -99,15 +96,12 @@ CSV_COLUMNS = [
     "state_B",
 ]
 
-
 def normalized_for_replay(results: list[dict[str, Any]], ablation: list[dict[str, Any]]) -> dict[str, Any]:
     return {"results": results, "ablation": ablation}
-
 
 def run_all() -> list[dict[str, Any]]:
     corpus = load_corpus(CORPUS_PATH)
     return [run_scenario(corpus, scenario) for scenario in SCENARIOS]
-
 
 def run_ablation() -> list[dict[str, Any]]:
     corpus = load_corpus(CORPUS_PATH)
@@ -135,7 +129,6 @@ def run_ablation() -> list[dict[str, Any]]:
             )
     return rows
 
-
 def write_results(results: list[dict[str, Any]]) -> None:
     RESULTS_JSON.write_text(json.dumps(results, indent=2, sort_keys=True) + "\n", encoding="utf-8")
     with RESULTS_CSV.open("w", newline="", encoding="utf-8") as handle:
@@ -151,7 +144,6 @@ def write_results(results: list[dict[str, Any]]) -> None:
                     "state_B": json.dumps(result["state_B"], sort_keys=True),
                 }
             )
-
 
 def write_ablation(ablation: list[dict[str, Any]]) -> None:
     columns = [
@@ -174,7 +166,6 @@ def write_ablation(ablation: list[dict[str, Any]]) -> None:
         for row in ablation:
             writer.writerow({**row, "order_A_topk": json.dumps(row["order_A_topk"]), "order_B_topk": json.dumps(row["order_B_topk"])})
 
-
 def replay_check(first_results: list[dict[str, Any]], first_ablation: list[dict[str, Any]]) -> dict[str, Any]:
     second_results = run_all()
     second_ablation = run_ablation()
@@ -189,13 +180,11 @@ def replay_check(first_results: list[dict[str, Any]], first_ablation: list[dict[
     REPLAY_JSON.write_text(json.dumps(check, indent=2, sort_keys=True) + "\n", encoding="utf-8")
     return check
 
-
 def md_table(rows: list[dict[str, Any]], columns: list[str]) -> str:
     lines = ["| " + " | ".join(columns) + " |", "| " + " | ".join("---" for _ in columns) + " |"]
     for row in rows:
         lines.append("| " + " | ".join(str(row.get(col, "")) for col in columns) + " |")
     return "\n".join(lines)
-
 
 def write_report(results: list[dict[str, Any]], ablation: list[dict[str, Any]], replay: dict[str, Any]) -> None:
     counts = Counter(item["classification"] for item in results)
@@ -266,7 +255,6 @@ def write_report(results: list[dict[str, Any]], ablation: list[dict[str, Any]], 
         encoding="utf-8",
     )
 
-
 def write_quality(results: list[dict[str, Any]], ablation: list[dict[str, Any]], replay: dict[str, Any]) -> None:
     counts = Counter(item["classification"] for item in results)
     topk_changed = sum(1 for item in results if item["topk_order_changed"])
@@ -290,11 +278,10 @@ def write_quality(results: list[dict[str, Any]], ablation: list[dict[str, Any]],
         f"- State-only divergences: {counts['confirmed_state_only_divergence']}\n"
         f"- No divergence: {counts['no_divergence']}\n\n"
         "## Project Test Gates\n\n"
-        "- `C:\\Users\\Asus\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe run_tests.py`: passed, 28/28.\n"
-        "- `C:\\Users\\Asus\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe -m pytest tests`: passed, 44/44.\n",
+        "- `python run_tests.py`: passed, 28/28.\n"
+        "- `python -m pytest tests`: passed, 44/44.\n",
         encoding="utf-8",
     )
-
 
 def main() -> int:
     results = run_all()
@@ -311,7 +298,6 @@ def main() -> int:
         f"retrieval_order_only_divergences={counts['confirmed_retrieval_order_divergence']} replay={replay['deterministic']}"
     )
     return 0 if replay["deterministic"] else 1
-
 
 if __name__ == "__main__":
     raise SystemExit(main())

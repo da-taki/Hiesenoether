@@ -8,7 +8,6 @@ from collections import Counter
 from fractions import Fraction
 from pathlib import Path
 
-
 REPO = Path(__file__).resolve().parents[2]
 OUT = Path(__file__).resolve().parent
 SNAPSHOT = OUT / "source_snapshot"
@@ -24,19 +23,15 @@ READ_NAMES = {"read", "get", "fetch", "peek", "value", "current", "__get__", "__
 OBS_NAMES = {"observe", "inspect", "snapshot", "debug", "trace", "log", "__repr__", "__str__", "__format__"}
 MUTATING_CALLS = {"append", "extend", "insert", "pop", "remove", "clear", "update", "add", "discard", "setdefault"}
 
-
 def read_csv(path: Path) -> list[dict[str, str]]:
     with path.open(newline="", encoding="utf-8") as fh:
         return list(csv.DictReader(fh))
 
-
 def norm(name: str) -> str:
     return name.replace("_", "-").lower()
 
-
 def path_parts(text: str) -> list[str]:
     return [part for part in text.replace("\\", "/").split("/") if part]
-
 
 def path_matches(finding_path: str, rel_path: str) -> bool:
     f_parts = path_parts(finding_path)
@@ -51,7 +46,6 @@ def path_matches(finding_path: str, rel_path: str) -> bool:
         return True
     return False
 
-
 def source_roots() -> dict[str, Path]:
     roots = {}
     if not MANIFEST.exists():
@@ -60,7 +54,6 @@ def source_roots() -> dict[str, Path]:
         if row["source_status"] != "missing" and int(row["files_count"] or 0) > 0:
             roots[row["package"]] = Path(row["source_path"])
     return roots
-
 
 def class_nodes(package: str, root: Path) -> list[dict[str, object]]:
     out = []
@@ -77,12 +70,10 @@ def class_nodes(package: str, root: Path) -> list[dict[str, object]]:
                 out.append({"package": package, "path": path, "rel": str(path.relative_to(root)), "node": node})
     return out
 
-
 def self_attr(node: ast.AST) -> str | None:
     if isinstance(node, ast.Attribute) and isinstance(node.value, ast.Name) and node.value.id == "self":
         return node.attr
     return None
-
 
 def assigned_fields(fn: ast.FunctionDef) -> set[str]:
     fields = set()
@@ -104,7 +95,6 @@ def assigned_fields(fn: ast.FunctionDef) -> set[str]:
                 fields.add(attr)
     return fields
 
-
 def returned_fields(fn: ast.FunctionDef) -> set[str]:
     fields = set()
     for node in ast.walk(fn):
@@ -115,13 +105,11 @@ def returned_fields(fn: ast.FunctionDef) -> set[str]:
                     fields.add(attr)
     return fields
 
-
 def is_property(fn: ast.FunctionDef) -> bool:
     return any(isinstance(dec, ast.Name) and dec.id == "property" for dec in fn.decorator_list)
 
-
 def audit(item: dict[str, object]) -> dict[str, object]:
-    node: ast.ClassDef = item["node"]  # type: ignore[assignment]
+    node: ast.ClassDef = item["node"]
     methods = [child for child in node.body if isinstance(child, ast.FunctionDef)]
     read_methods = [m for m in methods if m.name in READ_NAMES or m.name.startswith(("read", "get", "fetch")) or is_property(m)]
     obs_methods = [m for m in methods if m.name in OBS_NAMES or m.name.startswith(("observe", "inspect", "debug"))]
@@ -152,10 +140,8 @@ def audit(item: dict[str, object]) -> dict[str, object]:
         "evidence_note": evidence,
     }
 
-
 def frac(value: Fraction) -> str:
     return f"{value.numerator}/{value.denominator}"
-
 
 def run() -> dict[str, object]:
     roots = source_roots()
@@ -165,19 +151,19 @@ def run() -> dict[str, object]:
     finding_rows = read_csv(FINDINGS)
     flagged_matches = set()
     for item in all_classes:
-        node = item["node"]  # type: ignore[assignment]
+        node = item["node"]
         for row in finding_rows:
-            if row["package"] == item["package"] and row["name"] == node.name and path_matches(row["file_path"], str(item["rel"])):  # type: ignore[attr-defined]
-                flagged_matches.add((item["package"], item["rel"], node.name))  # type: ignore[attr-defined]
+            if row["package"] == item["package"] and row["name"] == node.name and path_matches(row["file_path"], str(item["rel"])):
+                flagged_matches.add((item["package"], item["rel"], node.name))
                 break
     unflagged = [
         item for item in all_classes
-        if (item["package"], item["rel"], item["node"].name) not in flagged_matches  # type: ignore[attr-defined]
+        if (item["package"], item["rel"], item["node"].name) not in flagged_matches
     ]
     rng = random.Random(SEED)
     sample_n = min(200, len(unflagged))
     sample = rng.sample(unflagged, sample_n) if sample_n < len(unflagged) else unflagged
-    rows = [audit(item) for item in sorted(sample, key=lambda x: (str(x["package"]), str(x["rel"]), x["node"].lineno))]  # type: ignore[attr-defined]
+    rows = [audit(item) for item in sorted(sample, key=lambda x: (str(x["package"]), str(x["rel"]), x["node"].lineno))]
     with SAMPLE_CSV.open("w", newline="", encoding="utf-8") as fh:
         writer = csv.DictWriter(fh, fieldnames=list(rows[0]) if rows else ["package", "file_path", "class_name", "line_start", "line_end", "read_shaped_methods_or_properties", "observation_like_methods", "mutated_state", "audit_label", "evidence_note"])
         writer.writeheader()
@@ -225,7 +211,6 @@ def run() -> dict[str, object]:
     write_report(summary, sens)
     return summary
 
-
 def write_report(summary: dict[str, object], sens: dict[str, tuple[Fraction | None, Fraction | None]]) -> None:
     lines = [
         "# Unflagged Recall Audit V2",
@@ -244,7 +229,6 @@ def write_report(summary: dict[str, object], sens: dict[str, tuple[Fraction | No
     lines.extend(["", f"Uncertainty note: {summary['uncertainty_note']}"])
     REPORT.write_text("\n".join(lines) + "\n", encoding="utf-8")
 
-
 def main() -> int:
     summary = run()
     print(f"wrote {SAMPLE_CSV}")
@@ -252,7 +236,6 @@ def main() -> int:
     print(f"wrote {REPORT}")
     print(summary)
     return 0
-
 
 if __name__ == "__main__":
     raise SystemExit(main())

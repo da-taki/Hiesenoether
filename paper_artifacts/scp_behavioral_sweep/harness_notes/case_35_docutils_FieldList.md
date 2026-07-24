@@ -1,6 +1,6 @@
 # Case 35: docutils FieldList
 
-- Runnable harness: `C:\Users\Asus\Desktop\Profitlo Projects\Hiesenoether\paper_artifacts\scp_behavioral_sweep\harnesses\case_35_docutils_FieldList.py`
+- Runnable harness: `<repo>\paper_artifacts\scp_behavioral_sweep\harnesses\case_35_docutils_FieldList.py`
 - Expected operation: `field_marker`
 - Expected latent state: `blank_finish,parent`
 - Construction feasibility: `simple`

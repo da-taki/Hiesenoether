@@ -4,8 +4,8 @@ Lean 4 was not usable in the local environment for this work.
 
 ## Local Probe
 
-- `lean` resolves to `C:\Users\Asus\.elan\bin\lean.exe`.
-- `lake` resolves to `C:\Users\Asus\.elan\bin\lake.exe`.
+- `lean` resolves to `<home>\.elan\bin\lean.exe`.
+- `lake` resolves to `<home>\.elan\bin\lake.exe`.
 - `lean --version` timed out locally.
 - `lake --version` timed out locally.
 

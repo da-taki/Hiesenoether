@@ -1,6 +1,6 @@
 # Case 13: boltons LRU
 
-- Runnable harness: `C:\Users\Asus\Desktop\Profitlo Projects\Hiesenoether\paper_artifacts\scp_behavioral_sweep\harnesses\case_13_boltons_LRU.py`
+- Runnable harness: `<repo>\paper_artifacts\scp_behavioral_sweep\harnesses\case_13_boltons_LRU.py`
 - Expected operation: `__getitem__`
 - Expected latent state: `hit_count,miss_count`
 - Construction feasibility: `simple`

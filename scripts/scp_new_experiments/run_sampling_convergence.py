@@ -28,7 +28,6 @@ CSV_PATH = RESULTS_DIR / "sampling_convergence.csv"
 SUMMARY_PATH = RESULTS_DIR / "sampling_convergence_summary.json"
 TABLES_PATH = RESULTS_DIR / "sampling_convergence_tables.md"
 
-
 def row_for_sample(config: dict, budget: int, seed: int, true_stats: dict) -> dict:
     reads = config["body_length"]
     observations = config["observation_count"]
@@ -70,7 +69,6 @@ def row_for_sample(config: dict, budget: int, seed: int, true_stats: dict) -> di
         "exact_rational_arithmetic_used": True,
     }
 
-
 def exact_stats_for(config: dict) -> dict:
     values = evaluate_orders(
         unique_orders(config["body_length"], config["observation_count"]),
@@ -78,7 +76,6 @@ def exact_stats_for(config: dict) -> dict:
         "constant",
     )
     return output_stats(values)
-
 
 def summarize(rows: list[dict]) -> dict:
     by_budget: dict[int, list[dict]] = {}
@@ -118,7 +115,6 @@ def summarize(rows: list[dict]) -> dict:
         "max_budget_extrema_failures": failures_at_max_budget,
         "exact_rational_arithmetic_used": True,
     }
-
 
 def write_tables(summary: dict) -> None:
     lines = [
@@ -162,7 +158,6 @@ def write_tables(summary: dict) -> None:
         lines.append("None.")
     TABLES_PATH.write_text("\n".join(lines) + "\n", encoding="utf-8")
 
-
 def run() -> dict:
     rows = []
     for config in CONFIGURATIONS:
@@ -178,7 +173,6 @@ def run() -> dict:
     write_tables(summary)
     return summary
 
-
 def main() -> int:
     summary = run()
     print(f"wrote {CSV_PATH}")
@@ -187,7 +181,6 @@ def main() -> int:
     print(f"rows={summary['rows']}")
     print(f"max_budget_extrema_failures={len(summary['max_budget_extrema_failures'])}")
     return 0
-
 
 if __name__ == "__main__":
     raise SystemExit(main())

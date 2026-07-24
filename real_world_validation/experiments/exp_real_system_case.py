@@ -1,5 +1,3 @@
-# exp_real_system_case.py
-
 import csv
 import math
 import random
@@ -32,7 +30,6 @@ TIER_PRO_THRESHOLD = 500.0
 TIER_ENTERPRISE_THRESHOLD = 2000.0
 ML_POSITIVE_THRESHOLD = 0.50
 
-# Unified fieldnames used by every row written to the summary CSV
 SUMMARY_FIELDS = [
     "experiment",
     "case",
@@ -50,7 +47,6 @@ SUMMARY_FIELDS = [
     "label_low",
     "label_high",
 ]
-
 
 def _make_row(case: str, read_depth: int, num_runs: int,
               mae: float, max_err: float, flips: int, flip_rate: float,
@@ -75,9 +71,6 @@ def _make_row(case: str, read_depth: int, num_runs: int,
         "label_high": label_high,
     }
 
-
-# ── Shared helpers ───────────────────────────────────────────────────────────
-
 def _bootstrap_ci_mean(values: list, n_resamples: int = 500,
                        ci_level: float = 0.95) -> tuple:
     if len(values) < 2:
@@ -94,10 +87,8 @@ def _bootstrap_ci_mean(values: list, n_resamples: int = 500,
     hi_idx = min(n_resamples - 1, int((1.0 - alpha / 2) * n_resamples))
     return round(means[lo_idx], 6), round(means[hi_idx], 6)
 
-
 def _is_monotonic(values: list) -> bool:
     return all(values[i] <= values[i + 1] for i in range(len(values) - 1))
-
 
 def _write_raw_csv(rows: list, path: Path) -> None:
     if not rows:
@@ -108,9 +99,6 @@ def _write_raw_csv(rows: list, path: Path) -> None:
         writer.writeheader()
         writer.writerows(rows)
 
-
-# ── Case 1: Risk dashboard ───────────────────────────────────────────────────
-
 def _risk_score_stale(base_signal: float, volatility: float,
                       read_depth: int) -> float:
     obj = UnstableObject(base=base_signal, initial_entropy=volatility)
@@ -119,7 +107,6 @@ def _risk_score_stale(base_signal: float, volatility: float,
         obj.read()
     return min(1.0, max(0.0, cached_raw / (cached_raw + 100.0)))
 
-
 def _risk_score_true_at_depth(base_signal: float, volatility: float,
                                read_depth: int) -> float:
     obj = UnstableObject(base=base_signal, initial_entropy=volatility)
@@ -127,7 +114,6 @@ def _risk_score_true_at_depth(base_signal: float, volatility: float,
         obj.read()
     raw = obj.read()
     return min(1.0, max(0.0, raw / (raw + 100.0)))
-
 
 def run_risk_dashboard_case(num_runs: int = NUM_RUNS_PER_DEPTH) -> list:
     rows = []
@@ -189,9 +175,6 @@ def run_risk_dashboard_case(num_runs: int = NUM_RUNS_PER_DEPTH) -> list:
     _write_raw_csv(raw_rows, RAW_DIR / "real_system_risk_dashboard_sample.csv")
     return rows
 
-
-# ── Case 2: ORM billing tier ─────────────────────────────────────────────────
-
 def _usage_metric_stale(base_usage: float, entropy: float,
                         read_depth: int) -> float:
     obj = UnstableObject(base=base_usage, initial_entropy=entropy)
@@ -200,7 +183,6 @@ def _usage_metric_stale(base_usage: float, entropy: float,
         obj.read()
     return cached_val
 
-
 def _usage_metric_true(base_usage: float, entropy: float,
                        read_depth: int) -> float:
     obj = UnstableObject(base=base_usage, initial_entropy=entropy)
@@ -208,14 +190,12 @@ def _usage_metric_true(base_usage: float, entropy: float,
         obj.read()
     return obj.read()
 
-
 def _tier_label(usage: float) -> str:
     if usage >= TIER_ENTERPRISE_THRESHOLD:
         return "ENTERPRISE"
     if usage >= TIER_PRO_THRESHOLD:
         return "PRO"
     return "FREE"
-
 
 def run_orm_billing_case(num_runs: int = NUM_RUNS_PER_DEPTH) -> list:
     rows = []
@@ -279,15 +259,11 @@ def run_orm_billing_case(num_runs: int = NUM_RUNS_PER_DEPTH) -> list:
     _write_raw_csv(raw_rows, RAW_DIR / "real_system_orm_billing_sample.csv")
     return rows
 
-
-# ── Case 3: ML feature store ─────────────────────────────────────────────────
-
 def _sigmoid(x: float) -> float:
     try:
         return 1.0 / (1.0 + math.exp(-x))
     except OverflowError:
         return 0.0 if x < 0 else 1.0
-
 
 def _ml_feature_stale(base_feature: float, entropy: float,
                       read_depth: int, weight: float) -> float:
@@ -297,7 +273,6 @@ def _ml_feature_stale(base_feature: float, entropy: float,
         obj.read()
     return _sigmoid(weight * cached_val)
 
-
 def _ml_feature_true(base_feature: float, entropy: float,
                      read_depth: int, weight: float) -> float:
     obj = UnstableObject(base=base_feature, initial_entropy=entropy)
@@ -305,7 +280,6 @@ def _ml_feature_true(base_feature: float, entropy: float,
         obj.read()
     true_val = obj.read()
     return _sigmoid(weight * true_val)
-
 
 def run_ml_feature_case(num_runs: int = NUM_RUNS_PER_DEPTH) -> list:
     rows = []
@@ -369,9 +343,6 @@ def run_ml_feature_case(num_runs: int = NUM_RUNS_PER_DEPTH) -> list:
 
     _write_raw_csv(raw_rows, RAW_DIR / "real_system_ml_feature_sample.csv")
     return rows
-
-
-# ── Top-level runner ─────────────────────────────────────────────────────────
 
 def run_experiment(num_runs: int = NUM_RUNS_PER_DEPTH) -> list:
     random.seed(RANDOM_SEED)

@@ -1,0 +1,1355 @@
+[
+  {
+    "expected_mechanism": "Pure baseline treats observation-shaped operations as non-mutating, so later answer retrieval should remain stable.",
+    "intended_target_doc": "f01_cache_policy_a_target",
+    "negative_control": true,
+    "observation_operation": "preview_context",
+    "order_A_steps": [
+      {
+        "operation": "answer",
+        "query": "cache eviction policy final answer controlled evidence query anchor"
+      }
+    ],
+    "order_B_steps": [
+      {
+        "operation": "preview_context",
+        "query": "observation preview logging explanation cache trace rationale obs_cache_policy LRI"
+      },
+      {
+        "operation": "answer",
+        "query": "cache eviction policy final answer controlled evidence query anchor"
+      }
+    ],
+    "possible_flipped_doc": "f01_cache_policy_c_observation_boostable",
+    "q1_observation_query": "observation preview logging explanation cache trace rationale obs_cache_policy LRI",
+    "q2_answer_query": "cache eviction policy final answer controlled evidence query anchor",
+    "scenario_id": "B01_pure_baseline_negative_control",
+    "topic_family": "cache_policy",
+    "variant": "pure_baseline"
+  },
+  {
+    "expected_mechanism": "Pure baseline treats observation-shaped operations as non-mutating, so later answer retrieval should remain stable.",
+    "intended_target_doc": "f02_streaming_response_tool_a_target",
+    "negative_control": true,
+    "observation_operation": "log_retrieval",
+    "order_A_steps": [
+      {
+        "operation": "answer",
+        "query": "streaming response tool final answer controlled evidence query anchor"
+      }
+    ],
+    "order_B_steps": [
+      {
+        "operation": "log_retrieval",
+        "query": "observation preview logging explanation cache trace rationale obs_streaming_response_tool logger"
+      },
+      {
+        "operation": "answer",
+        "query": "streaming response tool final answer controlled evidence query anchor"
+      }
+    ],
+    "possible_flipped_doc": "f02_streaming_response_tool_c_observation_boostable",
+    "q1_observation_query": "observation preview logging explanation cache trace rationale obs_streaming_response_tool logger",
+    "q2_answer_query": "streaming response tool final answer controlled evidence query anchor",
+    "scenario_id": "B02_pure_baseline_negative_control",
+    "topic_family": "streaming_response_tool",
+    "variant": "pure_baseline"
+  },
+  {
+    "expected_mechanism": "Pure baseline treats observation-shaped operations as non-mutating, so later answer retrieval should remain stable.",
+    "intended_target_doc": "f03_accessibility_workshop_city_a_target",
+    "negative_control": true,
+    "observation_operation": "explain_retrieval",
+    "order_A_steps": [
+      {
+        "operation": "answer",
+        "query": "accessibility workshop city final answer controlled evidence query anchor"
+      }
+    ],
+    "order_B_steps": [
+      {
+        "operation": "explain_retrieval",
+        "query": "observation preview logging explanation cache trace rationale obs_accessibility_workshop_city Boston"
+      },
+      {
+        "operation": "answer",
+        "query": "accessibility workshop city final answer controlled evidence query anchor"
+      }
+    ],
+    "possible_flipped_doc": "f03_accessibility_workshop_city_c_observation_boostable",
+    "q1_observation_query": "observation preview logging explanation cache trace rationale obs_accessibility_workshop_city Boston",
+    "q2_answer_query": "accessibility workshop city final answer controlled evidence query anchor",
+    "scenario_id": "B03_pure_baseline_negative_control",
+    "topic_family": "accessibility_workshop_city",
+    "variant": "pure_baseline"
+  },
+  {
+    "expected_mechanism": "Pure baseline treats observation-shaped operations as non-mutating, so later answer retrieval should remain stable.",
+    "intended_target_doc": "f04_markdown_reuse_a_target",
+    "negative_control": true,
+    "observation_operation": "materialize_context_cache",
+    "order_A_steps": [
+      {
+        "operation": "answer",
+        "query": "markdown reuse action final answer controlled evidence query anchor"
+      }
+    ],
+    "order_B_steps": [
+      {
+        "operation": "materialize_context_cache",
+        "query": "observation preview logging explanation cache trace rationale obs_markdown_reuse build_parser"
+      },
+      {
+        "operation": "answer",
+        "query": "markdown reuse action final answer controlled evidence query anchor"
+      }
+    ],
+    "possible_flipped_doc": "f04_markdown_reuse_c_observation_boostable",
+    "q1_observation_query": "observation preview logging explanation cache trace rationale obs_markdown_reuse build_parser",
+    "q2_answer_query": "markdown reuse action final answer controlled evidence query anchor",
+    "scenario_id": "B04_pure_baseline_negative_control",
+    "topic_family": "markdown_reuse",
+    "variant": "pure_baseline"
+  },
+  {
+    "expected_mechanism": "Pure baseline treats observation-shaped operations as non-mutating, so later answer retrieval should remain stable.",
+    "intended_target_doc": "f05_memory_system_a_target",
+    "negative_control": true,
+    "observation_operation": "trace_tool_call",
+    "order_A_steps": [
+      {
+        "operation": "answer",
+        "query": "memory system answer final answer controlled evidence query anchor"
+      }
+    ],
+    "order_B_steps": [
+      {
+        "operation": "trace_tool_call",
+        "query": "observation preview logging explanation cache trace rationale obs_memory_system beta memory",
+        "tool_name": "retriever"
+      },
+      {
+        "operation": "answer",
+        "query": "memory system answer final answer controlled evidence query anchor"
+      }
+    ],
+    "possible_flipped_doc": "f05_memory_system_c_observation_boostable",
+    "q1_observation_query": "observation preview logging explanation cache trace rationale obs_memory_system beta memory",
+    "q2_answer_query": "memory system answer final answer controlled evidence query anchor",
+    "scenario_id": "B05_pure_baseline_negative_control",
+    "topic_family": "memory_system",
+    "variant": "pure_baseline"
+  },
+  {
+    "expected_mechanism": "Pure baseline treats observation-shaped operations as non-mutating, so later answer retrieval should remain stable.",
+    "intended_target_doc": "f06_package_diagnostic_behavior_a_target",
+    "negative_control": true,
+    "observation_operation": "inspect_memory",
+    "order_A_steps": [
+      {
+        "operation": "answer",
+        "query": "package diagnostic behavior final answer controlled evidence query anchor"
+      }
+    ],
+    "order_B_steps": [
+      {
+        "operation": "inspect_memory",
+        "query": "observation preview logging explanation cache trace rationale obs_package_diagnostic_behavior diagnostic mutation"
+      },
+      {
+        "operation": "answer",
+        "query": "package diagnostic behavior final answer controlled evidence query anchor"
+      }
+    ],
+    "possible_flipped_doc": "f06_package_diagnostic_behavior_c_observation_boostable",
+    "q1_observation_query": "observation preview logging explanation cache trace rationale obs_package_diagnostic_behavior diagnostic mutation",
+    "q2_answer_query": "package diagnostic behavior final answer controlled evidence query anchor",
+    "scenario_id": "B06_pure_baseline_negative_control",
+    "topic_family": "package_diagnostic_behavior",
+    "variant": "pure_baseline"
+  },
+  {
+    "expected_mechanism": "Pure baseline treats observation-shaped operations as non-mutating, so later answer retrieval should remain stable.",
+    "intended_target_doc": "f07_agent_tool_routing_a_target",
+    "negative_control": true,
+    "observation_operation": "preview_context",
+    "order_A_steps": [
+      {
+        "operation": "answer",
+        "query": "agent tool routing final answer controlled evidence query anchor"
+      }
+    ],
+    "order_B_steps": [
+      {
+        "operation": "preview_context",
+        "query": "observation preview logging explanation cache trace rationale obs_agent_tool_routing logger"
+      },
+      {
+        "operation": "answer",
+        "query": "agent tool routing final answer controlled evidence query anchor"
+      }
+    ],
+    "possible_flipped_doc": "f07_agent_tool_routing_c_observation_boostable",
+    "q1_observation_query": "observation preview logging explanation cache trace rationale obs_agent_tool_routing logger",
+    "q2_answer_query": "agent tool routing final answer controlled evidence query anchor",
+    "scenario_id": "B07_pure_baseline_negative_control",
+    "topic_family": "agent_tool_routing",
+    "variant": "pure_baseline"
+  },
+  {
+    "expected_mechanism": "Pure baseline treats observation-shaped operations as non-mutating, so later answer retrieval should remain stable.",
+    "intended_target_doc": "f08_retrieval_safety_note_a_target",
+    "negative_control": true,
+    "observation_operation": "log_retrieval",
+    "order_A_steps": [
+      {
+        "operation": "answer",
+        "query": "retrieval safety policy final answer controlled evidence query anchor"
+      }
+    ],
+    "order_B_steps": [
+      {
+        "operation": "log_retrieval",
+        "query": "observation preview logging explanation cache trace rationale obs_retrieval_safety_note draft policy"
+      },
+      {
+        "operation": "answer",
+        "query": "retrieval safety policy final answer controlled evidence query anchor"
+      }
+    ],
+    "possible_flipped_doc": "f08_retrieval_safety_note_c_observation_boostable",
+    "q1_observation_query": "observation preview logging explanation cache trace rationale obs_retrieval_safety_note draft policy",
+    "q2_answer_query": "retrieval safety policy final answer controlled evidence query anchor",
+    "scenario_id": "B08_pure_baseline_negative_control",
+    "topic_family": "retrieval_safety_note",
+    "variant": "pure_baseline"
+  },
+  {
+    "expected_mechanism": "The observation operation increments access counts; later ranking consumes access_count_boost.",
+    "intended_target_doc": "f01_cache_policy_a_target",
+    "negative_control": false,
+    "observation_operation": "preview_context",
+    "order_A_steps": [
+      {
+        "operation": "answer",
+        "query": "cache eviction policy final answer controlled evidence query anchor"
+      }
+    ],
+    "order_B_steps": [
+      {
+        "operation": "preview_context",
+        "query": "observation preview logging explanation cache trace rationale obs_cache_policy LRI"
+      },
+      {
+        "operation": "answer",
+        "query": "cache eviction policy final answer controlled evidence query anchor"
+      }
+    ],
+    "possible_flipped_doc": "f01_cache_policy_c_observation_boostable",
+    "q1_observation_query": "observation preview logging explanation cache trace rationale obs_cache_policy LRI",
+    "q2_answer_query": "cache eviction policy final answer controlled evidence query anchor",
+    "scenario_id": "access_count_feedback_01_answer_flip",
+    "topic_family": "cache_policy",
+    "variant": "access_count_feedback"
+  },
+  {
+    "expected_mechanism": "The observation operation increments access counts; later ranking consumes access_count_boost.",
+    "intended_target_doc": "f02_streaming_response_tool_a_target",
+    "negative_control": false,
+    "observation_operation": "log_retrieval",
+    "order_A_steps": [
+      {
+        "operation": "answer",
+        "query": "streaming response tool final answer controlled evidence query anchor"
+      }
+    ],
+    "order_B_steps": [
+      {
+        "operation": "log_retrieval",
+        "query": "observation preview logging explanation cache trace rationale obs_streaming_response_tool logger"
+      },
+      {
+        "operation": "answer",
+        "query": "streaming response tool final answer controlled evidence query anchor"
+      }
+    ],
+    "possible_flipped_doc": "f02_streaming_response_tool_c_observation_boostable",
+    "q1_observation_query": "observation preview logging explanation cache trace rationale obs_streaming_response_tool logger",
+    "q2_answer_query": "streaming response tool final answer controlled evidence query anchor",
+    "scenario_id": "access_count_feedback_02_answer_flip",
+    "topic_family": "streaming_response_tool",
+    "variant": "access_count_feedback"
+  },
+  {
+    "expected_mechanism": "The observation operation increments access counts; later ranking consumes access_count_boost.",
+    "intended_target_doc": "f03_accessibility_workshop_city_a_target",
+    "negative_control": false,
+    "observation_operation": "preview_context",
+    "order_A_steps": [
+      {
+        "operation": "answer",
+        "query": "accessibility workshop city final answer controlled evidence query anchor"
+      }
+    ],
+    "order_B_steps": [
+      {
+        "operation": "preview_context",
+        "query": "observation preview logging explanation cache trace rationale obs_accessibility_workshop_city Boston"
+      },
+      {
+        "operation": "answer",
+        "query": "accessibility workshop city final answer controlled evidence query anchor"
+      }
+    ],
+    "possible_flipped_doc": "f03_accessibility_workshop_city_c_observation_boostable",
+    "q1_observation_query": "observation preview logging explanation cache trace rationale obs_accessibility_workshop_city Boston",
+    "q2_answer_query": "accessibility workshop city final answer controlled evidence query anchor",
+    "scenario_id": "access_count_feedback_03_answer_flip",
+    "topic_family": "accessibility_workshop_city",
+    "variant": "access_count_feedback"
+  },
+  {
+    "expected_mechanism": "The observation operation increments access counts; later ranking consumes access_count_boost.",
+    "intended_target_doc": "f04_markdown_reuse_a_target",
+    "negative_control": false,
+    "observation_operation": "log_retrieval",
+    "order_A_steps": [
+      {
+        "operation": "answer",
+        "query": "markdown reuse action final answer controlled evidence query anchor"
+      }
+    ],
+    "order_B_steps": [
+      {
+        "operation": "log_retrieval",
+        "query": "observation preview logging explanation cache trace rationale obs_markdown_reuse build_parser"
+      },
+      {
+        "operation": "answer",
+        "query": "markdown reuse action final answer controlled evidence query anchor"
+      }
+    ],
+    "possible_flipped_doc": "f04_markdown_reuse_c_observation_boostable",
+    "q1_observation_query": "observation preview logging explanation cache trace rationale obs_markdown_reuse build_parser",
+    "q2_answer_query": "markdown reuse action final answer controlled evidence query anchor",
+    "scenario_id": "access_count_feedback_04_answer_flip",
+    "topic_family": "markdown_reuse",
+    "variant": "access_count_feedback"
+  },
+  {
+    "expected_mechanism": "The observation operation increments access counts; later ranking consumes access_count_boost.",
+    "intended_target_doc": "f05_memory_system_a_target",
+    "negative_control": false,
+    "observation_operation": "preview_context",
+    "order_A_steps": [
+      {
+        "operation": "answer",
+        "query": "memory system answer final answer controlled evidence query anchor"
+      }
+    ],
+    "order_B_steps": [
+      {
+        "operation": "preview_context",
+        "query": "observation preview logging explanation cache trace rationale obs_memory_system beta memory"
+      },
+      {
+        "operation": "answer",
+        "query": "memory system answer final answer controlled evidence query anchor"
+      }
+    ],
+    "possible_flipped_doc": "f05_memory_system_c_observation_boostable",
+    "q1_observation_query": "observation preview logging explanation cache trace rationale obs_memory_system beta memory",
+    "q2_answer_query": "memory system answer final answer controlled evidence query anchor",
+    "scenario_id": "access_count_feedback_05_answer_flip",
+    "topic_family": "memory_system",
+    "variant": "access_count_feedback"
+  },
+  {
+    "expected_mechanism": "The observation operation increments access counts; later ranking consumes access_count_boost.",
+    "intended_target_doc": "f06_package_diagnostic_behavior_a_target",
+    "negative_control": false,
+    "observation_operation": "log_retrieval",
+    "order_A_steps": [
+      {
+        "operation": "answer",
+        "query": "package diagnostic behavior final answer controlled evidence query anchor"
+      }
+    ],
+    "order_B_steps": [
+      {
+        "operation": "log_retrieval",
+        "query": "observation preview logging explanation cache trace rationale obs_package_diagnostic_behavior diagnostic mutation"
+      },
+      {
+        "operation": "answer",
+        "query": "package diagnostic behavior final answer controlled evidence query anchor"
+      }
+    ],
+    "possible_flipped_doc": "f06_package_diagnostic_behavior_c_observation_boostable",
+    "q1_observation_query": "observation preview logging explanation cache trace rationale obs_package_diagnostic_behavior diagnostic mutation",
+    "q2_answer_query": "package diagnostic behavior final answer controlled evidence query anchor",
+    "scenario_id": "access_count_feedback_06_answer_flip",
+    "topic_family": "package_diagnostic_behavior",
+    "variant": "access_count_feedback"
+  },
+  {
+    "expected_mechanism": "The observation operation increments access counts; later ranking consumes access_count_boost.",
+    "intended_target_doc": "f07_agent_tool_routing_a_target",
+    "negative_control": false,
+    "observation_operation": "log_retrieval",
+    "order_A_steps": [
+      {
+        "operation": "answer",
+        "query": "agent tool routing final answer controlled evidence query anchor"
+      }
+    ],
+    "order_B_steps": [
+      {
+        "operation": "log_retrieval",
+        "query": "secondary duplicate support retrieval order probe duplicate_agent_tool_routing calculator"
+      },
+      {
+        "operation": "answer",
+        "query": "agent tool routing final answer controlled evidence query anchor"
+      }
+    ],
+    "possible_flipped_doc": "f07_agent_tool_routing_d_same_answer_support",
+    "q1_observation_query": "secondary duplicate support retrieval order probe duplicate_agent_tool_routing calculator",
+    "q2_answer_query": "agent tool routing final answer controlled evidence query anchor",
+    "scenario_id": "access_count_feedback_07_retrieval_order_only",
+    "topic_family": "agent_tool_routing",
+    "variant": "access_count_feedback"
+  },
+  {
+    "expected_mechanism": "The observation operation increments access counts; later ranking consumes access_count_boost.",
+    "intended_target_doc": "f08_retrieval_safety_note_a_target",
+    "negative_control": false,
+    "observation_operation": "preview_context",
+    "order_A_steps": [
+      {
+        "operation": "answer",
+        "query": "retrieval safety policy final answer controlled evidence query anchor"
+      }
+    ],
+    "order_B_steps": [
+      {
+        "operation": "preview_context",
+        "query": "unrelated telemetry sandbox diagnostic state only probe retrieval_safety_note"
+      },
+      {
+        "operation": "answer",
+        "query": "retrieval safety policy final answer controlled evidence query anchor"
+      }
+    ],
+    "possible_flipped_doc": "f08_retrieval_safety_note_e_unrelated_observation",
+    "q1_observation_query": "unrelated telemetry sandbox diagnostic state only probe retrieval_safety_note",
+    "q2_answer_query": "retrieval safety policy final answer controlled evidence query anchor",
+    "scenario_id": "access_count_feedback_08_state_only",
+    "topic_family": "retrieval_safety_note",
+    "variant": "access_count_feedback"
+  },
+  {
+    "expected_mechanism": "The observation operation appends document IDs to session memory; later ranking consumes recency_memory_boost.",
+    "intended_target_doc": "f01_cache_policy_a_target",
+    "negative_control": false,
+    "observation_operation": "preview_context",
+    "order_A_steps": [
+      {
+        "operation": "answer",
+        "query": "cache eviction policy final answer controlled evidence query anchor"
+      }
+    ],
+    "order_B_steps": [
+      {
+        "operation": "preview_context",
+        "query": "observation preview logging explanation cache trace rationale obs_cache_policy LRI"
+      },
+      {
+        "operation": "answer",
+        "query": "cache eviction policy final answer controlled evidence query anchor"
+      }
+    ],
+    "possible_flipped_doc": "f01_cache_policy_c_observation_boostable",
+    "q1_observation_query": "observation preview logging explanation cache trace rationale obs_cache_policy LRI",
+    "q2_answer_query": "cache eviction policy final answer controlled evidence query anchor",
+    "scenario_id": "recency_memory_feedback_01_answer_flip",
+    "topic_family": "cache_policy",
+    "variant": "recency_memory_feedback"
+  },
+  {
+    "expected_mechanism": "The observation operation appends document IDs to session memory; later ranking consumes recency_memory_boost.",
+    "intended_target_doc": "f02_streaming_response_tool_a_target",
+    "negative_control": false,
+    "observation_operation": "log_retrieval",
+    "order_A_steps": [
+      {
+        "operation": "answer",
+        "query": "streaming response tool final answer controlled evidence query anchor"
+      }
+    ],
+    "order_B_steps": [
+      {
+        "operation": "log_retrieval",
+        "query": "observation preview logging explanation cache trace rationale obs_streaming_response_tool logger"
+      },
+      {
+        "operation": "answer",
+        "query": "streaming response tool final answer controlled evidence query anchor"
+      }
+    ],
+    "possible_flipped_doc": "f02_streaming_response_tool_c_observation_boostable",
+    "q1_observation_query": "observation preview logging explanation cache trace rationale obs_streaming_response_tool logger",
+    "q2_answer_query": "streaming response tool final answer controlled evidence query anchor",
+    "scenario_id": "recency_memory_feedback_02_answer_flip",
+    "topic_family": "streaming_response_tool",
+    "variant": "recency_memory_feedback"
+  },
+  {
+    "expected_mechanism": "The observation operation appends document IDs to session memory; later ranking consumes recency_memory_boost.",
+    "intended_target_doc": "f03_accessibility_workshop_city_a_target",
+    "negative_control": false,
+    "observation_operation": "preview_context",
+    "order_A_steps": [
+      {
+        "operation": "answer",
+        "query": "accessibility workshop city final answer controlled evidence query anchor"
+      }
+    ],
+    "order_B_steps": [
+      {
+        "operation": "preview_context",
+        "query": "observation preview logging explanation cache trace rationale obs_accessibility_workshop_city Boston"
+      },
+      {
+        "operation": "answer",
+        "query": "accessibility workshop city final answer controlled evidence query anchor"
+      }
+    ],
+    "possible_flipped_doc": "f03_accessibility_workshop_city_c_observation_boostable",
+    "q1_observation_query": "observation preview logging explanation cache trace rationale obs_accessibility_workshop_city Boston",
+    "q2_answer_query": "accessibility workshop city final answer controlled evidence query anchor",
+    "scenario_id": "recency_memory_feedback_03_answer_flip",
+    "topic_family": "accessibility_workshop_city",
+    "variant": "recency_memory_feedback"
+  },
+  {
+    "expected_mechanism": "The observation operation appends document IDs to session memory; later ranking consumes recency_memory_boost.",
+    "intended_target_doc": "f04_markdown_reuse_a_target",
+    "negative_control": false,
+    "observation_operation": "log_retrieval",
+    "order_A_steps": [
+      {
+        "operation": "answer",
+        "query": "markdown reuse action final answer controlled evidence query anchor"
+      }
+    ],
+    "order_B_steps": [
+      {
+        "operation": "log_retrieval",
+        "query": "observation preview logging explanation cache trace rationale obs_markdown_reuse build_parser"
+      },
+      {
+        "operation": "answer",
+        "query": "markdown reuse action final answer controlled evidence query anchor"
+      }
+    ],
+    "possible_flipped_doc": "f04_markdown_reuse_c_observation_boostable",
+    "q1_observation_query": "observation preview logging explanation cache trace rationale obs_markdown_reuse build_parser",
+    "q2_answer_query": "markdown reuse action final answer controlled evidence query anchor",
+    "scenario_id": "recency_memory_feedback_04_answer_flip",
+    "topic_family": "markdown_reuse",
+    "variant": "recency_memory_feedback"
+  },
+  {
+    "expected_mechanism": "The observation operation appends document IDs to session memory; later ranking consumes recency_memory_boost.",
+    "intended_target_doc": "f05_memory_system_a_target",
+    "negative_control": false,
+    "observation_operation": "preview_context",
+    "order_A_steps": [
+      {
+        "operation": "answer",
+        "query": "memory system answer final answer controlled evidence query anchor"
+      }
+    ],
+    "order_B_steps": [
+      {
+        "operation": "preview_context",
+        "query": "observation preview logging explanation cache trace rationale obs_memory_system beta memory"
+      },
+      {
+        "operation": "answer",
+        "query": "memory system answer final answer controlled evidence query anchor"
+      }
+    ],
+    "possible_flipped_doc": "f05_memory_system_c_observation_boostable",
+    "q1_observation_query": "observation preview logging explanation cache trace rationale obs_memory_system beta memory",
+    "q2_answer_query": "memory system answer final answer controlled evidence query anchor",
+    "scenario_id": "recency_memory_feedback_05_answer_flip",
+    "topic_family": "memory_system",
+    "variant": "recency_memory_feedback"
+  },
+  {
+    "expected_mechanism": "The observation operation appends document IDs to session memory; later ranking consumes recency_memory_boost.",
+    "intended_target_doc": "f06_package_diagnostic_behavior_a_target",
+    "negative_control": false,
+    "observation_operation": "log_retrieval",
+    "order_A_steps": [
+      {
+        "operation": "answer",
+        "query": "package diagnostic behavior final answer controlled evidence query anchor"
+      }
+    ],
+    "order_B_steps": [
+      {
+        "operation": "log_retrieval",
+        "query": "observation preview logging explanation cache trace rationale obs_package_diagnostic_behavior diagnostic mutation"
+      },
+      {
+        "operation": "answer",
+        "query": "package diagnostic behavior final answer controlled evidence query anchor"
+      }
+    ],
+    "possible_flipped_doc": "f06_package_diagnostic_behavior_c_observation_boostable",
+    "q1_observation_query": "observation preview logging explanation cache trace rationale obs_package_diagnostic_behavior diagnostic mutation",
+    "q2_answer_query": "package diagnostic behavior final answer controlled evidence query anchor",
+    "scenario_id": "recency_memory_feedback_06_answer_flip",
+    "topic_family": "package_diagnostic_behavior",
+    "variant": "recency_memory_feedback"
+  },
+  {
+    "expected_mechanism": "The observation operation appends document IDs to session memory; later ranking consumes recency_memory_boost.",
+    "intended_target_doc": "f07_agent_tool_routing_a_target",
+    "negative_control": false,
+    "observation_operation": "preview_context",
+    "order_A_steps": [
+      {
+        "operation": "answer",
+        "query": "agent tool routing final answer controlled evidence query anchor"
+      }
+    ],
+    "order_B_steps": [
+      {
+        "operation": "preview_context",
+        "query": "secondary duplicate support retrieval order probe duplicate_agent_tool_routing calculator"
+      },
+      {
+        "operation": "answer",
+        "query": "agent tool routing final answer controlled evidence query anchor"
+      }
+    ],
+    "possible_flipped_doc": "f07_agent_tool_routing_d_same_answer_support",
+    "q1_observation_query": "secondary duplicate support retrieval order probe duplicate_agent_tool_routing calculator",
+    "q2_answer_query": "agent tool routing final answer controlled evidence query anchor",
+    "scenario_id": "recency_memory_feedback_07_retrieval_order_only",
+    "topic_family": "agent_tool_routing",
+    "variant": "recency_memory_feedback"
+  },
+  {
+    "expected_mechanism": "The observation operation appends document IDs to session memory; later ranking consumes recency_memory_boost.",
+    "intended_target_doc": "f08_retrieval_safety_note_a_target",
+    "negative_control": false,
+    "observation_operation": "inspect_memory",
+    "order_A_steps": [
+      {
+        "operation": "answer",
+        "query": "retrieval safety policy final answer controlled evidence query anchor"
+      }
+    ],
+    "order_B_steps": [
+      {
+        "operation": "inspect_memory",
+        "query": "unrelated telemetry sandbox diagnostic state only probe retrieval_safety_note"
+      },
+      {
+        "operation": "answer",
+        "query": "retrieval safety policy final answer controlled evidence query anchor"
+      }
+    ],
+    "possible_flipped_doc": "f08_retrieval_safety_note_e_unrelated_observation",
+    "q1_observation_query": "unrelated telemetry sandbox diagnostic state only probe retrieval_safety_note",
+    "q2_answer_query": "retrieval safety policy final answer controlled evidence query anchor",
+    "scenario_id": "recency_memory_feedback_08_state_only",
+    "topic_family": "retrieval_safety_note",
+    "variant": "recency_memory_feedback"
+  },
+  {
+    "expected_mechanism": "The explanation stores focus terms from the observed context; later ranking consumes focus_term_boost.",
+    "intended_target_doc": "f01_cache_policy_a_target",
+    "negative_control": false,
+    "observation_operation": "explain_retrieval",
+    "order_A_steps": [
+      {
+        "operation": "answer",
+        "query": "cache eviction policy final answer controlled evidence query anchor"
+      }
+    ],
+    "order_B_steps": [
+      {
+        "operation": "explain_retrieval",
+        "query": "observation preview logging explanation cache trace rationale obs_cache_policy LRI"
+      },
+      {
+        "operation": "answer",
+        "query": "cache eviction policy final answer controlled evidence query anchor"
+      }
+    ],
+    "possible_flipped_doc": "f01_cache_policy_c_observation_boostable",
+    "q1_observation_query": "observation preview logging explanation cache trace rationale obs_cache_policy LRI",
+    "q2_answer_query": "cache eviction policy final answer controlled evidence query anchor",
+    "scenario_id": "explanation_focus_feedback_01_answer_flip",
+    "topic_family": "cache_policy",
+    "variant": "explanation_focus_feedback"
+  },
+  {
+    "expected_mechanism": "The explanation stores focus terms from the observed context; later ranking consumes focus_term_boost.",
+    "intended_target_doc": "f02_streaming_response_tool_a_target",
+    "negative_control": false,
+    "observation_operation": "explain_retrieval",
+    "order_A_steps": [
+      {
+        "operation": "answer",
+        "query": "streaming response tool final answer controlled evidence query anchor"
+      }
+    ],
+    "order_B_steps": [
+      {
+        "operation": "explain_retrieval",
+        "query": "observation preview logging explanation cache trace rationale obs_streaming_response_tool logger"
+      },
+      {
+        "operation": "answer",
+        "query": "streaming response tool final answer controlled evidence query anchor"
+      }
+    ],
+    "possible_flipped_doc": "f02_streaming_response_tool_c_observation_boostable",
+    "q1_observation_query": "observation preview logging explanation cache trace rationale obs_streaming_response_tool logger",
+    "q2_answer_query": "streaming response tool final answer controlled evidence query anchor",
+    "scenario_id": "explanation_focus_feedback_02_answer_flip",
+    "topic_family": "streaming_response_tool",
+    "variant": "explanation_focus_feedback"
+  },
+  {
+    "expected_mechanism": "The explanation stores focus terms from the observed context; later ranking consumes focus_term_boost.",
+    "intended_target_doc": "f03_accessibility_workshop_city_a_target",
+    "negative_control": false,
+    "observation_operation": "explain_retrieval",
+    "order_A_steps": [
+      {
+        "operation": "answer",
+        "query": "accessibility workshop city final answer controlled evidence query anchor"
+      }
+    ],
+    "order_B_steps": [
+      {
+        "operation": "explain_retrieval",
+        "query": "observation preview logging explanation cache trace rationale obs_accessibility_workshop_city Boston"
+      },
+      {
+        "operation": "answer",
+        "query": "accessibility workshop city final answer controlled evidence query anchor"
+      }
+    ],
+    "possible_flipped_doc": "f03_accessibility_workshop_city_c_observation_boostable",
+    "q1_observation_query": "observation preview logging explanation cache trace rationale obs_accessibility_workshop_city Boston",
+    "q2_answer_query": "accessibility workshop city final answer controlled evidence query anchor",
+    "scenario_id": "explanation_focus_feedback_03_answer_flip",
+    "topic_family": "accessibility_workshop_city",
+    "variant": "explanation_focus_feedback"
+  },
+  {
+    "expected_mechanism": "The explanation stores focus terms from the observed context; later ranking consumes focus_term_boost.",
+    "intended_target_doc": "f04_markdown_reuse_a_target",
+    "negative_control": false,
+    "observation_operation": "explain_retrieval",
+    "order_A_steps": [
+      {
+        "operation": "answer",
+        "query": "markdown reuse action final answer controlled evidence query anchor"
+      }
+    ],
+    "order_B_steps": [
+      {
+        "operation": "explain_retrieval",
+        "query": "observation preview logging explanation cache trace rationale obs_markdown_reuse build_parser"
+      },
+      {
+        "operation": "answer",
+        "query": "markdown reuse action final answer controlled evidence query anchor"
+      }
+    ],
+    "possible_flipped_doc": "f04_markdown_reuse_c_observation_boostable",
+    "q1_observation_query": "observation preview logging explanation cache trace rationale obs_markdown_reuse build_parser",
+    "q2_answer_query": "markdown reuse action final answer controlled evidence query anchor",
+    "scenario_id": "explanation_focus_feedback_04_answer_flip",
+    "topic_family": "markdown_reuse",
+    "variant": "explanation_focus_feedback"
+  },
+  {
+    "expected_mechanism": "The explanation stores focus terms from the observed context; later ranking consumes focus_term_boost.",
+    "intended_target_doc": "f05_memory_system_a_target",
+    "negative_control": false,
+    "observation_operation": "explain_retrieval",
+    "order_A_steps": [
+      {
+        "operation": "answer",
+        "query": "memory system answer final answer controlled evidence query anchor"
+      }
+    ],
+    "order_B_steps": [
+      {
+        "operation": "explain_retrieval",
+        "query": "observation preview logging explanation cache trace rationale obs_memory_system beta memory"
+      },
+      {
+        "operation": "answer",
+        "query": "memory system answer final answer controlled evidence query anchor"
+      }
+    ],
+    "possible_flipped_doc": "f05_memory_system_c_observation_boostable",
+    "q1_observation_query": "observation preview logging explanation cache trace rationale obs_memory_system beta memory",
+    "q2_answer_query": "memory system answer final answer controlled evidence query anchor",
+    "scenario_id": "explanation_focus_feedback_05_answer_flip",
+    "topic_family": "memory_system",
+    "variant": "explanation_focus_feedback"
+  },
+  {
+    "expected_mechanism": "The explanation stores focus terms from the observed context; later ranking consumes focus_term_boost.",
+    "intended_target_doc": "f06_package_diagnostic_behavior_a_target",
+    "negative_control": false,
+    "observation_operation": "explain_retrieval",
+    "order_A_steps": [
+      {
+        "operation": "answer",
+        "query": "package diagnostic behavior final answer controlled evidence query anchor"
+      }
+    ],
+    "order_B_steps": [
+      {
+        "operation": "explain_retrieval",
+        "query": "observation preview logging explanation cache trace rationale obs_package_diagnostic_behavior diagnostic mutation"
+      },
+      {
+        "operation": "answer",
+        "query": "package diagnostic behavior final answer controlled evidence query anchor"
+      }
+    ],
+    "possible_flipped_doc": "f06_package_diagnostic_behavior_c_observation_boostable",
+    "q1_observation_query": "observation preview logging explanation cache trace rationale obs_package_diagnostic_behavior diagnostic mutation",
+    "q2_answer_query": "package diagnostic behavior final answer controlled evidence query anchor",
+    "scenario_id": "explanation_focus_feedback_06_answer_flip",
+    "topic_family": "package_diagnostic_behavior",
+    "variant": "explanation_focus_feedback"
+  },
+  {
+    "expected_mechanism": "The explanation stores focus terms from the observed context; later ranking consumes focus_term_boost.",
+    "intended_target_doc": "f07_agent_tool_routing_a_target",
+    "negative_control": false,
+    "observation_operation": "explain_retrieval",
+    "order_A_steps": [
+      {
+        "operation": "answer",
+        "query": "agent tool routing final answer controlled evidence query anchor"
+      }
+    ],
+    "order_B_steps": [
+      {
+        "operation": "explain_retrieval",
+        "query": "secondary duplicate support retrieval order probe duplicate_agent_tool_routing calculator"
+      },
+      {
+        "operation": "answer",
+        "query": "agent tool routing final answer controlled evidence query anchor"
+      }
+    ],
+    "possible_flipped_doc": "f07_agent_tool_routing_d_same_answer_support",
+    "q1_observation_query": "secondary duplicate support retrieval order probe duplicate_agent_tool_routing calculator",
+    "q2_answer_query": "agent tool routing final answer controlled evidence query anchor",
+    "scenario_id": "explanation_focus_feedback_07_retrieval_order_only",
+    "topic_family": "agent_tool_routing",
+    "variant": "explanation_focus_feedback"
+  },
+  {
+    "expected_mechanism": "The explanation stores focus terms from the observed context; later ranking consumes focus_term_boost.",
+    "intended_target_doc": "f08_retrieval_safety_note_a_target",
+    "negative_control": false,
+    "observation_operation": "explain_retrieval",
+    "order_A_steps": [
+      {
+        "operation": "answer",
+        "query": "retrieval safety policy final answer controlled evidence query anchor"
+      }
+    ],
+    "order_B_steps": [
+      {
+        "operation": "explain_retrieval",
+        "query": "unrelated telemetry sandbox diagnostic state only probe retrieval_safety_note"
+      },
+      {
+        "operation": "answer",
+        "query": "retrieval safety policy final answer controlled evidence query anchor"
+      }
+    ],
+    "possible_flipped_doc": "f08_retrieval_safety_note_e_unrelated_observation",
+    "q1_observation_query": "unrelated telemetry sandbox diagnostic state only probe retrieval_safety_note",
+    "q2_answer_query": "retrieval safety policy final answer controlled evidence query anchor",
+    "scenario_id": "explanation_focus_feedback_08_state_only",
+    "topic_family": "retrieval_safety_note",
+    "variant": "explanation_focus_feedback"
+  },
+  {
+    "expected_mechanism": "The observation materializes context cache entries; later ranking consumes cache_presence_boost.",
+    "intended_target_doc": "f01_cache_policy_a_target",
+    "negative_control": false,
+    "observation_operation": "materialize_context_cache",
+    "order_A_steps": [
+      {
+        "operation": "answer",
+        "query": "cache eviction policy final answer controlled evidence query anchor"
+      }
+    ],
+    "order_B_steps": [
+      {
+        "operation": "materialize_context_cache",
+        "query": "observation preview logging explanation cache trace rationale obs_cache_policy LRI"
+      },
+      {
+        "operation": "answer",
+        "query": "cache eviction policy final answer controlled evidence query anchor"
+      }
+    ],
+    "possible_flipped_doc": "f01_cache_policy_c_observation_boostable",
+    "q1_observation_query": "observation preview logging explanation cache trace rationale obs_cache_policy LRI",
+    "q2_answer_query": "cache eviction policy final answer controlled evidence query anchor",
+    "scenario_id": "cache_materialization_feedback_01_answer_flip",
+    "topic_family": "cache_policy",
+    "variant": "cache_materialization_feedback"
+  },
+  {
+    "expected_mechanism": "The observation materializes context cache entries; later ranking consumes cache_presence_boost.",
+    "intended_target_doc": "f02_streaming_response_tool_a_target",
+    "negative_control": false,
+    "observation_operation": "preview_context",
+    "order_A_steps": [
+      {
+        "operation": "answer",
+        "query": "streaming response tool final answer controlled evidence query anchor"
+      }
+    ],
+    "order_B_steps": [
+      {
+        "operation": "preview_context",
+        "query": "observation preview logging explanation cache trace rationale obs_streaming_response_tool logger"
+      },
+      {
+        "operation": "answer",
+        "query": "streaming response tool final answer controlled evidence query anchor"
+      }
+    ],
+    "possible_flipped_doc": "f02_streaming_response_tool_c_observation_boostable",
+    "q1_observation_query": "observation preview logging explanation cache trace rationale obs_streaming_response_tool logger",
+    "q2_answer_query": "streaming response tool final answer controlled evidence query anchor",
+    "scenario_id": "cache_materialization_feedback_02_answer_flip",
+    "topic_family": "streaming_response_tool",
+    "variant": "cache_materialization_feedback"
+  },
+  {
+    "expected_mechanism": "The observation materializes context cache entries; later ranking consumes cache_presence_boost.",
+    "intended_target_doc": "f03_accessibility_workshop_city_a_target",
+    "negative_control": false,
+    "observation_operation": "log_retrieval",
+    "order_A_steps": [
+      {
+        "operation": "answer",
+        "query": "accessibility workshop city final answer controlled evidence query anchor"
+      }
+    ],
+    "order_B_steps": [
+      {
+        "operation": "log_retrieval",
+        "query": "observation preview logging explanation cache trace rationale obs_accessibility_workshop_city Boston"
+      },
+      {
+        "operation": "answer",
+        "query": "accessibility workshop city final answer controlled evidence query anchor"
+      }
+    ],
+    "possible_flipped_doc": "f03_accessibility_workshop_city_c_observation_boostable",
+    "q1_observation_query": "observation preview logging explanation cache trace rationale obs_accessibility_workshop_city Boston",
+    "q2_answer_query": "accessibility workshop city final answer controlled evidence query anchor",
+    "scenario_id": "cache_materialization_feedback_03_answer_flip",
+    "topic_family": "accessibility_workshop_city",
+    "variant": "cache_materialization_feedback"
+  },
+  {
+    "expected_mechanism": "The observation materializes context cache entries; later ranking consumes cache_presence_boost.",
+    "intended_target_doc": "f04_markdown_reuse_a_target",
+    "negative_control": false,
+    "observation_operation": "materialize_context_cache",
+    "order_A_steps": [
+      {
+        "operation": "answer",
+        "query": "markdown reuse action final answer controlled evidence query anchor"
+      }
+    ],
+    "order_B_steps": [
+      {
+        "operation": "materialize_context_cache",
+        "query": "observation preview logging explanation cache trace rationale obs_markdown_reuse build_parser"
+      },
+      {
+        "operation": "answer",
+        "query": "markdown reuse action final answer controlled evidence query anchor"
+      }
+    ],
+    "possible_flipped_doc": "f04_markdown_reuse_c_observation_boostable",
+    "q1_observation_query": "observation preview logging explanation cache trace rationale obs_markdown_reuse build_parser",
+    "q2_answer_query": "markdown reuse action final answer controlled evidence query anchor",
+    "scenario_id": "cache_materialization_feedback_04_answer_flip",
+    "topic_family": "markdown_reuse",
+    "variant": "cache_materialization_feedback"
+  },
+  {
+    "expected_mechanism": "The observation materializes context cache entries; later ranking consumes cache_presence_boost.",
+    "intended_target_doc": "f05_memory_system_a_target",
+    "negative_control": false,
+    "observation_operation": "preview_context",
+    "order_A_steps": [
+      {
+        "operation": "answer",
+        "query": "memory system answer final answer controlled evidence query anchor"
+      }
+    ],
+    "order_B_steps": [
+      {
+        "operation": "preview_context",
+        "query": "observation preview logging explanation cache trace rationale obs_memory_system beta memory"
+      },
+      {
+        "operation": "answer",
+        "query": "memory system answer final answer controlled evidence query anchor"
+      }
+    ],
+    "possible_flipped_doc": "f05_memory_system_c_observation_boostable",
+    "q1_observation_query": "observation preview logging explanation cache trace rationale obs_memory_system beta memory",
+    "q2_answer_query": "memory system answer final answer controlled evidence query anchor",
+    "scenario_id": "cache_materialization_feedback_05_answer_flip",
+    "topic_family": "memory_system",
+    "variant": "cache_materialization_feedback"
+  },
+  {
+    "expected_mechanism": "The observation materializes context cache entries; later ranking consumes cache_presence_boost.",
+    "intended_target_doc": "f06_package_diagnostic_behavior_a_target",
+    "negative_control": false,
+    "observation_operation": "log_retrieval",
+    "order_A_steps": [
+      {
+        "operation": "answer",
+        "query": "package diagnostic behavior final answer controlled evidence query anchor"
+      }
+    ],
+    "order_B_steps": [
+      {
+        "operation": "log_retrieval",
+        "query": "observation preview logging explanation cache trace rationale obs_package_diagnostic_behavior diagnostic mutation"
+      },
+      {
+        "operation": "answer",
+        "query": "package diagnostic behavior final answer controlled evidence query anchor"
+      }
+    ],
+    "possible_flipped_doc": "f06_package_diagnostic_behavior_c_observation_boostable",
+    "q1_observation_query": "observation preview logging explanation cache trace rationale obs_package_diagnostic_behavior diagnostic mutation",
+    "q2_answer_query": "package diagnostic behavior final answer controlled evidence query anchor",
+    "scenario_id": "cache_materialization_feedback_06_answer_flip",
+    "topic_family": "package_diagnostic_behavior",
+    "variant": "cache_materialization_feedback"
+  },
+  {
+    "expected_mechanism": "The observation materializes context cache entries; later ranking consumes cache_presence_boost.",
+    "intended_target_doc": "f07_agent_tool_routing_a_target",
+    "negative_control": false,
+    "observation_operation": "materialize_context_cache",
+    "order_A_steps": [
+      {
+        "operation": "answer",
+        "query": "agent tool routing final answer controlled evidence query anchor"
+      }
+    ],
+    "order_B_steps": [
+      {
+        "operation": "materialize_context_cache",
+        "query": "secondary duplicate support retrieval order probe duplicate_agent_tool_routing calculator"
+      },
+      {
+        "operation": "answer",
+        "query": "agent tool routing final answer controlled evidence query anchor"
+      }
+    ],
+    "possible_flipped_doc": "f07_agent_tool_routing_d_same_answer_support",
+    "q1_observation_query": "secondary duplicate support retrieval order probe duplicate_agent_tool_routing calculator",
+    "q2_answer_query": "agent tool routing final answer controlled evidence query anchor",
+    "scenario_id": "cache_materialization_feedback_07_retrieval_order_only",
+    "topic_family": "agent_tool_routing",
+    "variant": "cache_materialization_feedback"
+  },
+  {
+    "expected_mechanism": "The observation materializes context cache entries; later ranking consumes cache_presence_boost.",
+    "intended_target_doc": "f08_retrieval_safety_note_a_target",
+    "negative_control": false,
+    "observation_operation": "preview_context",
+    "order_A_steps": [
+      {
+        "operation": "answer",
+        "query": "retrieval safety policy final answer controlled evidence query anchor"
+      }
+    ],
+    "order_B_steps": [
+      {
+        "operation": "preview_context",
+        "query": "unrelated telemetry sandbox diagnostic state only probe retrieval_safety_note"
+      },
+      {
+        "operation": "answer",
+        "query": "retrieval safety policy final answer controlled evidence query anchor"
+      }
+    ],
+    "possible_flipped_doc": "f08_retrieval_safety_note_e_unrelated_observation",
+    "q1_observation_query": "unrelated telemetry sandbox diagnostic state only probe retrieval_safety_note",
+    "q2_answer_query": "retrieval safety policy final answer controlled evidence query anchor",
+    "scenario_id": "cache_materialization_feedback_08_state_only",
+    "topic_family": "retrieval_safety_note",
+    "variant": "cache_materialization_feedback"
+  },
+  {
+    "expected_mechanism": "The tool trace stores tool/document associations; later ranking consumes tool_trace_boost.",
+    "intended_target_doc": "f01_cache_policy_a_target",
+    "negative_control": false,
+    "observation_operation": "trace_tool_call",
+    "order_A_steps": [
+      {
+        "operation": "answer",
+        "query": "cache eviction policy final answer controlled evidence query anchor"
+      }
+    ],
+    "order_B_steps": [
+      {
+        "operation": "trace_tool_call",
+        "query": "observation preview logging explanation cache trace rationale obs_cache_policy LRI",
+        "tool_name": "retriever"
+      },
+      {
+        "operation": "answer",
+        "query": "cache eviction policy final answer controlled evidence query anchor"
+      }
+    ],
+    "possible_flipped_doc": "f01_cache_policy_c_observation_boostable",
+    "q1_observation_query": "observation preview logging explanation cache trace rationale obs_cache_policy LRI",
+    "q2_answer_query": "cache eviction policy final answer controlled evidence query anchor",
+    "scenario_id": "agent_trace_feedback_01_answer_flip",
+    "topic_family": "cache_policy",
+    "variant": "agent_trace_feedback"
+  },
+  {
+    "expected_mechanism": "The tool trace stores tool/document associations; later ranking consumes tool_trace_boost.",
+    "intended_target_doc": "f02_streaming_response_tool_a_target",
+    "negative_control": false,
+    "observation_operation": "trace_tool_call",
+    "order_A_steps": [
+      {
+        "operation": "answer",
+        "query": "streaming response tool final answer controlled evidence query anchor"
+      }
+    ],
+    "order_B_steps": [
+      {
+        "operation": "trace_tool_call",
+        "query": "observation preview logging explanation cache trace rationale obs_streaming_response_tool logger",
+        "tool_name": "retriever"
+      },
+      {
+        "operation": "answer",
+        "query": "streaming response tool final answer controlled evidence query anchor"
+      }
+    ],
+    "possible_flipped_doc": "f02_streaming_response_tool_c_observation_boostable",
+    "q1_observation_query": "observation preview logging explanation cache trace rationale obs_streaming_response_tool logger",
+    "q2_answer_query": "streaming response tool final answer controlled evidence query anchor",
+    "scenario_id": "agent_trace_feedback_02_answer_flip",
+    "topic_family": "streaming_response_tool",
+    "variant": "agent_trace_feedback"
+  },
+  {
+    "expected_mechanism": "The tool trace stores tool/document associations; later ranking consumes tool_trace_boost.",
+    "intended_target_doc": "f03_accessibility_workshop_city_a_target",
+    "negative_control": false,
+    "observation_operation": "trace_tool_call",
+    "order_A_steps": [
+      {
+        "operation": "answer",
+        "query": "accessibility workshop city final answer controlled evidence query anchor"
+      }
+    ],
+    "order_B_steps": [
+      {
+        "operation": "trace_tool_call",
+        "query": "observation preview logging explanation cache trace rationale obs_accessibility_workshop_city Boston",
+        "tool_name": "retriever"
+      },
+      {
+        "operation": "answer",
+        "query": "accessibility workshop city final answer controlled evidence query anchor"
+      }
+    ],
+    "possible_flipped_doc": "f03_accessibility_workshop_city_c_observation_boostable",
+    "q1_observation_query": "observation preview logging explanation cache trace rationale obs_accessibility_workshop_city Boston",
+    "q2_answer_query": "accessibility workshop city final answer controlled evidence query anchor",
+    "scenario_id": "agent_trace_feedback_03_answer_flip",
+    "topic_family": "accessibility_workshop_city",
+    "variant": "agent_trace_feedback"
+  },
+  {
+    "expected_mechanism": "The tool trace stores tool/document associations; later ranking consumes tool_trace_boost.",
+    "intended_target_doc": "f04_markdown_reuse_a_target",
+    "negative_control": false,
+    "observation_operation": "trace_tool_call",
+    "order_A_steps": [
+      {
+        "operation": "answer",
+        "query": "markdown reuse action final answer controlled evidence query anchor"
+      }
+    ],
+    "order_B_steps": [
+      {
+        "operation": "trace_tool_call",
+        "query": "observation preview logging explanation cache trace rationale obs_markdown_reuse build_parser",
+        "tool_name": "retriever"
+      },
+      {
+        "operation": "answer",
+        "query": "markdown reuse action final answer controlled evidence query anchor"
+      }
+    ],
+    "possible_flipped_doc": "f04_markdown_reuse_c_observation_boostable",
+    "q1_observation_query": "observation preview logging explanation cache trace rationale obs_markdown_reuse build_parser",
+    "q2_answer_query": "markdown reuse action final answer controlled evidence query anchor",
+    "scenario_id": "agent_trace_feedback_04_answer_flip",
+    "topic_family": "markdown_reuse",
+    "variant": "agent_trace_feedback"
+  },
+  {
+    "expected_mechanism": "The tool trace stores tool/document associations; later ranking consumes tool_trace_boost.",
+    "intended_target_doc": "f05_memory_system_a_target",
+    "negative_control": false,
+    "observation_operation": "trace_tool_call",
+    "order_A_steps": [
+      {
+        "operation": "answer",
+        "query": "memory system answer final answer controlled evidence query anchor"
+      }
+    ],
+    "order_B_steps": [
+      {
+        "operation": "trace_tool_call",
+        "query": "observation preview logging explanation cache trace rationale obs_memory_system beta memory",
+        "tool_name": "retriever"
+      },
+      {
+        "operation": "answer",
+        "query": "memory system answer final answer controlled evidence query anchor"
+      }
+    ],
+    "possible_flipped_doc": "f05_memory_system_c_observation_boostable",
+    "q1_observation_query": "observation preview logging explanation cache trace rationale obs_memory_system beta memory",
+    "q2_answer_query": "memory system answer final answer controlled evidence query anchor",
+    "scenario_id": "agent_trace_feedback_05_answer_flip",
+    "topic_family": "memory_system",
+    "variant": "agent_trace_feedback"
+  },
+  {
+    "expected_mechanism": "The tool trace stores tool/document associations; later ranking consumes tool_trace_boost.",
+    "intended_target_doc": "f06_package_diagnostic_behavior_a_target",
+    "negative_control": false,
+    "observation_operation": "trace_tool_call",
+    "order_A_steps": [
+      {
+        "operation": "answer",
+        "query": "package diagnostic behavior final answer controlled evidence query anchor"
+      }
+    ],
+    "order_B_steps": [
+      {
+        "operation": "trace_tool_call",
+        "query": "observation preview logging explanation cache trace rationale obs_package_diagnostic_behavior diagnostic mutation",
+        "tool_name": "retriever"
+      },
+      {
+        "operation": "answer",
+        "query": "package diagnostic behavior final answer controlled evidence query anchor"
+      }
+    ],
+    "possible_flipped_doc": "f06_package_diagnostic_behavior_c_observation_boostable",
+    "q1_observation_query": "observation preview logging explanation cache trace rationale obs_package_diagnostic_behavior diagnostic mutation",
+    "q2_answer_query": "package diagnostic behavior final answer controlled evidence query anchor",
+    "scenario_id": "agent_trace_feedback_06_answer_flip",
+    "topic_family": "package_diagnostic_behavior",
+    "variant": "agent_trace_feedback"
+  },
+  {
+    "expected_mechanism": "The tool trace stores tool/document associations; later ranking consumes tool_trace_boost.",
+    "intended_target_doc": "f07_agent_tool_routing_a_target",
+    "negative_control": false,
+    "observation_operation": "trace_tool_call",
+    "order_A_steps": [
+      {
+        "operation": "answer",
+        "query": "agent tool routing final answer controlled evidence query anchor"
+      }
+    ],
+    "order_B_steps": [
+      {
+        "operation": "trace_tool_call",
+        "query": "secondary duplicate support retrieval order probe duplicate_agent_tool_routing calculator",
+        "tool_name": "retriever"
+      },
+      {
+        "operation": "answer",
+        "query": "agent tool routing final answer controlled evidence query anchor"
+      }
+    ],
+    "possible_flipped_doc": "f07_agent_tool_routing_d_same_answer_support",
+    "q1_observation_query": "secondary duplicate support retrieval order probe duplicate_agent_tool_routing calculator",
+    "q2_answer_query": "agent tool routing final answer controlled evidence query anchor",
+    "scenario_id": "agent_trace_feedback_07_retrieval_order_only",
+    "topic_family": "agent_tool_routing",
+    "variant": "agent_trace_feedback"
+  },
+  {
+    "expected_mechanism": "The tool trace stores tool/document associations; later ranking consumes tool_trace_boost.",
+    "intended_target_doc": "f08_retrieval_safety_note_a_target",
+    "negative_control": false,
+    "observation_operation": "trace_tool_call",
+    "order_A_steps": [
+      {
+        "operation": "answer",
+        "query": "retrieval safety policy final answer controlled evidence query anchor"
+      }
+    ],
+    "order_B_steps": [
+      {
+        "operation": "trace_tool_call",
+        "query": "unrelated telemetry sandbox diagnostic state only probe retrieval_safety_note",
+        "tool_name": "retriever"
+      },
+      {
+        "operation": "answer",
+        "query": "retrieval safety policy final answer controlled evidence query anchor"
+      }
+    ],
+    "possible_flipped_doc": "f08_retrieval_safety_note_e_unrelated_observation",
+    "q1_observation_query": "unrelated telemetry sandbox diagnostic state only probe retrieval_safety_note",
+    "q2_answer_query": "retrieval safety policy final answer controlled evidence query anchor",
+    "scenario_id": "agent_trace_feedback_08_state_only",
+    "topic_family": "retrieval_safety_note",
+    "variant": "agent_trace_feedback"
+  }
+]

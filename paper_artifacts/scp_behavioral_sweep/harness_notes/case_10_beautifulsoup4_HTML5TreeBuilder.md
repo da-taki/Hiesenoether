@@ -1,6 +1,6 @@
 # Case 10: beautifulsoup4 HTML5TreeBuilder
 
-- Runnable harness: `C:\Users\Asus\Desktop\Profitlo Projects\Hiesenoether\paper_artifacts\scp_behavioral_sweep\harnesses\case_10_beautifulsoup4_HTML5TreeBuilder.py`
+- Runnable harness: `<repo>\paper_artifacts\scp_behavioral_sweep\harnesses\case_10_beautifulsoup4_HTML5TreeBuilder.py`
 - Expected operation: `create_treebuilder`
 - Expected latent state: `underlying_builder`
 - Construction feasibility: `simple`

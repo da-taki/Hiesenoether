@@ -8,7 +8,6 @@ from pathlib import Path
 from validation.exact_semantics import evaluate as osds_eval, Params
 from validation.exact_semantics_runtime import run_program as rt_eval
 
-
 def divergence_osds(L: int, m: int, d: int,
                     kind: str, self_k: int) -> Fraction:
     body = ("READ",) * L + ("OBS",) * m
@@ -17,21 +16,15 @@ def divergence_osds(L: int, m: int, d: int,
             for perm in set(permutations(body))]
     return max(vals) - min(vals)
 
-
 def divergence_runtime(L: int, m: int, d: int) -> Fraction:
     body = ("READ",) * L + ("OBS",) * m
     vals = [rt_eval(perm, d) for perm in set(permutations(body))]
     return max(vals) - min(vals)
 
-
 def kind_for(d: int):
-    # Match the Hiesenoether NONLINEAR_LINE mapping:
-    #   d=1 -> no cap, d=2 -> y*x, d=3 -> y*x*x  (all compositional)
-    #   d=4 -> y*y*x  (self-referential with k=2)
     if d == 4:
         return "self_referential", 2
     return "compositional", 0
-
 
 def grid(L_range, m_range, d_range):
     out = []
@@ -56,9 +49,7 @@ def grid(L_range, m_range, d_range):
                 })
     return out
 
-
 def check() -> dict:
-    # Keep ranges small. L! grows fast and L=8 with m=3 is 11! permutations.
     return {"d2_compositional": grid(L_range=range(2, 7),
                                      m_range=range(0, 6),
                                      d_range=[2]),
@@ -71,7 +62,6 @@ def check() -> dict:
             "m_sweep_at_L6_d2": grid(L_range=[6],
                                      m_range=range(0, 6),
                                      d_range=[2])}
-
 
 if __name__ == "__main__":
     out = check()

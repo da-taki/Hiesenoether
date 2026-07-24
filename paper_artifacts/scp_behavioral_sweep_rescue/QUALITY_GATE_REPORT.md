@@ -2,11 +2,11 @@
 
 ## Commands Run
 
-- `C:\Users\Asus\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\python.exe run_tests.py`
-- `C:\Users\Asus\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\python.exe -m pytest`
-- `C:\Users\Asus\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\python.exe -m pytest tests`
-- `C:\Users\Asus\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\python.exe paper_artifacts\scp_realworld_revision\run_real_case_harnesses.py`
-- `C:\Users\Asus\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\python.exe paper_artifacts\scp_behavioral_sweep_rescue\run_rescue_harnesses.py`
+- `python run_tests.py`
+- `python -m pytest`
+- `python -m pytest tests`
+- `python paper_artifacts\scp_realworld_revision\run_real_case_harnesses.py`
+- `python paper_artifacts\scp_behavioral_sweep_rescue\run_rescue_harnesses.py`
 
 ## Results
 

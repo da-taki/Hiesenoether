@@ -18,7 +18,7 @@ Runtime:
 
 Command:
 
-`C:\Users\Asus\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\python.exe paper_artifacts\real_named_case_reproduction.py`
+`python paper_artifacts\real_named_case_reproduction.py`
 
 Observed output from the child process:
 

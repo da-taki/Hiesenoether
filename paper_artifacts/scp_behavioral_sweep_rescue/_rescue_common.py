@@ -6,12 +6,10 @@ import sys
 import warnings
 from pathlib import Path
 
-
 BASE = Path(__file__).resolve().parent
 REPO = BASE.parents[1]
 SNAPSHOT = REPO / "paper_artifacts" / "scp_realworld_revision" / "source_snapshot"
 OUTPUT_DIR = BASE / "outputs"
-
 
 CASES = {
     1: ("markdown", "3.10.2", "Markdown", "markdown-3.10.2\\markdown\\core.py", 1),
@@ -31,7 +29,6 @@ CASES = {
     15: ("h11", "0.16.0", "ReceiveBuffer", "h11-0.16.0\\h11\\_receivebuffer.py", 50),
 }
 
-
 BOUNDARY_NOTES = {
     1: "The Python-Markdown docs explicitly say reset() should be called between convert() calls; count this as stateful reuse behavior, not a package bug.",
     2: "Iterator consumption is expected behavior; the rescue shows the generic no-arg harness missed a real cursor effect.",
@@ -50,7 +47,6 @@ BOUNDARY_NOTES = {
     15: "ReceiveBuffer line extraction is destructive by design; it is a cursor semantics example.",
 }
 
-
 def add_snapshot_paths() -> None:
     if not SNAPSHOT.exists():
         return
@@ -65,7 +61,6 @@ def add_snapshot_paths() -> None:
         if path not in sys.path:
             sys.path.insert(0, path)
 
-
 def stable(value):
     if isinstance(value, bytes):
         return repr(value)
@@ -78,7 +73,6 @@ def stable(value):
     if isinstance(value, (list, tuple)):
         return [stable(v) for v in value]
     return repr(value)
-
 
 def classify(result_a, result_b):
     output_diff = result_a.get("later") != result_b.get("later")
@@ -93,7 +87,6 @@ def classify(result_a, result_b):
     else:
         classification = "structural_only_no_runtime_difference"
     return output_diff, branch_flip, state_diff, classification
-
 
 def base_result(rank, operation_a, operation_b, fixture_description):
     package, version, class_name, file_path, original_rank = CASES[rank]
@@ -117,7 +110,6 @@ def base_result(rank, operation_a, operation_b, fixture_description):
         "failure_reason": "",
     }
 
-
 def finalize(payload, result_a, result_b):
     payload["result_A"] = stable(result_a)
     payload["result_B"] = stable(result_b)
@@ -127,7 +119,6 @@ def finalize(payload, result_a, result_b):
     payload["state_diff"] = state_diff
     payload["classification"] = classification
     return payload
-
 
 def case_1():
     payload = base_result(1, "convert('[alpha][]')", "convert('[alpha]: https://example.invalid') first; then convert('[alpha][]')", "Two real Markdown strings on one Markdown instance, output_format='html'.")
@@ -139,7 +130,6 @@ def case_1():
     result_b = {"kind": "value", "observation": observation, "later": b_md.convert("[alpha][]"), "state": {"references": dict(b_md.references)}}
     return finalize(payload, result_a, result_b)
 
-
 def case_2():
     payload = base_result(2, "next(seekable(iter(['a','b','c'])))", "next(it) first; then next(it)", "seekable over iter(['a', 'b', 'c']).")
     from more_itertools import seekable
@@ -150,7 +140,6 @@ def case_2():
     result_b = {"kind": "value", "observation": observation, "later": next(b_it), "state": {"elements": list(b_it.elements())}}
     return finalize(payload, result_a, result_b)
 
-
 def case_3():
     payload = base_result(3, "reset_string() on EscapeSequence(fg='ansired')", "color_string() first; then reset_string()", "EscapeSequence(fg='ansired') using Pygments terminal formatter internals.")
     from pygments.formatters.terminal256 import EscapeSequence
@@ -160,7 +149,6 @@ def case_3():
     observation = b_esc.color_string()
     result_b = {"kind": "value", "observation": observation, "later": b_esc.reset_string(), "state": dict(b_esc.__dict__)}
     return finalize(payload, result_a, result_b)
-
 
 def case_4():
     payload = base_result(4, "inspect transform priority queue", "get_priority_string(10) first; then inspect transform priority queue", "docutils new_document with two tiny Transform subclasses.")
@@ -194,7 +182,6 @@ def case_4():
     result_b = {"kind": "value", "observation": observation, "later": [t[0] for t in b_tr.transforms], "state": {"serialno": b_tr.serialno, "sorted": b_tr.sorted}}
     return finalize(payload, result_a, result_b)
 
-
 def case_5():
     payload = base_result(5, "list(CSSMatch(...).select())", "match(first p) first; then list(CSSMatch(...).select())", "BeautifulSoup tree and soupsieve compiled selector 'p.a'.")
     import soupsieve as sv
@@ -210,7 +197,6 @@ def case_5():
     result_b = {"kind": "value", "observation": observation, "later": [str(tag) for tag in b_match.select()], "state": {"cached_meta_lang": b_match.cached_meta_lang, "cached_default_forms": b_match.cached_default_forms}}
     return finalize(payload, result_a, result_b)
 
-
 def case_6():
     payload = base_result(6, "str(soup)", "first <p>.extract() first; then str(soup)", "BeautifulSoup('<p>a</p><p>b</p>', 'html.parser'); Tag is a PageElement subclass.")
     from bs4 import BeautifulSoup
@@ -220,7 +206,6 @@ def case_6():
     observation = str(b_soup.find_all("p")[0].extract())
     result_b = {"kind": "value", "observation": observation, "later": str(b_soup), "state": {"p_count": len(b_soup.find_all("p"))}}
     return finalize(payload, result_a, result_b)
-
 
 def case_7():
     payload = base_result(7, "insert c after initializing LRI with a,b", "__getitem__('a') first; then insert c", "LRI(max_size=2) with keys a, b, c.")
@@ -235,7 +220,6 @@ def case_7():
 
     return finalize(payload, run(False), run(True))
 
-
 def case_8():
     payload = base_result(8, "insert c after initializing LRU with a,b", "__getitem__('a') first; then insert c", "LRU(max_size=2) with keys a, b, c.")
     from boltons.cacheutils import LRU
@@ -249,7 +233,6 @@ def case_8():
 
     return finalize(payload, run(False), run(True))
 
-
 def case_9():
     payload = base_result(9, "read(3)", "read(3) first; then read(3)", "MultiFileReader(BytesIO(b'ab'), BytesIO(b'cd'), BytesIO(b'e')).")
     from boltons.ioutils import MultiFileReader
@@ -260,7 +243,6 @@ def case_9():
         return {"kind": "value", "observation": observation, "later": reader.read(3), "state": {"index": reader._index}}
 
     return finalize(payload, run(False), run(True))
-
 
 def case_10():
     payload = base_result(10, "read validator.errors", "validate({'name': 'Al'}) first; then read validator.errors", "Public cerberus.Validator subclass with schema {'name': {'type': 'string', 'minlength': 3}}.")
@@ -273,7 +255,6 @@ def case_10():
     observation = b_validator.validate({"name": "Al"})
     result_b = {"kind": "value", "observation": observation, "later": dict(b_validator.errors), "state": {"document": b_validator.document, "errors": dict(b_validator.errors)}}
     return finalize(payload, result_a, result_b)
-
 
 def case_11():
     payload = base_result(11, "build command with grouped option and invoke --foo x", "call group decorator on a function first; then build and invoke command", "Tiny Click command using click-option-group public optgroup helpers and CliRunner.")
@@ -297,7 +278,6 @@ def case_11():
         warnings.simplefilter("ignore")
         return finalize(payload, build(False), build(True))
 
-
 def case_12():
     payload = base_result(12, "get_element('b')", "get_element('a') first; then get_element('b')", "BTree populated with dns.btree.KV('a','A') and KV('b','B').")
     from dns.btree import BTree, KV
@@ -315,7 +295,6 @@ def case_12():
     result_b = {"kind": "value", "observation": observation, "later": b_tree.get_element("b"), "state": {"size": b_tree.size, "cursors": len(b_tree.cursors)}}
     return finalize(payload, result_a, result_b)
 
-
 def case_13():
     payload = base_result(13, "get_string()", "get() first; then get_string()", "dns.tokenizer.Tokenizer over io.StringIO('alpha beta\\n').")
     from dns.tokenizer import Tokenizer
@@ -326,7 +305,6 @@ def case_13():
         return {"kind": "value", "observation": observation, "later": tokenizer.get_string(), "state": {"where": tokenizer.where(), "eof": tokenizer.eof, "ungotten_token": tokenizer.ungotten_token}}
 
     return finalize(payload, run(False), run(True))
-
 
 def case_14():
     payload = base_result(14, "ChunkedReader()(buffer)", "ChunkedReader()(buffer) first; then ChunkedReader()(buffer)", "h11 ReceiveBuffer containing a complete chunked body b'3\\r\\nabc\\r\\n0\\r\\n\\r\\n'.")
@@ -342,7 +320,6 @@ def case_14():
 
     return finalize(payload, run(False), run(True))
 
-
 def case_15():
     payload = base_result(15, "maybe_extract_lines()", "maybe_extract_next_line() first; then maybe_extract_lines()", "ReceiveBuffer containing HTTP-like header bytes.")
     from h11._receivebuffer import ReceiveBuffer
@@ -355,7 +332,6 @@ def case_15():
         return {"kind": "value", "observation": observation, "later": [bytes(line) for line in later] if later is not None else None, "state": {"buffer": bytes(buffer), "next_line_search": buffer._next_line_search, "multiple_lines_search": buffer._multiple_lines_search}}
 
     return finalize(payload, run(False), run(True))
-
 
 CASE_FUNCS = {
     1: case_1,
@@ -374,7 +350,6 @@ CASE_FUNCS = {
     14: case_14,
     15: case_15,
 }
-
 
 def run_case(rank: int) -> dict:
     add_snapshot_paths()
@@ -396,12 +371,10 @@ def run_case(rank: int) -> dict:
     print(json.dumps(payload, sort_keys=True))
     return payload
 
-
 def main(argv: list[str]) -> int:
     rank = int(argv[1]) if len(argv) > 1 else int(Path(argv[0]).stem.split("_")[1])
     run_case(rank)
     return 0
-
 
 if __name__ == "__main__":
     raise SystemExit(main(sys.argv))

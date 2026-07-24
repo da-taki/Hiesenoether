@@ -23,7 +23,6 @@ from analysis.pypi_static_benchmark import (
     version_from_metadata,
 )
 
-
 OUT_DIR = REPO / "paper_artifacts"
 SAMPLE_CSV = OUT_DIR / "unflagged_audit_sample.csv"
 SUMMARY_CSV_OUT = OUT_DIR / "unflagged_audit_summary.csv"
@@ -77,7 +76,6 @@ MUTATING_METHODS = {
     "setdefault",
 }
 
-
 @dataclass(frozen=True)
 class ClassRecord:
     package: str
@@ -94,15 +92,12 @@ class ClassRecord:
     def key(self) -> tuple[str, str, str, int]:
         return (self.package, self.file_path, self.class_name, self.line)
 
-
 def fraction_text(value: Fraction) -> str:
     return f"{value.numerator}/{value.denominator}"
-
 
 def read_csv(path: Path) -> list[dict[str, str]]:
     with path.open(newline="", encoding="utf-8") as f:
         return list(csv.DictReader(f))
-
 
 def iter_python_files(root: Path) -> Iterable[Path]:
     for path in sorted(root.rglob("*.py")):
@@ -114,10 +109,8 @@ def iter_python_files(root: Path) -> Iterable[Path]:
             continue
         yield path
 
-
 def python_file_count(root: Path | None) -> int:
     return 0 if root is None else sum(1 for _ in root.rglob("*.py"))
-
 
 def unwrap_single_source_dir(root: Path) -> Path:
     if python_file_count(root):
@@ -127,7 +120,6 @@ def unwrap_single_source_dir(root: Path) -> Path:
         return children[0]
     return root
 
-
 def source_root_for_package(package: str) -> Path | None:
     target = SOURCE_DIR / normalize_name(package)
     if target.exists():
@@ -135,7 +127,6 @@ def source_root_for_package(package: str) -> Path | None:
         if python_file_count(root):
             return root
     return None
-
 
 def collect_classes() -> list[ClassRecord]:
     package_rows = [row for row in read_csv(SUMMARY_CSV) if row["status"] == "analyzed"]
@@ -168,7 +159,6 @@ def collect_classes() -> list[ClassRecord]:
                 )
     return records
 
-
 def node_name(node: ast.AST) -> str:
     if isinstance(node, ast.Name):
         return node.id
@@ -178,10 +168,8 @@ def node_name(node: ast.AST) -> str:
         return node_name(node.func)
     return ""
 
-
 def is_property(method: ast.FunctionDef) -> bool:
     return any(node_name(dec) == "property" for dec in method.decorator_list)
-
 
 def is_read_shaped(method: ast.FunctionDef) -> bool:
     return (
@@ -190,16 +178,13 @@ def is_read_shaped(method: ast.FunctionDef) -> bool:
         or is_property(method)
     )
 
-
 def is_observation_shaped(method: ast.FunctionDef) -> bool:
     return method.name in OBS_NAMES or method.name.startswith(("observe", "inspect", "debug"))
-
 
 def self_attr(node: ast.AST) -> str | None:
     if isinstance(node, ast.Attribute) and isinstance(node.value, ast.Name) and node.value.id == "self":
         return node.attr
     return None
-
 
 def assigned_self_fields(method: ast.FunctionDef) -> set[str]:
     fields: set[str] = set()
@@ -224,7 +209,6 @@ def assigned_self_fields(method: ast.FunctionDef) -> set[str]:
                     fields.add(owner)
     return fields
 
-
 def return_reads(method: ast.FunctionDef) -> set[str]:
     fields: set[str] = set()
     for node in ast.walk(method):
@@ -235,10 +219,8 @@ def return_reads(method: ast.FunctionDef) -> set[str]:
                     fields.add(attr)
     return fields
 
-
 def method_has_return_value(method: ast.FunctionDef) -> bool:
     return any(isinstance(node, ast.Return) and node.value is not None for node in ast.walk(method))
-
 
 def has_dynamic_state_access(class_node: ast.ClassDef) -> bool:
     for node in ast.walk(class_node):
@@ -247,7 +229,6 @@ def has_dynamic_state_access(class_node: ast.ClassDef) -> bool:
         if isinstance(node, ast.Attribute) and node.attr == "__dict__":
             return True
     return False
-
 
 def has_composition_or_threshold(class_node: ast.ClassDef) -> bool:
     for node in ast.walk(class_node):
@@ -258,7 +239,6 @@ def has_composition_or_threshold(class_node: ast.ClassDef) -> bool:
         if isinstance(node, ast.If):
             return True
     return False
-
 
 def find_class_node(path: Path, class_name: str, line: int) -> ast.ClassDef | None:
     try:
@@ -275,7 +255,6 @@ def find_class_node(path: Path, class_name: str, line: int) -> ast.ClassDef | No
         return exact[0]
     return candidates[0] if candidates else None
 
-
 def snippet(path: Path, start: int, end: int) -> str:
     try:
         lines = path.read_text(encoding="utf-8", errors="replace").splitlines()
@@ -284,7 +263,6 @@ def snippet(path: Path, start: int, end: int) -> str:
     lo = max(1, start)
     hi = min(len(lines), max(end, start + 10))
     return "\\n".join(f"{idx}: {lines[idx - 1]}" for idx in range(lo, hi + 1))
-
 
 def audit_record(record: ClassRecord) -> dict[str, object]:
     node = find_class_node(record.abs_path, record.class_name, record.line)
@@ -361,11 +339,9 @@ def audit_record(record: ClassRecord) -> dict[str, object]:
         "code_snippet_or_lines": snippet(record.abs_path, record.line, min(getattr(node, "end_lineno", record.line), record.line + 10)),
     }
 
-
 def flagged_keys() -> set[tuple[str, str, str]]:
     rows = read_csv(FINDINGS_CSV)
     return {(row["package"], row["file_path"], row["name"]) for row in rows}
-
 
 def reviewed_counts() -> tuple[int, int, int]:
     rows = read_csv(FINDINGS_CSV)
@@ -376,20 +352,17 @@ def reviewed_counts() -> tuple[int, int, int]:
         len(rows),
     )
 
-
 def static_summary_counts() -> tuple[int, int, int]:
     rows = [row for row in read_csv(SUMMARY_CSV) if row["status"] == "analyzed"]
     total = sum(int(row["classes_scanned"]) for row in rows)
     flagged = sum(int(row["MEDIUM"]) + int(row["HIGH"]) for row in rows)
     return total, flagged, total - flagged
 
-
 def write_csv(path: Path, rows: list[dict[str, object]], fieldnames: list[str]) -> None:
     with path.open("w", newline="", encoding="utf-8") as f:
         writer = csv.DictWriter(f, fieldnames=fieldnames)
         writer.writeheader()
         writer.writerows(rows)
-
 
 def run() -> dict[str, object]:
     OUT_DIR.mkdir(exist_ok=True)
@@ -468,7 +441,6 @@ def run() -> dict[str, object]:
     write_report(summary_row, audit_rows)
     return summary_row
 
-
 def fallback_queue_rows() -> list[dict[str, object]]:
     if not FALLBACK_QUEUE.exists():
         return []
@@ -502,7 +474,6 @@ def fallback_queue_rows() -> list[dict[str, object]]:
             }
         )
     return out
-
 
 def run_fallback_missing_source(
     total_classes: int,
@@ -555,7 +526,6 @@ def run_fallback_missing_source(
     write_csv(SUMMARY_CSV_OUT, [summary_row], list(summary_row))
     write_report(summary_row, audit_rows)
     return summary_row
-
 
 def write_report(summary: dict[str, object], audit_rows: list[dict[str, object]]) -> None:
     interesting = [row for row in audit_rows if row["audit_label"] in {"likely_missed_match", "uncertain"}]
@@ -610,7 +580,6 @@ def write_report(summary: dict[str, object], audit_rows: list[dict[str, object]]
     )
     REPORT_MD.write_text("\n".join(lines) + "\n", encoding="utf-8")
 
-
 def main() -> int:
     summary = run()
     print(f"wrote {SAMPLE_CSV}")
@@ -621,7 +590,6 @@ def main() -> int:
         "uncertain={uncertain_cases}".format(**summary)
     )
     return 0
-
 
 if __name__ == "__main__":
     raise SystemExit(main())

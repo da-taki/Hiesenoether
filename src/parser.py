@@ -2,7 +2,6 @@ from typing import List, Optional
 from src.lexer import Token, TokenType, Lexer
 from src.ast_nodes import *
 
-
 class Parser:
     def __init__(self, tokens: List[Token]):
         self.tokens = tokens
@@ -46,8 +45,6 @@ class Parser:
             self.skip_newlines()
 
         return Program(statements)
-
-    # ---------------- STATEMENTS ----------------
 
     def parse_statement(self) -> Optional[ASTNode]:
         self.skip_newlines()
@@ -246,8 +243,6 @@ class Parser:
         self.expect(TokenType.RBRACKET)
         return Remove(cap.value)
 
-    # ---------------- EXPRESSIONS ----------------
-
     def parse_expression(self) -> ASTNode:
         return self.parse_or()
 
@@ -350,7 +345,6 @@ class Parser:
             return expr
 
         raise SyntaxError(f"Unexpected token {tok.type.name} at line {tok.line}")
-
 
 def parse(source: str) -> Program:
     lexer = Lexer(source)

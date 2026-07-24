@@ -1,0 +1,87 @@
+{
+  "candidate_id": "bs46_docutils_MathSchema",
+  "diff": {
+    "branch_changed": false,
+    "classification": "no_divergence",
+    "exception_changed": false,
+    "output_changed": false,
+    "state_changed": false
+  },
+  "metadata": {
+    "candidate_id": "bs46_docutils_MathSchema",
+    "class_name": "MathSchema",
+    "construction_hint": "MathSchema()",
+    "expected_boundary": "mathml schema node bookkeeping",
+    "fixture_family": "unknown",
+    "module_path": "docutils/utils/math/mathml_elements.py",
+    "observation_operation": "append",
+    "package_name": "docutils",
+    "package_version": "0.22.4",
+    "priority": "3",
+    "selected_for_harness": "yes",
+    "source_artifact": "behavioral_sweep_results.csv",
+    "state_fields_suspected": "children",
+    "target_read_operation": "repr(class)"
+  },
+  "order_A": {
+    "results": [
+      {
+        "kind": "value",
+        "value": "'MathSchema'"
+      }
+    ],
+    "state": {
+      "repr": "'MathSchema'"
+    },
+    "steps": [
+      "construct MathSchema",
+      "repr(class)"
+    ]
+  },
+  "order_B": {
+    "observation": {
+      "kind": "value",
+      "value": null
+    },
+    "results": [
+      {
+        "kind": "value",
+        "value": "'MathSchema'"
+      }
+    ],
+    "state": {
+      "repr": "'MathSchema'"
+    },
+    "steps": [
+      "construct MathSchema",
+      "(no-op)",
+      "repr(class)"
+    ]
+  },
+  "record": {
+    "boundary_note": "mathml schema node bookkeeping",
+    "branch_changed": false,
+    "candidate_id": "bs46_docutils_MathSchema",
+    "class_name": "MathSchema",
+    "classification": "no_divergence",
+    "constructed": true,
+    "exception_changed": false,
+    "failure_reason": "",
+    "fixture_family": "unknown",
+    "observation_operation": "append",
+    "order_A_exception": "[]",
+    "order_A_output": "[\"'MathSchema'\"]",
+    "order_A_state": "{\"repr\": \"'MathSchema'\"}",
+    "order_A_steps": "construct MathSchema | repr(class)",
+    "order_B_exception": "[]",
+    "order_B_output": "[\"'MathSchema'\"]",
+    "order_B_state": "{\"repr\": \"'MathSchema'\"}",
+    "order_B_steps": "construct MathSchema | (no-op) | repr(class)",
+    "output_changed": false,
+    "package_name": "docutils",
+    "package_version": "0.22.4",
+    "pair_type": "pair1",
+    "state_changed": false,
+    "target_read_operation": "repr(class)"
+  }
+}

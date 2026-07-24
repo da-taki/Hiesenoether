@@ -1,0 +1,87 @@
+{
+  "candidate_id": "re11_dnspython_Tokenizer",
+  "diff": {
+    "branch_changed": false,
+    "classification": "confirmed_output_divergence",
+    "exception_changed": false,
+    "output_changed": true,
+    "state_changed": false
+  },
+  "metadata": {
+    "candidate_id": "re11_dnspython_Tokenizer",
+    "class_name": "Tokenizer",
+    "construction_hint": "Tokenizer(StringIO('alpha beta'))",
+    "expected_boundary": "token consumption advances cursor",
+    "fixture_family": "parser_tokenizer",
+    "module_path": "dns/tokenizer.py",
+    "observation_operation": "get()",
+    "package_name": "dnspython",
+    "package_version": "2.8.0",
+    "priority": "1",
+    "selected_for_harness": "yes",
+    "source_artifact": "rescue_results.csv",
+    "state_fields_suspected": "current;eof",
+    "target_read_operation": "get_string()"
+  },
+  "order_A": {
+    "results": [
+      {
+        "kind": "value",
+        "value": "alpha"
+      }
+    ],
+    "state": {
+      "eof": false
+    },
+    "steps": [
+      "construct Tokenizer",
+      "get_string()"
+    ]
+  },
+  "order_B": {
+    "observation": {
+      "kind": "value",
+      "value": "alpha"
+    },
+    "results": [
+      {
+        "kind": "value",
+        "value": "beta"
+      }
+    ],
+    "state": {
+      "eof": false
+    },
+    "steps": [
+      "construct Tokenizer",
+      "get()",
+      "get_string()"
+    ]
+  },
+  "record": {
+    "boundary_note": "token consumption advances cursor",
+    "branch_changed": false,
+    "candidate_id": "re11_dnspython_Tokenizer",
+    "class_name": "Tokenizer",
+    "classification": "confirmed_output_divergence",
+    "constructed": true,
+    "exception_changed": false,
+    "failure_reason": "",
+    "fixture_family": "parser_tokenizer",
+    "observation_operation": "get()",
+    "order_A_exception": "[]",
+    "order_A_output": "[\"alpha\"]",
+    "order_A_state": "{\"eof\": false}",
+    "order_A_steps": "construct Tokenizer | get_string()",
+    "order_B_exception": "[]",
+    "order_B_output": "[\"beta\"]",
+    "order_B_state": "{\"eof\": false}",
+    "order_B_steps": "construct Tokenizer | get() | get_string()",
+    "output_changed": true,
+    "package_name": "dnspython",
+    "package_version": "2.8.0",
+    "pair_type": "pair1",
+    "state_changed": false,
+    "target_read_operation": "get_string()"
+  }
+}

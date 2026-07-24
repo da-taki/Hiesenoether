@@ -1,9 +1,6 @@
-# src/lexer.py
-
 from enum import Enum, auto
 from dataclasses import dataclass
 from typing import List, Optional
-
 
 class TokenType(Enum):
     NUMBER = auto()
@@ -57,14 +54,12 @@ class TokenType(Enum):
     NEWLINE = auto()
     EOF = auto()
 
-
 @dataclass
 class Token:
     type: TokenType
     value: Optional[str]
     line: int
     column: int
-
 
 class Lexer:
     def __init__(self, source: str):
@@ -127,6 +122,11 @@ class Lexer:
 
             if ch in ' \t\r':
                 self.advance()
+                continue
+
+            if ch == '#':
+                while self.current_char() is not None and self.current_char() != '\n':
+                    self.advance()
                 continue
 
             if ch == '\n':

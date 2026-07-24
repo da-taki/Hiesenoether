@@ -1,5 +1,3 @@
-# exp_sle_fitting.py
-
 import csv
 import math
 import random
@@ -7,7 +5,6 @@ import statistics
 import sys
 from pathlib import Path
 
-# Path guard: ensures 'core' is importable when called from repo root
 _RWV = Path(__file__).parent.parent
 if str(_RWV) not in sys.path:
     sys.path.insert(0, str(_RWV))
@@ -41,7 +38,6 @@ except ImportError:
 
 DEGREE_MAP = {"linear": 1, "quadratic": 2, "cubic": 3, "extreme": 4}
 
-
 def _apply_cap(y: float, obj: UnstableObject, nonlinearity: str) -> float:
     if nonlinearity == "linear":
         return y
@@ -52,7 +48,6 @@ def _apply_cap(y: float, obj: UnstableObject, nonlinearity: str) -> float:
     elif nonlinearity == "extreme":
         return y * y * obj.read()
     raise ValueError(f"Unknown nonlinearity: {nonlinearity}")
-
 
 def _run_single(steps: int, observe_count: int, nonlinearity: str) -> float:
     ops = ["add"] * steps + ["observe"] * observe_count
@@ -65,7 +60,6 @@ def _run_single(steps: int, observe_count: int, nonlinearity: str) -> float:
         elif op == "observe":
             obj.observe()
     return _apply_cap(y, obj, nonlinearity)
-
 
 def _compute_stats(values: list) -> dict:
     n = len(values)
@@ -88,7 +82,6 @@ def _compute_stats(values: list) -> dict:
         "n": n,
     }
 
-
 def _write_raw_csv(values: list, path: Path) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
     with open(path, "w", newline="") as f:
@@ -96,7 +89,6 @@ def _write_raw_csv(values: list, path: Path) -> None:
         writer.writerow(["value"])
         for v in values:
             writer.writerow([v])
-
 
 def _write_summary_csv(rows: list, path: Path) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
@@ -106,7 +98,6 @@ def _write_summary_csv(rows: list, path: Path) -> None:
         writer = csv.DictWriter(f, fieldnames=rows[0].keys())
         writer.writeheader()
         writer.writerows(rows)
-
 
 def _fit_sle_inline(degrees: list, log_ranges: list) -> tuple:
     n = len(degrees)
@@ -120,7 +111,6 @@ def _fit_sle_inline(degrees: list, log_ranges: list) -> tuple:
     ss_tot = sum((y - y_mean) ** 2 for y in log_ranges)
     r2 = 1.0 - (ss_res / ss_tot) if ss_tot != 0 else 0.0
     return round(slope, 6), round(r2, 6)
-
 
 def _bootstrap_ci(values_by_degree: dict, n_resamples: int,
                   ci_level: float) -> tuple:
@@ -140,7 +130,6 @@ def _bootstrap_ci(values_by_degree: dict, n_resamples: int,
     lo_idx = max(0, int(alpha / 2 * n_resamples))
     hi_idx = min(n_resamples - 1, int((1.0 - alpha / 2) * n_resamples))
     return round(sle_samples[lo_idx], 6), round(sle_samples[hi_idx], 6)
-
 
 def run_nonlinearity_sweep(num_runs: int = NUM_RUNS) -> tuple:
     steps = DEFAULT_STEPS
@@ -162,7 +151,6 @@ def run_nonlinearity_sweep(num_runs: int = NUM_RUNS) -> tuple:
         })
 
     return sweep_rows, values_by_degree
-
 
 def run_experiment(num_runs: int = NUM_RUNS) -> dict:
     random.seed(RANDOM_SEED)

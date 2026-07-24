@@ -1,6 +1,6 @@
 # Case 33: docutils EnumeratedList
 
-- Runnable harness: `C:\Users\Asus\Desktop\Profitlo Projects\Hiesenoether\paper_artifacts\scp_behavioral_sweep\harnesses\case_33_docutils_EnumeratedList.py`
+- Runnable harness: `<repo>\paper_artifacts\scp_behavioral_sweep\harnesses\case_33_docutils_EnumeratedList.py`
 - Expected operation: `enumerator`
 - Expected latent state: `auto,blank_finish,lastordinal,parent`
 - Construction feasibility: `simple`

@@ -10,13 +10,11 @@ CONTROLLED_CSV = RESULTS_DIR / "extended_controlled_benchmark.csv"
 PYPI_QUEUE_CSV = RESULTS_DIR / "pypi_expanded_manual_review_queue.csv"
 REPORT_PATH = RESULTS_DIR / "case_study_report.md"
 
-
 def read_csv(path: Path) -> list[dict]:
     if not path.exists():
         return []
     with path.open(newline="", encoding="utf-8") as handle:
         return list(csv.DictReader(handle))
-
 
 def code_excerpt(path: Path, line: int, radius: int = 5) -> str:
     try:
@@ -31,12 +29,10 @@ def code_excerpt(path: Path, line: int, radius: int = 5) -> str:
         excerpt_lines.append(f"{idx}: {source_line}" if source_line else f"{idx}:")
     return "\n".join(excerpt_lines)
 
-
 def controlled_excerpt(row: dict) -> str:
     path = REPO / row["file"]
     line = int(row["line"]) if row.get("line") else 1
     return code_excerpt(path, line)
-
 
 def classify_latent_state(row: dict) -> tuple[str, str]:
     evidence = row.get("evidence", "")
@@ -49,7 +45,6 @@ def classify_latent_state(row: dict) -> tuple[str, str]:
     if "P2:" in evidence:
         return "observer-side state mutation", "not modeled as a later read in this class"
     return "not captured in evidence text", "not captured in evidence text"
-
 
 def controlled_case(row: dict, heading: str, expected_match: str) -> list[str]:
     latent, consumer = classify_latent_state(row)
@@ -76,7 +71,6 @@ def controlled_case(row: dict, heading: str, expected_match: str) -> list[str]:
         "",
     ]
 
-
 def pypi_case(row: dict, index: int) -> list[str]:
     return [
         f"### PyPI flagged example {index}: `{row['package']}.{row['class']}`",
@@ -95,7 +89,6 @@ def pypi_case(row: dict, index: int) -> list[str]:
         "```",
         "",
     ]
-
 
 def generate() -> dict:
     controlled = read_csv(CONTROLLED_CSV)
@@ -145,7 +138,6 @@ def generate() -> dict:
         "report": "results/scp_new_experiments/case_study_report.md",
     }
 
-
 def main() -> int:
     summary = generate()
     print(f"wrote {REPORT_PATH}")
@@ -153,7 +145,6 @@ def main() -> int:
     print(f"controlled_benign_near_misses={summary['controlled_benign_near_misses']}")
     print(f"pypi_flagged_examples={summary['pypi_flagged_examples']}")
     return 0
-
 
 if __name__ == "__main__":
     raise SystemExit(main())

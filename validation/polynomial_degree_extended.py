@@ -10,12 +10,10 @@ from typing import Iterable
 
 from validation.exact_semantics import Params, evaluate
 
-
 REPO = Path(__file__).resolve().parents[1]
 RESULTS_DIR = REPO / "results_validation"
 CSV_OUT = RESULTS_DIR / "polynomial_degree_extended.csv"
 SUMMARY_OUT = RESULTS_DIR / "polynomial_degree_extended_summary.md"
-
 
 @dataclass(frozen=True)
 class CaseResult:
@@ -40,10 +38,8 @@ class CaseResult:
     reason: str
     elapsed_seconds: float
 
-
 def read_value(base: Fraction, n: int, e: Fraction) -> Fraction:
     return base + Fraction(n) * e
-
 
 def osds_extremal_delta(
     L: int,
@@ -52,12 +48,6 @@ def osds_extremal_delta(
     params: Params = Params(),
     base: Fraction = Fraction(10),
 ) -> Fraction:
-    """Exact OSDS range from the analytically identified extremal orders.
-
-    For positive default parameters, OBS-first maximizes the accumulated READ
-    contribution and OBS-last minimizes it. The cap factor depends only on the
-    final x state, so it is order-independent.
-    """
 
     body_delta = params.de_obs * Fraction(m) * Fraction(L * (L - 1), 2)
     cap = Fraction(1)
@@ -67,12 +57,10 @@ def osds_extremal_delta(
         cap *= read_value(base, n0 + r, e0 + Fraction(r) * params.de_access)
     return body_delta * cap
 
-
 def exhaustive_delta(L: int, m: int, d: int) -> Fraction:
     body = ("READ",) * L + ("OBS",) * m
     vals = [evaluate(order, d, Params(), kind="compositional") for order in set(permutations(body))]
     return max(vals) - min(vals)
-
 
 def forward_differences(seq: list[Fraction]) -> list[list[Fraction]]:
     rows = [seq[:]]
@@ -81,13 +69,11 @@ def forward_differences(seq: list[Fraction]) -> list[list[Fraction]]:
         rows.append([prev[i + 1] - prev[i] for i in range(len(prev) - 1)])
     return rows
 
-
 def finite_difference_degree(seq: list[Fraction]) -> int:
     for degree, row in enumerate(forward_differences(seq)):
         if row and all(x == row[0] for x in row):
             return degree
     return -1
-
 
 def lagrange_polynomial(points: list[tuple[int, Fraction]]) -> list[Fraction]:
     coeffs = [Fraction(0)] * len(points)
@@ -108,13 +94,11 @@ def lagrange_polynomial(points: list[tuple[int, Fraction]]) -> list[Fraction]:
             coeffs[k] += coeff * scale
     return coeffs
 
-
 def polynomial_degree(coeffs: list[Fraction]) -> int:
     for idx in range(len(coeffs) - 1, -1, -1):
         if coeffs[idx] != 0:
             return idx
     return -1
-
 
 def eval_polynomial(coeffs: list[Fraction], x: int) -> Fraction:
     total = Fraction(0)
@@ -124,15 +108,12 @@ def eval_polynomial(coeffs: list[Fraction], x: int) -> Fraction:
         power *= x
     return total
 
-
 def leading_coefficient(coeffs: list[Fraction]) -> Fraction:
     deg = polynomial_degree(coeffs)
     return Fraction(0) if deg < 0 else coeffs[deg]
 
-
 def fraction_text(value: Fraction) -> str:
     return f"{value.numerator}/{value.denominator}"
-
 
 def analyze_case(m: int, d: int) -> CaseResult:
     started = time.time()
@@ -191,7 +172,6 @@ def analyze_case(m: int, d: int) -> CaseResult:
         elapsed_seconds=time.time() - started,
     )
 
-
 def rows_from_cases(cases: Iterable[CaseResult]) -> list[dict]:
     rows = []
     for case in cases:
@@ -219,14 +199,12 @@ def rows_from_cases(cases: Iterable[CaseResult]) -> list[dict]:
         })
     return rows
 
-
 def write_csv(rows: list[dict]) -> None:
     RESULTS_DIR.mkdir(exist_ok=True)
     with CSV_OUT.open("w", newline="", encoding="utf-8") as f:
         writer = csv.DictWriter(f, fieldnames=list(rows[0]))
         writer.writeheader()
         writer.writerows(rows)
-
 
 def write_summary(cases: list[CaseResult]) -> None:
     pass_d_plus_2 = [c for c in cases if c.expected_d_plus_2_pass]
@@ -291,14 +269,12 @@ def write_summary(cases: list[CaseResult]) -> None:
 
     SUMMARY_OUT.write_text("\n".join(lines) + "\n", encoding="utf-8")
 
-
 def run() -> list[CaseResult]:
     cases = [analyze_case(m, d) for m in range(1, 5) for d in range(1, 6)]
     rows = rows_from_cases(cases)
     write_csv(rows)
     write_summary(cases)
     return cases
-
 
 def main() -> int:
     cases = run()
@@ -307,7 +283,6 @@ def main() -> int:
     print(f"wrote {SUMMARY_OUT}")
     print(f"checked={len(cases)} d_plus_2_pass={sum(c.expected_d_plus_2_pass for c in cases)}")
     return 1 if failures else 0
-
 
 if __name__ == "__main__":
     raise SystemExit(main())

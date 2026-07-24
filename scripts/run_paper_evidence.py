@@ -8,7 +8,6 @@ from pathlib import Path
 
 REPO = Path(__file__).resolve().parents[1]
 
-
 COMMANDS = [
     ("running example", [sys.executable, "examples/running_example.py"]),
     (
@@ -19,12 +18,10 @@ COMMANDS = [
     ("paper results report", [sys.executable, "scripts/generate_paper_results_report.py"]),
 ]
 
-
 def parse_pytest_counts(output: str) -> tuple[int, int]:
     passed = sum(int(value) for value in re.findall(r"(\d+) passed", output))
     failed = sum(int(value) for value in re.findall(r"(\d+) failed", output))
     return passed, failed
-
 
 def run_command(label: str, command: list[str]) -> dict:
     print(f"[run] {label}")
@@ -41,7 +38,6 @@ def run_command(label: str, command: list[str]) -> dict:
         "output": output,
     }
 
-
 def artifact_status() -> list[str]:
     candidates = [
         "results/running_example.json",
@@ -57,7 +53,6 @@ def artifact_status() -> list[str]:
         "results/pypi_reviewed_findings.csv",
     ]
     return [path for path in candidates if (REPO / path).exists()]
-
 
 def paper_number_status() -> tuple[list[str], list[str]]:
     path = REPO / "results" / "paper_results_summary.json"
@@ -76,7 +71,6 @@ def paper_number_status() -> tuple[list[str], list[str]]:
     ]
     missing.extend(data.get("gaps", []))
     return reproduced, missing
-
 
 def main() -> int:
     results = [run_command(label, command) for label, command in COMMANDS]
@@ -105,7 +99,6 @@ def main() -> int:
         print("  - none")
 
     return 1 if failed or failed_commands or missing else 0
-
 
 if __name__ == "__main__":
     raise SystemExit(main())

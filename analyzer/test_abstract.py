@@ -5,7 +5,6 @@ from fractions import Fraction
 from itertools import permutations
 from pathlib import Path
 
-
 REPO = Path(__file__).resolve().parents[1]
 if str(REPO) not in sys.path:
     sys.path.insert(0, str(REPO))
@@ -13,13 +12,11 @@ if str(REPO) not in sys.path:
 from analyzer.abstract_interpreter import analyze_program_result
 from validation.exact_semantics import Params, evaluate
 
-
 CASES = (
     (1, 0, 1, "no divergence expected"),
     (3, 1, 1, "small divergence expected"),
     (3, 2, 2, "large divergence expected"),
 )
-
 
 def concrete_divergence(L: int, m: int, d: int) -> Fraction:
     body = ("READ",) * L + ("OBS",) * m
@@ -29,10 +26,8 @@ def concrete_divergence(L: int, m: int, d: int) -> Fraction:
     ]
     return max(values) - min(values)
 
-
 def fraction_text(value: Fraction) -> str:
     return str(value.numerator) if value.denominator == 1 else f"{value.numerator}/{value.denominator}"
-
 
 def decimal_text(value: Fraction, places: int = 6) -> str:
     sign = "-" if value < 0 else ""
@@ -45,7 +40,6 @@ def decimal_text(value: Fraction, places: int = 6) -> str:
         digits.append(str(rem // value.denominator))
         rem %= value.denominator
     return f"{sign}{whole}.{''.join(digits)}"
-
 
 def main() -> int:
     print("Access-counter-indexed abstract-domain smoke tests")
@@ -87,7 +81,6 @@ def main() -> int:
         return 1
     print("PASS: every abstract bound covered the exhaustive concrete divergence")
     return 0
-
 
 if __name__ == "__main__":
     raise SystemExit(main())

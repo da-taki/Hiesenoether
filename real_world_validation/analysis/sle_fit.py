@@ -1,10 +1,7 @@
-# sle_fit.py
-
 import math
 import random
 import statistics
 from dataclasses import dataclass, field
-
 
 @dataclass
 class SLEResult:
@@ -16,7 +13,6 @@ class SLEResult:
     degrees: list
     log_ranges: list
     intercept: float = 0.0
-
 
 def fit_sle(degrees: list, log_ranges: list) -> tuple:
     if len(degrees) != len(log_ranges) or len(degrees) < 2:
@@ -36,7 +32,6 @@ def fit_sle(degrees: list, log_ranges: list) -> tuple:
     r2 = 1.0 - (ss_res / ss_tot) if ss_tot != 0 else 0.0
     return round(slope, 6), round(r2, 6)
 
-
 def _percentile(sorted_data: list, pct: float) -> float:
     if not sorted_data:
         return 0.0
@@ -45,7 +40,6 @@ def _percentile(sorted_data: list, pct: float) -> float:
     hi = min(lo + 1, len(sorted_data) - 1)
     frac = k - lo
     return sorted_data[lo] * (1.0 - frac) + sorted_data[hi] * frac
-
 
 def bootstrap_sle_ci(
     values_by_degree: dict,
@@ -74,10 +68,8 @@ def bootstrap_sle_ci(
     hi = _percentile(sle_samples, 100.0 * (1.0 - alpha / 2.0))
     return round(lo, 6), round(hi, 6)
 
-
 def predict_range(degree: int, sle: float, intercept: float) -> float:
     return math.exp(intercept + sle * degree)
-
 
 def build_sle_result(
     degrees: list,

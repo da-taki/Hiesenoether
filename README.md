@@ -1,363 +1,260 @@
 # Hiesenoether
 
-> *"Deterministic programs can exhibit high-variance, structurally sensitive outputs, not through randomness, but through the interaction of execution order, observation, and nonlinear computation."*
+Hiesenoether is an experimental programming language where reading a variable can change what it returns the next time you read it.
 
-Hiesenoether is an experimental programming language and research platform built to study a single question: **can a fully deterministic system produce chaotic output?**
+It is a research project, not a language you would ship anything real in. I built it to study one idea: a program can be fully deterministic and still produce wildly different results depending on the order you read and observe things.
 
-The answer, demonstrated empirically across 2.2 million program executions, is yes.
+## A small example
 
----
-
-## What This Is
-
-Hiesenoether is two things simultaneously:
-
-**A programming language** with unusual semantics. Values are unstable by default, each access to an unguarded variable advances its internal state deterministically, producing a value that depends on the cumulative history of prior accesses. Observation is not passive: the `inspect` primitive costs energy and permanently increases a variable's entropy, altering every future access. Stability must be purchased explicitly, at a cost.
-
-**A research instrument** for studying ordered chaos, structured, reproducible, yet dramatically divergent behavior arising purely from differences in when and how values are observed, and in what sequence operations are applied. The language makes these effects measurable and controllable in a way no general-purpose language does.
-
----
-
-## Core Ideas
-
-### Unstable Values
-
-Values in Hiesenoether are unstable by default. Each access evolves the value deterministically according to:
+Save this as `drift.hn` (there is already a copy at `examples/drift.hn`):
 
 ```
-drift      = access_count × entropy
-returned   = base_value + drift
+energy[100]
+
+x <- 10
+print x
+print x
+print x
+```
+
+Run it:
+
+```bash
+python -m src.main examples/drift.hn
+```
+
+Output:
+
+```
+10.0
+11.1
+12.4
+```
+
+## What happens in the example
+
+`x <- 10` creates an unstable variable. Unstable is the default in Hiesenoether. Every time you read an unstable variable, it drifts a little further from where it started, and the amount it drifts depends on how many times it has been read before.
+
+The rule the runtime uses is:
+
+```
+drift    = access_count * entropy
+returned = base_value + drift
 access_count += 1
 entropy      += 0.1
 ```
 
-This means the same variable returns different values depending on how many times it has been accessed before. Reordering statements changes program output. There is no randomness, only order-dependence.
+So the first read of `x` returns `10 + (0 * 1.0) = 10.0`, the second returns `10 + (1 * 1.1) = 11.1`, the third returns `10 + (2 * 1.2) = 12.4`. Nothing here is random. If you run the program again you get exactly the same three numbers. The values only change because of how many reads came before.
 
-```
-x <- 10
+That is the whole point. Reorder the reads, add an observation in the middle, and the output changes, even though there is no randomness anywhere.
 
-print x   →  10.0   (access 0: drift = 0 × 1.0 = 0)
-print x   →  11.1   (access 1: drift = 1 × 1.1 = 1.1)
-print x   →  12.4   (access 2: drift = 2 × 1.2 = 2.4)
-```
+## Why I built it
 
-### Observation as Perturbation
+Most languages treat reading a value as free and harmless. You can look at a variable as many times as you want and it never costs anything or changes anything. Debugging is assumed to be free. Certainty is assumed to be the default.
 
-The `inspect` operation reveals a variable's internal state, but it is not passive. On a successful inspection, the variable's entropy increases by 1.0, permanently altering the trajectory of all future accesses. This is enforced by the runtime, not optional. Observation changes what it observes.
+I wanted to see what a language feels like when none of that is true. In Hiesenoether, values are shaky by default, observing them has a cost and a side effect, and if you want a guarantee like "this variable will never change," you have to pay for it out of a fixed energy budget. Once I had that, I could measure how much the output of a deterministic program moves around when you change the order of reads, the timing of observations, and the amount of nonlinear math involved.
 
-```
-inspect x   →  reveals {base: 10, access_count: 3, entropy: 1.3}
-              AND sets entropy to 2.3 for all future accesses
-```
+## Core language ideas
 
-### Energy as Guarantees
+**Unstable values.** New variables are unstable. Each read advances the variable's internal state and returns a value that depends on its whole history of reads. Read the same variable in a different order and you get different numbers.
 
-Every program begins with a finite energy budget. Guarantees cost energy:
+**Observation has a cost.** The `inspect` statement shows you a variable's internal state, but looking is not free. A successful inspect spends energy and raises the variable's entropy by 1.0, which changes every read after that. Observing a value changes the value.
 
-| Operation | Cost |
-|-----------|------|
-| Stable variable | −5 energy |
-| Stabilize existing variable | −5 energy |
-| Inspect (exact observation) | −2 energy |
-| Invariant declaration | −10 energy |
-| Standard function declaration | −3 energy |
+**Energy buys guarantees.** Every program starts with an energy budget. Stability, inspection, functions, and invariants all cost energy. When the budget runs out, you can no longer buy those guarantees. The programmer decides where to spend.
 
-When energy is exhausted, guarantees can no longer be purchased. Stability must be earned. This makes the timing of observation a resource-dependent decision with semantic consequences.
+**Stability is a purchase.** If you declare a variable `stable`, it always returns the same number no matter how many times you read it. That guarantee costs energy and never degrades once you have paid for it.
 
-### Stable Values
+Put together, this means the same source program is reproducible for a fixed order of operations, but small changes in the order of reads and observations can push the output very far apart.
 
-Stability can be declared explicitly, at cost:
+## Main language syntax
 
-```
-stable y <- 20   →  y always returns 20, regardless of access count
-                    costs 5 energy
-```
-
-Once stable, a value never drifts. This guarantee never degrades, regardless of energy pressure. It is the core promise of the stability purchase.
-
----
-
-## Language Reference
-
-### Program Structure
-
-Every program begins with an energy declaration:
+Every program starts by declaring an energy budget:
 
 ```
 energy[100]
 ```
 
-### Variable Assignment
+Variables:
 
 ```
-x <- 10          # unstable (default), evolves on each access
+x <- 10          # unstable, drifts on each read
 stable y <- 20   # stable, always returns 20, costs 5 energy
 ```
 
-### Stabilization
+Freeze an unstable variable at its current point:
 
 ```
-stabilize x      # freeze x at its current evolution point, costs 5 energy
+stabilize x      # costs 5 energy
 ```
 
-### Observation
+Look inside a variable (this changes it):
 
 ```
-inspect x        # reveal internal state, increase entropy by 1.0, costs 2 energy
+inspect x        # reveals internal state, raises entropy, costs 2 energy
 ```
 
-### Functions
+Functions:
 
 ```
-declare fn add(a, b) {          # standard function, costs 3 energy
-    return a + b
+declare fn double(n) {
+    return n * 2
 }
 
-declare pure fn square(n) {     # pure function, costs 3 energy, gains +4 on first call
-    return n * n                # result is cached for identical inputs
+declare pure fn square(n) {     # cached per input, small energy gain on first call
+    return n * n
 }
 
-declare unstable fn vary(n) {   # unstable function, costs 1 energy, gains +4 on first call
-    return n + 1                # penalized −6 if it returns the same output twice
+declare unstable fn evolving(n) {   # penalized if it returns the same value twice
+    return n + 1
 }
 ```
 
-### Control Flow
+Conditionals and loops:
 
 ```
 if x > 0 {
     print x
 }
 
-while counter < 10 {
+while counter < 5 {
     counter <- counter + 1
 }
-
-for i in range(0, 5) {
-    print i
-}
 ```
 
-### Invariants
+Invariants:
 
 ```
-invariant x > 0    # enforce property throughout execution, costs 10 energy
+invariant x > 0    # checked as the program runs, costs 10 energy
 ```
 
-Under energy pressure (>50% spent), invariant checking degrades deterministically, every other invariant by index is skipped. This is not a bug; it is the language's explicit model of guarantee degradation under resource constraint.
-
-### Removing Capabilities
+Trade a capability away for more energy:
 
 ```
-remove[invariants]      # permanently remove invariants, gain +20 energy
-remove[stable_control]  # gain +15 energy
-remove[inspection]      # gain +10 energy
+remove[invariants]      # +20 energy, permanent
+remove[stable_control]  # +15 energy, permanent
+remove[inspection]      # +10 energy, permanent
 ```
 
-Irreversible. Trading capability for budget.
-
-### Query Energy
+Check the budget:
 
 ```
-query energy   →  Energy: 87/100
+query energy
 ```
 
----
+Energy costs, for reference:
 
-## Full Example
+| Operation | Cost |
+|-----------|------|
+| Stable variable | 5 |
+| Stabilize a variable | 5 |
+| Inspect | 2 |
+| Function declaration | 3 |
+| Unstable function declaration | 1 |
+| Invariant | 10 |
+| Assert | 1 |
 
-```
-energy[100]
+## How to run the project
 
-x <- 10
-stable y <- 5
-
-# x evolves on each access
-print x        →  10.0
-print x        →  11.1
-print x        →  12.4
-
-# inspect changes x's future trajectory
-inspect x      →  [INSPECT] {base_value: 10, access_count: 3, entropy: 2.3}
-
-# y never changes
-print y        →  5
-print y        →  5
-
-# functions
-declare fn double(n) {
-    return n * 2
-}
-
-result <- double(x)    # x accessed again: drift = 4 × 2.3 = 9.2 → x = 19.2
-print result           →  38.4
-
-query energy           →  Energy: 80/100
-```
-
----
-
-## Research: Ordered Chaos
-
-This repository accompanies the paper **"Ordered Chaos: Nonlinear Divergence from Observation in Deterministic Programs"**, which uses Hiesenoether as a controlled experimental substrate to study how deterministic systems can produce chaotic output distributions.
-
-### The Central Claim
-
-Semantic divergence in deterministic systems is governed by three primary factors, observation frequency, nonlinear amplification, and propagation depth, and exhibits compounding behavior when these factors interact that far exceeds the sum of their individual effects.
-
-### Experimental Results
-
-The full experiment battery (`run_experiments.py`) runs 2.2 million program executions across 22 configurations spanning four experimental axes. All results are in `results/`.
-
-#### Axis A1, Observation Multiplicity
-
-With zero observations, output variance is exactly zero, the same program always produces the same result. Introducing a single `inspect` call immediately produces a distribution with std = 70.6. Variance grows super-linearly with inspection count:
-
-| Inspects | std | range |
-|----------|-----|-------|
-| 0 | 0.00 | 0.00 |
-| 1 | 70.64 | 210.24 |
-| 2 | 125.53 | 497.76 |
-| 3 | 189.95 | 878.04 |
-| 4 | 269.13 | 1,368.00 |
-| 5 | 365.74 | 1,986.00 |
-
-Growth from 1→5 inspects: **5.18×** (super-linear; linear would give 5.00×).
-
-#### Axis A2, Nonlinearity Depth
-
-Output range scales exponentially with nonlinearity degree. The log-linear fit has R² = 0.9895, near-perfect:
-
-| Nonlinearity | range | log(range) |
-|-------------|-------|-----------|
-| Linear | 9.60 | 2.26 |
-| Quadratic (y×x) | 210.24 | 5.35 |
-| Cubic (y×x×x) | 5,129.86 | 8.54 |
-| Extreme (y×y×x) | 36,098.21 | 10.49 |
-
-**Semantic Lyapunov Exponent (SLE) = 2.7891**, the slope of log(range) per nonlinearity degree, a novel quantity defined in this work to characterize divergence amplification in observation-sensitive deterministic systems.
-
-#### Axis A3, Program Length Scaling
-
-Variance grows monotonically with program length, with no plateau detected up to 20 additive steps:
-
-| Steps | std | range |
-|-------|-----|-------|
-| 3 | 22.74 | 60.84 |
-| 6 | 70.44 | 210.24 |
-| 9 | 165.21 | 513.00 |
-| 12 | 331.83 | 1,053.36 |
-| 15 | 601.11 | 1,935.00 |
-| 20 | 1,382.21 | 4,506.00 |
-
-Marginal std increases are non-decreasing, each additional step contributes more variance than the last, indicating compounding propagation rather than bounded accumulation.
-
-#### Axis A4, Interaction Effects
-
-The superadditivity test is the most striking result. When all three factors are maximised simultaneously:
-
-| Config | std |
-|--------|-----|
-| Max inspects only (isolated) | 366.78 |
-| Max nonlinearity only (isolated) | 12,142.41 |
-| Max length only (isolated) | 1,384.85 |
-| **Sum of isolated** | **13,894.05** |
-| **Combined (all three maxed)** | **8,209,836.41** |
-| **Ratio** | **590.89×** |
-
-The combined configuration produces variance **590 times greater** than the sum of the individual maximum effects. This is not additivity or even multiplicativity, it is a qualitatively different regime of interaction.
-
-### Key Theoretical Contributions
-
-**Semantic Lyapunov Exponent.** Defined as the slope of log(range) with respect to nonlinearity degree across isolated nonlinearity configurations. SLE = 2.7891 (R² = 0.9895) characterizes the rate at which divergence amplifies per unit increase in computational nonlinearity.
-
-**Nonlinearity threshold.** The transition from linear to quadratic computation produces a 21.9× increase in output range (9.6 → 210.24). Below this threshold, execution-order effects remain bounded. Above it, divergence grows exponentially.
-
-**Observation budget.** The energy-constrained tradeoff between certainty and computational flexibility. The 0-inspect baseline (std = 0) and 5-inspect case (std = 365.7) define the two poles of this budget. The relationship between energy spent on observation and variance produced is super-linear.
-
----
-
-## Project Structure
-
-```
-hiesenoether/
-├── src/
-│   ├── main.py          # entry point and REPL
-│   ├── runtime.py       # interpreter and execution engine
-│   ├── parser.py        # recursive descent parser
-│   ├── lexer.py         # tokenizer
-│   ├── values.py        # UnstableValue, StableValue, Function
-│   ├── energy.py        # energy system and escrow management
-│   └── ast_nodes.py     # AST node definitions
-├── results/
-│   ├── summary.csv      # full results table (22 configs × all metrics)
-│   ├── findings.txt     # key findings in plain English
-│   ├── findings.json    # findings as structured data
-│   ├── A1.csv           # observation multiplicity axis
-│   ├── A2.csv           # nonlinearity depth axis
-│   ├── A3.csv           # program length scaling axis
-│   ├── A4.csv           # interaction effects axis
-│   └── raw_*.csv        # full 100,000 output values per config
-├── docs/
-│   ├── energy_model.md  # energy system specification
-│   ├── uncertainty.md   # uncertainty model specification
-│   └── philosophy.md    # design motivation
-├── examples/
-│   └── basic_energy.hn  # annotated example program
-├── tests/
-│   └── test_runtime.py  # pytest test suite
-├── run_experiments.py   # full experiment battery (2.2M executions)
-├── run_tests.py         # standalone test runner
-└── README.md
-```
-
----
-
-## Running Hiesenoether
-
-### Run a program
+You need Python 3.10 or newer. There are no third-party dependencies for running programs.
 
 ```bash
+git clone https://github.com/da-taki/Hiesenoether.git
+cd Hiesenoether
 python -m src.main examples/basic_energy.hn
 ```
 
-### Start the REPL
+`examples/basic_energy.hn` walks through unstable reads, inspection, stabilization, stable variables, functions, and invariants in one file.
+
+## How to use the REPL
+
+Start an interactive session:
 
 ```bash
 python -m src.main --repl
 ```
 
-### Run the test suite
+You type one statement per line. `query energy` shows the current budget, `help` lists the built-in commands, and `exit` quits. The REPL keeps one runtime alive across lines, so a variable you read earlier keeps drifting as you keep reading it.
+
+```
+>>> x <- 10
+>>> print x
+10.0
+>>> print x
+11.1
+>>> query energy
+Energy: 100/100
+```
+
+## How to run the tests
+
+The main suite is a standalone runner with no dependencies:
 
 ```bash
 python run_tests.py
 ```
 
-All 27 tests should pass. These cover value evolution semantics, energy conservation, function declaration and calling, invariants, stabilization, and determinism.
+It runs 28 tests covering value drift, energy accounting, functions, invariants, stabilization, and determinism, and prints a pass or fail line for each.
 
-### Run the experiments
+There is also a pytest suite for the runtime, the analyzer, and the paper-evidence checks:
+
+```bash
+python -m pytest tests -q
+```
+
+## Experiments and research
+
+The language doubles as a controlled setup for measuring how far a deterministic program's output can spread when you vary observation, nonlinearity, and program length. The full battery is in `run_experiments.py`, which runs 22 configurations at 100,000 executions each (2.2 million runs total) and writes everything to `results/`.
 
 ```bash
 pip install tqdm
 python run_experiments.py
 ```
 
-Runs all 22 configurations (2.2 million executions). Estimated runtime: 8–12 minutes on a modern laptop. Results are saved incrementally, the script can be interrupted and resumed at any point via `results/checkpoint.json`.
+The strongest results, all reproducible from `results/`:
 
----
+- **Observation drives variance.** With zero inspections the output variance is exactly zero: the program is the same every run. A single inspection pushes the standard deviation to about 70.6, and it keeps climbing faster than linearly as you add more inspections.
+- **Nonlinearity amplifies exponentially.** Going from linear to quadratic to cubic math grows the output range on a near-straight log line (R squared = 0.9895). I called the slope the Semantic Lyapunov Exponent; here it comes out to about 2.79.
+- **The factors compound.** When observation, nonlinearity, and length are all pushed at once, the variance is roughly 591 times larger than the sum of each factor measured on its own. They multiply into each other instead of adding up.
 
-## Design Philosophy
+Full numbers are in `results/findings.txt`. Supporting write-ups, proofs, and the static-analysis work are under `docs/`, `analyzer/`, `validation/`, and `paper_artifacts/`. See `REPRODUCIBILITY.md` for how to regenerate the artifacts.
 
-Modern programming languages hide the cost of guarantees. Debugging is assumed to be free. Certainty is assumed to be default. Execution order is treated as an implementation detail.
+## Repository structure
 
-In real systems, none of this is true. As programs grow larger and more complex, guarantees become expensive, observability introduces side effects, and ordering effects become unavoidable.
+```
+Hiesenoether/
+├── src/                  the language itself
+│   ├── main.py           entry point and REPL
+│   ├── lexer.py          tokenizer
+│   ├── parser.py         recursive descent parser
+│   ├── ast_nodes.py      AST node definitions
+│   ├── runtime.py        interpreter and execution
+│   ├── values.py         unstable, stable, and function values
+│   └── energy.py         energy budget and escrow
+├── examples/             sample .hn programs
+├── tests/                pytest suites
+├── run_tests.py          standalone test runner
+├── run_experiments.py    the 2.2M-execution experiment battery
+├── results/              experiment output and findings
+├── validation/           theorem checks against the runtime
+├── analyzer/             abstract-interpretation static analysis
+├── analysis/             static scanning experiments
+├── docs/                 semantics, energy model, and proofs
+├── paper_artifacts/      research evidence and reproduction scripts
+├── REPRODUCIBILITY.md    how to regenerate the artifacts
+└── LICENSE
+```
 
-Hiesenoether makes these costs explicit and enforces them at the language level. The goal is not productivity. It is clarity, a substrate in which the true costs of computation are visible, measurable, and studied.
+## Current limitations
 
-The language is not intended for production use. It is a research instrument.
+This is a research language, so it has rough edges I have not filed down:
 
----
+- `if` and `while` work.
+- `else` is not implemented. The parser stops an `if` at its closing brace, so an `else` block is not read or run.
+- `for` and `range` are not implemented. `for` parses, but there is no way to build a range or list to iterate over, and reading `range` raises an undefined-variable error.
+- Numbers are floats, so you see the usual floating-point noise, for example a read that prints as `15.600000000000001` instead of `15.6`.
+- There is no module system, no standard library, and the error messages are basic.
+- The interesting behavior lives in the value semantics, not in a large feature set. The language is deliberately small.
 
-## Disclaimer
+## License
 
-Hiesenoether is an experimental research project exploring alternative language semantics. It is not intended for production use. All experimental results in `results/` were generated deterministically and are fully reproducible by running `run_experiments.py` from the project root.
+MIT. See [LICENSE](LICENSE).

@@ -1,5 +1,3 @@
-# run_validation.py
-
 import argparse
 import logging
 import random
@@ -22,7 +20,6 @@ config.RESULTS_SUMMARY_DIR.mkdir(parents=True, exist_ok=True)
 config.RESULTS_FIGURES_DIR.mkdir(parents=True, exist_ok=True)
 config.RESULTS_LOGS_DIR.mkdir(parents=True, exist_ok=True)
 
-
 def _setup_logging() -> logging.Logger:
     log_path = config.RESULTS_LOGS_DIR / "run.log"
     logger = logging.getLogger("validation")
@@ -38,7 +35,6 @@ def _setup_logging() -> logging.Logger:
     logger.addHandler(sh)
     return logger
 
-
 def run_all(num_runs: int = config.NUM_RUNS) -> None:
     logger = _setup_logging()
     t_start = time.time()
@@ -52,14 +48,12 @@ def run_all(num_runs: int = config.NUM_RUNS) -> None:
 
     random.seed(config.RANDOM_SEED)
 
-    # ── Descriptor experiment ────────────────────────────────────────
     logger.info("Running descriptor experiment (A1 + A3 analogues)...")
     t0 = time.time()
     from experiments.exp_descriptor import run_experiment as run_descriptor
     descriptor_rows = run_descriptor(num_runs)
     logger.info(f"  Done in {time.time() - t0:.1f}s — {len(descriptor_rows)} config rows")
 
-    # ── Cache invalidation ───────────────────────────────────────────
     logger.info("Running cache invalidation experiment...")
     t0 = time.time()
     from experiments.exp_cache_invalidation import run_experiment as run_cache
@@ -71,7 +65,6 @@ def run_all(num_runs: int = config.NUM_RUNS) -> None:
     )
     logger.info(f"  Done in {time.time() - t0:.1f}s — max cache error: {max_err:.2f}%")
 
-    # ── SLE fitting ──────────────────────────────────────────────────
     logger.info("Running SLE fitting experiment (A2 analogue)...")
     t0 = time.time()
     from experiments.exp_sle_fitting import run_experiment as run_sle
@@ -82,7 +75,6 @@ def run_all(num_runs: int = config.NUM_RUNS) -> None:
         f"95% CI=[{sle_result['ci_low']:.4f}, {sle_result['ci_high']:.4f}]"
     )
 
-    # ── Real system case studies ─────────────────────────────────────
     logger.info("Running real system case studies (risk / ORM / ML)...")
     t0 = time.time()
     from experiments.exp_real_system_case import run_experiment as run_real_system
@@ -102,11 +94,9 @@ def run_all(num_runs: int = config.NUM_RUNS) -> None:
         f"{len({r['case'] for r in real_system_rows})} case families"
     )
 
-    # ── NumPy stub ───────────────────────────────────────────────────
     from experiments.exp_numpy_extension import run_experiment as run_numpy
     run_numpy()
 
-    # ── Summarize ────────────────────────────────────────────────────
     logger.info("Writing summary CSVs and findings...")
     from analysis.summarize import summarize_all
     summary_data = summarize_all(
@@ -115,7 +105,6 @@ def run_all(num_runs: int = config.NUM_RUNS) -> None:
         cache_rows=cache_rows,
     )
 
-    # ── Plot ─────────────────────────────────────────────────────────
     logger.info("Generating figures...")
     from analysis.plot import plot_all
     plot_all(
@@ -125,10 +114,8 @@ def run_all(num_runs: int = config.NUM_RUNS) -> None:
         sweep_rows=sle_result.get("sweep_rows"),
     )
 
-    # ── Final summary ────────────────────────────────────────────────
     elapsed = time.time() - t_start
 
-    # Compute per-case max flip rates for summary line
     flip_summary = {}
     for r in real_system_rows:
         case = r["case"]
@@ -151,7 +138,6 @@ def run_all(num_runs: int = config.NUM_RUNS) -> None:
     logger.info(f"  Figures                 : {config.RESULTS_FIGURES_DIR}")
     logger.info(f"  Run log                 : {config.RESULTS_LOGS_DIR / 'run.log'}")
     logger.info("=" * 60)
-
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(

@@ -1,6 +1,6 @@
 # Case 50: h11 ReceiveBuffer
 
-- Runnable harness: `C:\Users\Asus\Desktop\Profitlo Projects\Hiesenoether\paper_artifacts\scp_behavioral_sweep\harnesses\case_50_h11_ReceiveBuffer.py`
+- Runnable harness: `<repo>\paper_artifacts\scp_behavioral_sweep\harnesses\case_50_h11_ReceiveBuffer.py`
 - Expected operation: `__iadd__`
 - Expected latent state: `_data`
 - Construction feasibility: `simple`

@@ -1,6 +1,6 @@
 # Case 30: docutils Body
 
-- Runnable harness: `C:\Users\Asus\Desktop\Profitlo Projects\Hiesenoether\paper_artifacts\scp_behavioral_sweep\harnesses\case_30_docutils_Body.py`
+- Runnable harness: `<repo>\paper_artifacts\scp_behavioral_sweep\harnesses\case_30_docutils_Body.py`
 - Expected operation: `indent`
 - Expected latent state: `parent`
 - Construction feasibility: `simple`

@@ -7,9 +7,7 @@ from pathlib import Path
 import pytest
 from _pytest.logging import catching_logs
 
-
 OUT = Path(__file__).resolve().parents[1] / "real_case_outputs" / "case_2_pytest_catching_logs.json"
-
 
 class ListHandler(logging.Handler):
     def __init__(self) -> None:
@@ -18,7 +16,6 @@ class ListHandler(logging.Handler):
 
     def emit(self, record: logging.LogRecord) -> None:
         self.messages.append(record.getMessage())
-
 
 def run_sequence(observe_first: bool) -> dict[str, object]:
     logger = logging.getLogger("scp_realworld_revision.pytest_case")
@@ -37,7 +34,6 @@ def run_sequence(observe_first: bool) -> dict[str, object]:
     logger.warning("warning-visible")
     after_later = {"handler_level": handler.level, "messages": list(handler.messages)}
     return {"before": before, "after_observation": after_observation, "after_later": after_later}
-
 
 def main() -> int:
     a = run_sequence(False)
@@ -67,7 +63,6 @@ def main() -> int:
     OUT.write_text(json.dumps(data, indent=2), encoding="utf-8")
     print(json.dumps(data, indent=2))
     return 0
-
 
 if __name__ == "__main__":
     raise SystemExit(main())

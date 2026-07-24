@@ -1,22 +1,3 @@
-"""
-run_experiments.py  —  Ordered Chaos experiment battery
-========================================================
-4 axes, 100k runs each config, 23 configs total.
-
-Features:
-  - In-process execution (no subprocess overhead — ~50x faster)
-  - tqdm progress bars (per-config + global)
-  - checkpoint saving: each config saved immediately on completion
-  - resume: skips configs already saved in results/
-  - decile breakdown per config
-  - inspect position tracking (before vs after mult)
-  - determinism sanity check before anything runs
-  - crash-safe: KeyboardInterrupt saves whatever is done
-
-Install deps first:
-    pip install tqdm
-"""
-
 import subprocess
 import random
 import statistics
@@ -28,7 +9,6 @@ import sys
 import io
 from contextlib import redirect_stdout
 
-# In-process runtime imports — eliminates subprocess overhead
 from src.parser import parse as hn_parse
 from src.runtime import Runtime
 
@@ -38,10 +18,6 @@ except ImportError:
     print("Installing tqdm...")
     subprocess.run([sys.executable, "-m", "pip", "install", "tqdm"], check=True)
     from tqdm import tqdm
-
-# ══════════════════════════════════════════════════════════════════
-# CONFIGURATION
-# ══════════════════════════════════════════════════════════════════
 
 NUM_RUNS     = 100_000
 RESULTS_DIR  = "results"
@@ -60,10 +36,7 @@ y <- 0
 print y
 """
 
-# All configs defined upfront so global progress bar knows the total.
-# Format: (axis, config_id, add_steps, inspect_count, nonlinearity)
 ALL_CONFIGS = [
-    # A1 — Observation multiplicity (fixed: quadratic, 6 steps)
     ("A1", "A1_inspect0", 6,  0, "quadratic"),
     ("A1", "A1_inspect1", 6,  1, "quadratic"),
     ("A1", "A1_inspect2", 6,  2, "quadratic"),
@@ -71,13 +44,11 @@ ALL_CONFIGS = [
     ("A1", "A1_inspect4", 6,  4, "quadratic"),
     ("A1", "A1_inspect5", 6,  5, "quadratic"),
 
-    # A2 — Nonlinearity depth (fixed: 1 inspect, 6 steps)
     ("A2", "A2_linear",    6, 1, "linear"),
     ("A2", "A2_quadratic", 6, 1, "quadratic"),
     ("A2", "A2_cubic",     6, 1, "cubic"),
     ("A2", "A2_extreme",   6, 1, "extreme"),
 
-    # A3 — Program length scaling (fixed: 1 inspect, quadratic)
     ("A3", "A3_steps3",  3,  1, "quadratic"),
     ("A3", "A3_steps6",  6,  1, "quadratic"),
     ("A3", "A3_steps9",  9,  1, "quadratic"),
@@ -85,13 +56,10 @@ ALL_CONFIGS = [
     ("A3", "A3_steps15", 15, 1, "quadratic"),
     ("A3", "A3_steps20", 20, 1, "quadratic"),
 
-    # A4 — Interaction effects (all three factors vary together)
     ("A4", "A4_low",    3,  0, "linear"),
     ("A4", "A4_medium", 9,  2, "quadratic"),
     ("A4", "A4_high",   20, 5, "extreme"),
 
-    # A4 extras — each factor maxed in isolation
-    # lets us test: combined >> sum of individuals
     ("A4", "A4_max_inspect_only", 6,  5, "quadratic"),
     ("A4", "A4_max_nonlin_only",  6,  1, "extreme"),
     ("A4", "A4_max_length_only",  20, 1, "quadratic"),
@@ -104,10 +72,6 @@ NONLINEAR_LINE = {
     "extreme":   "y <- y * y * x",
 }
 
-# ══════════════════════════════════════════════════════════════════
-# CHECKPOINT HELPERS
-# ══════════════════════════════════════════════════════════════════
-
 def load_checkpoint():
     if os.path.exists(CHECKPOINT):
         with open(CHECKPOINT) as f:
@@ -118,20 +82,7 @@ def save_checkpoint(done: dict):
     with open(CHECKPOINT, "w") as f:
         json.dump(done, f, indent=2)
 
-# ══════════════════════════════════════════════════════════════════
-# PROGRAM BUILDERS
-# ══════════════════════════════════════════════════════════════════
-
 def build_body(add_steps, inspect_count, nonlinearity):
-    """
-    Randomly shuffles add + inspect lines.
-    Nonlinear line is always appended LAST — intentional design:
-    we study how observation and ordering of additive steps
-    affects the value entering the nonlinear cap.
-    Returns (body_string, inspect_positions).
-    inspect_positions = 0-indexed positions of inspect lines in the
-    shuffled block (not counting the final mult line).
-    """
     lines = (["y <- y + x"] * add_steps) + (["inspect x"] * inspect_count)
     random.shuffle(lines)
     inspect_positions = [i for i, l in enumerate(lines) if l == "inspect x"]
@@ -141,13 +92,6 @@ def build_body(add_steps, inspect_count, nonlinearity):
     return "\n".join(lines), inspect_positions
 
 def run_program(body):
-    """
-    Execute a Hiesenoether program in-process.
-    Eliminates subprocess startup overhead (~100ms → ~2ms per run).
-    Semantics are identical — same parser, same runtime, same value
-    evolution rules. stdout is captured via redirect_stdout so the
-    Hiesenoether 'print' statement fires normally and we read it back.
-    """
     program = TEMPLATE.format(BODY=body)
     try:
         ast   = hn_parse(program)
@@ -165,10 +109,6 @@ def run_program(body):
     except Exception:
         return None
 
-# ══════════════════════════════════════════════════════════════════
-# STATISTICS
-# ══════════════════════════════════════════════════════════════════
-
 def deciles(data):
     s = sorted(data)
     n = len(s)
@@ -179,7 +119,6 @@ def deciles(data):
     return out
 
 def compute_stats(results, inspect_pos_list, add_steps):
-    # Guard: if every single run failed, return a safe sentinel row
     if not results:
         return {
             "min": None, "max": None, "mean": None, "std": None,
@@ -193,7 +132,6 @@ def compute_stats(results, inspect_pos_list, add_steps):
     mean = statistics.mean(results)
     std  = statistics.stdev(results) if len(results) > 1 else 0.0
     rng  = mx - mn
-    # CV: use abs(mean) so sign of mean never flips the metric
     cv   = (std / abs(mean)) if mean != 0 else float("inf")
     log_range = math.log(rng) if rng > 1 else 0.0
 
@@ -202,8 +140,6 @@ def compute_stats(results, inspect_pos_list, add_steps):
     if std > 0:
         skew = (sum((x - mean) ** 3 for x in results) / n_r) / (std ** 3)
 
-    # Fraction of runs where ALL inspects landed in the first half
-    # of the shuffled block. Only meaningful when inspect_count > 0.
     if inspect_pos_list and add_steps > 0:
         early_count = sum(
             1 for positions in inspect_pos_list
@@ -211,7 +147,6 @@ def compute_stats(results, inspect_pos_list, add_steps):
         )
         frac_early = round(early_count / len(inspect_pos_list), 4)
     else:
-        # 0-inspect configs: metric is not applicable
         frac_early = None
 
     return {
@@ -228,10 +163,6 @@ def compute_stats(results, inspect_pos_list, add_steps):
         **deciles(results),
     }
 
-# ══════════════════════════════════════════════════════════════════
-# SAVE HELPERS
-# ══════════════════════════════════════════════════════════════════
-
 SUMMARY_FIELDS = [
     "axis", "config", "add_steps", "inspects", "nonlinear", "n_valid",
     "min", "max", "mean", "std", "range", "log_range", "cv", "skewness",
@@ -240,7 +171,6 @@ SUMMARY_FIELDS = [
 ]
 
 def append_to_summary(row):
-    """Append one row to summary.csv immediately after config completes."""
     path = os.path.join(RESULTS_DIR, "summary.csv")
     write_header = not os.path.exists(path)
     with open(path, "a", newline="") as f:
@@ -265,23 +195,9 @@ def save_raw_values(values, config_label):
         for v in values:
             writer.writerow([round(v, 6)])
 
-# ══════════════════════════════════════════════════════════════════
-# SANITY CHECK
-# ══════════════════════════════════════════════════════════════════
-
 def sanity_check():
     print("\n── Sanity checks ──")
 
-    # 1. Interpreter smoke test: known program, known output (in-process)
-    # energy[100], x<-10, y<-0, y<-y+x (access 0: drift=0 → x=10),
-    # y<-y*x (y=10*10=100), print y  → must print 100.0
-    # x is UnstableValue(10). After y <- y + x:
-    #   y.get(): drift=0*1.0=0 → 0.0;  x.get(): drift=0*1.0=0 → 10.0
-    #   result=10.0, wrapped in new UnstableValue(10.0)
-    # Then y <- y * x:
-    #   y.get(): new UV(10), drift=0 → 10.0
-    #   x.get(): count=1, entropy=1.1, drift=1*1.1=1.1 → 11.1
-    #   result = 10.0 * 11.1 = 111.0
     smoke_body = "y <- y + x\ny <- y * x"
     smoke_val  = run_program(smoke_body)
     if smoke_val != 111.0:
@@ -291,7 +207,6 @@ def sanity_check():
         sys.exit(1)
     print(f"  ✓ Interpreter smoke test passed (got {smoke_val})")
 
-    # 2. Determinism: same Python seed → same shuffle → same output
     vals = []
     for _ in range(3):
         random.seed(42)
@@ -303,10 +218,6 @@ def sanity_check():
         print(f"  ✗ WARNING — non-determinism detected across seeds: {vals}")
         print("    Interpreter may have non-deterministic behaviour.")
         sys.exit(1)
-
-# ══════════════════════════════════════════════════════════════════
-# CORE RUN FUNCTION
-# ══════════════════════════════════════════════════════════════════
 
 def run_config(axis, label, add_steps, inspect_count, nonlinearity,
                global_bar, config_bar):
@@ -339,7 +250,6 @@ def run_config(axis, label, add_steps, inspect_count, nonlinearity,
         **stats,
     }
 
-    # Save immediately — crash-safe
     save_raw_values(results, label)
     append_to_summary(row)
 
@@ -357,33 +267,9 @@ def run_config(axis, label, add_steps, inspect_count, nonlinearity,
 
     return row
 
-# ══════════════════════════════════════════════════════════════════
-# ENTRY POINT
-# ══════════════════════════════════════════════════════════════════
-
-
-# ══════════════════════════════════════════════════════════════════
-# POST-RUN ANALYSIS
-# These run after all data is collected. Zero additional executions.
-# ══════════════════════════════════════════════════════════════════
-
 def compute_lyapunov(done: dict) -> dict:
-    """
-    Semantic Lyapunov Exponent (SLE) — Addition 1.
-
-    Defined as the slope of log(range) with respect to nonlinearity
-    degree across A2 configs. Uses simple finite differences between
-    consecutive nonlinearity levels (linear→quadratic→cubic→extreme),
-    then averages them. A positive slope in log-space means range
-    grows exponentially with nonlinearity — the hallmark of chaotic
-    amplification. We assign integer degree values 1,2,3,4 to the
-    four nonlinearity levels for the fit.
-
-    Uses only A2 configs (isolated nonlinearity axis, 1 inspect,
-    6 steps) to keep the measurement clean.
-    """
     order = ["A2_linear", "A2_quadratic", "A2_cubic", "A2_extreme"]
-    degrees = [1, 2, 3, 4]   # ordinal nonlinearity levels
+    degrees = [1, 2, 3, 4]
 
     rows = []
     for label in order:
@@ -401,7 +287,6 @@ def compute_lyapunov(done: dict) -> dict:
     if len(valid) < 2:
         return {"sle": None, "note": "Insufficient A2 data to compute SLE."}
 
-    # Simple linear regression: slope of log(range) ~ degree
     xs = [v[0] for v in valid]
     ys = [v[1] for v in valid]
     n  = len(xs)
@@ -411,7 +296,6 @@ def compute_lyapunov(done: dict) -> dict:
     denominator = sum((x - x_mean) ** 2 for x in xs)
 
     slope = numerator / denominator if denominator != 0 else 0.0
-    # R-squared
     ss_res = sum((y - (y_mean + slope * (x - x_mean))) ** 2 for x, y in zip(xs, ys))
     ss_tot = sum((y - y_mean) ** 2 for y in ys)
     r2 = 1 - (ss_res / ss_tot) if ss_tot != 0 else 0.0
@@ -429,29 +313,7 @@ def compute_lyapunov(done: dict) -> dict:
         ),
     }
 
-
 def compute_superadditivity(done: dict) -> dict:
-    """
-    Superadditivity test — Addition 2.
-
-    Claim: when all three factors (observation frequency, nonlinearity,
-    program length) are maximised simultaneously, the resulting output
-    variance exceeds the SUM of variances produced by each factor
-    maximised in isolation. This would demonstrate multiplicative
-    compounding rather than independent additive effects.
-
-    Metric: std (standard deviation). Consistent across all comparisons.
-
-    Isolated max configs (from A4 extras):
-        A4_max_inspect_only  — max inspects, baseline nonlinearity & length
-        A4_max_nonlin_only   — max nonlinearity, baseline inspects & length
-        A4_max_length_only   — max length, baseline inspects & nonlinearity
-
-    Combined max config:
-        A4_high              — max of all three simultaneously
-
-    Test: std(A4_high) > std(isolated_inspect) + std(isolated_nonlin) + std(isolated_length)
-    """
     keys = {
         "combined":        "A4_high",
         "isolated_inspect": "A4_max_inspect_only",
@@ -501,16 +363,7 @@ def compute_superadditivity(done: dict) -> dict:
         ),
     }
 
-
 def write_findings(done: dict, lyapunov: dict, superadd: dict) -> None:
-    """
-    findings.txt — Addition 3.
-
-    Human-readable plain English summary of the key quantitative
-    results. Written to be quotable directly in the paper's Results
-    and Discussion sections. Each finding is numbered, stated
-    precisely, and includes the raw numbers that support it.
-    """
     lines = []
     lines.append("=" * 68)
     lines.append("  ORDERED CHAOS — KEY FINDINGS")
@@ -518,7 +371,6 @@ def write_findings(done: dict, lyapunov: dict, superadd: dict) -> None:
     lines.append("=" * 68)
     lines.append("")
 
-    # ── Finding 1: A1 — does σ grow with inspect count? ──
     lines.append("FINDING 1 — Observation multiplicity (Axis A1)")
     lines.append("-" * 48)
     a1_rows = sorted(
@@ -541,7 +393,6 @@ def write_findings(done: dict, lyapunov: dict, superadd: dict) -> None:
         lines.append("  No A1 data available.")
     lines.append("")
 
-    # ── Finding 2: A2 — Lyapunov exponent ──
     lines.append("FINDING 2 — Semantic Lyapunov Exponent (Axis A2)")
     lines.append("-" * 48)
     if lyapunov.get("sle") is not None:
@@ -565,7 +416,6 @@ def write_findings(done: dict, lyapunov: dict, superadd: dict) -> None:
                 lines.append(f"    {label:<22}: range = {r}")
     lines.append("")
 
-    # ── Finding 3: A3 — program length scaling ──
     lines.append("FINDING 3 — Program length scaling (Axis A3)")
     lines.append("-" * 48)
     a3_rows = sorted(
@@ -591,7 +441,6 @@ def write_findings(done: dict, lyapunov: dict, superadd: dict) -> None:
         lines.append("  No A3 data available.")
     lines.append("")
 
-    # ── Finding 4: A4 — superadditivity ──
     lines.append("FINDING 4 — Interaction superadditivity (Axis A4)")
     lines.append("-" * 48)
     if superadd.get("superadditive") is not None:
@@ -616,7 +465,6 @@ def write_findings(done: dict, lyapunov: dict, superadd: dict) -> None:
     with open(path, "w", encoding="utf-8") as f:
         f.write("\n".join(lines))
 
-    # Also save findings as JSON for programmatic use
     findings_json = {
         "lyapunov":       lyapunov,
         "superadditivity": superadd,
@@ -649,7 +497,6 @@ if __name__ == "__main__":
     if n_done:
         print(f"\n  Resuming — {n_done}/{total_configs} config(s) already complete.")
 
-    # Pre-populate axis_rows from checkpoint so resumed axes get their CSVs
     axis_rows = {}
     for label, row in done.items():
         ax = row.get("axis")
@@ -675,7 +522,6 @@ if __name__ == "__main__":
         leave=False,
     )
 
-
     try:
         for (axis, label, add_steps, inspects, nonlinearity) in remaining:
             row = run_config(
@@ -684,11 +530,9 @@ if __name__ == "__main__":
             )
             axis_rows.setdefault(axis, []).append(row)
 
-            # Mark done and checkpoint immediately
             done[label] = row
             save_checkpoint(done)
 
-        # Per-axis CSVs (written once all configs in that axis finish)
         for axis_label, rows in axis_rows.items():
             save_axis_csv(axis_label, rows)
             tqdm.write(f"  → {axis_label}.csv written ({len(rows)} configs)")
@@ -703,7 +547,6 @@ if __name__ == "__main__":
         config_bar.close()
         global_bar.close()
 
-    # ── Post-run analysis (runs on whatever data is available) ──
     print("\n── Post-run analysis ──")
     lyapunov  = compute_lyapunov(done)
     superadd  = compute_superadditivity(done)

@@ -8,7 +8,6 @@ import sys
 from pathlib import Path
 from typing import Any
 
-
 UNSAFE_METHOD_BITS = {
     "delete",
     "remove",
@@ -33,7 +32,6 @@ NOT_READ_OR_OBSERVER_METHODS = {
     "close",
 }
 
-
 def short(value: Any, limit: int = 500) -> str:
     try:
         text = repr(value)
@@ -42,14 +40,12 @@ def short(value: Any, limit: int = 500) -> str:
     text = re.sub(r"0x[0-9A-Fa-f]+", "0xADDR", text)
     return text if len(text) <= limit else text[: limit - 3] + "..."
 
-
 def safe_state(obj: Any) -> dict[str, str]:
     try:
         raw = vars(obj)
     except Exception:
         return {}
     return {str(key): short(value, 160) for key, value in sorted(raw.items(), key=lambda kv: str(kv[0]))}
-
 
 def find_import_name(source_root: Path, source_file: Path) -> tuple[str, Path]:
     path = source_file.resolve()
@@ -59,7 +55,6 @@ def find_import_name(source_root: Path, source_file: Path) -> tuple[str, Path]:
         package_parts.insert(0, parent.name)
         parent = parent.parent
     return ".".join(package_parts), parent
-
 
 def import_class(source_root: str, source_file: str, class_name: str) -> tuple[type[Any] | None, str]:
     root = Path(source_root)
@@ -78,7 +73,6 @@ def import_class(source_root: str, source_file: str, class_name: str) -> tuple[t
         return None, f"class_not_found: {class_name} in {module_name}"
     return cls, ""
 
-
 def required_params(callable_obj: Any, skip_first: bool) -> list[str]:
     try:
         sig = inspect.signature(callable_obj)
@@ -95,7 +89,6 @@ def required_params(callable_obj: Any, skip_first: bool) -> list[str]:
             required.append(param.name)
     return required
 
-
 def construct(cls: type[Any]) -> tuple[Any | None, str]:
     req = required_params(cls, skip_first=False)
     if req:
@@ -104,7 +97,6 @@ def construct(cls: type[Any]) -> tuple[Any | None, str]:
         return cls(), ""
     except Exception as exc:
         return None, f"constructor raised {type(exc).__name__}: {exc}"
-
 
 def call_operation(obj: Any, method_name: str) -> dict[str, Any]:
     try:
@@ -138,7 +130,6 @@ def call_operation(obj: Any, method_name: str) -> dict[str, Any]:
         return {"kind": "value", "value": short(value)}
     except Exception as exc:
         return {"kind": "exception", "type": type(exc).__name__, "message": str(exc)}
-
 
 def run_case(meta: dict[str, Any]) -> dict[str, Any]:
     method_name = str(meta.get("expected_observer_or_read_operation") or "")
@@ -209,7 +200,6 @@ def run_case(meta: dict[str, Any]) -> dict[str, Any]:
         "notes": "generic safe repeated-operation harness; confirmation depends on no-arg construction and no-arg operation",
     }
 
-
 def common_fields(meta: dict[str, Any]) -> dict[str, Any]:
     return {
         "sweep_rank": int(meta["sweep_rank"]),
@@ -219,7 +209,6 @@ def common_fields(meta: dict[str, Any]) -> dict[str, Any]:
         "file_path": meta["file_path"],
         "selected_score": int(meta["score"]),
     }
-
 
 def base_result(meta: dict[str, Any], classification: str, reason: str) -> dict[str, Any]:
     return {
@@ -236,7 +225,6 @@ def base_result(meta: dict[str, Any], classification: str, reason: str) -> dict[
         "failure_reason": reason,
         "notes": "generic harness did not execute candidate behavior",
     }
-
 
 def write_case(meta: dict[str, Any], output_path: str) -> int:
     result = run_case(meta)

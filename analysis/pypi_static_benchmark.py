@@ -15,7 +15,6 @@ from typing import Iterable
 
 from analysis.oc_static import analyze_file
 
-
 REPO = Path(__file__).resolve().parents[1]
 RESULTS_DIR = REPO / "results_static"
 CACHE_DIR = Path(tempfile.gettempdir()) / "hiesenoether_pypi_static_benchmark"
@@ -118,10 +117,6 @@ SKIP_DIRS = {
     "benchmarks",
 }
 
-# Manual review of every MEDIUM/HIGH finding emitted by the benchmark run.
-# Keys are package|relative-path|class-name. Unlisted flagged findings are
-# likely true positives for stateful/access-evolving behavior after source
-# inspection.
 FALSE_POSITIVES = {
     "attrs|attrs-26.1.0\\src\\attr\\_make.py|_ClassBuilder":
         "fluent class-builder mutator returns self; not an access/read path",
@@ -279,16 +274,13 @@ FALSE_POSITIVES = {
         "stylesheet construction cache; repeated access is semantically stable",
 }
 
-
 def normalize_name(name: str) -> str:
     return re.sub(r"[-_.]+", "-", name).lower()
-
 
 def ensure_dirs() -> None:
     RESULTS_DIR.mkdir(exist_ok=True)
     DOWNLOAD_DIR.mkdir(parents=True, exist_ok=True)
     SOURCE_DIR.mkdir(parents=True, exist_ok=True)
-
 
 def download_sdist(package: str) -> tuple[Path | None, str | None]:
     existing = sorted(DOWNLOAD_DIR.glob(f"{package.replace('-', '*')}*"))
@@ -334,7 +326,6 @@ def download_sdist(package: str) -> tuple[Path | None, str | None]:
         return None, "download completed but no matching archive was found"
     return matches[-1], None
 
-
 def extract_archive(package: str, archive: Path) -> Path:
     target = SOURCE_DIR / normalize_name(package)
     if target.exists():
@@ -350,7 +341,6 @@ def extract_archive(package: str, archive: Path) -> Path:
         raise ValueError(f"unsupported archive: {archive}")
     return target
 
-
 def version_from_metadata(root: Path) -> str:
     for name in ("PKG-INFO", "METADATA"):
         for path in root.rglob(name):
@@ -362,7 +352,6 @@ def version_from_metadata(root: Path) -> str:
                 continue
     return ""
 
-
 def iter_python_files(root: Path) -> Iterable[Path]:
     for path in sorted(root.rglob("*.py")):
         parts = {p.lower() for p in path.relative_to(root).parts[:-1]}
@@ -372,7 +361,6 @@ def iter_python_files(root: Path) -> Iterable[Path]:
         if name.startswith("test") or name == "conftest.py":
             continue
         yield path
-
 
 def count_defs(path: Path) -> tuple[int, int]:
     try:
@@ -385,7 +373,6 @@ def count_defs(path: Path) -> tuple[int, int]:
                     for n in ast.walk(tree))
     return classes, functions
 
-
 def mechanisms_for(cls: dict) -> str:
     bits = []
     if cls["P1_access_sensitive"]:
@@ -396,7 +383,6 @@ def mechanisms_for(cls: dict) -> str:
         bits.append("P3_nonlinear_composition")
     return "; ".join(bits)
 
-
 def short_reason(cls: dict) -> str:
     evidence = cls.get("evidence", {})
     for key in ("P1", "P2", "P3"):
@@ -405,10 +391,8 @@ def short_reason(cls: dict) -> str:
             return vals[0]
     return "No evidence string emitted."
 
-
 def review_key(package: str, rel_file: str, class_name: str) -> str:
     return f"{package}|{rel_file}|{class_name}"
-
 
 def manual_review(package: str, rel_file: str, class_name: str) -> tuple[str, str]:
     key = review_key(package, rel_file, class_name)
@@ -418,7 +402,6 @@ def manual_review(package: str, rel_file: str, class_name: str) -> tuple[str, st
         "likely true positive",
         "source review found state mutation on a method/property/call path that returns a value or access handle",
     )
-
 
 def scan_package(package: str) -> tuple[dict, list[dict]]:
     archive, error = download_sdist(package)
@@ -502,13 +485,11 @@ def scan_package(package: str) -> tuple[dict, list[dict]]:
     }
     return summary, findings
 
-
 def write_csv(path: Path, rows: list[dict], fieldnames: list[str]) -> None:
     with path.open("w", newline="", encoding="utf-8") as f:
         writer = csv.DictWriter(f, fieldnames=fieldnames)
         writer.writeheader()
         writer.writerows(rows)
-
 
 def write_summary(package_rows: list[dict], findings: list[dict]) -> None:
     attempted = len(package_rows)
@@ -619,7 +600,6 @@ def write_summary(package_rows: list[dict], findings: list[dict]) -> None:
 
     SUMMARY_MD.write_text("\n".join(lines) + "\n", encoding="utf-8")
 
-
 def run() -> dict:
     ensure_dirs()
     package_rows: list[dict] = []
@@ -643,14 +623,12 @@ def run() -> dict:
     write_summary(package_rows, findings)
     return {"packages": package_rows, "findings": findings}
 
-
 def main() -> int:
     run()
     print(f"wrote {SUMMARY_CSV}")
     print(f"wrote {FINDINGS_CSV}")
     print(f"wrote {SUMMARY_MD}")
     return 0
-
 
 if __name__ == "__main__":
     raise SystemExit(main())

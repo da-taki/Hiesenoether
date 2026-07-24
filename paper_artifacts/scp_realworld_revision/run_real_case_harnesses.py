@@ -6,12 +6,10 @@ import subprocess
 import sys
 from pathlib import Path
 
-
 OUT = Path(__file__).resolve().parent
 HARNESS_DIR = OUT / "real_case_harnesses"
 OUTPUT_DIR = OUT / "real_case_outputs"
 CSV_OUT = OUT / "real_case_results.csv"
-
 
 def run() -> list[dict[str, object]]:
     OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
@@ -67,13 +65,11 @@ def run() -> list[dict[str, object]]:
         )
     return rows
 
-
 def write_csv(rows: list[dict[str, object]]) -> None:
     with CSV_OUT.open("w", newline="", encoding="utf-8") as fh:
         writer = csv.DictWriter(fh, fieldnames=list(rows[0]))
         writer.writeheader()
         writer.writerows(rows)
-
 
 def main() -> int:
     rows = run()
@@ -82,7 +78,6 @@ def main() -> int:
     print(f"wrote {CSV_OUT}")
     print(f"confirmed={len(confirmed)} total={len(rows)}")
     return 0
-
 
 if __name__ == "__main__":
     raise SystemExit(main())

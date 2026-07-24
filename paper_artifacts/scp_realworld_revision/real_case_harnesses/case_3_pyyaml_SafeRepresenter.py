@@ -4,7 +4,6 @@ import json
 import sys
 from pathlib import Path
 
-
 SNAPSHOT = Path(__file__).resolve().parents[1] / "source_snapshot" / "pyyaml-6.0.3"
 TEMP = Path.home() / "AppData" / "Local" / "Temp" / "hiesenoether_pypi_static_benchmark" / "sources" / "pyyaml"
 if SNAPSHOT.exists():
@@ -15,14 +14,11 @@ elif TEMP.exists():
 import yaml
 from yaml.representer import SafeRepresenter
 
-
 OUT = Path(__file__).resolve().parents[1] / "real_case_outputs" / "case_3_pyyaml_SafeRepresenter.json"
-
 
 def node_payload(node: object) -> str:
     value = getattr(node, "value", None)
     return repr(value)
-
 
 def order_a() -> dict[str, object]:
     rep = SafeRepresenter()
@@ -34,7 +30,6 @@ def order_a() -> dict[str, object]:
         "object_keeper": len(rep.object_keeper),
         "node_payload": node_payload(node),
     }
-
 
 def order_b() -> dict[str, object]:
     rep = SafeRepresenter()
@@ -50,7 +45,6 @@ def order_b() -> dict[str, object]:
         "node_payload": node_payload(second),
         "same_node_returned": first is second,
     }
-
 
 def main() -> int:
     a = order_a()
@@ -80,7 +74,6 @@ def main() -> int:
     OUT.write_text(json.dumps(data, indent=2), encoding="utf-8")
     print(json.dumps(data, indent=2))
     return 0
-
 
 if __name__ == "__main__":
     raise SystemExit(main())

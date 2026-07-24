@@ -1,6 +1,6 @@
 # Case 14: boltons MultiFileReader
 
-- Runnable harness: `C:\Users\Asus\Desktop\Profitlo Projects\Hiesenoether\paper_artifacts\scp_behavioral_sweep\harnesses\case_14_boltons_MultiFileReader.py`
+- Runnable harness: `<repo>\paper_artifacts\scp_behavioral_sweep\harnesses\case_14_boltons_MultiFileReader.py`
 - Expected operation: `read`
 - Expected latent state: `_index`
 - Construction feasibility: `simple`
