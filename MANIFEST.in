@@ -1,0 +1,26 @@
+include README.md
+include LICENSE
+include pyproject.toml
+recursive-include src *.py
+
+prune .agents
+prune .git
+prune .pytest_cache
+prune analysis
+prune analyzer
+prune benchmarks
+prune docs
+prune examples
+prune paper_artifacts
+prune python_sim
+prune real_world_validation
+prune results
+prune results_extended
+prune results_static
+prune results_validation
+prune scripts
+prune substrates
+prune tests
+prune validation
+
+global-exclude __pycache__ *.py[cod] .DS_Store

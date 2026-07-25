@@ -121,6 +121,25 @@ I started Hiesenoether after reading about Heisenberg and Emmy Noether at around
 
 The first version was a small interpreter. I later used it to run controlled experiments on access order, observation timing, nonlinear operations, and propagation through longer programs.
 
+## Installation
+
+Install Hiesenoether from PyPI:
+
+```bash
+pip install hiesenoether
+```
+
+Run a program:
+
+```bash
+hiesenoether program.hn
+```
+
+Start the REPL:
+
+```bash
+hiesenoether --repl
+```
 ## Running the project
 
 Hiesenoether requires Python 3.10 or newer. The interpreter itself has no third-party runtime dependencies.
@@ -234,6 +253,9 @@ Hiesenoether is a research language with a small general-purpose feature set.
 
 The repository contains a large amount of experiment output because the raw results are kept with the project.
 
+## AI usage
+
+I used Claude and ChatGPT while developing Hiesenoether. They helped me audit and clean the repository, debug and refactor parts of the interpreter, write and revise tests, and edit documentation. I reviewed and tested the resulting changes before including them. The core idea, language design, and project direction are my own.
 ## License
 
 Hiesenoether is licensed under the [MIT License](LICENSE).

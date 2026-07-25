@@ -1,0 +1,33 @@
+[build-system]
+requires = ["setuptools>=69", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "hiesenoether"
+version = "0.1.0"
+description = "A small research language for access-induced semantic divergence experiments."
+readme = "README.md"
+requires-python = ">=3.10"
+license = "MIT"
+authors = [{ name = "da-taki" }]
+keywords = ["programming-language", "interpreter", "research"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Software Development :: Interpreters",
+]
+
+[project.urls]
+Repository = "https://github.com/da-taki/Hiesenoether"
+
+[project.scripts]
+hiesenoether = "src.cli:main"
+
+[tool.setuptools]
+packages = ["src"]
+include-package-data = false
