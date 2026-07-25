@@ -209,9 +209,9 @@ The generated results are stored in [results/](results/). A few values from the 
 |---|---:|
 | Standard deviation with no inspections | `0.00` |
 | Standard deviation with one inspection | `70.64` |
-| R? for the nonlinearity log-linear fit | `0.9895` |
+| R² for the nonlinearity log-linear fit | `0.9895` |
 | Semantic Lyapunov Exponent | `2.7891` |
-| Combined maximum compared with the sum of isolated maxima | `590.89?` |
+| Combined maximum compared with the sum of isolated maxima | `590.89×` |
 
 These values describe the experiment design and data included in this repository. They are not a general law for all deterministic programs.
 

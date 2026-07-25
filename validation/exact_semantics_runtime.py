@@ -18,7 +18,7 @@ def read(u: UV) -> Tuple[Fraction, UV]:
     return v, UV(b=u.b, n=u.n + 1, e=u.e + DE)
 
 def observe(u: UV) -> UV:
-    return UV(b=u.b, n=u.n + 1, e=u.e + DE)
+    return UV(b=u.b, n=u.n, e=u.e + DOBS)
 
 def wrap(value: Fraction) -> UV:
     return UV(b=value, n=0, e=Fraction(1, 1))
