@@ -1,12 +1,20 @@
 # Hiesenoether
 
-Hiesenoether is an experimental programming language where reading a variable can change the value it returns next. The language is deterministic: a program produces the same result when it follows the same sequence of operations, but moving a read or an `inspect` statement can change later values.
+A deterministic programming language where reading a variable can change what it returns next.
 
-The interpreter is written in Python. This repository contains the language implementation, examples, tests, experiment scripts, validation programs, and a static analyzer.
+PyPI: https://pypi.org/project/hiesenoether/
 
-## Example
+## Install
 
-The file [`examples/drift.hn`](examples/drift.hn) contains:
+Hiesenoether requires Python 3.10 or newer.
+
+```bash
+pip install hiesenoether
+```
+
+## Run
+
+Create a file called `program.hn`:
 
 ```text
 energy[100]
@@ -18,13 +26,13 @@ print x
 print x
 ```
 
-Run it from the repository root:
+Run it:
 
 ```bash
-python -m src.main examples/drift.hn
+hiesenoether program.hn
 ```
 
-It prints:
+Output:
 
 ```text
 10.0
@@ -32,117 +40,72 @@ It prints:
 12.4
 ```
 
-`x` was assigned once. Its value changes because unstable variables keep track of how often they have been read.
+`x` is assigned once. Each read advances its internal state, so the next read returns a different value.
 
-## Values
+The language is still deterministic. Running the same program with the same sequence of operations produces the same result.
 
-Variables are unstable unless they are declared with `stable`. An unstable variable stores its original value, an access count, and an entropy value. A read is calculated with:
+Start the REPL with:
 
-```text
-returned = base_value + access_count * entropy
+```bash
+hiesenoether --repl
 ```
 
-After the read, the access count increases by `1` and entropy increases by `0.1`.
+## How it works
 
-For `x <- 10`, the first three reads are therefore:
+Variables are unstable by default:
 
 ```text
-10 + (0 * 1.0) = 10.0
-10 + (1 * 1.1) = 11.1
-10 + (2 * 1.2) = 12.4
+x <- 10
 ```
 
-A stable variable keeps the same value:
+Stable variables keep the same value:
 
 ```text
 stable answer <- 42
-
-print answer
-print answer
-print answer
 ```
 
-```text
-42.0
-42.0
-42.0
-```
-
-An unstable variable can be frozen later with:
+An unstable variable can be frozen later:
 
 ```text
 stabilize x
 ```
 
-## Inspection and energy
+`inspect` shows the internal state of a variable and affects what it returns later:
 
-Every program starts with an energy budget:
+```text
+inspect x
+```
+
+Programs also have an energy budget:
 
 ```text
 energy[100]
 ```
 
-Operations that provide guarantees or information spend part of that budget.
-
-| Operation | Energy |
-|---|---:|
-| Declare a stable variable | 5 |
-| Stabilize a variable | 5 |
-| Inspect a variable | 2 |
-| Declare a standard function | 3 |
-| Declare an unstable function | 1 |
-| Declare an invariant | 10 |
-
-`inspect x` prints the internal state of `x`. A successful inspection also raises its entropy by `1.0`, so later reads follow a different path.
+Inspection, stable variables, functions, and invariants spend energy. Capabilities can be removed permanently in exchange for energy:
 
 ```text
-energy[30]
-
-x <- 10
-
-print x
-inspect x
-print x
-```
-
-Inspection is part of the execution itself. Moving it earlier or later changes subsequent values while keeping the run deterministic.
-
-Capabilities can be removed permanently in exchange for energy:
-
-```text
+remove[inspection]
 remove[invariants]
 remove[stable_control]
-remove[inspection]
 ```
 
-## Background
+## Features
 
-I started Hiesenoether after reading about Heisenberg and Emmy Noether at around 5 AM while avoiding a chemistry exam. I wanted to try building a language where observation affected later computation and guarantees had a visible cost. The name came from combining Heisenberg and Noether.
+- Unstable and stable variables
+- Arithmetic and comparisons
+- `inspect` and `stabilize`
+- Standard, pure, and unstable functions
+- `if` statements
+- `while` loops
+- Invariants
+- Energy queries
+- Capability removal
+- `.hn` files
+- Interactive REPL
+- Static analysis and validation tools
 
-The first version was a small interpreter. I later used it to run controlled experiments on access order, observation timing, nonlinear operations, and propagation through longer programs.
-
-## Installation
-
-Install Hiesenoether from PyPI:
-
-```bash
-pip install hiesenoether
-```
-
-Run a program:
-
-```bash
-hiesenoether program.hn
-```
-
-Start the REPL:
-
-```bash
-hiesenoether --repl
-```
-## Running the project
-
-Hiesenoether requires Python 3.10 or newer. The interpreter itself has no third-party runtime dependencies.
+## Run from source
 
 ```bash
 git clone https://github.com/da-taki/Hiesenoether.git
@@ -150,112 +113,53 @@ cd Hiesenoether
 python -m src.main examples/basic_energy.hn
 ```
 
-Start the REPL with:
+Run the REPL from source:
 
 ```bash
 python -m src.main --repl
 ```
 
-The REPL keeps one runtime alive between commands, so access history is preserved:
+## Research
 
-```text
->>> x <- 10
->>> print x
-10.0
->>> print x
-11.1
->>> query energy
-Energy: 100/100
-```
+The repository includes experiments on inspection count, nonlinear computation, access order, and program length.
 
-Use `help` to list REPL commands and `exit` to leave.
+The main experiment battery has 22 configurations with 100,000 executions per configuration.
 
-## Language support
+Results and reproduction instructions are available in:
 
-The current interpreter supports:
+- [`results/findings.txt`](results/findings.txt)
+- [`REPRODUCIBILITY.md`](REPRODUCIBILITY.md)
+- [`validation/`](validation/)
+- [`paper_artifacts/`](paper_artifacts/)
 
-- unstable and stable variables
-- arithmetic and comparisons
-- `inspect` and `stabilize`
-- standard, pure, and unstable functions
-- `if` statements
-- `while` loops
-- invariants
-- energy queries
-- permanent capability removal
-- `.hn` files and an interactive REPL
-
-The larger example in [`examples/basic_energy.hn`](examples/basic_energy.hn) runs through most of these features.
-
-## Experiments
-
-The main experiment battery varies inspection count, nonlinear computation, and program length. It contains 22 configurations with 100,000 executions per configuration.
-
-```bash
-pip install tqdm
-python run_experiments.py
-```
-
-The generated results are stored in [`results/`](results/). A few values from the current result set are:
-
-| Measurement | Result |
-|---|---:|
-| Standard deviation with no inspections | `0.00` |
-| Standard deviation with one inspection | `70.64` |
-| R² for the nonlinearity log-linear fit | `0.9895` |
-| Semantic Lyapunov Exponent | `2.7891` |
-| Combined maximum compared with the sum of isolated maxima | `590.89×` |
-
-The experiment found that inspection, nonlinear operations, and propagation length compound strongly in this language. These results describe the experiment design in this repository. They are not presented as a general law for every deterministic program.
-
-Detailed findings are in [`results/findings.txt`](results/findings.txt). The repository also contains exact-semantics checks, runtime-correspondence tests, theorem validators, and static-analysis experiments.
-
-See [`REPRODUCIBILITY.md`](REPRODUCIBILITY.md) for the artifact regeneration process.
+The repository also includes exact-semantics checks, runtime-correspondence tests, theorem validators, and static-analysis experiments.
 
 ## Tests
 
-Run the standalone interpreter tests with:
+Run the interpreter tests:
 
 ```bash
 python run_tests.py
 ```
 
-Run the pytest suites with:
+Run the pytest suite:
 
 ```bash
 python -m pytest tests -q
 ```
 
-The suites cover value evolution, energy accounting, inspection, stabilization, functions, invariants, control flow, determinism, analysis code, and research evidence.
+## AI use declaration
 
-## Repository layout
-
-```text
-src/                 interpreter, parser, lexer, values, and energy system
-examples/            example Hiesenoether programs
-tests/               pytest suites
-run_tests.py         standalone interpreter tests
-run_experiments.py   main experiment battery
-results/             experiment outputs and findings
-validation/          semantic and runtime validation
-analyzer/            abstract-interpretation analyzer
-analysis/            static-analysis experiments
-docs/                language and research documentation
-paper_artifacts/     reproduction scripts and supporting evidence
-REPRODUCIBILITY.md   artifact regeneration instructions
-```
+AI was used for making some experiments for the project.
 
 ## Limitations
 
-Hiesenoether is a research language with a small general-purpose feature set.
+Hiesenoether is an experimental language.
 
-`if` statements and `while` loops work. `else`, `for`, and `range` are currently missing. Numbers use floating-point values, error messages are basic, and there is no module system or standard library.
+`if` statements and `while` loops work. `else`, `for`, and `range` are not implemented yet.
 
-The repository contains a large amount of experiment output because the raw results are kept with the project.
+Numbers use floating-point values. Error messages are basic. There is no module system or standard library.
 
-## AI usage
-
-I used Claude and ChatGPT while developing Hiesenoether. They helped me audit and clean the repository, debug and refactor parts of the interpreter, write and revise tests, and edit documentation. I reviewed and tested the resulting changes before including them. The core idea, language design, and project direction are my own.
 ## License
 
 Hiesenoether is licensed under the [MIT License](LICENSE).
