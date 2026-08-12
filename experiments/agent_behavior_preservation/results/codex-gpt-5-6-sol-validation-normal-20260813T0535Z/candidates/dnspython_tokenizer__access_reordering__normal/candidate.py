@@ -1,0 +1,1 @@
+import io from dns.tokenizer import Tokenizer def subject(consume_first=False): tokenizer = Tokenizer(io.StringIO("aa bb")) token = tokenizer.get() if consume_first: token = tokenizer.get() return ("has_bb", token.value) if token.value == "bb" else ("has_aa", token.value) def ordinary_smoke(): return Tokenizer(io.StringIO("ok")).get().value == "ok"

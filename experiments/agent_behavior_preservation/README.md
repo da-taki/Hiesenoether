@@ -1,4 +1,4 @@
-# Agent Behavior Preservation Pilot
+﻿# Agent Behavior Preservation Pilot
 
 This directory contains a pilot benchmark for testing whether ordinary coding-agent
 transformations preserve behavior around access-sensitive and observation-sensitive real
@@ -37,7 +37,7 @@ python experiments/agent_behavior_preservation/analysis/summarize_results.py --r
 pipeline. It is not a paid external model and should not be used as evidence about a named
 coding model. To evaluate stored external model responses, write JSONL rows containing
 `task_id`, `provider`, `model`, `raw_response`, and optional self-assessment fields, then
-run with `--provider jsonl --replay-path <responses.jsonl>`.
+run with `--provider jsonl --replay-path <responses.jsonl>`. For partial response files such as the six-task validation subset, also pass `--task-ids-from-replay` so the runner evaluates only task IDs present in the replay file.
 
 ## Exact Environment Reconstruction
 
@@ -77,3 +77,4 @@ experiments\agent_behavior_preservation\environment\.venv\Scripts\python.exe exp
 ```
 
 The exporter writes `external_collection/` with a pre-model run manifest, a six-task normal-only validation subset, full normal prompts, full warned prompts, a replay response template, and the self-assessment prompt. Collect each generation in a fresh external model context and evaluate the filled response JSONL with the existing `--provider jsonl` runner. Keep local controls separate from real-model results.
+

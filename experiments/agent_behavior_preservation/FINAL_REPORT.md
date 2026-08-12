@@ -103,3 +103,28 @@ After generating the external collection package, both local controls were rerun
 - `control-static-provider-gate-20260813T0445Z`: 26/26 executable, 0/26 preserved, 26/26 diverged, 26/26 ordinary-pass / OSDS-fail
 
 These are still controls only and are not included in real-model evidence.
+
+## 2026-08-13 Codex Task-Model Validation Run
+
+A six-task normal-prompt validation subset was collected with fresh projectless Codex tasks using `gpt-5.6-sol` and `thinking=low`. Codex does not expose temperature or seed controls through the task interface used here, so both are recorded as null.
+
+Corrected exact replay run: `codex-gpt-5-6-sol-validation-normal-exact-20260813T0550Z`.
+
+Results:
+
+- responses collected: 6
+- patches extracted/applied: 6/6
+- executable candidates: 6/6
+- ordinary smoke checks passed: 6/6
+- OSDS-aware checks passed: 6/6
+- preserved: 6/6
+- verified semantic divergences: 0/6
+- silent semantic divergences: 0/6
+- YES preservation claims: 3
+- NO preservation claims: 3
+- false preservation claims: 0/3 YES claims
+- silent false-preservation cases: 0/6 executable transformations
+
+Manual review queue: empty for the corrected exact replay because no apparent divergences were detected. Earlier validation artifacts that used all 26 tasks or compact flattened task-output text are recorded in `analysis/invalidated_runs.jsonl` and excluded.
+
+The full normal/warned experiment has not been launched yet.

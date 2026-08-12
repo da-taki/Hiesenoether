@@ -40,6 +40,15 @@ def load_tasks(path: Path) -> list[dict[str, object]]:
     return rows
 
 
+def load_replay_task_ids(path: Path) -> set[str]:
+    task_ids: set[str] = set()
+    with path.open(encoding="utf-8-sig") as handle:
+        for line in handle:
+            if line.strip():
+                task_ids.add(str(json.loads(line)["task_id"]))
+    return task_ids
+
+
 def unique_run_dir(run_id: str) -> Path:
     root = RESULTS / run_id
     if root.exists():
@@ -55,6 +64,13 @@ def run(args: argparse.Namespace) -> int:
         tasks = [task for task in tasks if task["task_id"] == args.task_id]
         if not tasks:
             raise SystemExit(f"unknown task_id {args.task_id}")
+    if args.task_ids_from_replay:
+        if not args.replay_path:
+            raise SystemExit("--task-ids-from-replay requires --replay-path")
+        replay_task_ids = load_replay_task_ids(Path(args.replay_path))
+        tasks = [task for task in tasks if str(task["task_id"]) in replay_task_ids]
+        if not tasks:
+            raise SystemExit("replay file did not match any task_id in the task file")
     provider = make_provider(args.provider, args.replay_path)
     run_dir = unique_run_dir(args.run_id)
     result_rows = []
@@ -161,6 +177,7 @@ def main() -> int:
     parser.add_argument("--task-id")
     parser.add_argument("--provider", choices=["noop", "static", "jsonl"], default="static")
     parser.add_argument("--replay-path")
+    parser.add_argument("--task-ids-from-replay", action="store_true")
     parser.add_argument("--run-id", required=True)
     parser.add_argument("--timeout-s", type=float, default=8.0)
     return run(parser.parse_args())
@@ -168,6 +185,7 @@ def main() -> int:
 
 if __name__ == "__main__":
     raise SystemExit(main())
+
 
 
 

@@ -250,3 +250,15 @@ def test_external_collection_manifest_records_provider_fallback():
     assert manifest["witness_count"] == 9
     assert manifest["provider_model_configuration"]["usable_provider_count"] == 0
     assert manifest["provider_model_configuration"]["fallback"] == "jsonl_replay_external_collection"
+
+
+def test_replay_task_id_loader(tmp_path):
+    from runners.run_benchmark import load_replay_task_ids
+
+    replay = tmp_path / "responses.jsonl"
+    replay.write_text(
+        json.dumps({"task_id": "a", "raw_response": "def subject(): pass"}) + "\n"
+        + json.dumps({"task_id": "b", "raw_response": "def subject(): pass"}) + "\n",
+        encoding="utf-8",
+    )
+    assert load_replay_task_ids(replay) == {"a", "b"}

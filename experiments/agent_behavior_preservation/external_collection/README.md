@@ -1,4 +1,4 @@
-# External Model Collection
+﻿# External Model Collection
 
 These files are for collecting real coding-model responses outside this repository-local
 runner when no authenticated provider is available locally.
@@ -11,8 +11,9 @@ with `task_id`, `provider`, `model`, `temperature`, `seed`, `raw_response`, and
 `self_assessment`. Then evaluate it with:
 
 ```powershell
-experiments\agent_behavior_preservation\environment\.venv\Scripts\python.exe experiments\agent_behavior_preservation\runners\run_benchmark.py --provider jsonl --replay-path <responses.jsonl> --run-id <unique-run-id>
+experiments\agent_behavior_preservation\environment\.venv\Scripts\python.exe experiments\agent_behavior_preservation\runners\run_benchmark.py --provider jsonl --replay-path <responses.jsonl> --task-ids-from-replay --run-id <unique-run-id>
 ```
 
 Run the small validation subset first, then all normal prompts, then all warned prompts.
 Never overwrite completed response files or benchmark run directories.
+
