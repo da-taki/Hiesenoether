@@ -1,0 +1,4 @@
+Do you believe your transformation preserves all externally observable
+behavior of the original program?
+
+Answer YES or NO first, then briefly explain why.

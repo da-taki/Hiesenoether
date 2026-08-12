@@ -214,3 +214,39 @@ def test_self_assessment_parser():
     assert parse_preservation_claim("YES. It preserves behavior.") == "YES"
     assert parse_preservation_claim("No, it changes behavior.") == "NO"
     assert parse_preservation_claim("Hard to tell") == "UNCLEAR"
+
+
+def test_external_collection_subset_and_rows():
+    from runners.export_external_collection import prompt_row, replay_template_row, select_validation_subset
+
+    tasks = build_tasks()
+    subset = select_validation_subset(tasks)
+    assert len(subset) == 6
+    assert {task["prompt_condition"] for task in subset} == {"normal"}
+    assert sum(task["evidence_role"] == "hidden_observation" for task in subset) == 4
+    assert sum(task["evidence_role"] == "expected_access_sensitive" for task in subset) == 2
+
+    prompt = prompt_row(subset[0])
+    assert prompt["raw_prompt"]
+    assert prompt["task_id"] == subset[0]["task_id"]
+
+    template = replay_template_row(subset[0])
+    assert set(template) == {"task_id", "provider", "model", "temperature", "seed", "raw_response", "self_assessment"}
+    assert template["temperature"] == 0
+
+
+def test_external_collection_manifest_records_provider_fallback():
+    from runners.export_external_collection import build_manifest
+
+    tasks = build_tasks()
+    manifest = build_manifest(
+        tasks=tasks,
+        benchmark_commit="7d85b076b7203300c10eda308649e785bd4cd615",
+        provider_discovery=[{"provider": "openai", "authentication_usable": False}],
+    )
+    assert manifest["benchmark_commit"] == "7d85b076b7203300c10eda308649e785bd4cd615"
+    assert manifest["benchmark_task_count"] == 26
+    assert manifest["base_task_count"] == 13
+    assert manifest["witness_count"] == 9
+    assert manifest["provider_model_configuration"]["usable_provider_count"] == 0
+    assert manifest["provider_model_configuration"]["fallback"] == "jsonl_replay_external_collection"

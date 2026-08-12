@@ -67,3 +67,13 @@ experiments\agent_behavior_preservation\environment\.venv\Scripts\python.exe exp
 ```
 
 If no authenticated provider is available, stop after environment/baseline validation and use the JSONL replay provider for externally collected responses. Do not treat `noop-preserving` or `static-semantics-blind-transformer` as real coding models.
+
+## External Model Collection Fallback
+
+When provider discovery reports no authenticated real-model access, export the exact collection package:
+
+```powershell
+experiments\agent_behavior_preservation\environment\.venv\Scripts\python.exe experiments\agent_behavior_preservation\runners\export_external_collection.py --benchmark-commit 7d85b076b7203300c10eda308649e785bd4cd615
+```
+
+The exporter writes `external_collection/` with a pre-model run manifest, a six-task normal-only validation subset, full normal prompts, full warned prompts, a replay response template, and the self-assessment prompt. Collect each generation in a fresh external model context and evaluate the filled response JSONL with the existing `--provider jsonl` runner. Keep local controls separate from real-model results.

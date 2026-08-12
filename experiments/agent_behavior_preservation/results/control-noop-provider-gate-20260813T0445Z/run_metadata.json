@@ -1,0 +1,13 @@
+{
+  "baseline_failures": [],
+  "branch": "experiment/agent-behavior-preservation",
+  "git_commit": "7d85b076b7203300c10eda308649e785bd4cd615",
+  "os": "Windows-11-10.0.26200-SP0",
+  "provider": "noop",
+  "python_executable": "C:\\Users\\Asus\\Desktop\\Profitlo Projects\\Hiesenoether\\experiments\\agent_behavior_preservation\\environment\\.venv\\Scripts\\python.exe",
+  "python_version": "3.14.4 (tags/v3.14.4:23116f9, Apr  7 2026, 14:10:54) [MSC v.1944 64 bit (AMD64)]",
+  "replay_path": null,
+  "run_id": "control-noop-provider-gate-20260813T0445Z",
+  "task_count": 26,
+  "timestamp": "2026-08-12T22:44:34.027561+00:00"
+}

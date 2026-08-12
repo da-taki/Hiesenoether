@@ -77,3 +77,29 @@ Ready inputs for real-model execution are in `prompts/` and `benchmark/tasks.jso
 ## Blocker
 
 Real-model evaluation requires authenticated provider access or a JSONL file of externally collected model responses. Until then, there are no real-model normal-prompt, warned-prompt, paired, self-assessment, or workshop-result claims.
+
+## 2026-08-13 Provider-Gate Update
+
+The pre-model benchmark state was verified on branch `experiment/agent-behavior-preservation` at commit `7d85b076b7203300c10eda308649e785bd4cd615`.
+
+Provider discovery was rerun and found no authenticated usable real-model provider among OpenAI, Anthropic, Google Gemini, Azure OpenAI, or GitHub Copilot CLI. No secret values were printed or stored.
+
+Because no real provider was available locally, the external collection package was generated in `external_collection/`:
+
+- `pre_model_run_manifest.json`
+- `small_validation_normal_prompts.jsonl` with 6 normal-only validation prompts
+- `full_normal_prompts.jsonl` with 13 normal prompts
+- `full_warned_prompts.jsonl` with 13 warned prompts
+- `replay_response_template.jsonl` with 26 response-template rows
+- `self_assessment_prompt.txt`
+
+No real-model generations were run in this phase, so the real-model result tables remain intentionally empty until authenticated responses are collected and replayed.
+
+## 2026-08-13 Post-Export Control Check
+
+After generating the external collection package, both local controls were rerun and summarized:
+
+- `control-noop-provider-gate-20260813T0445Z`: 26/26 executable, 26/26 preserved, 0/26 diverged
+- `control-static-provider-gate-20260813T0445Z`: 26/26 executable, 0/26 preserved, 26/26 diverged, 26/26 ordinary-pass / OSDS-fail
+
+These are still controls only and are not included in real-model evidence.
