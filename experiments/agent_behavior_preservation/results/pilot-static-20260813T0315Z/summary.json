@@ -1,0 +1,81 @@
+{
+  "behavior_preservation_rate": 0.0,
+  "behavior_preservation_rate_wilson_95": "0.0%-21.5%",
+  "by_evidence_role": {
+    "expected_access_sensitive": {
+      "diverged": 2,
+      "executable": 2,
+      "preserved": 0,
+      "tasks": 10
+    },
+    "hidden_observation": {
+      "diverged": 12,
+      "executable": 12,
+      "preserved": 0,
+      "tasks": 16
+    }
+  },
+  "by_model": {
+    "static-semantics-blind-transformer": {
+      "diverged": 14,
+      "executable": 14,
+      "preserved": 0,
+      "tasks": 26
+    }
+  },
+  "by_transformation_family": {
+    "access_reordering": {
+      "diverged": 3,
+      "executable": 3,
+      "preserved": 0,
+      "tasks": 4
+    },
+    "caching_materialization": {
+      "diverged": 2,
+      "executable": 2,
+      "preserved": 0,
+      "tasks": 4
+    },
+    "debugging_inspection": {
+      "diverged": 2,
+      "executable": 2,
+      "preserved": 0,
+      "tasks": 6
+    },
+    "instrumentation": {
+      "diverged": 4,
+      "executable": 4,
+      "preserved": 0,
+      "tasks": 5
+    },
+    "refactoring": {
+      "diverged": 2,
+      "executable": 2,
+      "preserved": 0,
+      "tasks": 3
+    },
+    "repeated_access_cleanup": {
+      "diverged": 1,
+      "executable": 1,
+      "preserved": 0,
+      "tasks": 4
+    }
+  },
+  "claims_preserved": 14,
+  "correct_preservation_claims": 0,
+  "diverged": 14,
+  "divergence_counts": {
+    "baseline_failure": 12,
+    "branch/path divergence": 14
+  },
+  "executable_generations": 14,
+  "false_preservation_claim_rate": 1.0,
+  "false_preservation_claims": 14,
+  "generations_attempted": 26,
+  "generations_successfully_applied": 26,
+  "ordinary_pass_metamorphic_fail": 14,
+  "ordinary_tests_missed": 14,
+  "osds_caught": 14,
+  "preserved": 0,
+  "total_tasks": 26
+}

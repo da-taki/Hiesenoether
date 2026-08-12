@@ -1,0 +1,117 @@
+{
+  "baseline_failures": [
+    {
+      "baseline": {
+        "error": "ModuleNotFoundError: No module named 'cerberus'",
+        "module_path": "C:\\Users\\Asus\\AppData\\Local\\Temp\\agent_bp_candidate_r5m_ntnh\\candidate.py",
+        "source_sha256": "7ab1d5a7efeb6d749c5cf949c400a4bd041b46e67ef45229a54fd2eed04e9b1e",
+        "status": "import_failure"
+      },
+      "task_id": "cerberus_validator__instrumentation_normal"
+    },
+    {
+      "baseline": {
+        "error": "ModuleNotFoundError: No module named 'cerberus'",
+        "module_path": "C:\\Users\\Asus\\AppData\\Local\\Temp\\agent_bp_candidate_kxir7t62\\candidate.py",
+        "source_sha256": "7ab1d5a7efeb6d749c5cf949c400a4bd041b46e67ef45229a54fd2eed04e9b1e",
+        "status": "import_failure"
+      },
+      "task_id": "cerberus_validator__caching_materialization_normal"
+    },
+    {
+      "baseline": {
+        "error": "ModuleNotFoundError: No module named 'cerberus'",
+        "module_path": "C:\\Users\\Asus\\AppData\\Local\\Temp\\agent_bp_candidate_bi4ag6kp\\candidate.py",
+        "source_sha256": "7ab1d5a7efeb6d749c5cf949c400a4bd041b46e67ef45229a54fd2eed04e9b1e",
+        "status": "import_failure"
+      },
+      "task_id": "cerberus_validator__debugging_inspection_normal"
+    },
+    {
+      "baseline": {
+        "error": "ModuleNotFoundError: No module named 'cerberus'",
+        "module_path": "C:\\Users\\Asus\\AppData\\Local\\Temp\\agent_bp_candidate_6ghd7483\\candidate.py",
+        "source_sha256": "7ab1d5a7efeb6d749c5cf949c400a4bd041b46e67ef45229a54fd2eed04e9b1e",
+        "status": "import_failure"
+      },
+      "task_id": "cerberus_validator__repeated_access_cleanup_warned"
+    },
+    {
+      "baseline": {
+        "error": "ModuleNotFoundError: No module named 'boltons'",
+        "module_path": "C:\\Users\\Asus\\AppData\\Local\\Temp\\agent_bp_candidate_la4jkaqe\\candidate.py",
+        "source_sha256": "0dcde9ac157d29392ed9ce0316ed9bbfb4844f1f60c1d780f7590b0c83a19a52",
+        "status": "import_failure"
+      },
+      "task_id": "boltons_lru__repeated_access_cleanup_normal"
+    },
+    {
+      "baseline": {
+        "error": "ModuleNotFoundError: No module named 'boltons'",
+        "module_path": "C:\\Users\\Asus\\AppData\\Local\\Temp\\agent_bp_candidate_irhzg4ro\\candidate.py",
+        "source_sha256": "0dcde9ac157d29392ed9ce0316ed9bbfb4844f1f60c1d780f7590b0c83a19a52",
+        "status": "import_failure"
+      },
+      "task_id": "boltons_lru__caching_materialization_warned"
+    },
+    {
+      "baseline": {
+        "error": "ModuleNotFoundError: No module named 'dns'",
+        "module_path": "C:\\Users\\Asus\\AppData\\Local\\Temp\\agent_bp_candidate_86mw4cts\\candidate.py",
+        "source_sha256": "5ccc548be290e7009e10c2f522d2652e39c47e03813957d1038a33281ad11466",
+        "status": "import_failure"
+      },
+      "task_id": "dnspython_tokenizer__access_reordering_normal"
+    },
+    {
+      "baseline": {
+        "error": "ModuleNotFoundError: No module named 'dns'",
+        "module_path": "C:\\Users\\Asus\\AppData\\Local\\Temp\\agent_bp_candidate__ay8qaf1\\candidate.py",
+        "source_sha256": "5ccc548be290e7009e10c2f522d2652e39c47e03813957d1038a33281ad11466",
+        "status": "import_failure"
+      },
+      "task_id": "dnspython_tokenizer__debugging_inspection_warned"
+    },
+    {
+      "baseline": {
+        "error": "ModuleNotFoundError: No module named 'markdown'",
+        "module_path": "C:\\Users\\Asus\\AppData\\Local\\Temp\\agent_bp_candidate_zwbstjsq\\candidate.py",
+        "source_sha256": "6d0776720d5bc309257601bac4e28271e422061fa9f48adc45267b2110225774",
+        "status": "import_failure"
+      },
+      "task_id": "markdown_reference__refactoring_normal"
+    },
+    {
+      "baseline": {
+        "error": "ModuleNotFoundError: No module named 'markdown'",
+        "module_path": "C:\\Users\\Asus\\AppData\\Local\\Temp\\agent_bp_candidate_4d2x7dvk\\candidate.py",
+        "source_sha256": "6d0776720d5bc309257601bac4e28271e422061fa9f48adc45267b2110225774",
+        "status": "import_failure"
+      },
+      "task_id": "markdown_reference__debugging_inspection_warned"
+    },
+    {
+      "baseline": {
+        "error": "ModuleNotFoundError: No module named 'bs4'",
+        "module_path": "C:\\Users\\Asus\\AppData\\Local\\Temp\\agent_bp_candidate_1vwt2a44\\candidate.py",
+        "source_sha256": "f646182f2b85cee63fd6657652296a5ab112174ce9d333057f8fb635714098fd",
+        "status": "import_failure"
+      },
+      "task_id": "beautifulsoup_extract__debugging_inspection_normal"
+    },
+    {
+      "baseline": {
+        "error": "ModuleNotFoundError: No module named 'bs4'",
+        "module_path": "C:\\Users\\Asus\\AppData\\Local\\Temp\\agent_bp_candidate_mol7_jjg\\candidate.py",
+        "source_sha256": "f646182f2b85cee63fd6657652296a5ab112174ce9d333057f8fb635714098fd",
+        "status": "import_failure"
+      },
+      "task_id": "beautifulsoup_extract__repeated_access_cleanup_warned"
+    }
+  ],
+  "provider": "noop",
+  "replay_path": null,
+  "run_id": "pilot-noop-20260813T0320Z",
+  "task_count": 26,
+  "timestamp": "2026-08-12T21:47:59.544478+00:00"
+}

@@ -1,0 +1,490 @@
+{
+  "branch": [
+    {
+      "boundary_note": "read() materializes _content; .content flips RuntimeError->value",
+      "branch_case_id": "bf01_httpcore_Response",
+      "branch_changed": true,
+      "classification": "confirmed_branch_flip",
+      "code_snippet": "def handle(resp, observe):\n    if observe: resp.read()          # real httpcore op\n    try:\n        body = resp.content           # real httpcore op\n        return 'content_ready', 'cache_response'\n    except RuntimeError:\n        return 'stream_pending', 'stream_response_or_error'",
+      "consequence_changed": true,
+      "exception_changed": true,
+      "order_A_branch": "stream_pending",
+      "order_A_consequence": "stream_response_or_error",
+      "order_A_steps": "construct Response(streaming) | resp.content -> RuntimeError",
+      "order_B_branch": "content_ready",
+      "order_B_consequence": "cache_response",
+      "order_B_steps": "construct Response(streaming) | resp.read() | resp.content",
+      "output_changed": true,
+      "package_name": "httpcore",
+      "package_version": "1.0.9",
+      "underlying_candidate_id": "rc01_httpcore_Response"
+    },
+    {
+      "boundary_note": "catching_logs raises the handler level and does not restore it",
+      "branch_case_id": "bf02_pytest_catching_logs",
+      "branch_changed": true,
+      "classification": "confirmed_branch_flip",
+      "code_snippet": "def alert(observe):\n    handler = ListHandler(); logger.addHandler(handler)\n    if observe:\n        cm = catching_logs(handler, level=ERROR); cm.__enter__(); cm.__exit__(...)\n    logger.warning('disk almost full')   # real emit\n    if handler.messages: return 'warning_seen', 'emit_alert'\n    return 'warning_hidden', 'suppress_alert'",
+      "consequence_changed": true,
+      "exception_changed": false,
+      "order_A_branch": "warning_seen",
+      "order_A_consequence": "emit_alert",
+      "order_A_steps": "fresh handler | logger.warning('disk almost full')",
+      "order_B_branch": "warning_hidden",
+      "order_B_consequence": "suppress_alert",
+      "order_B_steps": "fresh handler | catching_logs(handler, ERROR) enter/exit | logger.warning('disk almost full')",
+      "output_changed": true,
+      "package_name": "pytest",
+      "package_version": "8.3.5",
+      "underlying_candidate_id": "rc03_pytest_catching_logs"
+    },
+    {
+      "boundary_note": "identity cache returns the stale node for a mutated object",
+      "branch_case_id": "bf03_PyYAML_SafeRepresenter",
+      "branch_changed": true,
+      "classification": "confirmed_branch_flip",
+      "code_snippet": "def route(observe):\n    rep = SafeRepresenter(); payload = ['before']\n    if observe: rep.represent_data(payload)   # caches identity\n    payload[0] = 'after'\n    node = rep.represent_data(payload)        # real represent\n    val = node.value[0].value\n    return ('after_payload','use_after_payload') if val=='after' \\\n           else ('before_payload','use_before_payload')",
+      "consequence_changed": true,
+      "exception_changed": false,
+      "order_A_branch": "after_payload",
+      "order_A_consequence": "use_after_payload",
+      "order_A_steps": "SafeRepresenter() | payload=['before'] | payload[0]='after' | represent_data(payload)",
+      "order_B_branch": "before_payload",
+      "order_B_consequence": "use_before_payload",
+      "order_B_steps": "SafeRepresenter() | payload=['before'] | represent_data(payload) [observe -> caches identity] | payload[0]='after' | represent_data(payload)",
+      "output_changed": true,
+      "package_name": "PyYAML",
+      "package_version": "6.0.3",
+      "underlying_candidate_id": "rc02_PyYAML_SafeRepresenter"
+    },
+    {
+      "boundary_note": "ModuleNotFoundError: No module named 'boltons'",
+      "branch_case_id": "bc_boltons_lru",
+      "branch_changed": false,
+      "classification": "could_not_construct",
+      "underlying_candidate_id": ""
+    },
+    {
+      "boundary_note": "ModuleNotFoundError: No module named 'dns'",
+      "branch_case_id": "bc_dnspython_tokenizer",
+      "branch_changed": false,
+      "classification": "could_not_construct",
+      "underlying_candidate_id": ""
+    },
+    {
+      "boundary_note": "consuming a chunk flips Data vs EndOfMessage",
+      "branch_case_id": "bf06_h11_ChunkedReader",
+      "branch_changed": true,
+      "classification": "confirmed_branch_flip",
+      "code_snippet": "def pump(observe):\n    buf = ReceiveBuffer(); buf += b'3\\r\\nabc\\r\\n0\\r\\n\\r\\n'\n    reader = ChunkedReader()\n    if observe: reader(buf)           # consume first chunk\n    ev = reader(buf)                  # real reader read\n    return ('end','finish_response') if isinstance(ev, EndOfMessage) \\\n           else ('data','continue_parse')",
+      "consequence_changed": true,
+      "exception_changed": false,
+      "order_A_branch": "data",
+      "order_A_consequence": "continue_parse",
+      "order_A_steps": "ReceiveBuffer(chunked body) | ChunkedReader() | reader(buf)",
+      "order_B_branch": "end",
+      "order_B_consequence": "finish_response",
+      "order_B_steps": "ReceiveBuffer(chunked body) | ChunkedReader() | reader(buf) [observe] | reader(buf)",
+      "output_changed": true,
+      "package_name": "h11",
+      "package_version": "0.16.0",
+      "underlying_candidate_id": "re12_h11_ChunkedReader"
+    },
+    {
+      "boundary_note": "ModuleNotFoundError: No module named 'cerberus'",
+      "branch_case_id": "bc_cerberus",
+      "branch_changed": false,
+      "classification": "could_not_construct",
+      "underlying_candidate_id": ""
+    },
+    {
+      "boundary_note": "ModuleNotFoundError: No module named 'markdown'",
+      "branch_case_id": "bc_markdown",
+      "branch_changed": false,
+      "classification": "could_not_construct",
+      "underlying_candidate_id": ""
+    },
+    {
+      "boundary_note": "ModuleNotFoundError: No module named 'bs4'",
+      "branch_case_id": "bc_bs4",
+      "branch_changed": false,
+      "classification": "could_not_construct",
+      "underlying_candidate_id": ""
+    }
+  ],
+  "controls": [
+    {
+      "candidate_id": "rc01_httpcore_Response",
+      "control_type": "determinism",
+      "divergence_removed": true,
+      "expected_result": "identical",
+      "notes": "read()->content is deterministic across repeats",
+      "observed_result": "'alphabeta'=='alphabeta'"
+    },
+    {
+      "candidate_id": "rc01_httpcore_Response",
+      "control_type": "fresh_object",
+      "divergence_removed": true,
+      "expected_result": "RuntimeError (baseline)",
+      "notes": "materializing one response does not affect a fresh response",
+      "observed_result": "RuntimeError"
+    },
+    {
+      "candidate_id": "rc01_httpcore_Response",
+      "control_type": "pure_observation",
+      "divergence_removed": true,
+      "expected_result": "RuntimeError (baseline)",
+      "notes": "reading headers does not materialize content",
+      "observed_result": "RuntimeError"
+    },
+    {
+      "candidate_id": "controls_markdown",
+      "control_type": "error",
+      "divergence_removed": false,
+      "expected_result": "n/a",
+      "notes": "control raised unexpectedly",
+      "observed_result": "ModuleNotFoundError: No module named 'markdown'"
+    },
+    {
+      "candidate_id": "controls_boltons_lru",
+      "control_type": "error",
+      "divergence_removed": false,
+      "expected_result": "n/a",
+      "notes": "control raised unexpectedly",
+      "observed_result": "ModuleNotFoundError: No module named 'boltons'"
+    },
+    {
+      "candidate_id": "controls_dnspython_tokenizer",
+      "control_type": "error",
+      "divergence_removed": false,
+      "expected_result": "n/a",
+      "notes": "control raised unexpectedly",
+      "observed_result": "ModuleNotFoundError: No module named 'dns'"
+    },
+    {
+      "candidate_id": "controls_cerberus",
+      "control_type": "error",
+      "divergence_removed": false,
+      "expected_result": "n/a",
+      "notes": "control raised unexpectedly",
+      "observed_result": "ModuleNotFoundError: No module named 'cerberus'"
+    },
+    {
+      "candidate_id": "rc03_pytest_catching_logs",
+      "control_type": "determinism",
+      "divergence_removed": true,
+      "expected_result": "identical",
+      "notes": "suppression deterministic",
+      "observed_result": "False==False"
+    },
+    {
+      "candidate_id": "rc03_pytest_catching_logs",
+      "control_type": "fresh_object",
+      "divergence_removed": true,
+      "expected_result": "warning visible (baseline)",
+      "notes": "a fresh handler is not level-mutated; warning is visible",
+      "observed_result": "seen=True"
+    },
+    {
+      "candidate_id": "rc02_PyYAML_SafeRepresenter",
+      "control_type": "determinism",
+      "divergence_removed": true,
+      "expected_result": "identical",
+      "notes": "representer deterministic",
+      "observed_result": "'before'=='before'"
+    },
+    {
+      "candidate_id": "rc02_PyYAML_SafeRepresenter",
+      "control_type": "fresh_object",
+      "divergence_removed": true,
+      "expected_result": "after (baseline)",
+      "notes": "a fresh representer has no identity cache; sees the mutated value",
+      "observed_result": "after"
+    },
+    {
+      "candidate_id": "re12_h11_ChunkedReader",
+      "control_type": "determinism",
+      "divergence_removed": true,
+      "expected_result": "identical",
+      "notes": "chunk reader deterministic",
+      "observed_result": "EndOfMessage==EndOfMessage"
+    },
+    {
+      "candidate_id": "re12_h11_ChunkedReader",
+      "control_type": "fresh_object",
+      "divergence_removed": true,
+      "expected_result": "Data (baseline)",
+      "notes": "a fresh buffer yields the first Data event",
+      "observed_result": "Data"
+    }
+  ],
+  "metamorphic": [
+    {
+      "branch_changed": true,
+      "candidate_id": "rc01_httpcore_Response",
+      "classification": "confirmed_branch_divergence",
+      "constructed": true,
+      "exception_changed": false,
+      "failure_reason": "",
+      "order_A": {
+        "results": [
+          {
+            "kind": "exception",
+            "message": "Attempted to access 'response.content' on a streaming response. Call 'response.read()' first.",
+            "type": "RuntimeError"
+          }
+        ],
+        "state": {
+          "has__content": false,
+          "stream_consumed": false
+        },
+        "steps": [
+          "construct Response",
+          "response.content"
+        ]
+      },
+      "order_B": {
+        "observation": {
+          "kind": "value",
+          "value": "b'alphabeta'"
+        },
+        "results": [
+          {
+            "kind": "value",
+            "value": "alphabeta"
+          }
+        ],
+        "state": {
+          "has__content": true,
+          "stream_consumed": true
+        },
+        "steps": [
+          "construct Response",
+          "response.read()",
+          "response.content"
+        ]
+      },
+      "output_changed": false,
+      "package_name": "httpcore",
+      "package_version": "1.0.9",
+      "state_changed": true
+    },
+    {
+      "branch_changed": false,
+      "candidate_id": "rc03_pytest_catching_logs",
+      "classification": "confirmed_output_divergence",
+      "constructed": true,
+      "exception_changed": false,
+      "failure_reason": "",
+      "order_A": {
+        "results": [
+          {
+            "kind": "value",
+            "value": [
+              "warning-visible"
+            ]
+          }
+        ],
+        "state": {
+          "handler_level": 0
+        },
+        "steps": [
+          "fresh handler",
+          "emit WARNING",
+          "read messages"
+        ]
+      },
+      "order_B": {
+        "results": [
+          {
+            "kind": "value",
+            "value": []
+          }
+        ],
+        "state": {
+          "handler_level": 40
+        },
+        "steps": [
+          "fresh handler",
+          "enter/exit catching_logs(level=ERROR)",
+          "emit WARNING",
+          "read messages"
+        ]
+      },
+      "output_changed": true,
+      "package_name": "pytest",
+      "package_version": "8.3.5",
+      "state_changed": true
+    },
+    {
+      "branch_changed": false,
+      "candidate_id": "rc02_PyYAML_SafeRepresenter",
+      "classification": "confirmed_output_divergence",
+      "constructed": true,
+      "exception_changed": false,
+      "failure_reason": "",
+      "order_A": {
+        "results": [
+          {
+            "kind": "value",
+            "value": "[('tag:yaml.org,2002:str', 'after')]"
+          }
+        ],
+        "state": {
+          "object_keeper": 1,
+          "represented_objects": 1
+        },
+        "steps": [
+          "SafeRepresenter()",
+          "payload[0]='after'",
+          "represent_data(payload)"
+        ]
+      },
+      "order_B": {
+        "results": [
+          {
+            "kind": "value",
+            "value": "[('tag:yaml.org,2002:str', 'before')]"
+          }
+        ],
+        "state": {
+          "object_keeper": 1,
+          "represented_objects": 1,
+          "same_node_returned": true
+        },
+        "steps": [
+          "SafeRepresenter()",
+          "represent_data(payload)",
+          "payload[0]='after'",
+          "represent_data(payload)"
+        ]
+      },
+      "output_changed": true,
+      "package_name": "PyYAML",
+      "package_version": "6.0.3",
+      "state_changed": true
+    },
+    {
+      "candidate_id": "re10_cerberus_Validator",
+      "classification": "could_not_construct",
+      "constructed": false,
+      "failure_reason": "ModuleNotFoundError: No module named 'cerberus'",
+      "package_name": "cerberus",
+      "package_version": "1.3.8"
+    },
+    {
+      "candidate_id": "re08_boltons_LRU",
+      "classification": "could_not_construct",
+      "constructed": false,
+      "failure_reason": "FixtureUnavailable: boltons unavailable: No module named 'boltons'",
+      "package_name": "boltons",
+      "package_version": "25.0.0"
+    },
+    {
+      "candidate_id": "re11_dnspython_Tokenizer",
+      "classification": "could_not_construct",
+      "constructed": false,
+      "failure_reason": "ModuleNotFoundError: No module named 'dns'",
+      "package_name": "dnspython",
+      "package_version": "2.8.0"
+    },
+    {
+      "branch_changed": false,
+      "candidate_id": "re12_h11_ChunkedReader",
+      "classification": "confirmed_output_divergence",
+      "constructed": true,
+      "exception_changed": false,
+      "failure_reason": "",
+      "order_A": {
+        "results": [
+          {
+            "kind": "value",
+            "value": "Data(data=bytearray(b'abc'), chunk_start=True, chunk_end=True)"
+          },
+          {
+            "kind": "value",
+            "value": "EndOfMessage(headers=<Headers([])>)"
+          }
+        ],
+        "state": {
+          "buffer": "b''"
+        },
+        "steps": [
+          "construct",
+          "ChunkedReader()(buffer)",
+          "ChunkedReader()(buffer)"
+        ]
+      },
+      "order_B": {
+        "observation": {
+          "kind": "value",
+          "value": "Data(data=bytearray(b'abc'), chunk_start=True, chunk_end=True)"
+        },
+        "results": [
+          {
+            "kind": "value",
+            "value": "EndOfMessage(headers=<Headers([])>)"
+          },
+          {
+            "kind": "value",
+            "value": "None"
+          }
+        ],
+        "state": {
+          "buffer": "b''"
+        },
+        "steps": [
+          "construct",
+          "ChunkedReader()(buffer)",
+          "ChunkedReader()(buffer)",
+          "ChunkedReader()(buffer)"
+        ]
+      },
+      "output_changed": true,
+      "package_name": "h11",
+      "package_version": "0.16.0",
+      "state_changed": false
+    },
+    {
+      "candidate_id": "re01_markdown_Markdown",
+      "classification": "could_not_construct",
+      "constructed": false,
+      "failure_reason": "ModuleNotFoundError: No module named 'markdown'",
+      "package_name": "markdown",
+      "package_version": "3.10.2"
+    },
+    {
+      "candidate_id": "re06_beautifulsoup4_PageElement",
+      "classification": "could_not_construct",
+      "constructed": false,
+      "failure_reason": "ModuleNotFoundError: No module named 'bs4'",
+      "package_name": "beautifulsoup4",
+      "package_version": "4.14.3"
+    }
+  ],
+  "selected_ids": [
+    "rc01_httpcore_Response",
+    "rc03_pytest_catching_logs",
+    "rc02_PyYAML_SafeRepresenter",
+    "re10_cerberus_Validator",
+    "re08_boltons_LRU",
+    "re11_dnspython_Tokenizer",
+    "re12_h11_ChunkedReader",
+    "re01_markdown_Markdown",
+    "re06_beautifulsoup4_PageElement"
+  ],
+  "summary": {
+    "branch_counts": {
+      "confirmed_branch_flip": 4,
+      "could_not_construct": 5
+    },
+    "controls": 13,
+    "controls_removed_true": 9,
+    "metamorphic_counts": {
+      "confirmed_branch_divergence": 1,
+      "confirmed_output_divergence": 3,
+      "could_not_construct": 5
+    }
+  },
+  "timestamp": "2026-08-12T21:44:50.864970+00:00"
+}
