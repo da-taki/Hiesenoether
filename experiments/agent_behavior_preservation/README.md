@@ -38,3 +38,32 @@ pipeline. It is not a paid external model and should not be used as evidence abo
 coding model. To evaluate stored external model responses, write JSONL rows containing
 `task_id`, `provider`, `model`, `raw_response`, and optional self-assessment fields, then
 run with `--provider jsonl --replay-path <responses.jsonl>`.
+
+## Exact Environment Reconstruction
+
+The current benchmark should be run from the repository-local venv:
+
+```powershell
+py -m venv experiments\agent_behavior_preservation\environment\.venv
+experiments\agent_behavior_preservation\environment\.venv\Scripts\python.exe -m pip install -r experiments\agent_behavior_preservation\environment\requirements-exact.txt
+experiments\agent_behavior_preservation\environment\.venv\Scripts\python.exe experiments\agent_behavior_preservation\environment\reconstruct_environment.py
+```
+
+Then regenerate and validate:
+
+```powershell
+experiments\agent_behavior_preservation\environment\.venv\Scripts\python.exe experiments\agent_behavior_preservation\build_benchmark.py
+experiments\agent_behavior_preservation\environment\.venv\Scripts\python.exe experiments\agent_behavior_preservation\analysis\audit_benchmark_balance.py
+experiments\agent_behavior_preservation\environment\.venv\Scripts\python.exe experiments\agent_behavior_preservation\analysis\audit_prompt_leakage.py
+experiments\agent_behavior_preservation\environment\.venv\Scripts\python.exe experiments\agent_behavior_preservation\runners\validate_baselines.py
+```
+
+## Provider Gate
+
+Run provider discovery before real model calls:
+
+```powershell
+experiments\agent_behavior_preservation\environment\.venv\Scripts\python.exe experiments\agent_behavior_preservation\environment\discover_providers.py
+```
+
+If no authenticated provider is available, stop after environment/baseline validation and use the JSONL replay provider for externally collected responses. Do not treat `noop-preserving` or `static-semantics-blind-transformer` as real coding models.

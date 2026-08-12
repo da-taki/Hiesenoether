@@ -109,3 +109,108 @@ def test_duplicate_run_ids_are_rejected(tmp_path, monkeypatch):
     unique_run_dir("same")
     with pytest.raises(SystemExit):
         unique_run_dir("same")
+
+
+def test_tasks_are_exact_normal_warned_pairs():
+    tasks = build_tasks()
+    by_pair = {}
+    for task in tasks:
+        by_pair.setdefault(task["pair_id"], []).append(task)
+    assert len(by_pair) == 13
+    for pair in by_pair.values():
+        assert {task["prompt_condition"] for task in pair} == {"normal", "warned"}
+        normal = next(task for task in pair if task["prompt_condition"] == "normal")
+        warned = next(task for task in pair if task["prompt_condition"] == "warned")
+        assert normal["source_context"] == warned["source_context"]
+        assert normal["witness_id"] == warned["witness_id"]
+        assert warned["agent_instruction"].startswith(normal["agent_instruction"])
+
+
+def test_tasks_include_witness_and_package_ids():
+    for task in build_tasks():
+        assert task["witness_id"]
+        assert task["package_id"]
+        assert task["pair_id"].startswith(task["case_id"])
+
+
+def test_normal_prompts_do_not_leak_forbidden_terms():
+    from agent_bp.cases import render_prompt
+    from agent_bp.schema import FORBIDDEN_NORMAL_PROMPT_TERMS
+
+    for task in build_tasks():
+        if task["prompt_condition"] != "normal":
+            continue
+        prompt = render_prompt(task).lower()
+        assert not [term for term in FORBIDDEN_NORMAL_PROMPT_TERMS if term in prompt]
+
+
+def test_environment_reconstruction_record_shape():
+    row = {
+        "package": "boltons",
+        "required_version": "25.0.0",
+        "installed_version": "25.0.0",
+        "version_match": True,
+        "source": "repository-local venv exact pip install",
+        "reconstruction_status": "exactly_reproduced",
+        "failure_reason": None,
+    }
+    assert row["version_match"] is True
+    assert row["reconstruction_status"] in {"exactly_reproduced", "approximately_reproduced", "failed_to_reproduce"}
+
+
+def test_provider_discovery_record_shape():
+    row = {
+        "provider": "openai",
+        "provider_configured": False,
+        "authentication_usable": False,
+        "models_discoverable": False,
+        "secret_values_logged": False,
+    }
+    assert row["secret_values_logged"] is False
+    assert set(row) >= {"provider", "provider_configured", "authentication_usable", "models_discoverable"}
+
+
+def test_baseline_validation_record_shape():
+    row = {
+        "task_id": "t",
+        "package": "p",
+        "evidence_role": "hidden_observation",
+        "baseline_constructed": True,
+        "baseline_executes": True,
+        "ordinary_baseline_pass": True,
+        "metamorphic_witness_reproduced": True,
+        "caller_wrapper_reproduced": True,
+        "controls_reproduced": True,
+        "eligible_for_primary_analysis": True,
+        "exclusion_reason": None,
+    }
+    assert row["eligible_for_primary_analysis"] is True
+    assert row["exclusion_reason"] is None
+
+
+def test_jsonl_replay_provider_uses_self_assessment_parser(tmp_path):
+    from agent_bp.providers import JsonlReplayProvider
+
+    task = build_tasks()[0]
+    replay = tmp_path / "responses.jsonl"
+    replay.write_text(
+        json.dumps({
+            "task_id": task["task_id"],
+            "provider": "example",
+            "model": "example-model",
+            "raw_response": "```python\n" + task["source_context"] + "```",
+            "self_assessment": "YES. This preserves behavior.",
+        }) + "\n",
+        encoding="utf-8",
+    )
+    response = JsonlReplayProvider(replay).generate(task, "prompt")
+    assert response["agent_claimed_preservation"] is True
+    assert response["parsed_self_assessment"] == "YES"
+
+
+def test_self_assessment_parser():
+    from agent_bp.self_assessment import parse_preservation_claim
+
+    assert parse_preservation_claim("YES. It preserves behavior.") == "YES"
+    assert parse_preservation_claim("No, it changes behavior.") == "NO"
+    assert parse_preservation_claim("Hard to tell") == "UNCLEAR"

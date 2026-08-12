@@ -1,4 +1,4 @@
-from __future__ import annotations
+﻿from __future__ import annotations
 
 import json
 from pathlib import Path
@@ -17,6 +17,8 @@ def main() -> int:
     validate_tasks(tasks)
     BENCHMARK.mkdir(parents=True, exist_ok=True)
     PROMPTS.mkdir(parents=True, exist_ok=True)
+    for stale_prompt in PROMPTS.glob("*.md"):
+        stale_prompt.unlink()
     task_path = BENCHMARK / "tasks.jsonl"
     with task_path.open("w", encoding="utf-8") as handle:
         for task in tasks:
@@ -28,3 +30,4 @@ def main() -> int:
 
 if __name__ == "__main__":
     raise SystemExit(main())
+

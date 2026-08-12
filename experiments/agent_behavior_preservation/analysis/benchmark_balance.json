@@ -1,0 +1,137 @@
+{
+  "by_evidence_role": {
+    "expected_access_sensitive": 10,
+    "hidden_observation": 16
+  },
+  "by_prompt_condition": {
+    "normal": 13,
+    "warned": 13
+  },
+  "by_transformation_family": {
+    "access_reordering": 2,
+    "caching_materialization": 6,
+    "debugging_inspection": 2,
+    "instrumentation": 10,
+    "refactoring": 4,
+    "repeated_access_cleanup": 2
+  },
+  "correlation_note": "Multiple tasks derived from the same witness/package are correlated and should not be described as independent semantic phenomena.",
+  "packages": 9,
+  "packages_detail": [
+    {
+      "normal_tasks": 2,
+      "package": "PyYAML",
+      "tasks": 4,
+      "transformation_families": [
+        "caching_materialization",
+        "instrumentation"
+      ],
+      "warned_tasks": 2,
+      "witnesses": [
+        "rc02_PyYAML_SafeRepresenter"
+      ]
+    },
+    {
+      "normal_tasks": 1,
+      "package": "beautifulsoup4",
+      "tasks": 2,
+      "transformation_families": [
+        "debugging_inspection"
+      ],
+      "warned_tasks": 1,
+      "witnesses": [
+        "re06_beautifulsoup4_PageElement"
+      ]
+    },
+    {
+      "normal_tasks": 1,
+      "package": "boltons",
+      "tasks": 2,
+      "transformation_families": [
+        "repeated_access_cleanup"
+      ],
+      "warned_tasks": 1,
+      "witnesses": [
+        "re08_boltons_LRU"
+      ]
+    },
+    {
+      "normal_tasks": 2,
+      "package": "cerberus",
+      "tasks": 4,
+      "transformation_families": [
+        "caching_materialization",
+        "instrumentation"
+      ],
+      "warned_tasks": 2,
+      "witnesses": [
+        "re10_cerberus_Validator"
+      ]
+    },
+    {
+      "normal_tasks": 1,
+      "package": "dnspython",
+      "tasks": 2,
+      "transformation_families": [
+        "access_reordering"
+      ],
+      "warned_tasks": 1,
+      "witnesses": [
+        "re11_dnspython_Tokenizer"
+      ]
+    },
+    {
+      "normal_tasks": 1,
+      "package": "h11",
+      "tasks": 2,
+      "transformation_families": [
+        "instrumentation"
+      ],
+      "warned_tasks": 1,
+      "witnesses": [
+        "re12_h11_ChunkedReader"
+      ]
+    },
+    {
+      "normal_tasks": 2,
+      "package": "httpcore",
+      "tasks": 4,
+      "transformation_families": [
+        "caching_materialization",
+        "instrumentation"
+      ],
+      "warned_tasks": 2,
+      "witnesses": [
+        "rc01_httpcore_Response"
+      ]
+    },
+    {
+      "normal_tasks": 1,
+      "package": "markdown",
+      "tasks": 2,
+      "transformation_families": [
+        "refactoring"
+      ],
+      "warned_tasks": 1,
+      "witnesses": [
+        "re01_markdown_Markdown"
+      ]
+    },
+    {
+      "normal_tasks": 2,
+      "package": "pytest",
+      "tasks": 4,
+      "transformation_families": [
+        "instrumentation",
+        "refactoring"
+      ],
+      "warned_tasks": 2,
+      "witnesses": [
+        "rc03_pytest_catching_logs"
+      ]
+    }
+  ],
+  "pairs": 13,
+  "tasks": 26,
+  "unique_witnesses": 9
+}

@@ -58,18 +58,42 @@
       "underlying_candidate_id": "rc02_PyYAML_SafeRepresenter"
     },
     {
-      "boundary_note": "ModuleNotFoundError: No module named 'boltons'",
-      "branch_case_id": "bc_boltons_lru",
-      "branch_changed": false,
-      "classification": "could_not_construct",
-      "underlying_candidate_id": ""
+      "boundary_note": "read refreshes recency so a different key is evicted",
+      "branch_case_id": "bf04_boltons_LRU",
+      "branch_changed": true,
+      "classification": "confirmed_branch_flip",
+      "code_snippet": "def serve(observe):\n    cache = LRU(max_size=2); cache['x']=1; cache['y']=2\n    if observe: cache['x']            # real access -> refresh recency\n    cache['z'] = 3                     # eviction\n    return ('x_live','serve_x_from_cache') if 'x' in cache \\\n           else ('x_evicted','recompute_x')",
+      "consequence_changed": true,
+      "exception_changed": false,
+      "order_A_branch": "x_evicted",
+      "order_A_consequence": "recompute_x",
+      "order_A_steps": "LRU(max_size=2) x,y | cache['z']=3 (eviction)",
+      "order_B_branch": "x_live",
+      "order_B_consequence": "serve_x_from_cache",
+      "order_B_steps": "LRU(max_size=2) x,y | cache['x'] [observe] | cache['z']=3 (eviction)",
+      "output_changed": true,
+      "package_name": "boltons",
+      "package_version": "25.0.0",
+      "underlying_candidate_id": "re08_boltons_LRU"
     },
     {
-      "boundary_note": "ModuleNotFoundError: No module named 'dns'",
-      "branch_case_id": "bc_dnspython_tokenizer",
-      "branch_changed": false,
-      "classification": "could_not_construct",
-      "underlying_candidate_id": ""
+      "boundary_note": "cursor advance changes which token the caller reads",
+      "branch_case_id": "bf05_dnspython_Tokenizer",
+      "branch_changed": true,
+      "classification": "confirmed_branch_flip",
+      "code_snippet": "def parse(observe):\n    tok = Tokenizer(StringIO('aa bb'))\n    if observe: tok.get()             # consume one token\n    t = tok.get()                     # real tokenizer read\n    return ('has_bb','continue_parse') if t.value=='bb' \\\n           else ('has_aa','handle_first_field')",
+      "consequence_changed": true,
+      "exception_changed": false,
+      "order_A_branch": "has_aa",
+      "order_A_consequence": "handle_first_field",
+      "order_A_steps": "Tokenizer('aa bb') | tok.get()",
+      "order_B_branch": "has_bb",
+      "order_B_consequence": "continue_parse",
+      "order_B_steps": "Tokenizer('aa bb') | tok.get() [observe] | tok.get()",
+      "output_changed": true,
+      "package_name": "dnspython",
+      "package_version": "2.8.0",
+      "underlying_candidate_id": "re11_dnspython_Tokenizer"
     },
     {
       "boundary_note": "consuming a chunk flips Data vs EndOfMessage",
@@ -91,25 +115,61 @@
       "underlying_candidate_id": "re12_h11_ChunkedReader"
     },
     {
-      "boundary_note": "ModuleNotFoundError: No module named 'cerberus'",
-      "branch_case_id": "bc_cerberus",
-      "branch_changed": false,
-      "classification": "could_not_construct",
-      "underlying_candidate_id": ""
+      "boundary_note": "validate() populates the errors read on the next line",
+      "branch_case_id": "bf07_cerberus_Validator",
+      "branch_changed": true,
+      "classification": "confirmed_branch_flip",
+      "code_snippet": "def gate(observe):\n    v = Validator({'name': {'type':'string','minlength':3}})\n    if observe: v.validate({'name':'Al'})   # real validate (fails)\n    return ('has_errors','reject_request') if v.errors \\\n           else ('clean','accept_request')",
+      "consequence_changed": true,
+      "exception_changed": false,
+      "order_A_branch": "clean",
+      "order_A_consequence": "accept_request",
+      "order_A_steps": "Validator(schema)",
+      "order_B_branch": "has_errors",
+      "order_B_consequence": "reject_request",
+      "order_B_steps": "Validator(schema) | v.validate({'name':'Al'}) [observe]",
+      "output_changed": true,
+      "package_name": "cerberus",
+      "package_version": "1.3.8",
+      "underlying_candidate_id": "re10_cerberus_Validator"
     },
     {
-      "boundary_note": "ModuleNotFoundError: No module named 'markdown'",
-      "branch_case_id": "bc_markdown",
-      "branch_changed": false,
-      "classification": "could_not_construct",
-      "underlying_candidate_id": ""
+      "boundary_note": "reference registry from a prior convert() changes rendering",
+      "branch_case_id": "bf08_markdown_Markdown",
+      "branch_changed": true,
+      "classification": "confirmed_branch_flip",
+      "code_snippet": "def render(observe):\n    md = markdown.Markdown(output_format='html')\n    if observe: md.convert('[doc]: https://x')   # registers reference\n    html = md.convert('[doc][]')                 # real convert\n    return ('linked','render_hyperlink') if '<a ' in html \\\n           else ('plain','render_plain_text')",
+      "consequence_changed": true,
+      "exception_changed": false,
+      "order_A_branch": "plain",
+      "order_A_consequence": "render_plain_text",
+      "order_A_steps": "Markdown(output_format='html') | convert('[doc][]')",
+      "order_B_branch": "linked",
+      "order_B_consequence": "render_hyperlink",
+      "order_B_steps": "Markdown(output_format='html') | convert(ref-def) [observe] | convert('[doc][]')",
+      "output_changed": true,
+      "package_name": "markdown",
+      "package_version": "3.10.2",
+      "underlying_candidate_id": "re01_markdown_Markdown"
     },
     {
-      "boundary_note": "ModuleNotFoundError: No module named 'bs4'",
-      "branch_case_id": "bc_bs4",
-      "branch_changed": false,
-      "classification": "could_not_construct",
-      "underlying_candidate_id": ""
+      "boundary_note": "extract() destructively removes the node the caller then reads",
+      "branch_case_id": "bf09_beautifulsoup4_PageElement",
+      "branch_changed": true,
+      "classification": "confirmed_branch_flip",
+      "code_snippet": "def pick(observe):\n    soup = BeautifulSoup('<p>a</p><p>b</p>', 'html.parser')\n    if observe: soup.find_all('p')[0].extract()   # destructive access\n    first = soup.find('p')                        # real read\n    return ('first_is_a','process_a') if first.get_text()=='a' \\\n           else ('first_is_b','process_b')",
+      "consequence_changed": true,
+      "exception_changed": false,
+      "order_A_branch": "first_is_a",
+      "order_A_consequence": "process_a",
+      "order_A_steps": "BeautifulSoup('<p>a</p><p>b</p>') | soup.find('p')",
+      "order_B_branch": "first_is_b",
+      "order_B_consequence": "process_b",
+      "order_B_steps": "BeautifulSoup('<p>a</p><p>b</p>') | first <p>.extract() [observe] | soup.find('p')",
+      "output_changed": true,
+      "package_name": "beautifulsoup4",
+      "package_version": "4.14.3",
+      "underlying_candidate_id": "re06_beautifulsoup4_PageElement"
     }
   ],
   "controls": [
@@ -138,36 +198,84 @@
       "observed_result": "RuntimeError"
     },
     {
-      "candidate_id": "controls_markdown",
-      "control_type": "error",
-      "divergence_removed": false,
-      "expected_result": "n/a",
-      "notes": "control raised unexpectedly",
-      "observed_result": "ModuleNotFoundError: No module named 'markdown'"
+      "candidate_id": "re01_markdown_Markdown",
+      "control_type": "determinism",
+      "divergence_removed": true,
+      "expected_result": "identical",
+      "notes": "reference-carrying render is deterministic",
+      "observed_result": "eq=True"
     },
     {
-      "candidate_id": "controls_boltons_lru",
-      "control_type": "error",
-      "divergence_removed": false,
-      "expected_result": "n/a",
-      "notes": "control raised unexpectedly",
-      "observed_result": "ModuleNotFoundError: No module named 'boltons'"
+      "candidate_id": "re01_markdown_Markdown",
+      "control_type": "reset_between",
+      "divergence_removed": true,
+      "expected_result": "baseline '<p>[alpha][]</p>'",
+      "notes": "reset() restores the no-reference baseline",
+      "observed_result": "<p>[alpha][]</p>"
     },
     {
-      "candidate_id": "controls_dnspython_tokenizer",
-      "control_type": "error",
-      "divergence_removed": false,
-      "expected_result": "n/a",
-      "notes": "control raised unexpectedly",
-      "observed_result": "ModuleNotFoundError: No module named 'dns'"
+      "candidate_id": "re01_markdown_Markdown",
+      "control_type": "fresh_object",
+      "divergence_removed": true,
+      "expected_result": "baseline '<p>[alpha][]</p>'",
+      "notes": "a fresh Markdown instance has no references",
+      "observed_result": "<p>[alpha][]</p>"
     },
     {
-      "candidate_id": "controls_cerberus",
-      "control_type": "error",
-      "divergence_removed": false,
-      "expected_result": "n/a",
-      "notes": "control raised unexpectedly",
-      "observed_result": "ModuleNotFoundError: No module named 'cerberus'"
+      "candidate_id": "re08_boltons_LRU",
+      "control_type": "determinism",
+      "divergence_removed": true,
+      "expected_result": "identical",
+      "notes": "eviction deterministic",
+      "observed_result": "True==True"
+    },
+    {
+      "candidate_id": "re08_boltons_LRU",
+      "control_type": "pure_observation",
+      "divergence_removed": true,
+      "expected_result": "x evicted (baseline)",
+      "notes": "len() does not refresh recency; x still evicted",
+      "observed_result": "x_in_cache=False"
+    },
+    {
+      "candidate_id": "re08_boltons_LRU",
+      "control_type": "fresh_object",
+      "divergence_removed": true,
+      "expected_result": "x evicted (baseline)",
+      "notes": "touching one cache does not affect a fresh cache",
+      "observed_result": "x_in_cache=False"
+    },
+    {
+      "candidate_id": "re11_dnspython_Tokenizer",
+      "control_type": "determinism",
+      "divergence_removed": true,
+      "expected_result": "identical",
+      "notes": "tokenizer deterministic",
+      "observed_result": "'bb'=='bb'"
+    },
+    {
+      "candidate_id": "re11_dnspython_Tokenizer",
+      "control_type": "fresh_object",
+      "divergence_removed": true,
+      "expected_result": "aa (baseline)",
+      "notes": "a fresh tokenizer starts at the first token",
+      "observed_result": "aa"
+    },
+    {
+      "candidate_id": "re10_cerberus_Validator",
+      "control_type": "determinism",
+      "divergence_removed": true,
+      "expected_result": "identical",
+      "notes": "validation deterministic",
+      "observed_result": "True==True"
+    },
+    {
+      "candidate_id": "re10_cerberus_Validator",
+      "control_type": "fresh_object",
+      "divergence_removed": true,
+      "expected_result": "no errors (baseline)",
+      "notes": "a fresh validator has no errors",
+      "observed_result": "errors=False"
     },
     {
       "candidate_id": "rc03_pytest_catching_logs",
@@ -365,28 +473,171 @@
       "state_changed": true
     },
     {
+      "branch_changed": false,
       "candidate_id": "re10_cerberus_Validator",
-      "classification": "could_not_construct",
-      "constructed": false,
-      "failure_reason": "ModuleNotFoundError: No module named 'cerberus'",
+      "classification": "confirmed_output_divergence",
+      "constructed": true,
+      "exception_changed": false,
+      "failure_reason": "",
+      "order_A": {
+        "results": [
+          {
+            "kind": "value",
+            "value": {}
+          }
+        ],
+        "state": {
+          "document": null
+        },
+        "steps": [
+          "construct BareValidator",
+          "validator.errors"
+        ]
+      },
+      "order_B": {
+        "observation": {
+          "kind": "value",
+          "value": false
+        },
+        "results": [
+          {
+            "kind": "value",
+            "value": {
+              "name": [
+                "min length is 3"
+              ]
+            }
+          }
+        ],
+        "state": {
+          "document": {
+            "name": "Al"
+          }
+        },
+        "steps": [
+          "construct BareValidator",
+          "validate({'name': 'Al'})",
+          "validator.errors"
+        ]
+      },
+      "output_changed": true,
       "package_name": "cerberus",
-      "package_version": "1.3.8"
+      "package_version": "1.3.8",
+      "state_changed": true
     },
     {
+      "branch_changed": false,
       "candidate_id": "re08_boltons_LRU",
-      "classification": "could_not_construct",
-      "constructed": false,
-      "failure_reason": "FixtureUnavailable: boltons unavailable: No module named 'boltons'",
+      "classification": "confirmed_output_divergence",
+      "constructed": true,
+      "exception_changed": false,
+      "failure_reason": "",
+      "order_A": {
+        "results": [
+          {
+            "kind": "value",
+            "value": [
+              [
+                "b",
+                "B"
+              ],
+              [
+                "c",
+                "C"
+              ]
+            ]
+          }
+        ],
+        "state": {
+          "hit_count": 0,
+          "miss_count": 0
+        },
+        "steps": [
+          "construct LRU",
+          "insert c; then items()"
+        ]
+      },
+      "order_B": {
+        "observation": {
+          "kind": "value",
+          "value": "A"
+        },
+        "results": [
+          {
+            "kind": "value",
+            "value": [
+              [
+                "a",
+                "A"
+              ],
+              [
+                "c",
+                "C"
+              ]
+            ]
+          }
+        ],
+        "state": {
+          "hit_count": 1,
+          "miss_count": 0
+        },
+        "steps": [
+          "construct LRU",
+          "__getitem__('a')",
+          "insert c; then items()"
+        ]
+      },
+      "output_changed": true,
       "package_name": "boltons",
-      "package_version": "25.0.0"
+      "package_version": "25.0.0",
+      "state_changed": true
     },
     {
+      "branch_changed": false,
       "candidate_id": "re11_dnspython_Tokenizer",
-      "classification": "could_not_construct",
-      "constructed": false,
-      "failure_reason": "ModuleNotFoundError: No module named 'dns'",
+      "classification": "confirmed_output_divergence",
+      "constructed": true,
+      "exception_changed": false,
+      "failure_reason": "",
+      "order_A": {
+        "results": [
+          {
+            "kind": "value",
+            "value": "alpha"
+          }
+        ],
+        "state": {
+          "eof": false
+        },
+        "steps": [
+          "construct Tokenizer",
+          "get_string()"
+        ]
+      },
+      "order_B": {
+        "observation": {
+          "kind": "value",
+          "value": "alpha"
+        },
+        "results": [
+          {
+            "kind": "value",
+            "value": "beta"
+          }
+        ],
+        "state": {
+          "eof": false
+        },
+        "steps": [
+          "construct Tokenizer",
+          "get()",
+          "get_string()"
+        ]
+      },
+      "output_changed": true,
       "package_name": "dnspython",
-      "package_version": "2.8.0"
+      "package_version": "2.8.0",
+      "state_changed": false
     },
     {
       "branch_changed": false,
@@ -446,20 +697,103 @@
       "state_changed": false
     },
     {
+      "branch_changed": false,
       "candidate_id": "re01_markdown_Markdown",
-      "classification": "could_not_construct",
-      "constructed": false,
-      "failure_reason": "ModuleNotFoundError: No module named 'markdown'",
+      "classification": "confirmed_output_divergence",
+      "constructed": true,
+      "exception_changed": false,
+      "failure_reason": "",
+      "order_A": {
+        "results": [
+          {
+            "kind": "value",
+            "value": "<p>[alpha][]</p>"
+          }
+        ],
+        "state": {
+          "references": {}
+        },
+        "steps": [
+          "construct Markdown",
+          "convert('[alpha][]')"
+        ]
+      },
+      "order_B": {
+        "observation": {
+          "kind": "value",
+          "value": ""
+        },
+        "results": [
+          {
+            "kind": "value",
+            "value": "<p><a href=\"https://example.invalid\">alpha</a></p>"
+          }
+        ],
+        "state": {
+          "references": {
+            "alpha": [
+              "https://example.invalid",
+              null
+            ]
+          }
+        },
+        "steps": [
+          "construct Markdown",
+          "convert('[alpha]: https://example.invalid')",
+          "convert('[alpha][]')"
+        ]
+      },
+      "output_changed": true,
       "package_name": "markdown",
-      "package_version": "3.10.2"
+      "package_version": "3.10.2",
+      "state_changed": true
     },
     {
+      "branch_changed": false,
       "candidate_id": "re06_beautifulsoup4_PageElement",
-      "classification": "could_not_construct",
-      "constructed": false,
-      "failure_reason": "ModuleNotFoundError: No module named 'bs4'",
+      "classification": "confirmed_output_divergence",
+      "constructed": true,
+      "exception_changed": false,
+      "failure_reason": "",
+      "order_A": {
+        "results": [
+          {
+            "kind": "value",
+            "value": "<p>a</p><p>b</p>"
+          }
+        ],
+        "state": {
+          "p_count": 2
+        },
+        "steps": [
+          "construct PageElement",
+          "str(soup)"
+        ]
+      },
+      "order_B": {
+        "observation": {
+          "kind": "value",
+          "value": "<p>a</p>"
+        },
+        "results": [
+          {
+            "kind": "value",
+            "value": "<p>b</p>"
+          }
+        ],
+        "state": {
+          "p_count": 1
+        },
+        "steps": [
+          "construct PageElement",
+          "first <p>.extract()",
+          "str(soup)"
+        ]
+      },
+      "output_changed": true,
       "package_name": "beautifulsoup4",
-      "package_version": "4.14.3"
+      "package_version": "4.14.3",
+      "state_changed": true
     }
   ],
   "selected_ids": [
@@ -475,16 +809,14 @@
   ],
   "summary": {
     "branch_counts": {
-      "confirmed_branch_flip": 4,
-      "could_not_construct": 5
+      "confirmed_branch_flip": 9
     },
-    "controls": 13,
-    "controls_removed_true": 9,
+    "controls": 19,
+    "controls_removed_true": 19,
     "metamorphic_counts": {
       "confirmed_branch_divergence": 1,
-      "confirmed_output_divergence": 3,
-      "could_not_construct": 5
+      "confirmed_output_divergence": 8
     }
   },
-  "timestamp": "2026-08-12T21:44:50.864970+00:00"
+  "timestamp": "2026-08-12T22:22:19.095301+00:00"
 }

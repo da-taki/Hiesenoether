@@ -1,0 +1,44 @@
+{
+  "behavior_preservation_rate": null,
+  "behavior_preservation_rate_wilson_95": "n/a",
+  "by_evidence_role": {
+    "hidden_observation": {
+      "diverged": 0,
+      "executable": 0,
+      "preserved": 0,
+      "tasks": 1
+    }
+  },
+  "by_model": {
+    "replay-smoke-model": {
+      "diverged": 0,
+      "executable": 0,
+      "preserved": 0,
+      "tasks": 1
+    }
+  },
+  "by_transformation_family": {
+    "instrumentation": {
+      "diverged": 0,
+      "executable": 0,
+      "preserved": 0,
+      "tasks": 1
+    }
+  },
+  "claims_preserved": 0,
+  "correct_preservation_claims": 0,
+  "diverged": 0,
+  "divergence_counts": {
+    "syntax_failure": 1
+  },
+  "executable_generations": 0,
+  "false_preservation_claim_rate": null,
+  "false_preservation_claims": 0,
+  "generations_attempted": 1,
+  "generations_successfully_applied": 1,
+  "ordinary_pass_metamorphic_fail": 0,
+  "ordinary_tests_missed": 0,
+  "osds_caught": 0,
+  "preserved": 0,
+  "total_tasks": 1
+}

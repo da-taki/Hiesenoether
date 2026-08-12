@@ -1,7 +1,9 @@
-from __future__ import annotations
+﻿from __future__ import annotations
 
 import argparse
 import json
+import platform
+import subprocess
 import sys
 from datetime import datetime, timezone
 from pathlib import Path
@@ -18,6 +20,14 @@ from agent_bp.schema import validate_tasks
 
 RESULTS = BASE / "results"
 TASKS = BASE / "benchmark" / "tasks.jsonl"
+REPO = BASE.parents[1]
+
+
+def git_value(*args: str) -> str:
+    try:
+        return subprocess.check_output(["git", *args], cwd=REPO, text=True).strip()
+    except Exception:
+        return "unknown"
 
 
 def load_tasks(path: Path) -> list[dict[str, object]]:
@@ -87,6 +97,9 @@ def run(args: argparse.Namespace) -> int:
             "run_id": args.run_id,
             "task_id": task["task_id"],
             "case_id": task["case_id"],
+            "pair_id": task["pair_id"],
+            "witness_id": task["witness_id"],
+            "package_id": task["package_id"],
             "package": task["package"],
             "package_version": task["package_version"],
             "evidence_role": task["evidence_role"],
@@ -104,6 +117,7 @@ def run(args: argparse.Namespace) -> int:
             "patch_error": extraction_error,
             "agent_claimed_preservation": generation.get("agent_claimed_preservation", False),
             "self_assessment": generation.get("self_assessment", ""),
+            "parsed_self_assessment": generation.get("parsed_self_assessment", ""),
             "baseline_source_sha256": sha256_text(str(task["source_context"])),
             "candidate_source_sha256": sha256_text(candidate_source) if candidate_source else "",
             "baseline_result": baseline,
@@ -129,6 +143,11 @@ def run(args: argparse.Namespace) -> int:
         "provider": args.provider,
         "replay_path": args.replay_path,
         "task_count": len(tasks),
+        "branch": git_value("branch", "--show-current"),
+        "git_commit": git_value("rev-parse", "HEAD"),
+        "os": platform.platform(),
+        "python_version": sys.version,
+        "python_executable": sys.executable,
         "baseline_failures": baseline_failures,
     }
     (run_dir / "run_metadata.json").write_text(json.dumps(metadata, indent=2, sort_keys=True) + "\n", encoding="utf-8")
@@ -149,3 +168,6 @@ def main() -> int:
 
 if __name__ == "__main__":
     raise SystemExit(main())
+
+
+

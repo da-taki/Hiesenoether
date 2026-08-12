@@ -1,0 +1,10 @@
+{
+  "branch": "experiment/agent-behavior-preservation",
+  "eligible_tasks": 26,
+  "git_commit": "5eafdc724fdd38aed3a9ff41dd06cd27db65679a",
+  "ineligible_tasks": 0,
+  "python_executable": "C:\\Users\\Asus\\Desktop\\Profitlo Projects\\Hiesenoether\\experiments\\agent_behavior_preservation\\environment\\.venv\\Scripts\\python.exe",
+  "tasks": 26,
+  "timestamp": "2026-08-12T22:18:41.618115+00:00",
+  "unique_witnesses": 9
+}

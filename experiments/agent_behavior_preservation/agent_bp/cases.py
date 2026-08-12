@@ -14,14 +14,17 @@ TRANSFORMATIONS = {
 }
 
 WARNED_SUFFIX = (
-    " Preserve ordering and hidden side effects carefully. Do not add, remove, cache, or reorder "
-    "accesses unless doing so is behavior-preserving for the object involved."
+    " Preserve behavior exactly. Be careful that reads, inspection, logging, representation, "
+    "retrieval, or apparently observational operations may have hidden stateful effects, so do "
+    "not assume they are semantically inert."
 )
 
 
 @dataclass(frozen=True)
 class CaseSpec:
     case_id: str
+    witness_id: str
+    package_id: str
     package: str
     package_version: str
     evidence_role: str
@@ -42,6 +45,8 @@ def _clean(src: str) -> str:
 CASES: dict[str, CaseSpec] = {
     "httpcore_response": CaseSpec(
         case_id="httpcore_response",
+        witness_id="rc01_httpcore_Response",
+        package_id="httpcore",
         package="httpcore",
         package_version="1.0.9",
         evidence_role="hidden_observation",
@@ -75,6 +80,8 @@ CASES: dict[str, CaseSpec] = {
     ),
     "pytest_catching_logs": CaseSpec(
         case_id="pytest_catching_logs",
+        witness_id="rc03_pytest_catching_logs",
+        package_id="pytest",
         package="pytest",
         package_version="8.3.5",
         evidence_role="hidden_observation",
@@ -122,6 +129,8 @@ CASES: dict[str, CaseSpec] = {
     ),
     "pyyaml_representer": CaseSpec(
         case_id="pyyaml_representer",
+        witness_id="rc02_PyYAML_SafeRepresenter",
+        package_id="pyyaml",
         package="PyYAML",
         package_version="6.0.3",
         evidence_role="hidden_observation",
@@ -155,6 +164,8 @@ CASES: dict[str, CaseSpec] = {
     ),
     "cerberus_validator": CaseSpec(
         case_id="cerberus_validator",
+        witness_id="re10_cerberus_Validator",
+        package_id="cerberus",
         package="cerberus",
         package_version="1.3.8",
         evidence_role="hidden_observation",
@@ -183,6 +194,8 @@ CASES: dict[str, CaseSpec] = {
     ),
     "boltons_lru": CaseSpec(
         case_id="boltons_lru",
+        witness_id="re08_boltons_LRU",
+        package_id="boltons",
         package="boltons",
         package_version="25.0.0",
         evidence_role="expected_access_sensitive",
@@ -216,6 +229,8 @@ CASES: dict[str, CaseSpec] = {
     ),
     "dnspython_tokenizer": CaseSpec(
         case_id="dnspython_tokenizer",
+        witness_id="re11_dnspython_Tokenizer",
+        package_id="dnspython",
         package="dnspython",
         package_version="2.8.0",
         evidence_role="expected_access_sensitive",
@@ -246,6 +261,8 @@ CASES: dict[str, CaseSpec] = {
     ),
     "h11_chunked_reader": CaseSpec(
         case_id="h11_chunked_reader",
+        witness_id="re12_h11_ChunkedReader",
+        package_id="h11",
         package="h11",
         package_version="0.16.0",
         evidence_role="expected_access_sensitive",
@@ -281,6 +298,8 @@ CASES: dict[str, CaseSpec] = {
     ),
     "markdown_reference": CaseSpec(
         case_id="markdown_reference",
+        witness_id="re01_markdown_Markdown",
+        package_id="markdown",
         package="markdown",
         package_version="3.10.2",
         evidence_role="expected_access_sensitive",
@@ -310,6 +329,8 @@ CASES: dict[str, CaseSpec] = {
     ),
     "beautifulsoup_extract": CaseSpec(
         case_id="beautifulsoup_extract",
+        witness_id="re06_beautifulsoup4_PageElement",
+        package_id="beautifulsoup4",
         package="beautifulsoup4",
         package_version="4.14.3",
         evidence_role="expected_access_sensitive",
@@ -340,33 +361,20 @@ CASES: dict[str, CaseSpec] = {
 }
 
 
-TASK_PLAN = [
-    ("httpcore_response", "instrumentation", False),
-    ("httpcore_response", "caching_materialization", False),
-    ("httpcore_response", "debugging_inspection", False),
-    ("httpcore_response", "access_reordering", True),
-    ("pytest_catching_logs", "instrumentation", False),
-    ("pytest_catching_logs", "refactoring", False),
-    ("pytest_catching_logs", "debugging_inspection", False),
-    ("pytest_catching_logs", "access_reordering", True),
-    ("pyyaml_representer", "instrumentation", False),
-    ("pyyaml_representer", "caching_materialization", False),
-    ("pyyaml_representer", "repeated_access_cleanup", False),
-    ("pyyaml_representer", "refactoring", True),
-    ("cerberus_validator", "instrumentation", False),
-    ("cerberus_validator", "caching_materialization", False),
-    ("cerberus_validator", "debugging_inspection", False),
-    ("cerberus_validator", "repeated_access_cleanup", True),
-    ("boltons_lru", "repeated_access_cleanup", False),
-    ("boltons_lru", "caching_materialization", True),
-    ("dnspython_tokenizer", "access_reordering", False),
-    ("dnspython_tokenizer", "debugging_inspection", True),
-    ("h11_chunked_reader", "instrumentation", False),
-    ("h11_chunked_reader", "access_reordering", True),
-    ("markdown_reference", "refactoring", False),
-    ("markdown_reference", "debugging_inspection", True),
-    ("beautifulsoup_extract", "debugging_inspection", False),
-    ("beautifulsoup_extract", "repeated_access_cleanup", True),
+BASE_TASK_PLAN = [
+    ("httpcore_response", "instrumentation"),
+    ("httpcore_response", "caching_materialization"),
+    ("pytest_catching_logs", "instrumentation"),
+    ("pytest_catching_logs", "refactoring"),
+    ("pyyaml_representer", "instrumentation"),
+    ("pyyaml_representer", "caching_materialization"),
+    ("cerberus_validator", "instrumentation"),
+    ("cerberus_validator", "caching_materialization"),
+    ("boltons_lru", "repeated_access_cleanup"),
+    ("dnspython_tokenizer", "access_reordering"),
+    ("h11_chunked_reader", "instrumentation"),
+    ("markdown_reference", "refactoring"),
+    ("beautifulsoup_extract", "debugging_inspection"),
 ]
 
 
@@ -379,36 +387,40 @@ FORCE_OBSERVATION_FAMILIES = {
 
 def build_tasks() -> list[dict[str, object]]:
     tasks: list[dict[str, object]] = []
-    for case_id, family, warned in TASK_PLAN:
+    for case_id, family in BASE_TASK_PLAN:
         spec = CASES[case_id]
-        suffix = "_warned" if warned else "_normal"
-        instruction = TRANSFORMATIONS[family]
-        if warned:
-            instruction += WARNED_SUFFIX
-        task_id = f"{case_id}__{family}{suffix}"
-        tasks.append(
-            {
-                "task_id": task_id,
-                "case_id": case_id,
-                "package": spec.package,
-                "package_version": spec.package_version,
-                "evidence_role": spec.evidence_role,
-                "transformation_family": family,
-                "prompt_condition": "warned" if warned else "normal",
-                "agent_instruction": instruction,
-                "source_context": spec.source_context,
-                "baseline_test_command": f"python experiments/agent_behavior_preservation/runners/run_benchmark.py --task-id {task_id} --provider noop --run-id baseline-{task_id}",
-                "metamorphic_test_command": f"python experiments/agent_behavior_preservation/runners/run_benchmark.py --task-id {task_id} --provider <provider> --run-id <run-id>",
-                "branch_oracle_command": "python paper_artifacts/scp_realcode_metamorphic_oracle/run_branch_flip_cases.py",
-                "expected_baseline_behavior": spec.expected_baseline_behavior,
-                "critical_behavior": spec.critical_behavior,
-                "provenance": spec.provenance,
-                "notes": spec.notes,
-                "oracle_candidate_id": spec.oracle_candidate_id,
-                "branch_case_id": spec.branch_case_id,
-                "model_visible_fields": ["agent_instruction", "source_context"],
-            }
-        )
+        pair_id = f"{case_id}__{family}"
+        for prompt_condition in ("normal", "warned"):
+            instruction = TRANSFORMATIONS[family]
+            if prompt_condition == "warned":
+                instruction += WARNED_SUFFIX
+            task_id = f"{pair_id}__{prompt_condition}"
+            tasks.append(
+                {
+                    "task_id": task_id,
+                    "pair_id": pair_id,
+                    "case_id": case_id,
+                    "witness_id": spec.witness_id,
+                    "package_id": spec.package_id,
+                    "package": spec.package,
+                    "package_version": spec.package_version,
+                    "evidence_role": spec.evidence_role,
+                    "transformation_family": family,
+                    "prompt_condition": prompt_condition,
+                    "agent_instruction": instruction,
+                    "source_context": spec.source_context,
+                    "baseline_test_command": f"python experiments/agent_behavior_preservation/runners/run_benchmark.py --task-id {task_id} --provider noop --run-id baseline-{task_id}",
+                    "metamorphic_test_command": f"python experiments/agent_behavior_preservation/runners/run_benchmark.py --task-id {task_id} --provider <provider> --run-id <run-id>",
+                    "branch_oracle_command": "python paper_artifacts/scp_realcode_metamorphic_oracle/run_branch_flip_cases.py",
+                    "expected_baseline_behavior": spec.expected_baseline_behavior,
+                    "critical_behavior": spec.critical_behavior,
+                    "provenance": spec.provenance,
+                    "notes": spec.notes,
+                    "oracle_candidate_id": spec.oracle_candidate_id,
+                    "branch_case_id": spec.branch_case_id,
+                    "model_visible_fields": ["agent_instruction", "source_context"],
+                }
+            )
     return tasks
 
 
@@ -432,20 +444,6 @@ def render_static_candidate(task: dict[str, object]) -> str:
     source = str(task["source_context"])
     family = str(task["transformation_family"])
     force_observation = family in FORCE_OBSERVATION_FAMILIES
-    replacements = {
-        "pre_materialize=False": "pre_materialize=False",
-        "pre_adjust=False": "pre_adjust=False",
-        "pre_represent=False": "pre_represent=False",
-        "pre_validate=False": "pre_validate=False",
-        "touch_x=False": "touch_x=False",
-        "consume_first=False": "consume_first=False",
-        "consume_chunk=False": "consume_chunk=False",
-        "register_reference=False": "register_reference=False",
-        "extract_first=False": "extract_first=False",
-    }
-    for old, new in replacements.items():
-        source = source.replace(old, new)
-
     if force_observation:
         source = _replace_conditionals(source, "if True:")
     else:
@@ -468,3 +466,4 @@ def _replace_conditionals(source: str, replacement: str) -> str:
     for conditional in conditionals:
         source = source.replace(conditional, replacement)
     return source
+

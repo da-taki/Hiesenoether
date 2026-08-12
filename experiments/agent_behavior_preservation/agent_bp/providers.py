@@ -1,9 +1,10 @@
-from __future__ import annotations
+﻿from __future__ import annotations
 
 import json
 from pathlib import Path
 
 from .cases import render_static_candidate
+from .self_assessment import parse_preservation_claim
 
 
 class ProviderError(RuntimeError):
@@ -67,7 +68,7 @@ class JsonlReplayProvider(BaseProvider):
     def __init__(self, path: Path):
         self.path = path
         self.responses = {}
-        with path.open(encoding="utf-8") as handle:
+        with path.open(encoding="utf-8-sig") as handle:
             for line in handle:
                 if not line.strip():
                     continue
@@ -84,8 +85,9 @@ class JsonlReplayProvider(BaseProvider):
             "temperature": row.get("temperature"),
             "seed": row.get("seed"),
             "raw_response": row["raw_response"],
-            "agent_claimed_preservation": bool(row.get("agent_claimed_preservation", False)),
+            "agent_claimed_preservation": bool(row.get("agent_claimed_preservation", parse_preservation_claim(str(row.get("self_assessment", ""))) == "YES")),
             "self_assessment": row.get("self_assessment", ""),
+            "parsed_self_assessment": parse_preservation_claim(str(row.get("self_assessment", ""))),
             "is_control_provider": False,
         }
 
@@ -100,3 +102,5 @@ def make_provider(name: str, replay_path: str | None = None) -> BaseProvider:
             raise ProviderError("--replay-path is required for jsonl provider")
         return JsonlReplayProvider(Path(replay_path))
     raise ProviderError(f"unknown provider {name!r}")
+
+

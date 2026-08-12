@@ -1,0 +1,45 @@
+{
+  "providers": [
+    {
+      "authentication_usable": false,
+      "models_discoverable": false,
+      "note": "environment variable presence only; secret value not inspected",
+      "provider": "openai",
+      "provider_configured": false,
+      "secret_values_logged": false
+    },
+    {
+      "authentication_usable": false,
+      "models_discoverable": false,
+      "note": "environment variable presence only; secret value not inspected",
+      "provider": "anthropic",
+      "provider_configured": false,
+      "secret_values_logged": false
+    },
+    {
+      "authentication_usable": false,
+      "models_discoverable": false,
+      "note": "environment variable presence only; secret value not inspected",
+      "provider": "google_gemini",
+      "provider_configured": false,
+      "secret_values_logged": false
+    },
+    {
+      "authentication_usable": false,
+      "models_discoverable": false,
+      "note": "environment variable presence only; secret value not inspected",
+      "provider": "azure_openai",
+      "provider_configured": false,
+      "secret_values_logged": false
+    },
+    {
+      "authentication_usable": false,
+      "models_discoverable": false,
+      "note": "gh CLI checked for copilot extension without making model calls",
+      "provider": "github_copilot_cli",
+      "provider_configured": false,
+      "secret_values_logged": false
+    }
+  ],
+  "timestamp": "2026-08-12T22:15:53.765263+00:00"
+}
