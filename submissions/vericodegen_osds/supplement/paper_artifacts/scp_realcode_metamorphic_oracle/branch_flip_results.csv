@@ -1,0 +1,59 @@
+branch_case_id,package_name,package_version,underlying_candidate_id,order_A_steps,order_B_steps,order_A_branch,order_B_branch,order_A_consequence,order_B_consequence,branch_changed,consequence_changed,output_changed,exception_changed,classification,code_snippet,boundary_note
+bf01_httpcore_Response,httpcore,1.0.9,rc01_httpcore_Response,construct Response(streaming) | resp.content -> RuntimeError,construct Response(streaming) | resp.read() | resp.content,stream_pending,content_ready,stream_response_or_error,cache_response,True,True,True,True,confirmed_branch_flip,"def handle(resp, observe):
+    if observe: resp.read()          # real httpcore op
+    try:
+        body = resp.content           # real httpcore op
+        return 'content_ready', 'cache_response'
+    except RuntimeError:
+        return 'stream_pending', 'stream_response_or_error'",read() materializes _content; .content flips RuntimeError->value
+bf02_pytest_catching_logs,pytest,8.3.5,rc03_pytest_catching_logs,fresh handler | logger.warning('disk almost full'),"fresh handler | catching_logs(handler, ERROR) enter/exit | logger.warning('disk almost full')",warning_seen,warning_hidden,emit_alert,suppress_alert,True,True,True,False,confirmed_branch_flip,"def alert(observe):
+    handler = ListHandler(); logger.addHandler(handler)
+    if observe:
+        cm = catching_logs(handler, level=ERROR); cm.__enter__(); cm.__exit__(...)
+    logger.warning('disk almost full')   # real emit
+    if handler.messages: return 'warning_seen', 'emit_alert'
+    return 'warning_hidden', 'suppress_alert'",catching_logs raises the handler level and does not restore it
+bf03_PyYAML_SafeRepresenter,PyYAML,6.0.3,rc02_PyYAML_SafeRepresenter,SafeRepresenter() | payload=['before'] | payload[0]='after' | represent_data(payload),SafeRepresenter() | payload=['before'] | represent_data(payload) [observe -> caches identity] | payload[0]='after' | represent_data(payload),after_payload,before_payload,use_after_payload,use_before_payload,True,True,True,False,confirmed_branch_flip,"def route(observe):
+    rep = SafeRepresenter(); payload = ['before']
+    if observe: rep.represent_data(payload)   # caches identity
+    payload[0] = 'after'
+    node = rep.represent_data(payload)        # real represent
+    val = node.value[0].value
+    return ('after_payload','use_after_payload') if val=='after' \
+           else ('before_payload','use_before_payload')",identity cache returns the stale node for a mutated object
+bf04_boltons_LRU,boltons,25.0.0,re08_boltons_LRU,"LRU(max_size=2) x,y | cache['z']=3 (eviction)","LRU(max_size=2) x,y | cache['x'] [observe] | cache['z']=3 (eviction)",x_evicted,x_live,recompute_x,serve_x_from_cache,True,True,True,False,confirmed_branch_flip,"def serve(observe):
+    cache = LRU(max_size=2); cache['x']=1; cache['y']=2
+    if observe: cache['x']            # real access -> refresh recency
+    cache['z'] = 3                     # eviction
+    return ('x_live','serve_x_from_cache') if 'x' in cache \
+           else ('x_evicted','recompute_x')",read refreshes recency so a different key is evicted
+bf05_dnspython_Tokenizer,dnspython,2.8.0,re11_dnspython_Tokenizer,Tokenizer('aa bb') | tok.get(),Tokenizer('aa bb') | tok.get() [observe] | tok.get(),has_aa,has_bb,handle_first_field,continue_parse,True,True,True,False,confirmed_branch_flip,"def parse(observe):
+    tok = Tokenizer(StringIO('aa bb'))
+    if observe: tok.get()             # consume one token
+    t = tok.get()                     # real tokenizer read
+    return ('has_bb','continue_parse') if t.value=='bb' \
+           else ('has_aa','handle_first_field')",cursor advance changes which token the caller reads
+bf06_h11_ChunkedReader,h11,0.16.0,re12_h11_ChunkedReader,ReceiveBuffer(chunked body) | ChunkedReader() | reader(buf),ReceiveBuffer(chunked body) | ChunkedReader() | reader(buf) [observe] | reader(buf),data,end,continue_parse,finish_response,True,True,True,False,confirmed_branch_flip,"def pump(observe):
+    buf = ReceiveBuffer(); buf += b'3\r\nabc\r\n0\r\n\r\n'
+    reader = ChunkedReader()
+    if observe: reader(buf)           # consume first chunk
+    ev = reader(buf)                  # real reader read
+    return ('end','finish_response') if isinstance(ev, EndOfMessage) \
+           else ('data','continue_parse')",consuming a chunk flips Data vs EndOfMessage
+bf07_cerberus_Validator,cerberus,1.3.8,re10_cerberus_Validator,Validator(schema),Validator(schema) | v.validate({'name':'Al'}) [observe],clean,has_errors,accept_request,reject_request,True,True,True,False,confirmed_branch_flip,"def gate(observe):
+    v = Validator({'name': {'type':'string','minlength':3}})
+    if observe: v.validate({'name':'Al'})   # real validate (fails)
+    return ('has_errors','reject_request') if v.errors \
+           else ('clean','accept_request')",validate() populates the errors read on the next line
+bf08_markdown_Markdown,markdown,3.10.2,re01_markdown_Markdown,Markdown(output_format='html') | convert('[doc][]'),Markdown(output_format='html') | convert(ref-def) [observe] | convert('[doc][]'),plain,linked,render_plain_text,render_hyperlink,True,True,True,False,confirmed_branch_flip,"def render(observe):
+    md = markdown.Markdown(output_format='html')
+    if observe: md.convert('[doc]: https://x')   # registers reference
+    html = md.convert('[doc][]')                 # real convert
+    return ('linked','render_hyperlink') if '<a ' in html \
+           else ('plain','render_plain_text')",reference registry from a prior convert() changes rendering
+bf09_beautifulsoup4_PageElement,beautifulsoup4,4.14.3,re06_beautifulsoup4_PageElement,BeautifulSoup('<p>a</p><p>b</p>') | soup.find('p'),BeautifulSoup('<p>a</p><p>b</p>') | first <p>.extract() [observe] | soup.find('p'),first_is_a,first_is_b,process_a,process_b,True,True,True,False,confirmed_branch_flip,"def pick(observe):
+    soup = BeautifulSoup('<p>a</p><p>b</p>', 'html.parser')
+    if observe: soup.find_all('p')[0].extract()   # destructive access
+    first = soup.find('p')                        # real read
+    return ('first_is_a','process_a') if first.get_text()=='a' \
+           else ('first_is_b','process_b')",extract() destructively removes the node the caller then reads

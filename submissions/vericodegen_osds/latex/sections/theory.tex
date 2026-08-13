@@ -1,0 +1,7 @@
+\section{Structural Results}
+
+The formal core is a straight-line deterministic template. Within that scope, fixed-order execution is deterministic: induction over the operation sequence gives a unique next configuration at each step. Two zero-divergence conditions follow directly. If $g(d)=d$, observations are inert and can be moved without changing the reduced read sequence. If $f(b,a,d)=h(b)$, reads ignore access count and drift, so every ordering with the same number of reads produces the same body accumulator.
+
+A linear cap preserves body-level divergence. For $C(y)=\alpha y+\beta$ with $\alpha\ne0$, $y_1\ne y_2$ implies $C(y_1)-C(y_2)=\alpha(y_1-y_2)\ne0$. This proposition is the only cap theorem used as an unbounded formal claim. Nonlinear amplification and broad degree laws are treated as bounded computational findings.
+
+The appendix states a restricted adjacent-swap result for the monotone positive-parameter fragment. Under deterministic updates, monotone positive observation drift, and monotone access-sensitive reads, extrema over the checked order set occur at boundary orderings obtained by adjacent swaps that move observations before or after reads. The appendix also states the restricted range-degree result supported by exact rational checks: for checked compositional OSDS cases $m=1..4$, cap degree $d=1..5$, and $L=2..15$, extremal-order interpolation detects degree $2d$. This is not a theorem for all OSDS programs.

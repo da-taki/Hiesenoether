@@ -1,0 +1,33 @@
+\section{Formal Details}
+
+\subsection{State and transitions}
+An OSDS state is $s=(b,a,d,y)$ with base $b$, access count $a$, latent drift $d$, and accumulator $y$. A read transition is deterministic:
+\[
+R(s)= (b,a+1,r(a,d), y+f(b,a,d)).
+\]
+An observation transition is deterministic:
+\[
+O(s)= (b,a,g(d),y).
+\]
+For a finite sequence $\pi=o_1\ldots o_n$, composition is $\sem{\epsilon}(s)=s$ and $\sem{\pi o}(s)=o(\sem{\pi}(s))$. Branch evaluation is a deterministic predicate $B(C(\sem{\pi}(s)))$ over the capped visible result or final configuration. Branch divergence occurs when two admissible orderings produce different branch labels or downstream consequences.
+
+\subsection{Semantic divergence}
+Given operation multiset $M$, admissible orderings $\Pi(M)$, initial state $s_0$, and deterministic cap $C$, define $V_C(\pi,s_0)=C(\sem{\pi}(s_0))$. The access-order range is $\Delta_C(M,s_0)=\max_{\pi\in\Pi(M)} V_C(\pi,s_0)-\min_{\pi\in\Pi(M)} V_C(\pi,s_0)$ for finite $\Pi(M)$. A transformation preserves the witness when baseline and candidate have equal OSDS-observable results under the witness relation.
+
+\subsection{Fixed-order determinism}
+\textbf{Proposition.} For fixed $s_0$, fixed $\pi$, deterministic $R$, deterministic $O$, and deterministic $C$, $V_C(\pi,s_0)$ is unique. \textbf{Proof.} Induct on $|\pi|$. The empty sequence returns $s_0$. For $\pi o$, the induction hypothesis gives a unique intermediate state and $o\in\{R,O\}$ maps it to a unique next state. The deterministic cap gives a unique output.
+
+\subsection{Zero divergence under no observation-induced mutation}
+\textbf{Proposition.} If $g(d)=d$ and observations expose no additive value, moving observations within a fixed multiset does not change the body accumulator or final latent state. \textbf{Proof sketch.} Each observation is the identity on $(b,a,d,y)$. Removing observations leaves the same sequence of read operations. The same deterministic read sequence is executed from the same state, so the accumulator and final state match.
+
+\subsection{Zero divergence under access-insensitive reads}
+\textbf{Proposition.} If $f(b,a,d)=h(b)$, every ordering with $L$ reads has the same body accumulator $Lh(b)$. \textbf{Proof.} Every read contributes the same exposed value for fixed $b$ regardless of access count or drift. Observations may change $d$, but $d$ is ignored by $f$. A deterministic cap depending only on the accumulator and final counts preserves equality.
+
+\subsection{Linear-cap preservation}
+\textbf{Proposition.} Let $C(y)=\alpha y+\beta$ with $\alpha\ne0$. If body accumulators $y_1\ne y_2$, then $C(y_1)\ne C(y_2)$. \textbf{Proof.} $C(y_1)-C(y_2)=\alpha(y_1-y_2)$, which is nonzero under exact arithmetic.
+
+\subsection{Adjacent-swap extrema under monotone access drift}
+\textbf{Restricted result.} Consider the positive-parameter fragment with identical reads, identical observations, deterministic updates, monotone observation drift, and reads monotone in drift. If a neighboring pair is $RO$, swapping it to $OR$ cannot decrease the later drift seen by subsequent reads. Repeated adjacent swaps move observations toward the front to reach a maximum ordering, or toward the back to reach a minimum ordering. \textbf{Proof sketch.} The swap changes only the relative placement of one observation and one read. Under monotone positive drift, the read in $OR$ sees the observation-induced drift that it misses in $RO$; later reads see a state no smaller in the order. Repeating the local monotone step yields boundary extrema. \textbf{Scope.} This result assumes monotone positive parameters and identical operations. It is not used for arbitrary Python orderings.
+
+\subsection{Restricted 2d range-degree statement}
+\textbf{Checked theorem.} For the compositional OSDS cap family implemented in the exact-rational validation scripts, with $m=1..4$, cap degree $d=1..5$, and $L=2..15$, exhaustive checks on small feasible grids plus extremal-order interpolation detect access-order range degree $2d$. \textbf{Derivation.} In the checked family, the body-range term is $\eta m L(L-1)/2$. The compositional cap contributes $d-1$ final read factors, each quadratic in $L$. The leading degree is therefore $2+2(d-1)=2d$. Exact rational scripts verify the extremal formula against enumerated feasible orderings and holdout values on the stated grid. \textbf{Scope.} This is a restricted checked result for the named family and grid. It replaces the earlier unqualified degree claim.

@@ -1,0 +1,13 @@
+{
+  "appendix_page_count": 2,
+  "main_text_page_count": 6,
+  "main_text_page_limit": 9,
+  "official_template": "NeurIPS 2026 Formatting Instructions, neurips_2026.sty unchanged, dblblindworkshop option",
+  "other_noncompliant_outputs": 0,
+  "prospective_outputs_audited": 42,
+  "references_page_count": 1,
+  "task_compliant_transformations": 23,
+  "total_pdf_pages": 8,
+  "unchanged_outputs": 19,
+  "verified_prospective_osds_divergences": 0
+}

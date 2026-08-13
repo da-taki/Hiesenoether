@@ -1,0 +1,42 @@
+\section{Causal Attribution and Prospective Expansion}
+
+The causal-control experiment replays the exact generated files for the five verified failures. The candidate source remains unchanged. The intervention changes only the witness mechanism that caused access-induced divergence.
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{p{0.22\linewidth}p{0.43\linewidth}rl}
+\toprule
+Family & Intervention & Rows & Result \\
+\midrule
+pytest instrumentation & isolate diagnostic logger from captured handler hierarchy & 4 & 4/4 removed \\
+PyYAML caching & clear representer identity cache after observation & 1 & 1/1 removed \\
+\bottomrule
+\end{tabular}
+\caption{Causal controls. Under the original witness all five failures reproduced; under mechanism-neutralizing controls all five OSDS divergences disappeared.}
+\label{tab:causal}
+\end{table}
+
+This supports the access-induced attribution. The failures are mechanism-dependent generated-code defects: ordinary checks pass, OSDS checks fail, and targeted neutralization removes divergence while preserving the generated candidate.
+
+After the causal phase, 11 unused confirmed real-code witnesses were audited prospectively. Seven met eligibility criteria and were frozen before model execution, producing 14 normal/warned variants from boltons, dnspython, and h11. Sol, Terra, and Luna were run on these exact prompts as fresh projectless tasks. Self-assessment was skipped for the expansion.
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{lrrrrr}
+\toprule
+Model & Outputs & Task-compliant & Unchanged & Ordinary pass & Ver. OSDS \\
+\midrule
+gpt-5.6-sol & 14 & 8 & 6 & 14 & 0 \\
+gpt-5.6-terra & 14 & 8 & 6 & 14 & 0 \\
+gpt-5.6-luna & 14 & 7 & 7 & 14 & 0 \\
+\midrule
+Total & 42 & 23 & 19 & 42 & 0 \\
+\bottomrule
+\end{tabular}
+\caption{Prospective expansion with task compliance separated from semantic preservation. Unchanged outputs are OSDS-preserving but are not counted as task-compliant transformations.}
+\label{tab:prospective}
+\end{table}
+
+The prospective benchmark produced no new verified OSDS divergences. The corrected interpretation is narrower than a 42/42 transformation success claim: 23/42 outputs performed a nontrivial task-compliant transformation, 19/42 returned unchanged code, and 23/23 task-compliant outputs were OSDS-preserving. The result constrains failure incidence among these frozen responses and supports reporting the primary failures as reproducible examples rather than as a prevalence estimate.

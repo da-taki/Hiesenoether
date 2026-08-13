@@ -1,0 +1,926 @@
+{
+  "evidence_role_stats": [
+    {
+      "evidence_role": "expected_access_sensitive",
+      "invalid_patches": 0,
+      "model": "gpt-5.6-sol",
+      "ordinary_programming_bugs": 3,
+      "preserved": 7,
+      "tasks": 10,
+      "verified_osds": 0
+    },
+    {
+      "evidence_role": "hidden_observation",
+      "invalid_patches": 0,
+      "model": "gpt-5.6-sol",
+      "ordinary_programming_bugs": 0,
+      "preserved": 16,
+      "tasks": 16,
+      "verified_osds": 0
+    },
+    {
+      "evidence_role": "expected_access_sensitive",
+      "invalid_patches": 2,
+      "model": "gpt-5.6-terra",
+      "ordinary_programming_bugs": 4,
+      "preserved": 4,
+      "tasks": 10,
+      "verified_osds": 0
+    },
+    {
+      "evidence_role": "hidden_observation",
+      "invalid_patches": 0,
+      "model": "gpt-5.6-terra",
+      "ordinary_programming_bugs": 0,
+      "preserved": 14,
+      "tasks": 16,
+      "verified_osds": 2
+    },
+    {
+      "evidence_role": "expected_access_sensitive",
+      "invalid_patches": 2,
+      "model": "gpt-5.6-luna",
+      "ordinary_programming_bugs": 4,
+      "preserved": 4,
+      "tasks": 10,
+      "verified_osds": 0
+    },
+    {
+      "evidence_role": "hidden_observation",
+      "invalid_patches": 0,
+      "model": "gpt-5.6-luna",
+      "ordinary_programming_bugs": 0,
+      "preserved": 13,
+      "tasks": 16,
+      "verified_osds": 3
+    }
+  ],
+  "manual_review_file": "experiments\\agent_behavior_preservation\\analysis\\codex_task_model_manual_review_20260813.jsonl",
+  "model_differential_cases": [
+    {
+      "manual_classification": {
+        "gpt-5.6-luna": "ordinary_programming_bug",
+        "gpt-5.6-sol": "preserved",
+        "gpt-5.6-terra": "ordinary_programming_bug"
+      },
+      "preserved": {
+        "gpt-5.6-luna": false,
+        "gpt-5.6-sol": true,
+        "gpt-5.6-terra": false
+      },
+      "task_id": "beautifulsoup_extract__debugging_inspection__normal"
+    },
+    {
+      "manual_classification": {
+        "gpt-5.6-luna": "invalid_patch",
+        "gpt-5.6-sol": "preserved",
+        "gpt-5.6-terra": "invalid_patch"
+      },
+      "preserved": {
+        "gpt-5.6-luna": false,
+        "gpt-5.6-sol": true,
+        "gpt-5.6-terra": false
+      },
+      "task_id": "h11_chunked_reader__instrumentation__normal"
+    },
+    {
+      "manual_classification": {
+        "gpt-5.6-luna": "invalid_patch",
+        "gpt-5.6-sol": "preserved",
+        "gpt-5.6-terra": "invalid_patch"
+      },
+      "preserved": {
+        "gpt-5.6-luna": false,
+        "gpt-5.6-sol": true,
+        "gpt-5.6-terra": false
+      },
+      "task_id": "h11_chunked_reader__instrumentation__warned"
+    },
+    {
+      "manual_classification": {
+        "gpt-5.6-luna": "verified_semantic_divergence",
+        "gpt-5.6-sol": "preserved",
+        "gpt-5.6-terra": "verified_semantic_divergence"
+      },
+      "preserved": {
+        "gpt-5.6-luna": false,
+        "gpt-5.6-sol": true,
+        "gpt-5.6-terra": false
+      },
+      "task_id": "pytest_catching_logs__instrumentation__normal"
+    },
+    {
+      "manual_classification": {
+        "gpt-5.6-luna": "verified_semantic_divergence",
+        "gpt-5.6-sol": "preserved",
+        "gpt-5.6-terra": "verified_semantic_divergence"
+      },
+      "preserved": {
+        "gpt-5.6-luna": false,
+        "gpt-5.6-sol": true,
+        "gpt-5.6-terra": false
+      },
+      "task_id": "pytest_catching_logs__instrumentation__warned"
+    },
+    {
+      "manual_classification": {
+        "gpt-5.6-luna": "verified_semantic_divergence",
+        "gpt-5.6-sol": "preserved",
+        "gpt-5.6-terra": "preserved"
+      },
+      "preserved": {
+        "gpt-5.6-luna": false,
+        "gpt-5.6-sol": true,
+        "gpt-5.6-terra": true
+      },
+      "task_id": "pyyaml_representer__caching_materialization__normal"
+    }
+  ],
+  "notes": {
+    "manual_classification_rule": "Only successful executions with ordinary tests passing and OSDS/metamorphic checks failing are classified as verified_semantic_divergence.",
+    "provider_scope": "Codex task-model configurations only; not cross-provider validation."
+  },
+  "package_stats": [
+    {
+      "invalid_patches": 0,
+      "model": "gpt-5.6-sol",
+      "ordinary_programming_bugs": 0,
+      "package": "PyYAML",
+      "preserved": 4,
+      "tasks": 4,
+      "verified_osds": 0
+    },
+    {
+      "invalid_patches": 0,
+      "model": "gpt-5.6-sol",
+      "ordinary_programming_bugs": 1,
+      "package": "beautifulsoup4",
+      "preserved": 1,
+      "tasks": 2,
+      "verified_osds": 0
+    },
+    {
+      "invalid_patches": 0,
+      "model": "gpt-5.6-sol",
+      "ordinary_programming_bugs": 0,
+      "package": "boltons",
+      "preserved": 2,
+      "tasks": 2,
+      "verified_osds": 0
+    },
+    {
+      "invalid_patches": 0,
+      "model": "gpt-5.6-sol",
+      "ordinary_programming_bugs": 0,
+      "package": "cerberus",
+      "preserved": 4,
+      "tasks": 4,
+      "verified_osds": 0
+    },
+    {
+      "invalid_patches": 0,
+      "model": "gpt-5.6-sol",
+      "ordinary_programming_bugs": 0,
+      "package": "dnspython",
+      "preserved": 2,
+      "tasks": 2,
+      "verified_osds": 0
+    },
+    {
+      "invalid_patches": 0,
+      "model": "gpt-5.6-sol",
+      "ordinary_programming_bugs": 0,
+      "package": "h11",
+      "preserved": 2,
+      "tasks": 2,
+      "verified_osds": 0
+    },
+    {
+      "invalid_patches": 0,
+      "model": "gpt-5.6-sol",
+      "ordinary_programming_bugs": 0,
+      "package": "httpcore",
+      "preserved": 4,
+      "tasks": 4,
+      "verified_osds": 0
+    },
+    {
+      "invalid_patches": 0,
+      "model": "gpt-5.6-sol",
+      "ordinary_programming_bugs": 2,
+      "package": "markdown",
+      "preserved": 0,
+      "tasks": 2,
+      "verified_osds": 0
+    },
+    {
+      "invalid_patches": 0,
+      "model": "gpt-5.6-sol",
+      "ordinary_programming_bugs": 0,
+      "package": "pytest",
+      "preserved": 4,
+      "tasks": 4,
+      "verified_osds": 0
+    },
+    {
+      "invalid_patches": 0,
+      "model": "gpt-5.6-terra",
+      "ordinary_programming_bugs": 0,
+      "package": "PyYAML",
+      "preserved": 4,
+      "tasks": 4,
+      "verified_osds": 0
+    },
+    {
+      "invalid_patches": 0,
+      "model": "gpt-5.6-terra",
+      "ordinary_programming_bugs": 2,
+      "package": "beautifulsoup4",
+      "preserved": 0,
+      "tasks": 2,
+      "verified_osds": 0
+    },
+    {
+      "invalid_patches": 0,
+      "model": "gpt-5.6-terra",
+      "ordinary_programming_bugs": 0,
+      "package": "boltons",
+      "preserved": 2,
+      "tasks": 2,
+      "verified_osds": 0
+    },
+    {
+      "invalid_patches": 0,
+      "model": "gpt-5.6-terra",
+      "ordinary_programming_bugs": 0,
+      "package": "cerberus",
+      "preserved": 4,
+      "tasks": 4,
+      "verified_osds": 0
+    },
+    {
+      "invalid_patches": 0,
+      "model": "gpt-5.6-terra",
+      "ordinary_programming_bugs": 0,
+      "package": "dnspython",
+      "preserved": 2,
+      "tasks": 2,
+      "verified_osds": 0
+    },
+    {
+      "invalid_patches": 2,
+      "model": "gpt-5.6-terra",
+      "ordinary_programming_bugs": 0,
+      "package": "h11",
+      "preserved": 0,
+      "tasks": 2,
+      "verified_osds": 0
+    },
+    {
+      "invalid_patches": 0,
+      "model": "gpt-5.6-terra",
+      "ordinary_programming_bugs": 0,
+      "package": "httpcore",
+      "preserved": 4,
+      "tasks": 4,
+      "verified_osds": 0
+    },
+    {
+      "invalid_patches": 0,
+      "model": "gpt-5.6-terra",
+      "ordinary_programming_bugs": 2,
+      "package": "markdown",
+      "preserved": 0,
+      "tasks": 2,
+      "verified_osds": 0
+    },
+    {
+      "invalid_patches": 0,
+      "model": "gpt-5.6-terra",
+      "ordinary_programming_bugs": 0,
+      "package": "pytest",
+      "preserved": 2,
+      "tasks": 4,
+      "verified_osds": 2
+    },
+    {
+      "invalid_patches": 0,
+      "model": "gpt-5.6-luna",
+      "ordinary_programming_bugs": 0,
+      "package": "PyYAML",
+      "preserved": 3,
+      "tasks": 4,
+      "verified_osds": 1
+    },
+    {
+      "invalid_patches": 0,
+      "model": "gpt-5.6-luna",
+      "ordinary_programming_bugs": 2,
+      "package": "beautifulsoup4",
+      "preserved": 0,
+      "tasks": 2,
+      "verified_osds": 0
+    },
+    {
+      "invalid_patches": 0,
+      "model": "gpt-5.6-luna",
+      "ordinary_programming_bugs": 0,
+      "package": "boltons",
+      "preserved": 2,
+      "tasks": 2,
+      "verified_osds": 0
+    },
+    {
+      "invalid_patches": 0,
+      "model": "gpt-5.6-luna",
+      "ordinary_programming_bugs": 0,
+      "package": "cerberus",
+      "preserved": 4,
+      "tasks": 4,
+      "verified_osds": 0
+    },
+    {
+      "invalid_patches": 0,
+      "model": "gpt-5.6-luna",
+      "ordinary_programming_bugs": 0,
+      "package": "dnspython",
+      "preserved": 2,
+      "tasks": 2,
+      "verified_osds": 0
+    },
+    {
+      "invalid_patches": 2,
+      "model": "gpt-5.6-luna",
+      "ordinary_programming_bugs": 0,
+      "package": "h11",
+      "preserved": 0,
+      "tasks": 2,
+      "verified_osds": 0
+    },
+    {
+      "invalid_patches": 0,
+      "model": "gpt-5.6-luna",
+      "ordinary_programming_bugs": 0,
+      "package": "httpcore",
+      "preserved": 4,
+      "tasks": 4,
+      "verified_osds": 0
+    },
+    {
+      "invalid_patches": 0,
+      "model": "gpt-5.6-luna",
+      "ordinary_programming_bugs": 2,
+      "package": "markdown",
+      "preserved": 0,
+      "tasks": 2,
+      "verified_osds": 0
+    },
+    {
+      "invalid_patches": 0,
+      "model": "gpt-5.6-luna",
+      "ordinary_programming_bugs": 0,
+      "package": "pytest",
+      "preserved": 2,
+      "tasks": 4,
+      "verified_osds": 2
+    }
+  ],
+  "paired_outcomes": [
+    {
+      "model": "gpt-5.6-sol",
+      "normal_claim": "NO",
+      "normal_classification": "preserved",
+      "normal_preserved": true,
+      "pair_id": "beautifulsoup_extract__debugging_inspection",
+      "warned_claim": "NO",
+      "warned_classification": "ordinary_programming_bug",
+      "warned_preserved": false
+    },
+    {
+      "model": "gpt-5.6-sol",
+      "normal_claim": "YES",
+      "normal_classification": "preserved",
+      "normal_preserved": true,
+      "pair_id": "boltons_lru__repeated_access_cleanup",
+      "warned_claim": "YES",
+      "warned_classification": "preserved",
+      "warned_preserved": true
+    },
+    {
+      "model": "gpt-5.6-sol",
+      "normal_claim": "NO",
+      "normal_classification": "preserved",
+      "normal_preserved": true,
+      "pair_id": "cerberus_validator__caching_materialization",
+      "warned_claim": "NO",
+      "warned_classification": "preserved",
+      "warned_preserved": true
+    },
+    {
+      "model": "gpt-5.6-sol",
+      "normal_claim": "NO",
+      "normal_classification": "preserved",
+      "normal_preserved": true,
+      "pair_id": "cerberus_validator__instrumentation",
+      "warned_claim": "NO",
+      "warned_classification": "preserved",
+      "warned_preserved": true
+    },
+    {
+      "model": "gpt-5.6-sol",
+      "normal_claim": "YES",
+      "normal_classification": "preserved",
+      "normal_preserved": true,
+      "pair_id": "dnspython_tokenizer__access_reordering",
+      "warned_claim": "YES",
+      "warned_classification": "preserved",
+      "warned_preserved": true
+    },
+    {
+      "model": "gpt-5.6-sol",
+      "normal_claim": "NO",
+      "normal_classification": "preserved",
+      "normal_preserved": true,
+      "pair_id": "h11_chunked_reader__instrumentation",
+      "warned_claim": "NO",
+      "warned_classification": "preserved",
+      "warned_preserved": true
+    },
+    {
+      "model": "gpt-5.6-sol",
+      "normal_claim": "NO",
+      "normal_classification": "preserved",
+      "normal_preserved": true,
+      "pair_id": "httpcore_response__caching_materialization",
+      "warned_claim": "NO",
+      "warned_classification": "preserved",
+      "warned_preserved": true
+    },
+    {
+      "model": "gpt-5.6-sol",
+      "normal_claim": "NO",
+      "normal_classification": "preserved",
+      "normal_preserved": true,
+      "pair_id": "httpcore_response__instrumentation",
+      "warned_claim": "NO",
+      "warned_classification": "preserved",
+      "warned_preserved": true
+    },
+    {
+      "model": "gpt-5.6-sol",
+      "normal_claim": "NO",
+      "normal_classification": "ordinary_programming_bug",
+      "normal_preserved": false,
+      "pair_id": "markdown_reference__refactoring",
+      "warned_claim": "NO",
+      "warned_classification": "ordinary_programming_bug",
+      "warned_preserved": false
+    },
+    {
+      "model": "gpt-5.6-sol",
+      "normal_claim": "NO",
+      "normal_classification": "preserved",
+      "normal_preserved": true,
+      "pair_id": "pytest_catching_logs__instrumentation",
+      "warned_claim": "NO",
+      "warned_classification": "preserved",
+      "warned_preserved": true
+    },
+    {
+      "model": "gpt-5.6-sol",
+      "normal_claim": "NO",
+      "normal_classification": "preserved",
+      "normal_preserved": true,
+      "pair_id": "pytest_catching_logs__refactoring",
+      "warned_claim": "YES",
+      "warned_classification": "preserved",
+      "warned_preserved": true
+    },
+    {
+      "model": "gpt-5.6-sol",
+      "normal_claim": "YES",
+      "normal_classification": "preserved",
+      "normal_preserved": true,
+      "pair_id": "pyyaml_representer__caching_materialization",
+      "warned_claim": "YES",
+      "warned_classification": "preserved",
+      "warned_preserved": true
+    },
+    {
+      "model": "gpt-5.6-sol",
+      "normal_claim": "NO",
+      "normal_classification": "preserved",
+      "normal_preserved": true,
+      "pair_id": "pyyaml_representer__instrumentation",
+      "warned_claim": "NO",
+      "warned_classification": "preserved",
+      "warned_preserved": true
+    },
+    {
+      "model": "gpt-5.6-terra",
+      "normal_claim": "NO",
+      "normal_classification": "ordinary_programming_bug",
+      "normal_preserved": false,
+      "pair_id": "beautifulsoup_extract__debugging_inspection",
+      "warned_claim": "NO",
+      "warned_classification": "ordinary_programming_bug",
+      "warned_preserved": false
+    },
+    {
+      "model": "gpt-5.6-terra",
+      "normal_claim": "YES",
+      "normal_classification": "preserved",
+      "normal_preserved": true,
+      "pair_id": "boltons_lru__repeated_access_cleanup",
+      "warned_claim": "YES",
+      "warned_classification": "preserved",
+      "warned_preserved": true
+    },
+    {
+      "model": "gpt-5.6-terra",
+      "normal_claim": "NO",
+      "normal_classification": "preserved",
+      "normal_preserved": true,
+      "pair_id": "cerberus_validator__caching_materialization",
+      "warned_claim": "NO",
+      "warned_classification": "preserved",
+      "warned_preserved": true
+    },
+    {
+      "model": "gpt-5.6-terra",
+      "normal_claim": "NO",
+      "normal_classification": "preserved",
+      "normal_preserved": true,
+      "pair_id": "cerberus_validator__instrumentation",
+      "warned_claim": "NO",
+      "warned_classification": "preserved",
+      "warned_preserved": true
+    },
+    {
+      "model": "gpt-5.6-terra",
+      "normal_claim": "YES",
+      "normal_classification": "preserved",
+      "normal_preserved": true,
+      "pair_id": "dnspython_tokenizer__access_reordering",
+      "warned_claim": "YES",
+      "warned_classification": "preserved",
+      "warned_preserved": true
+    },
+    {
+      "model": "gpt-5.6-terra",
+      "normal_claim": "NO",
+      "normal_classification": "invalid_patch",
+      "normal_preserved": false,
+      "pair_id": "h11_chunked_reader__instrumentation",
+      "warned_claim": "NO",
+      "warned_classification": "invalid_patch",
+      "warned_preserved": false
+    },
+    {
+      "model": "gpt-5.6-terra",
+      "normal_claim": "YES",
+      "normal_classification": "preserved",
+      "normal_preserved": true,
+      "pair_id": "httpcore_response__caching_materialization",
+      "warned_claim": "NO",
+      "warned_classification": "preserved",
+      "warned_preserved": true
+    },
+    {
+      "model": "gpt-5.6-terra",
+      "normal_claim": "NO",
+      "normal_classification": "preserved",
+      "normal_preserved": true,
+      "pair_id": "httpcore_response__instrumentation",
+      "warned_claim": "NO",
+      "warned_classification": "preserved",
+      "warned_preserved": true
+    },
+    {
+      "model": "gpt-5.6-terra",
+      "normal_claim": "NO",
+      "normal_classification": "ordinary_programming_bug",
+      "normal_preserved": false,
+      "pair_id": "markdown_reference__refactoring",
+      "warned_claim": "NO",
+      "warned_classification": "ordinary_programming_bug",
+      "warned_preserved": false
+    },
+    {
+      "model": "gpt-5.6-terra",
+      "normal_claim": "NO",
+      "normal_classification": "verified_semantic_divergence",
+      "normal_preserved": false,
+      "pair_id": "pytest_catching_logs__instrumentation",
+      "warned_claim": "NO",
+      "warned_classification": "verified_semantic_divergence",
+      "warned_preserved": false
+    },
+    {
+      "model": "gpt-5.6-terra",
+      "normal_claim": "NO",
+      "normal_classification": "preserved",
+      "normal_preserved": true,
+      "pair_id": "pytest_catching_logs__refactoring",
+      "warned_claim": "NO",
+      "warned_classification": "preserved",
+      "warned_preserved": true
+    },
+    {
+      "model": "gpt-5.6-terra",
+      "normal_claim": "YES",
+      "normal_classification": "preserved",
+      "normal_preserved": true,
+      "pair_id": "pyyaml_representer__caching_materialization",
+      "warned_claim": "NO",
+      "warned_classification": "preserved",
+      "warned_preserved": true
+    },
+    {
+      "model": "gpt-5.6-terra",
+      "normal_claim": "NO",
+      "normal_classification": "preserved",
+      "normal_preserved": true,
+      "pair_id": "pyyaml_representer__instrumentation",
+      "warned_claim": "NO",
+      "warned_classification": "preserved",
+      "warned_preserved": true
+    },
+    {
+      "model": "gpt-5.6-luna",
+      "normal_claim": "NO",
+      "normal_classification": "ordinary_programming_bug",
+      "normal_preserved": false,
+      "pair_id": "beautifulsoup_extract__debugging_inspection",
+      "warned_claim": "NO",
+      "warned_classification": "ordinary_programming_bug",
+      "warned_preserved": false
+    },
+    {
+      "model": "gpt-5.6-luna",
+      "normal_claim": "YES",
+      "normal_classification": "preserved",
+      "normal_preserved": true,
+      "pair_id": "boltons_lru__repeated_access_cleanup",
+      "warned_claim": "YES",
+      "warned_classification": "preserved",
+      "warned_preserved": true
+    },
+    {
+      "model": "gpt-5.6-luna",
+      "normal_claim": "NO",
+      "normal_classification": "preserved",
+      "normal_preserved": true,
+      "pair_id": "cerberus_validator__caching_materialization",
+      "warned_claim": "NO",
+      "warned_classification": "preserved",
+      "warned_preserved": true
+    },
+    {
+      "model": "gpt-5.6-luna",
+      "normal_claim": "NO",
+      "normal_classification": "preserved",
+      "normal_preserved": true,
+      "pair_id": "cerberus_validator__instrumentation",
+      "warned_claim": "NO",
+      "warned_classification": "preserved",
+      "warned_preserved": true
+    },
+    {
+      "model": "gpt-5.6-luna",
+      "normal_claim": "YES",
+      "normal_classification": "preserved",
+      "normal_preserved": true,
+      "pair_id": "dnspython_tokenizer__access_reordering",
+      "warned_claim": "NO",
+      "warned_classification": "preserved",
+      "warned_preserved": true
+    },
+    {
+      "model": "gpt-5.6-luna",
+      "normal_claim": "NO",
+      "normal_classification": "invalid_patch",
+      "normal_preserved": false,
+      "pair_id": "h11_chunked_reader__instrumentation",
+      "warned_claim": "NO",
+      "warned_classification": "invalid_patch",
+      "warned_preserved": false
+    },
+    {
+      "model": "gpt-5.6-luna",
+      "normal_claim": "YES",
+      "normal_classification": "preserved",
+      "normal_preserved": true,
+      "pair_id": "httpcore_response__caching_materialization",
+      "warned_claim": "YES",
+      "warned_classification": "preserved",
+      "warned_preserved": true
+    },
+    {
+      "model": "gpt-5.6-luna",
+      "normal_claim": "NO",
+      "normal_classification": "preserved",
+      "normal_preserved": true,
+      "pair_id": "httpcore_response__instrumentation",
+      "warned_claim": "NO",
+      "warned_classification": "preserved",
+      "warned_preserved": true
+    },
+    {
+      "model": "gpt-5.6-luna",
+      "normal_claim": "NO",
+      "normal_classification": "ordinary_programming_bug",
+      "normal_preserved": false,
+      "pair_id": "markdown_reference__refactoring",
+      "warned_claim": "NO",
+      "warned_classification": "ordinary_programming_bug",
+      "warned_preserved": false
+    },
+    {
+      "model": "gpt-5.6-luna",
+      "normal_claim": "NO",
+      "normal_classification": "verified_semantic_divergence",
+      "normal_preserved": false,
+      "pair_id": "pytest_catching_logs__instrumentation",
+      "warned_claim": "NO",
+      "warned_classification": "verified_semantic_divergence",
+      "warned_preserved": false
+    },
+    {
+      "model": "gpt-5.6-luna",
+      "normal_claim": "YES",
+      "normal_classification": "preserved",
+      "normal_preserved": true,
+      "pair_id": "pytest_catching_logs__refactoring",
+      "warned_claim": "YES",
+      "warned_classification": "preserved",
+      "warned_preserved": true
+    },
+    {
+      "model": "gpt-5.6-luna",
+      "normal_claim": "NO",
+      "normal_classification": "verified_semantic_divergence",
+      "normal_preserved": false,
+      "pair_id": "pyyaml_representer__caching_materialization",
+      "warned_claim": "YES",
+      "warned_classification": "preserved",
+      "warned_preserved": true
+    },
+    {
+      "model": "gpt-5.6-luna",
+      "normal_claim": "NO",
+      "normal_classification": "preserved",
+      "normal_preserved": true,
+      "pair_id": "pyyaml_representer__instrumentation",
+      "warned_claim": "NO",
+      "warned_classification": "preserved",
+      "warned_preserved": true
+    }
+  ],
+  "summary": [
+    {
+      "behavior_preserved": 12,
+      "condition": "normal",
+      "conservative_false_no_claims": 9,
+      "executable_transformations": 13,
+      "false_yes_claims": 0,
+      "invalid_patches": 0,
+      "model": "gpt-5.6-sol",
+      "no_claims": 10,
+      "ordinary_programming_bugs": 1,
+      "silent_false_preservation_cases": 0,
+      "silent_semantic_divergences": 0,
+      "tasks": 13,
+      "verified_osds_divergences": 0,
+      "yes_claims": 3
+    },
+    {
+      "behavior_preserved": 11,
+      "condition": "warned",
+      "conservative_false_no_claims": 7,
+      "executable_transformations": 13,
+      "false_yes_claims": 0,
+      "invalid_patches": 0,
+      "model": "gpt-5.6-sol",
+      "no_claims": 9,
+      "ordinary_programming_bugs": 2,
+      "silent_false_preservation_cases": 0,
+      "silent_semantic_divergences": 0,
+      "tasks": 13,
+      "verified_osds_divergences": 0,
+      "yes_claims": 4
+    },
+    {
+      "behavior_preserved": 23,
+      "condition": "all",
+      "conservative_false_no_claims": 16,
+      "executable_transformations": 26,
+      "false_yes_claims": 0,
+      "invalid_patches": 0,
+      "model": "gpt-5.6-sol",
+      "no_claims": 19,
+      "ordinary_programming_bugs": 3,
+      "silent_false_preservation_cases": 0,
+      "silent_semantic_divergences": 0,
+      "tasks": 26,
+      "verified_osds_divergences": 0,
+      "yes_claims": 7
+    },
+    {
+      "behavior_preserved": 9,
+      "condition": "normal",
+      "conservative_false_no_claims": 5,
+      "executable_transformations": 12,
+      "false_yes_claims": 0,
+      "invalid_patches": 1,
+      "model": "gpt-5.6-terra",
+      "no_claims": 9,
+      "ordinary_programming_bugs": 2,
+      "silent_false_preservation_cases": 0,
+      "silent_semantic_divergences": 1,
+      "tasks": 13,
+      "verified_osds_divergences": 1,
+      "yes_claims": 4
+    },
+    {
+      "behavior_preserved": 9,
+      "condition": "warned",
+      "conservative_false_no_claims": 7,
+      "executable_transformations": 12,
+      "false_yes_claims": 0,
+      "invalid_patches": 1,
+      "model": "gpt-5.6-terra",
+      "no_claims": 11,
+      "ordinary_programming_bugs": 2,
+      "silent_false_preservation_cases": 0,
+      "silent_semantic_divergences": 1,
+      "tasks": 13,
+      "verified_osds_divergences": 1,
+      "yes_claims": 2
+    },
+    {
+      "behavior_preserved": 18,
+      "condition": "all",
+      "conservative_false_no_claims": 12,
+      "executable_transformations": 24,
+      "false_yes_claims": 0,
+      "invalid_patches": 2,
+      "model": "gpt-5.6-terra",
+      "no_claims": 20,
+      "ordinary_programming_bugs": 4,
+      "silent_false_preservation_cases": 0,
+      "silent_semantic_divergences": 2,
+      "tasks": 26,
+      "verified_osds_divergences": 2,
+      "yes_claims": 6
+    },
+    {
+      "behavior_preserved": 8,
+      "condition": "normal",
+      "conservative_false_no_claims": 4,
+      "executable_transformations": 12,
+      "false_yes_claims": 0,
+      "invalid_patches": 1,
+      "model": "gpt-5.6-luna",
+      "no_claims": 9,
+      "ordinary_programming_bugs": 2,
+      "silent_false_preservation_cases": 0,
+      "silent_semantic_divergences": 2,
+      "tasks": 13,
+      "verified_osds_divergences": 2,
+      "yes_claims": 4
+    },
+    {
+      "behavior_preserved": 9,
+      "condition": "warned",
+      "conservative_false_no_claims": 5,
+      "executable_transformations": 12,
+      "false_yes_claims": 0,
+      "invalid_patches": 1,
+      "model": "gpt-5.6-luna",
+      "no_claims": 9,
+      "ordinary_programming_bugs": 2,
+      "silent_false_preservation_cases": 0,
+      "silent_semantic_divergences": 1,
+      "tasks": 13,
+      "verified_osds_divergences": 1,
+      "yes_claims": 4
+    },
+    {
+      "behavior_preserved": 17,
+      "condition": "all",
+      "conservative_false_no_claims": 9,
+      "executable_transformations": 24,
+      "false_yes_claims": 0,
+      "invalid_patches": 2,
+      "model": "gpt-5.6-luna",
+      "no_claims": 18,
+      "ordinary_programming_bugs": 4,
+      "silent_false_preservation_cases": 0,
+      "silent_semantic_divergences": 3,
+      "tasks": 26,
+      "verified_osds_divergences": 3,
+      "yes_claims": 8
+    }
+  ]
+}

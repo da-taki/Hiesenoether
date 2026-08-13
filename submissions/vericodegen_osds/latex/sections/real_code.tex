@@ -1,0 +1,26 @@
+\section{Real-Code Study}
+
+The real-code study uses static screening only as a review queue. The screen covered 73 PyPI packages and 278 reviewed MEDIUM/HIGH findings. Manual review labeled 203 likely true positives and 75 likely false positives, for reviewed precision 0.7302. A rebuilt exact-version source snapshot contained 4,383 analyzable classes, and a deterministic sample of 200 unflagged classes found 0 likely missed matches. These numbers are audit evidence rather than prevalence evidence.
+
+Executable confirmation is the decisive filter. The oracle selected 60 candidates, constructed 39 executable package-shaped harnesses, and confirmed 20 divergences across 12 unmodified packages: httpcore, PyYAML, pytest, markdown, more-itertools, docutils, beautifulsoup4, boltons, cerberus, dnspython, h11, and anyio. The divergences include stream materialization, identity-cache reuse, handler-level mutation, reference-registry mutation, cursor advance, destructive tree extraction, cache recency/statistics, validation-error population, and buffer consumption.
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{lr}
+\toprule
+Real-code evidence item & Count \\
+\midrule
+Reviewed static findings & 278 \\
+Executable harnesses & 39 \\
+Confirmed divergences & 20 \\
+Confirmed packages & 12 \\
+Caller-level wrappers changing downstream execution & 9 \\
+Mechanism controls eliminating divergence & 19/19 \\
+\bottomrule
+\end{tabular}
+\caption{Real-code OSDS evidence. Static screening is a review queue; executable harnesses and controls provide the semantic evidence.}
+\label{tab:real-code}
+\end{table}
+
+Nine confirmed divergences were lifted into caller-level wrappers that changed branch labels and downstream consequences. Nineteen controls eliminated divergence under fresh-object, reset-between, or pure-observation interventions. These controls show that the detected differences depend on the access-induced mechanism named by the witness.

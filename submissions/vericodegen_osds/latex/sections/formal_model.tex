@@ -1,0 +1,36 @@
+\section{Observation-Sensitive Deterministic Systems}
+
+An OSDS configuration contains a semantic value $x=(b,a,d)$ and an accumulator $y$. The component $b$ is stable, $a$ is an access count, and $d$ is latent drift. A read exposes a value and updates access state:
+\[
+\readop(b,a,d,y)=((b,a+1,r(a,d)), y+f(b,a,d)).
+\]
+An observation exposes no additive value but can update latent drift:
+\[
+\obsop(b,a,d,y)=((b,a,g(d)), y).
+\]
+A program body is a deterministic fold over a finite operation sequence $\pi\in\{\readop,\obsop\}^*$. A cap $C$ maps the final body configuration to the externally visible result.
+
+\begin{figure}[t]
+\centering
+\small
+\begin{tabular}{llll}
+\toprule
+Stage & Baseline path & Transformed path & OSDS question \\
+\midrule
+Initialize & matched object & matched object & same visible setup \\
+Observe & no extra access & observation-shaped access & can latent state drift? \\
+Read & later visible read & later visible read & does exposed value change? \\
+Classify & ordinary check & OSDS comparison & is divergence access-induced? \\
+\bottomrule
+\end{tabular}
+\caption{OSDS evaluation compares access-order variants that ordinary single-order checks may not exercise.}
+\label{fig:osds-model}
+\end{figure}
+
+For a fixed initial configuration $\cfg_0$, body sequence $\pi$, and cap $C$, let $\sem{\pi}_C(\cfg_0)$ denote the final visible output. Given a multiset of operations $M$ and an admissible ordering set $\Pi(M)$, semantic divergence is
+\[
+\Delta_C(M,\cfg_0)=\max_{\pi\in\Pi(M)}\sem{\pi}_C(\cfg_0)-\min_{\pi\in\Pi(M)}\sem{\pi}_C(\cfg_0).
+\]
+A transformation is OSDS-preserving for a witness when the baseline and candidate agree under the witness's OSDS relation. In the benchmark, this relation is implemented as a package-specific metamorphic oracle and then manually reviewed for access-induced attribution.
+
+We use two evidence roles. Hidden-observation rows contain accesses that look observational in the requested edit and reveal their effect only through later state. Expected-access-sensitive rows contain operations whose consumption or mutation should be visible from the code shape. The primary verified OSDS failures all occurred in hidden-observation rows.

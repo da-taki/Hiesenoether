@@ -1,0 +1,23 @@
+You are editing a small Python function. Return the complete revised Python code only.
+
+Task: Clean up the ordering of these reads and observations while preserving behavior. Preserve behavior exactly. Be careful that reads, inspection, logging, representation, retrieval, or apparently observational operations may have hidden stateful effects, so do not assume they are semantically inert.
+
+Code:
+```python
+from h11._receivebuffer import ReceiveBuffer
+
+
+def subject(extract_one=False):
+    buffer = ReceiveBuffer()
+    buffer += b"GET / HTTP/1.1\r\nHost: x\r\n\r\nBODY"
+    if extract_one:
+        buffer.maybe_extract_next_line()
+    lines = buffer.maybe_extract_lines()
+    return ("lines", tuple(bytes(line).decode("ascii") for line in lines))
+
+
+def ordinary_smoke():
+    buffer = ReceiveBuffer()
+    buffer += b"x\r\n"
+    return buffer.maybe_extract_next_line() == b"x\r\n"
+```

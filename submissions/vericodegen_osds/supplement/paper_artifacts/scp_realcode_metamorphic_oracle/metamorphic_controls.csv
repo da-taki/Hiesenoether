@@ -1,0 +1,20 @@
+candidate_id,control_type,expected_result,observed_result,divergence_removed,notes
+rc01_httpcore_Response,determinism,identical,'alphabeta'=='alphabeta',True,read()->content is deterministic across repeats
+rc01_httpcore_Response,fresh_object,RuntimeError (baseline),RuntimeError,True,materializing one response does not affect a fresh response
+rc01_httpcore_Response,pure_observation,RuntimeError (baseline),RuntimeError,True,reading headers does not materialize content
+re01_markdown_Markdown,determinism,identical,eq=True,True,reference-carrying render is deterministic
+re01_markdown_Markdown,reset_between,baseline '<p>[alpha][]</p>',<p>[alpha][]</p>,True,reset() restores the no-reference baseline
+re01_markdown_Markdown,fresh_object,baseline '<p>[alpha][]</p>',<p>[alpha][]</p>,True,a fresh Markdown instance has no references
+re08_boltons_LRU,determinism,identical,True==True,True,eviction deterministic
+re08_boltons_LRU,pure_observation,x evicted (baseline),x_in_cache=False,True,len() does not refresh recency; x still evicted
+re08_boltons_LRU,fresh_object,x evicted (baseline),x_in_cache=False,True,touching one cache does not affect a fresh cache
+re11_dnspython_Tokenizer,determinism,identical,'bb'=='bb',True,tokenizer deterministic
+re11_dnspython_Tokenizer,fresh_object,aa (baseline),aa,True,a fresh tokenizer starts at the first token
+re10_cerberus_Validator,determinism,identical,True==True,True,validation deterministic
+re10_cerberus_Validator,fresh_object,no errors (baseline),errors=False,True,a fresh validator has no errors
+rc03_pytest_catching_logs,determinism,identical,False==False,True,suppression deterministic
+rc03_pytest_catching_logs,fresh_object,warning visible (baseline),seen=True,True,a fresh handler is not level-mutated; warning is visible
+rc02_PyYAML_SafeRepresenter,determinism,identical,'before'=='before',True,representer deterministic
+rc02_PyYAML_SafeRepresenter,fresh_object,after (baseline),after,True,a fresh representer has no identity cache; sees the mutated value
+re12_h11_ChunkedReader,determinism,identical,EndOfMessage==EndOfMessage,True,chunk reader deterministic
+re12_h11_ChunkedReader,fresh_object,Data (baseline),Data,True,a fresh buffer yields the first Data event

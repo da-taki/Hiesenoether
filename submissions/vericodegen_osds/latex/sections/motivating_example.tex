@@ -1,0 +1,23 @@
+\section{Motivating Real-Package Example}
+
+Figure~\ref{fig:pytest-example} shows the shortest verified failure family from the primary study. The task asked for behavior-preserving instrumentation around a pytest logging witness. The generated edit inserted diagnostic logging that looked observational. In the witness, that access interacted with the captured handler hierarchy used by \texttt{catching\_logs}; the later handler-level behavior changed.
+
+\begin{figure}[t]
+\small
+\begin{verbatim}
+Original shape:
+  with catching_logs(handler, level):
+      result = subject(logger, handler)
+
+Generated instrumentation shape:
+  logger.debug("diagnostic")
+  with catching_logs(handler, level):
+      result = subject(logger, handler)
+\end{verbatim}
+\caption{Compact pytest failure schema. The inserted log call looks like observation. In the verified Terra and Luna rows, it mutates logging/handler state that is read later. Ordinary benchmark checks passed; the OSDS oracle failed; isolating the diagnostic logger from the captured handler hierarchy removed the divergence for all four pytest rows.}
+\label{fig:pytest-example}
+\end{figure}
+
+The example gives the intuition before the formal notation. The generated transformation did not crash, did not fail the ordinary smoke check, and did not look like a destructive update at the edit site. The divergence appeared only when the evaluation compared the later visible result across the access order that the witness exposes. In the causal-control replay, the exact generated files were reused. The only change was the witness environment: diagnostic logging was isolated from the handler hierarchy responsible for the latent mutation. Under that neutralized mechanism, the OSDS divergence disappeared.
+
+This is a generated transformation failure, not a defect claim about pytest. It shows that a preservation checker for generated edits needs to model the latent state that observation-shaped accesses can affect.

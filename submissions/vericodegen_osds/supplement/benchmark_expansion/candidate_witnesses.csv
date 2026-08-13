@@ -1,0 +1,21 @@
+package,version,witness,classification,hidden_observation_or_expected_access_sensitive,current_primary_benchmark_member,eligible,exclusion_reason,caller_wrapper_available,control_available,candidate_transformation_families,boundary_note
+httpcore,1.0.9,rc01_httpcore_Response,confirmed_branch_divergence,hidden_observation,true,false,already in frozen primary benchmark,true,true,,read() materializes _content; content flips RuntimeError->value
+PyYAML,6.0.3,rc02_PyYAML_SafeRepresenter,confirmed_output_divergence,hidden_observation,true,false,already in frozen primary benchmark,true,true,,identity cache returns stale node for mutated object
+pytest,8.3.5,rc03_pytest_catching_logs,confirmed_output_divergence,hidden_observation,true,false,already in frozen primary benchmark,true,true,,handler level mutation filters later WARNING
+markdown,3.10.2,re01_markdown_Markdown,confirmed_output_divergence,expected_access_sensitive,true,false,already in frozen primary benchmark,true,true,,reference registry from prior convert changes later render
+more-itertools,11.0.2,re02_more_itertools_seekable,confirmed_output_divergence,expected_access_sensitive,false,false,more-itertools 11.0.2 is not importable in the current experiment venv or source snapshot,false,false,,cursor advance changes later next()
+docutils,0.22.4,re04_docutils_Transformer,confirmed_state_only_divergence,hidden_observation,false,false,docutils 0.22.4 is not importable in the current experiment venv or source snapshot; witness is state-only,false,false,,serial bookkeeping advances on priority string
+beautifulsoup4,4.14.3,re06_beautifulsoup4_PageElement,confirmed_output_divergence,expected_access_sensitive,true,false,already in frozen primary benchmark,true,false,,extract() destructively mutates tree
+boltons,25.0.0,re07_boltons_LRI,confirmed_state_only_divergence,expected_access_sensitive,false,true,,false,false,repeated_access_cleanup,access affects stats but not eviction order
+boltons,25.0.0,re08_boltons_LRU,confirmed_output_divergence,expected_access_sensitive,true,false,already in frozen primary benchmark,true,true,,access reorders recency -> changes eviction
+boltons,25.0.0,re09_boltons_MultiFileReader,confirmed_output_divergence,expected_access_sensitive,false,true,,false,false,access_reordering,stream cursor advances
+cerberus,1.3.8,re10_cerberus_Validator,confirmed_output_divergence,hidden_observation,true,false,already in frozen primary benchmark,true,true,,validate populates errors read later
+dnspython,2.8.0,re11_dnspython_Tokenizer,confirmed_output_divergence,expected_access_sensitive,true,false,already in frozen primary benchmark,true,true,,token consumption advances cursor
+h11,0.16.0,re12_h11_ChunkedReader,confirmed_output_divergence,expected_access_sensitive,true,false,already in frozen primary benchmark,true,true,,Data vs EndOfMessage after consuming chunk
+h11,0.16.0,re13_h11_ReceiveBuffer,confirmed_output_divergence,expected_access_sensitive,false,true,,false,false,access_reordering,line extraction is destructive
+anyio,4.13.0,bs09_anyio_BlockingPortalProvider,confirmed_output_divergence,hidden_observation,false,false,anyio 4.13.0 is not importable in the current experiment venv or source snapshot,false,false,,enter mutates lease counter
+boltons,25.0.0,bs15_boltons_SpooledStringIO,confirmed_output_divergence,expected_access_sensitive,false,true,,false,false,access_reordering,text cursor advances
+docutils,0.22.4,bs23_docutils_Publisher,confirmed_output_divergence,hidden_observation,false,false,docutils 0.22.4 is not importable in the current experiment venv or source snapshot,false,false,,get_settings caches settings
+boltons,25.0.0,ext02_boltons_SpooledBytesIO,confirmed_output_divergence,expected_access_sensitive,false,true,,false,false,access_reordering,byte cursor advances
+dnspython,2.8.0,ext07_dnspython_Tokenizer_concat,confirmed_output_divergence,expected_access_sensitive,false,true,,false,false,access_reordering,consuming tokens changes remaining concatenation
+boltons,25.0.0,ext08_boltons_LRU_pair2,confirmed_output_divergence,expected_access_sensitive,false,true,,false,false,repeated_access_cleanup,access between reads changes eviction victim
