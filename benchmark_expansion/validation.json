@@ -1,0 +1,79 @@
+[
+  {
+    "baseline_executes": true,
+    "eligible_for_model_execution": true,
+    "ordinary_smoke_pass": true,
+    "package": "boltons",
+    "package_version": "25.0.0",
+    "prompt_leaks": [],
+    "task_id": "boltons_lri_stats__repeated_access_cleanup__normal",
+    "witness_id": "re07_boltons_LRI",
+    "witness_reproduces": true
+  },
+  {
+    "baseline_executes": true,
+    "eligible_for_model_execution": true,
+    "ordinary_smoke_pass": true,
+    "package": "boltons",
+    "package_version": "25.0.0",
+    "prompt_leaks": [],
+    "task_id": "boltons_multifile_reader__access_reordering__normal",
+    "witness_id": "re09_boltons_MultiFileReader",
+    "witness_reproduces": true
+  },
+  {
+    "baseline_executes": true,
+    "eligible_for_model_execution": true,
+    "ordinary_smoke_pass": true,
+    "package": "h11",
+    "package_version": "0.16.0",
+    "prompt_leaks": [],
+    "task_id": "h11_receive_buffer__access_reordering__normal",
+    "witness_id": "re13_h11_ReceiveBuffer",
+    "witness_reproduces": true
+  },
+  {
+    "baseline_executes": true,
+    "eligible_for_model_execution": true,
+    "ordinary_smoke_pass": true,
+    "package": "boltons",
+    "package_version": "25.0.0",
+    "prompt_leaks": [],
+    "task_id": "boltons_spooled_string_io__access_reordering__normal",
+    "witness_id": "bs15_boltons_SpooledStringIO",
+    "witness_reproduces": true
+  },
+  {
+    "baseline_executes": true,
+    "eligible_for_model_execution": true,
+    "ordinary_smoke_pass": true,
+    "package": "boltons",
+    "package_version": "25.0.0",
+    "prompt_leaks": [],
+    "task_id": "boltons_spooled_bytes_io__access_reordering__normal",
+    "witness_id": "ext02_boltons_SpooledBytesIO",
+    "witness_reproduces": true
+  },
+  {
+    "baseline_executes": true,
+    "eligible_for_model_execution": true,
+    "ordinary_smoke_pass": true,
+    "package": "dnspython",
+    "package_version": "2.8.0",
+    "prompt_leaks": [],
+    "task_id": "dnspython_tokenizer_concat__access_reordering__normal",
+    "witness_id": "ext07_dnspython_Tokenizer_concat",
+    "witness_reproduces": true
+  },
+  {
+    "baseline_executes": true,
+    "eligible_for_model_execution": true,
+    "ordinary_smoke_pass": true,
+    "package": "boltons",
+    "package_version": "25.0.0",
+    "prompt_leaks": [],
+    "task_id": "boltons_lru_pair2__repeated_access_cleanup__normal",
+    "witness_id": "ext08_boltons_LRU_pair2",
+    "witness_reproduces": true
+  }
+]
