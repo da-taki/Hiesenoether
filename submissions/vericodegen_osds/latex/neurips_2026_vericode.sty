@@ -19,7 +19,11 @@
 % last revision: January 2026
 
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{neurips_2026_vericode}[2026-01-29 NeurIPS 2026 workshop submission/camera-ready style file]
+\ProvidesPackage{neurips_2026_vericode}[2026-01-29 NeurIPS 2026 AI for Verifiable Coding Workshop -- workshop papers]
+
+%% Footnote printed at the bottom of page 1 of the camera-ready (final) version.
+%% This is the ONLY difference from the stock neurips_2026.sty; edit it here.
+\newcommand{\@vericodenotice}{NeurIPS \@neuripsyear\ Workshop on AI for Verifiable Coding.}
 
 % declare final option, which creates camera-ready copy
 \newif\if@neuripsfinal\@neuripsfinalfalse
@@ -48,7 +52,7 @@
 \newif\if@main\@maintrue
 \DeclareOption{main}{
   \@maintrue
-  \newcommand{\@trackname}{\@neuripsordinal\ Conference on Neural Information Processing Systems (NeurIPS \@neuripsyear).}
+  \newcommand{\@trackname}{\@vericodenotice}
 }
 \newif\if@position\@positionfalse
 \DeclareOption{position}{
@@ -85,17 +89,20 @@
 \DeclareOption{sglblindworkshop}{
   \@workshoptrue
   \@anonymousfalse
-  \newcommand{\@trackname}{\@neuripsordinal\ Conference on Neural Information Processing Systems (NeurIPS \@neuripsyear). Workshop: \@workshoptitle.}
+  \newcommand{\@trackname}{\@vericodenotice}
 }
 \DeclareOption{dblblindworkshop}{
   \@workshoptrue
-  \newcommand{\@trackname}{\@neuripsordinal\ Conference on Neural Information Processing Systems (NeurIPS \@neuripsyear). Workshop: \@workshoptitle.}
+  \newcommand{\@trackname}{\@vericodenotice}
 }
 \DeclareOption{nonanonymous}{
   \@anonymousfalse
 }
 
 \ProcessOptions\relax
+
+% fall back to this workshop when no track option is given
+\providecommand{\@trackname}{\@vericodenotice}
 
 % fonts
 \renewcommand{\rmdefault}{ptm}
@@ -136,7 +143,7 @@
     footskip=30pt
   }
   \@ifpackageloaded{fullpage}
-    {\PackageWarning{neurips_2026_vericode}{fullpage package not allowed! Overwriting formatting.}}
+    {\PackageWarning{neurips_2026}{fullpage package not allowed! Overwriting formatting.}}
     {}
 }
 
@@ -384,6 +391,8 @@
 \newcommand{\answerYes}[1][]{\textcolor{blue}{[Yes]#1}}
 \newcommand{\answerNo}[1][]{\textcolor{orange}{[No]#1}}
 \newcommand{\answerNA}[1][]{\textcolor{gray}{[N/A]#1}}
+\newcommand{\answerTODO}[1][]{\textcolor{red}{\bf [TODO]}}
+\newcommand{\justificationTODO}[1][]{\textcolor{red}{\bf [TODO]}}
 
 % handle tweaks for camera-ready copy vs. submission copy
 \if@preprint
@@ -397,7 +406,7 @@
     }
   \else
     \newcommand{\@noticestring}{%
-      Submitted to \@neuripsordinal\/ Conference on Neural Information Processing Systems (NeurIPS \@neuripsyear). Do not distribute.%
+      Submitted to NeurIPS 2026 Workshop on AI for Verifiable Coding. Do not distribute.%
     }
 
     % hide the acknowledgements

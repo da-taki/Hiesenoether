@@ -4,6 +4,8 @@ Run these commands from the extracted supplement root. The supplement is anonymi
 
 Model generation is not reproduced here. The raw Codex task-model responses are frozen and included as JSONL files, so replay uses those existing outputs and does not contact proprietary models or require credentials.
 
+All replay commands are CPU-only Python executions. No GPU, accelerator runtime, cloud worker, model credential, or model-provider API call is needed. A pre-submission run on Windows 11 with Python 3.14.4, a 6-core/12-thread AMD Ryzen 5 4600H CPU, and 7.4 GiB RAM measured 1.12 s for the baseline single-task command, 1.22 s for the frozen primary single-task command, 1.13 s for the frozen prospective single-task command, 3.49 s for the five-case causal-control command, 0.57 s for the real-code witness validation command, and 0.13 s for the summary-table command. Exact peak memory was not logged. The original Codex task-model generation compute was service-side and not exposed by Codex; inference hardware, accelerator hours, and hidden model memory are therefore not claimed here.
+
 ## 1. Environment Check
 
 ```powershell
@@ -69,3 +71,4 @@ Expected output: primary replay row counts, prospective task-compliance counts, 
 - Primary causal controls: 5/5 original model OSDS failures reproduce and 5/5 disappear under mechanism-neutralizing controls.
 - Prospective expansion: 42 outputs, 23 task-compliant transformations, 19 unchanged outputs, 0 other noncompliant outputs, 23/23 task-compliant transformations OSDS-preserving, and 0/42 verified prospective OSDS divergences.
 - Real-code oracle: 20 confirmed real-package divergences across 12 packages, 9 caller-level effects, and 19/19 real-code mechanism controls removing the targeted divergence.
+

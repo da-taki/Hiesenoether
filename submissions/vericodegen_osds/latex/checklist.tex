@@ -115,7 +115,7 @@
 \item {\bf Experiments compute resources}
     \item[] Question: For each experiment, does the paper provide sufficient information on the computer resources (type of compute workers, memory, time of execution) needed to reproduce the experiments?
     \item[] Answer: \answerYes{}
-    \item[] Justification: The reproducibility appendix and supplement state the Python version, package dependencies, CPU-only replay requirements, and that model generation is not rerun.
+    \item[] Justification: The reproducibility appendix and supplement state the CPU-only replay worker, Python and OS version, RAM, measured wall-clock times for the replay commands, supplement size, and the limitation that Codex generation compute was service-side and not exposed.
     \item[] Guidelines:
     \begin{itemize}
         \item The answer \answerNA{} means that the paper does not include experiments.
@@ -139,7 +139,7 @@
 \item {\bf Broader impacts}
     \item[] Question: Does the paper discuss both potential positive societal impacts and negative societal impacts of the work performed?
     \item[] Answer: \answerYes{}
-    \item[] Justification: The limitations discuss deployment scope and risks from silent preservation failures in generated transformations, along with the bounded nature of the evaluation.
+    \item[] Justification: The Limitations section discusses positive verification uses and negative risks from silent preservation failures or superficial transformations, plus mitigations through bounded witnesses, replay scripts, and mechanism-neutralizing controls.
     \item[] Guidelines:
     \begin{itemize}
         \item The answer \answerNA{} means that there is no societal impact of the work performed.
@@ -165,7 +165,7 @@
 \item {\bf Licenses for existing assets}
     \item[] Question: Are the creators or original owners of assets (e.g., code, data, models), used in the paper, properly credited and are the license and terms of use explicitly mentioned and properly respected?
     \item[] Answer: \answerYes{}
-    \item[] Justification: Existing packages and benchmark lineages are cited; the supplement records package versions and preserves anonymized artifact provenance.
+    \item[] Justification: Existing packages and benchmark lineages are cited; supplement LICENSES.md records package versions, license names or classifiers, generated-response status, and official-template provenance without redistributing full third-party package source trees.
     \item[] Guidelines:
     \begin{itemize}
         \item The answer \answerNA{} means that the paper does not use existing assets.
@@ -181,7 +181,7 @@
 \item {\bf New assets}
     \item[] Question: Are new assets introduced in the paper well documented and is the documentation provided alongside the assets?
     \item[] Answer: \answerYes{}
-    \item[] Justification: The paper introduces an anonymized benchmark and supplement; the artifact index, manifests, prompts, frozen responses, and reproduction notes document them.
+    \item[] Justification: The paper introduces an anonymized benchmark and supplement; the artifact index, manifests, prompts, frozen responses, reproduction notes, and LICENSES.md document the released artifacts and terms.
     \item[] Guidelines:
     \begin{itemize}
         \item The answer \answerNA{} means that the paper does not release new assets.
