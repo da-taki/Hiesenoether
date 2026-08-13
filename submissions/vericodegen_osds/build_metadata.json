@@ -1,0 +1,11 @@
+{
+  "appendix_pages": 2,
+  "final_pdf": "C:/Users/Asus/Desktop/Profitlo Projects/Hiesenoether/submissions/vericodegen_osds/vericodegen_osds_final.pdf",
+  "main_pages": 4,
+  "source_files": [
+    "main.md",
+    "appendix.md",
+    "build_final.py"
+  ],
+  "total_pages": 6
+}
