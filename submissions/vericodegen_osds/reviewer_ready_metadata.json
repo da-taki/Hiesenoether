@@ -1,6 +1,6 @@
 {
     "appendix_page_count":  2,
-    "checklist_page_count":  7,
+    "checklist_page_count":  8,
     "main_text_page_count":  6,
     "main_text_page_limit":  "4 to 8 pages",
     "official_template":  "VeriCodeGen CFP public Overleaf template: neurips_2026_vericode_workshop.tex and neurips_2026_vericode.sty",
@@ -16,7 +16,7 @@
     "prospective_outputs_audited":  42,
     "references_page_count":  1,
     "task_compliant_transformations":  23,
-    "total_pdf_pages":  16,
+    "total_pdf_pages":  17,
     "unchanged_outputs":  19,
     "verified_prospective_osds_divergences":  0
 }

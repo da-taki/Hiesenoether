@@ -11,6 +11,26 @@ O(s)= (b,a,g(d),y).
 \]
 For a finite sequence $\pi=o_1\ldots o_n$, composition is $\sem{\epsilon}(s)=s$ and $\sem{\pi o}(s)=o(\sem{\pi}(s))$. Branch evaluation is a deterministic predicate $B(C(\sem{\pi}(s)))$ over the capped visible result or final configuration. Branch divergence occurs when two admissible orderings produce different branch labels or downstream consequences.
 
+\subsection{Local read-observation commutation}
+\label{app:local-commutation}
+\textbf{Proposition.} Let $s=(b,a,d,y)$ and let $R$ and $O$ be the OSDS read and observation transitions defined above. Then
+\[
+O(R(s))=(b,a+1,g(r(a,d)),y+f(b,a,d))
+\]
+and
+\[
+R(O(s))=(b,a+1,r(a,g(d)),y+f(b,a,g(d))).
+\]
+Thus $R$ and $O$ commute at state $s$, in the sense of equality of the full resulting OSDS state, if and only if
+\[
+g(r(a,d))=r(a,g(d))
+\quad\text{and}\quad
+f(b,a,d)=f(b,a,g(d)).
+\]
+\textbf{Proof.} Expanding the read first gives $R(s)=(b,a+1,r(a,d),y+f(b,a,d))$. Applying $O$ to that state leaves $b$, $a+1$, and the accumulator unchanged and updates latent drift by $g$, giving $O(R(s))=(b,a+1,g(r(a,d)),y+f(b,a,d))$. Expanding the observation first gives $O(s)=(b,a,g(d),y)$. Applying $R$ to that state increments the same access count, updates drift by $r(a,g(d))$, and adds $f(b,a,g(d))$, giving $R(O(s))=(b,a+1,r(a,g(d)),y+f(b,a,g(d)))$. The $b$ and $a+1$ components are equal in both results, so equality of the full states is exactly equality of the latent drift components and accumulator increments shown above.
+
+An adjacent read-observation reorder can affect OSDS state only at states where this local condition fails in latent state, exposed contribution, or both. Local noncommutation is a necessary source of order sensitivity at the swapped pair; downstream execution and the cap determine whether that local difference becomes externally visible. This is why the OSDS-aware metamorphic relation is not an arbitrary input perturbation: it compares executions that differ in the placement of observation-shaped accesses, and the commutation condition characterizes when such a local reorder is inert in the OSDS core. When the condition fails, the witness has a mechanism-grounded reason to test the reordered execution, while the oracle remains a witness-specific check rather than a completeness theorem for all semantic divergence.
+
 \subsection{Semantic divergence}
 Given operation multiset $M$, admissible orderings $\Pi(M)$, initial state $s_0$, and deterministic cap $C$, define $V_C(\pi,s_0)=C(\sem{\pi}(s_0))$. The access-order range is $\Delta_C(M,s_0)=\max_{\pi\in\Pi(M)} V_C(\pi,s_0)-\min_{\pi\in\Pi(M)} V_C(\pi,s_0)$ for finite $\Pi(M)$. A transformation preserves the witness when baseline and candidate have equal OSDS-observable results under the witness relation.
 
