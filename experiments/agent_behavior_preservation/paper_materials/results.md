@@ -1,9 +1,25 @@
 # Results
 
-Across the 13 normal tasks, GPT-5.6 Sol produced 12 behavior-preserved candidates, 0 manually verified semantic divergences, 0 silent semantic divergences, and 1 ordinary programming bug caught by ordinary tests.
+This note is paper-facing text for the completed frozen primary Codex task-model study. The authoritative machine-readable source is `analysis/codex_task_model_cross_model_analysis_20260813.json`, with non-preserved-row manual review in `analysis/codex_task_model_manual_review_20260813.jsonl`.
 
-Across the 13 warned tasks, GPT-5.6 Sol produced 11 behavior-preserved candidates, 0 manually verified semantic divergences, 0 silent semantic divergences, and 2 ordinary programming bugs caught by ordinary tests.
+The study used 13 base tasks and 26 normal/warned prompt variants from 9 packages and 9 unique real-code witnesses. These tasks are correlated by witness and package, so task-level counts should be reported as benchmark outcomes rather than prevalence estimates.
 
-Self-assessment was conservative. Normal: 3 YES, 10 NO, 0 false YES, 9 behavior-preserved NO claims. Warned: 4 YES, 9 NO, 0 false YES, 7 behavior-preserved NO claims.
+| Codex task-model configuration | Tasks | Executable | Behavior preserved | Ordinary programming bugs | Invalid patches | Verified OSDS divergences | Silent OSDS divergences | YES | NO | False YES |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
+| `gpt-5.6-sol` | 26 | 26 | 23 | 3 | 0 | 0 | 0 | 7 | 19 | 0 |
+| `gpt-5.6-terra` | 26 | 24 | 18 | 4 | 2 | 2 | 2 | 6 | 20 | 0 |
+| `gpt-5.6-luna` | 26 | 24 | 17 | 4 | 2 | 3 | 3 | 8 | 18 | 0 |
 
-Semantic paired analysis: `normal preserved / warned preserved` = 13, with all other semantic-divergence pair categories at 0. Behavior-level ordinary bugs occurred in Markdown in both conditions and BeautifulSoup in the warned condition.
+The five verified OSDS failures were:
+
+| Configuration | Task | Evidence role |
+| --- | --- | --- |
+| `gpt-5.6-terra` | `pytest_catching_logs__instrumentation__normal` | hidden_observation |
+| `gpt-5.6-terra` | `pytest_catching_logs__instrumentation__warned` | hidden_observation |
+| `gpt-5.6-luna` | `pytest_catching_logs__instrumentation__normal` | hidden_observation |
+| `gpt-5.6-luna` | `pytest_catching_logs__instrumentation__warned` | hidden_observation |
+| `gpt-5.6-luna` | `pyyaml_representer__caching_materialization__normal` | hidden_observation |
+
+All five passed ordinary tests and failed the OSDS-aware oracle. Manual review attributed them to the access-induced mechanism. They are silent OSDS divergences under the benchmark definition. There were zero false YES preservation claims across the three configurations.
+
+Expected-access-sensitive rows produced ordinary programming bugs or invalid patches in the completed real-model study, with zero verified OSDS divergences. Hidden-observation rows produced all five verified OSDS divergences.
