@@ -1,0 +1,69 @@
+{
+  "models": {
+    "gpt-5.6-luna": {
+      "response_file": "benchmark_expansion/responses/gpt_5_6_luna__expansion.jsonl",
+      "task_count": 14,
+      "thread_ids": [
+        "019ffbf8-743b-7d92-b60e-3b25cb6a9794",
+        "019ffbf8-9519-7402-92c3-27c79219e827",
+        "019ffbf8-b78c-7d01-a372-503e8981459d",
+        "019ffbf8-cf4e-7e90-8938-1c9262548c42",
+        "019ffbf8-dd1a-7dd0-ae89-a9724d385b7c",
+        "019ffbf8-f1cf-7481-994d-3b05334fd28c",
+        "019ffbf9-0b4b-7690-8a3f-0185ec613867",
+        "019ffbf9-23e7-73d0-a129-2a1a8d97929b",
+        "019ffbf9-b639-7cf2-ad31-ed971ee65474",
+        "019ffbf9-ca5a-7861-acb1-16f8c6901618",
+        "019ffbf9-dcdb-7411-86bc-f986f76efa6e",
+        "019ffbf9-f6ff-7d70-b54e-c234407f705e",
+        "019ffbfa-1124-7520-858b-a86d5c467ea9",
+        "019ffbfa-2678-73c1-b39e-170939293b96"
+      ]
+    },
+    "gpt-5.6-sol": {
+      "response_file": "benchmark_expansion/responses/gpt_5_6_sol__expansion.jsonl",
+      "task_count": 14,
+      "thread_ids": [
+        "019ffbec-1273-7f52-b86f-e594f3aaa198",
+        "019ffbec-25c9-7eb1-a3e6-23423d91221e",
+        "019ffbec-3c75-7a63-bad1-92cce2390397",
+        "019ffbec-4c7e-7311-97a4-43706b025bf8",
+        "019ffbec-65da-7a81-bb38-2c9617462c31",
+        "019ffbec-825e-7cc3-b80e-d81a29da703f",
+        "019ffbec-9884-7a52-8695-3bac559659ea",
+        "019ffbec-ba42-7931-ac7e-6e3f3f214bd7",
+        "019ffbf0-6a13-73a2-8800-b973610c72b8",
+        "019ffbf0-8409-72a2-a696-6c468327b2e8",
+        "019ffbf0-a22e-7d30-90a6-5683a5bc7586",
+        "019ffbf0-beb8-76b1-89e0-5c728f82895e",
+        "019ffbf0-d6f5-79e2-a6d1-263f4f30905a",
+        "019ffbf0-f10c-77d2-9d7e-c1f51cf3502d"
+      ]
+    },
+    "gpt-5.6-terra": {
+      "response_file": "benchmark_expansion/responses/gpt_5_6_terra__expansion.jsonl",
+      "task_count": 14,
+      "thread_ids": [
+        "019ffbf2-709c-7e81-9ca6-fb9c6d7140a3",
+        "019ffbf2-88bc-7531-9a0d-329f073f1952",
+        "019ffbf2-a26e-7d42-97c7-6e4ed2903896",
+        "019ffbf4-0a91-7e10-91ea-a28d5c6b1e96",
+        "019ffbf2-fd36-7f23-b74e-7c595ec6a38f",
+        "019ffbf3-59f9-7702-bae9-cb995ceaf02e",
+        "019ffbf3-87f4-7060-92df-c8dc009a8d21",
+        "019ffbf3-b7f0-7bf3-81b1-d3d7dfabae87",
+        "019ffbf4-caab-7f02-8e17-7bd1bea36285",
+        "019ffbf4-f5a6-7d12-847f-00c31b7ad857",
+        "019ffbf5-343e-7500-8f31-33a03e0e18fa",
+        "019ffbf5-5560-7c23-8a05-0fd369c5f320",
+        "019ffbf5-82f5-7703-8f56-e8bad565ab5d",
+        "019ffbf5-a7ee-7280-8ab2-aa117e5d8683"
+      ]
+    }
+  },
+  "provider": "codex_task",
+  "seed": null,
+  "self_assessments": "skipped_cut_scope",
+  "temperature": null,
+  "thinking": "low"
+}

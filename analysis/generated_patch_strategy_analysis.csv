@@ -1,0 +1,6 @@
+strategy,count,verified_osds_divergences
+formatting or local refactor,16,0
+function reordering,1,0
+temporary binding,5,0
+tuple assignment,1,0
+unchanged,19,0
