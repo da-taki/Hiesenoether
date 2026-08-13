@@ -1,0 +1,102 @@
+{
+  "luna": {
+    "fresh_assessment_ids": {
+      "10": "019ffaa0-424e-7ce2-b5c5-c3b1a0a2fa4f",
+      "11": "019ffaa0-53cc-70f0-9c90-b0d4512d4a9c",
+      "12": "019ffaa0-69d3-71a3-8667-6a33a8cfff7f",
+      "13": "019ffaa0-7c7e-7e90-a961-fbe9f3994c4a",
+      "14": "019ffaa0-9009-7be3-8af6-432fd87e3abf",
+      "15": "019ffaa0-a1f8-7193-8b8f-4aa098a28f35",
+      "16": "019ffaa0-b2ca-7bc0-bef1-5e36bdab5113",
+      "17": "019ffaa1-e16f-7de1-98fb-47e1fa7f855f",
+      "18": "019ffaa1-f1c3-7d60-8d88-96dba2957fd1",
+      "19": "019ffaa2-0362-7481-adf6-9a0151eec72c",
+      "20": "019ffaa2-1693-70e1-bf1c-05981ba659b0",
+      "21": "019ffaa2-26d5-7f22-90dd-dbab5df03c66",
+      "22": "019ffaa2-37e0-7782-9e06-f3d0c1a03e9f",
+      "23": "019ffaa2-437b-7882-8ec4-1a103db53708",
+      "24": "019ffaa2-5398-73e3-87ed-34017f4b9540",
+      "25": "019ffaa2-b3bb-7f80-9adf-fda1cecdb556",
+      "26": "019ffaa2-c34b-7653-b118-d8af67aa0a32",
+      "9": "019ffaa0-3067-7a92-94dc-a7e7d97cddbf"
+    },
+    "interrupted_original_assessments": {
+      "1": "019ffa80-ae03-7221-9b4c-f920a3f226ef",
+      "2": "019ffa80-d4a4-7192-88e7-8abbf6ff9cbf",
+      "3": "019ffa80-eb80-7e52-bd25-22fc5f8003cc",
+      "4": "019ffa81-0274-7eb3-9ab0-c58a41566efb",
+      "5": "019ffa81-1ba4-7862-b387-cdb8eeecb23a",
+      "6": "019ffa81-3477-7c22-9951-13e1dca76865",
+      "7": "019ffa81-498b-7d12-a702-320d5f653408",
+      "8": "019ffa81-5a38-7043-af16-1080ed99768d"
+    },
+    "replacement_assessment_ids": {
+      "1": "019ffa9e-7648-7ed1-800b-63e715137f17",
+      "2": "019ffa9e-8b16-7610-b8f9-9a5c8e7e2f00",
+      "3": "019ffa9e-a2e4-7e20-af99-613921cb717a",
+      "4": "019ffa9e-b519-7382-ab5a-d0e3ecfe1937",
+      "5": "019ffa9e-c9c3-7600-81d7-f8d4b6113f1a",
+      "6": "019ffa9e-dafe-7f90-aee2-f1b486211702",
+      "7": "019ffa9e-eca2-7061-9da4-d05351915518",
+      "8": "019ffa9e-fed5-7c81-959a-fc3adccd3f59"
+    }
+  },
+  "provider": "codex_task",
+  "run_date": "2026-08-13",
+  "settings": {
+    "seed": null,
+    "temperature": null,
+    "thinking": "low"
+  },
+  "terra": {
+    "completed_original_assessments": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      7,
+      8,
+      11,
+      12,
+      13,
+      20,
+      22
+    ],
+    "discarded_invalid_prompt_assembly": {
+      "25": "019ffaa6-6420-7342-a928-27a4ae97b437"
+    },
+    "interrupted_original_assessments": {
+      "10": "019ffa7b-42e5-7290-8d8d-786a55b2037b",
+      "14": "019ffa7b-e0e3-7191-947e-296c0caa2d71",
+      "15": "019ffa7c-07a8-7560-b952-341926a33699",
+      "16": "019ffa7c-2bd6-7f11-8356-d65fbe091d92",
+      "17": "019ffa7d-8319-7302-8d03-5c5ac2625aa8",
+      "18": "019ffa7d-cb76-7e72-9f76-ec41f40936f7",
+      "19": "019ffa7d-ec3d-7f02-9271-407447902c62",
+      "21": "019ffa7e-408a-72f1-99f5-4b78bd89327b",
+      "23": "019ffa7e-772b-7de2-98ef-29dd03ecdc39",
+      "24": "019ffa7e-90aa-7811-9a53-00984c1187a5",
+      "25": "019ffa7f-0fa3-7ba0-8ea8-9bdb347457fc",
+      "26": "019ffa7f-5193-7cf2-9960-bea7203e5a69",
+      "6": "019ffa79-c369-7e30-a93c-f1700c6c7612",
+      "9": "019ffa7b-3030-7f90-9fcd-b3b0cfed6da2"
+    },
+    "replacement_assessment_ids": {
+      "10": "019ffaa4-da63-7c11-b4b4-2ceca23abe1f",
+      "14": "019ffaa4-f009-7c32-8240-d5e89ba7855d",
+      "15": "019ffaa5-12f4-7b82-9f90-9a001b6afe39",
+      "16": "019ffaa5-2329-72d2-a3d7-d6ec2d74c713",
+      "17": "019ffaa5-3136-7a52-a3eb-d130c0b6b863",
+      "18": "019ffaa5-3e74-7873-a31b-805457b8a860",
+      "19": "019ffaa6-1c6e-70e3-9362-8d244ea18751",
+      "21": "019ffaa6-2de7-7bd2-9c19-3f32c2393240",
+      "23": "019ffaa6-3f92-72b3-8886-1369935545e3",
+      "24": "019ffaa6-52e0-7e82-a7b3-aff1e746e473",
+      "25": "019ffaa6-b7b0-7673-92ee-b1ef82aec491",
+      "26": "019ffaa6-79c7-70d2-a306-dd5e22d9a51d",
+      "6": "019ffaa4-a423-7da2-ae06-e561cbae21ed",
+      "9": "019ffaa4-ca68-7470-bb61-8d74a0dc2639"
+    }
+  }
+}
