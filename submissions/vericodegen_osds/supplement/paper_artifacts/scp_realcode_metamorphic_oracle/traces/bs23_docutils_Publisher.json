@@ -1,0 +1,91 @@
+{
+  "candidate_id": "bs23_docutils_Publisher",
+  "diff": {
+    "branch_changed": false,
+    "classification": "confirmed_output_divergence",
+    "exception_changed": false,
+    "output_changed": true,
+    "state_changed": true
+  },
+  "metadata": {
+    "candidate_id": "bs23_docutils_Publisher",
+    "class_name": "Publisher",
+    "construction_hint": "Publisher()",
+    "expected_boundary": "get_settings caches settings (state-only)",
+    "fixture_family": "unknown",
+    "module_path": "docutils/core.py",
+    "observation_operation": "get_settings()",
+    "package_name": "docutils",
+    "package_version": "0.22.4",
+    "priority": "2",
+    "selected_for_harness": "yes",
+    "source_artifact": "behavioral_sweep_results.csv",
+    "state_fields_suspected": "settings",
+    "target_read_operation": "read .settings"
+  },
+  "order_A": {
+    "results": [
+      {
+        "kind": "value",
+        "value": {
+          "has_settings": false
+        }
+      }
+    ],
+    "state": {
+      "has_settings": false
+    },
+    "steps": [
+      "construct Publisher",
+      "read .settings"
+    ]
+  },
+  "order_B": {
+    "observation": {
+      "kind": "value",
+      "value": "<Values at 0x22950dcaad0: {'output_path': None, 'title': None, 'generator': None, 'datestamp': None, 'root_prefix': '', 'source_link': None, 'source_url': None, 'toc_backlinks': 'entry', 'footnote_backlinks': True, 'sectnum_xform': True, 'strip_comments': None, 'strip_elements_with_classes': None, 'strip_classes': None, 'report_level': 2, 'halt_level': 4, 'exit_status_level': 5, 'debug': None, 'warning_stream': None, 'traceback': None, 'input_encoding': 'utf-8', 'input_encoding_error_handler': 'strict', 'output_encoding': 'utf-8', 'output_encoding_error_handler': 'strict', 'error_encoding': 'cp1252', 'error_encoding_error_handler': 'backslashreplace', 'language_code': 'en', 'record_dependencies': DependencyList(None, []), 'config': None, 'id_prefix': '', 'auto_id_prefix': '%', 'dump_settings': None, 'dump_internals': None, 'dump_transforms': None, 'dump_pseudo_xml': None, 'expose_internals': None, 'strict_visitor': None, '_disable_config': None, '_source': None, '_destination': None, '_config_files': []}>"
+    },
+    "results": [
+      {
+        "kind": "value",
+        "value": {
+          "has_settings": true
+        }
+      }
+    ],
+    "state": {
+      "has_settings": true
+    },
+    "steps": [
+      "construct Publisher",
+      "get_settings()",
+      "read .settings"
+    ]
+  },
+  "record": {
+    "boundary_note": "get_settings caches settings (state-only)",
+    "branch_changed": false,
+    "candidate_id": "bs23_docutils_Publisher",
+    "class_name": "Publisher",
+    "classification": "confirmed_output_divergence",
+    "constructed": true,
+    "exception_changed": false,
+    "failure_reason": "",
+    "fixture_family": "unknown",
+    "observation_operation": "get_settings()",
+    "order_A_exception": "[]",
+    "order_A_output": "[{\"has_settings\": false}]",
+    "order_A_state": "{\"has_settings\": false}",
+    "order_A_steps": "construct Publisher | read .settings",
+    "order_B_exception": "[]",
+    "order_B_output": "[{\"has_settings\": true}]",
+    "order_B_state": "{\"has_settings\": true}",
+    "order_B_steps": "construct Publisher | get_settings() | read .settings",
+    "output_changed": true,
+    "package_name": "docutils",
+    "package_version": "0.22.4",
+    "pair_type": "pair1",
+    "state_changed": true,
+    "target_read_operation": "read .settings"
+  }
+}

@@ -1,4 +1,4 @@
-﻿from __future__ import annotations
+from __future__ import annotations
 
 import argparse
 import json
@@ -25,7 +25,7 @@ REPO = BASE.parents[1]
 
 def git_value(*args: str) -> str:
     try:
-        return subprocess.check_output(["git", *args], cwd=REPO, text=True).strip()
+        return subprocess.check_output(["git", *args], cwd=REPO, text=True, stderr=subprocess.DEVNULL).strip()
     except Exception:
         return "unknown"
 

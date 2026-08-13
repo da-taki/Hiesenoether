@@ -126,8 +126,18 @@ def load_result_row(failure: KnownFailure) -> dict[str, object]:
     raise KeyError(f"result row not found for {failure.run_id}/{failure.task_id}")
 
 
+FROZEN_CANDIDATES = {
+    ("codex-gpt-5-6-terra-full-exact-20260813T1730Z", "pytest_catching_logs__instrumentation__normal"): "terra_pytest_normal.py",
+    ("codex-gpt-5-6-terra-full-exact-20260813T1730Z", "pytest_catching_logs__instrumentation__warned"): "terra_pytest_warned.py",
+    ("codex-gpt-5-6-luna-full-exact-20260813T1730Z", "pytest_catching_logs__instrumentation__normal"): "luna_pytest_normal.py",
+    ("codex-gpt-5-6-luna-full-exact-20260813T1730Z", "pytest_catching_logs__instrumentation__warned"): "luna_pytest_warned.py",
+    ("codex-gpt-5-6-luna-full-exact-20260813T1730Z", "pyyaml_representer__caching_materialization__normal"): "luna_pyyaml_normal.py",
+}
+
+
 def candidate_path(failure: KnownFailure) -> Path:
-    return EXPERIMENT / "results" / failure.run_id / "candidates" / failure.task_id / "candidate.py"
+    short_name = FROZEN_CANDIDATES[(failure.run_id, failure.task_id)]
+    return EXPERIMENT / "causal_controls" / "frozen_candidates" / short_name
 
 
 def run_controls(write_outputs: bool = True) -> list[dict[str, str]]:

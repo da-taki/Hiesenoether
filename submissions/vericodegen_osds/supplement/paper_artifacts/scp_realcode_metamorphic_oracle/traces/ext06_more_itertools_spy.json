@@ -1,0 +1,97 @@
+{
+  "candidate_id": "ext06_more_itertools_spy",
+  "diff": {
+    "branch_changed": false,
+    "classification": "no_divergence",
+    "exception_changed": false,
+    "output_changed": false,
+    "state_changed": false
+  },
+  "metadata": {
+    "candidate_id": "ext06_more_itertools_spy",
+    "class_name": "spy",
+    "construction_hint": "spy(iter([...]))",
+    "expected_boundary": "spy returns head without consuming",
+    "fixture_family": "iterator",
+    "module_path": "more_itertools/more.py",
+    "observation_operation": "spy head",
+    "package_name": "more-itertools",
+    "package_version": "11.0.2",
+    "priority": "2",
+    "selected_for_harness": "yes",
+    "source_artifact": "source_snapshot",
+    "state_fields_suspected": "cached head",
+    "target_read_operation": "list(iterable)"
+  },
+  "order_A": {
+    "results": [
+      {
+        "kind": "value",
+        "value": [
+          "p",
+          "q",
+          "r"
+        ]
+      }
+    ],
+    "state": {
+      "head": [
+        "p",
+        "q"
+      ]
+    },
+    "steps": [
+      "spy(it,2)",
+      "list(rest)"
+    ]
+  },
+  "order_B": {
+    "results": [
+      {
+        "kind": "value",
+        "value": [
+          "p",
+          "q",
+          "r"
+        ]
+      }
+    ],
+    "state": {
+      "head": [
+        "p",
+        "q"
+      ]
+    },
+    "steps": [
+      "spy(it,2)",
+      "list(head) [observe]",
+      "list(rest)"
+    ]
+  },
+  "record": {
+    "boundary_note": "spy returns head without consuming",
+    "branch_changed": false,
+    "candidate_id": "ext06_more_itertools_spy",
+    "class_name": "spy",
+    "classification": "no_divergence",
+    "constructed": true,
+    "exception_changed": false,
+    "failure_reason": "",
+    "fixture_family": "iterator",
+    "observation_operation": "spy head",
+    "order_A_exception": "[]",
+    "order_A_output": "[[\"p\", \"q\", \"r\"]]",
+    "order_A_state": "{\"head\": [\"p\", \"q\"]}",
+    "order_A_steps": "spy(it,2) | list(rest)",
+    "order_B_exception": "[]",
+    "order_B_output": "[[\"p\", \"q\", \"r\"]]",
+    "order_B_state": "{\"head\": [\"p\", \"q\"]}",
+    "order_B_steps": "spy(it,2) | list(head) [observe] | list(rest)",
+    "output_changed": false,
+    "package_name": "more-itertools",
+    "package_version": "11.0.2",
+    "pair_type": "pair1",
+    "state_changed": false,
+    "target_read_operation": "list(iterable)"
+  }
+}

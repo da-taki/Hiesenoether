@@ -1,0 +1,87 @@
+{
+  "candidate_id": "rc03_pytest_catching_logs",
+  "diff": {
+    "branch_changed": false,
+    "classification": "confirmed_output_divergence",
+    "exception_changed": false,
+    "output_changed": true,
+    "state_changed": true
+  },
+  "metadata": {
+    "candidate_id": "rc03_pytest_catching_logs",
+    "class_name": "catching_logs",
+    "construction_hint": "LogCaptureHandler + logging.getLogger",
+    "expected_boundary": "handler level mutation filters later WARNING",
+    "fixture_family": "logging_handler",
+    "module_path": "_pytest/logging.py",
+    "observation_operation": "enter/exit catching_logs(level=ERROR)",
+    "package_name": "pytest",
+    "package_version": "8.3.5",
+    "priority": "1",
+    "selected_for_harness": "yes",
+    "source_artifact": "real_case_results.csv",
+    "state_fields_suspected": "handler.level",
+    "target_read_operation": "emit WARNING; read messages"
+  },
+  "order_A": {
+    "results": [
+      {
+        "kind": "value",
+        "value": [
+          "warning-visible"
+        ]
+      }
+    ],
+    "state": {
+      "handler_level": 0
+    },
+    "steps": [
+      "fresh handler",
+      "emit WARNING",
+      "read messages"
+    ]
+  },
+  "order_B": {
+    "results": [
+      {
+        "kind": "value",
+        "value": []
+      }
+    ],
+    "state": {
+      "handler_level": 40
+    },
+    "steps": [
+      "fresh handler",
+      "enter/exit catching_logs(level=ERROR)",
+      "emit WARNING",
+      "read messages"
+    ]
+  },
+  "record": {
+    "boundary_note": "handler level mutation filters later WARNING",
+    "branch_changed": false,
+    "candidate_id": "rc03_pytest_catching_logs",
+    "class_name": "catching_logs",
+    "classification": "confirmed_output_divergence",
+    "constructed": true,
+    "exception_changed": false,
+    "failure_reason": "",
+    "fixture_family": "logging_handler",
+    "observation_operation": "enter/exit catching_logs(level=ERROR)",
+    "order_A_exception": "[]",
+    "order_A_output": "[[\"warning-visible\"]]",
+    "order_A_state": "{\"handler_level\": 0}",
+    "order_A_steps": "fresh handler | emit WARNING | read messages",
+    "order_B_exception": "[]",
+    "order_B_output": "[[]]",
+    "order_B_state": "{\"handler_level\": 40}",
+    "order_B_steps": "fresh handler | enter/exit catching_logs(level=ERROR) | emit WARNING | read messages",
+    "output_changed": true,
+    "package_name": "pytest",
+    "package_version": "8.3.5",
+    "pair_type": "pair1",
+    "state_changed": true,
+    "target_read_operation": "emit WARNING; read messages"
+  }
+}

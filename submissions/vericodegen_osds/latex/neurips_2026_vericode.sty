@@ -19,7 +19,7 @@
 % last revision: January 2026
 
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{neurips_2026}[2026-01-29 NeurIPS 2026 submission/camera-ready style file]
+\ProvidesPackage{neurips_2026_vericode}[2026-01-29 NeurIPS 2026 workshop submission/camera-ready style file]
 
 % declare final option, which creates camera-ready copy
 \newif\if@neuripsfinal\@neuripsfinalfalse
@@ -136,7 +136,7 @@
     footskip=30pt
   }
   \@ifpackageloaded{fullpage}
-    {\PackageWarning{neurips_2026}{fullpage package not allowed! Overwriting formatting.}}
+    {\PackageWarning{neurips_2026_vericode}{fullpage package not allowed! Overwriting formatting.}}
     {}
 }
 
@@ -384,8 +384,6 @@
 \newcommand{\answerYes}[1][]{\textcolor{blue}{[Yes]#1}}
 \newcommand{\answerNo}[1][]{\textcolor{orange}{[No]#1}}
 \newcommand{\answerNA}[1][]{\textcolor{gray}{[N/A]#1}}
-\newcommand{\answerTODO}[1][]{\textcolor{red}{\bf [TODO]}}
-\newcommand{\justificationTODO}[1][]{\textcolor{red}{\bf [TODO]}}
 
 % handle tweaks for camera-ready copy vs. submission copy
 \if@preprint

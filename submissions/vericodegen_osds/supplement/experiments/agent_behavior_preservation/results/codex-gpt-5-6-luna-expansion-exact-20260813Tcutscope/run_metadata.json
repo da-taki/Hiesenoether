@@ -1,0 +1,13 @@
+{
+  "baseline_failures": [],
+  "branch": "experiment/agent-behavior-preservation",
+  "git_commit": "0f7dea5ca3cfc62e040026a8c780f1127526b0dc",
+  "os": "Windows-11-10.0.26200-SP0",
+  "provider": "jsonl",
+  "python_executable": "<REPO_ROOT>\\experiments\\agent_behavior_preservation\\environment\\.venv\\Scripts\\python.exe",
+  "python_version": "3.14.4 (tags/v3.14.4:23116f9, Apr  7 2026, 14:10:54) [MSC v.1944 64 bit (AMD64)]",
+  "replay_path": "benchmark_expansion\\responses\\gpt_5_6_luna__expansion.jsonl",
+  "run_id": "codex-gpt-5-6-luna-expansion-exact-20260813Tcutscope",
+  "task_count": 14,
+  "timestamp": "2026-08-13T17:50:52.963468+00:00"
+}

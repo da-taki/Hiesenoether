@@ -1,0 +1,95 @@
+{
+  "candidate_id": "re03_pygments_EscapeSequence",
+  "diff": {
+    "branch_changed": false,
+    "classification": "no_divergence",
+    "exception_changed": false,
+    "output_changed": false,
+    "state_changed": false
+  },
+  "metadata": {
+    "candidate_id": "re03_pygments_EscapeSequence",
+    "class_name": "EscapeSequence",
+    "construction_hint": "EscapeSequence(fg='ansired')",
+    "expected_boundary": "suspected bold mutation (not triggered)",
+    "fixture_family": "yaml_or_repr",
+    "module_path": "pygments/formatters/terminal256.py",
+    "observation_operation": "color_string()",
+    "package_name": "pygments",
+    "package_version": "2.20.0",
+    "priority": "2",
+    "selected_for_harness": "yes",
+    "source_artifact": "rescue_results.csv",
+    "state_fields_suspected": "fg;bg;bold",
+    "target_read_operation": "reset_string()"
+  },
+  "order_A": {
+    "results": [
+      {
+        "kind": "value",
+        "value": "\u001b[39m"
+      }
+    ],
+    "state": {
+      "bg": null,
+      "bold": false,
+      "fg": "ansired",
+      "italic": false,
+      "underline": false
+    },
+    "steps": [
+      "construct EscapeSequence",
+      "reset_string()"
+    ]
+  },
+  "order_B": {
+    "observation": {
+      "kind": "value",
+      "value": "\u001b[31m"
+    },
+    "results": [
+      {
+        "kind": "value",
+        "value": "\u001b[39m"
+      }
+    ],
+    "state": {
+      "bg": null,
+      "bold": false,
+      "fg": "ansired",
+      "italic": false,
+      "underline": false
+    },
+    "steps": [
+      "construct EscapeSequence",
+      "color_string()",
+      "reset_string()"
+    ]
+  },
+  "record": {
+    "boundary_note": "suspected bold mutation (not triggered)",
+    "branch_changed": false,
+    "candidate_id": "re03_pygments_EscapeSequence",
+    "class_name": "EscapeSequence",
+    "classification": "no_divergence",
+    "constructed": true,
+    "exception_changed": false,
+    "failure_reason": "",
+    "fixture_family": "yaml_or_repr",
+    "observation_operation": "color_string()",
+    "order_A_exception": "[]",
+    "order_A_output": "[\"\\u001b[39m\"]",
+    "order_A_state": "{\"fg\": \"ansired\", \"bg\": null, \"bold\": false, \"underline\": false, \"italic\": false}",
+    "order_A_steps": "construct EscapeSequence | reset_string()",
+    "order_B_exception": "[]",
+    "order_B_output": "[\"\\u001b[39m\"]",
+    "order_B_state": "{\"fg\": \"ansired\", \"bg\": null, \"bold\": false, \"underline\": false, \"italic\": false}",
+    "order_B_steps": "construct EscapeSequence | color_string() | reset_string()",
+    "output_changed": false,
+    "package_name": "pygments",
+    "package_version": "2.20.0",
+    "pair_type": "pair1",
+    "state_changed": false,
+    "target_read_operation": "reset_string()"
+  }
+}

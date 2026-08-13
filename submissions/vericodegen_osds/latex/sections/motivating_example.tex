@@ -20,4 +20,11 @@ Generated instrumentation shape:
 
 The example gives the intuition before the formal notation. The generated transformation did not crash, did not fail the ordinary smoke check, and did not look like a destructive update at the edit site. The divergence appeared only when the evaluation compared the later visible result across the access order that the witness exposes. In the causal-control replay, the exact generated files were reused. The only change was the witness environment: diagnostic logging was isolated from the handler hierarchy responsible for the latent mutation. Under that neutralized mechanism, the OSDS divergence disappeared.
 
+The state flow is compact:
+\begin{align*}
+\texttt{logger.debug} &\to \text{handler/logging state changes},\\
+&\to \texttt{catching\_logs} \text{ reads that state},\\
+&\to \text{caller-visible result changes}.
+\end{align*}
+
 This is a generated transformation failure, not a defect claim about pytest. It shows that a preservation checker for generated edits needs to model the latent state that observation-shaped accesses can affect.

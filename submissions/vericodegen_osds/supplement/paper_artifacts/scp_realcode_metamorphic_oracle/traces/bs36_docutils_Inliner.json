@@ -1,0 +1,87 @@
+{
+  "candidate_id": "bs36_docutils_Inliner",
+  "diff": {
+    "branch_changed": false,
+    "classification": "no_divergence",
+    "exception_changed": false,
+    "output_changed": false,
+    "state_changed": false
+  },
+  "metadata": {
+    "candidate_id": "bs36_docutils_Inliner",
+    "class_name": "Inliner",
+    "construction_hint": "Inliner()",
+    "expected_boundary": "constructs but parse needs document context",
+    "fixture_family": "unknown",
+    "module_path": "docutils/parsers/rst/states.py",
+    "observation_operation": "parse",
+    "package_name": "docutils",
+    "package_version": "0.22.4",
+    "priority": "3",
+    "selected_for_harness": "yes",
+    "source_artifact": "behavioral_sweep_results.csv",
+    "state_fields_suspected": "patterns",
+    "target_read_operation": "repr(class)"
+  },
+  "order_A": {
+    "results": [
+      {
+        "kind": "value",
+        "value": "'Inliner'"
+      }
+    ],
+    "state": {
+      "repr": "'Inliner'"
+    },
+    "steps": [
+      "construct Inliner",
+      "repr(class)"
+    ]
+  },
+  "order_B": {
+    "observation": {
+      "kind": "value",
+      "value": null
+    },
+    "results": [
+      {
+        "kind": "value",
+        "value": "'Inliner'"
+      }
+    ],
+    "state": {
+      "repr": "'Inliner'"
+    },
+    "steps": [
+      "construct Inliner",
+      "(no-op)",
+      "repr(class)"
+    ]
+  },
+  "record": {
+    "boundary_note": "constructs but parse needs document context",
+    "branch_changed": false,
+    "candidate_id": "bs36_docutils_Inliner",
+    "class_name": "Inliner",
+    "classification": "no_divergence",
+    "constructed": true,
+    "exception_changed": false,
+    "failure_reason": "",
+    "fixture_family": "unknown",
+    "observation_operation": "parse",
+    "order_A_exception": "[]",
+    "order_A_output": "[\"'Inliner'\"]",
+    "order_A_state": "{\"repr\": \"'Inliner'\"}",
+    "order_A_steps": "construct Inliner | repr(class)",
+    "order_B_exception": "[]",
+    "order_B_output": "[\"'Inliner'\"]",
+    "order_B_state": "{\"repr\": \"'Inliner'\"}",
+    "order_B_steps": "construct Inliner | (no-op) | repr(class)",
+    "output_changed": false,
+    "package_name": "docutils",
+    "package_version": "0.22.4",
+    "pair_type": "pair1",
+    "state_changed": false,
+    "target_read_operation": "repr(class)"
+  }
+}

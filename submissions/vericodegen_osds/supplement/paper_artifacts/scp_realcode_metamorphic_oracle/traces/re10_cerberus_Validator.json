@@ -1,0 +1,93 @@
+{
+  "candidate_id": "re10_cerberus_Validator",
+  "diff": {
+    "branch_changed": false,
+    "classification": "confirmed_output_divergence",
+    "exception_changed": false,
+    "output_changed": true,
+    "state_changed": true
+  },
+  "metadata": {
+    "candidate_id": "re10_cerberus_Validator",
+    "class_name": "BareValidator",
+    "construction_hint": "Validator(schema)",
+    "expected_boundary": "validate populates errors read later",
+    "fixture_family": "list_or_dict",
+    "module_path": "cerberus/validator.py",
+    "observation_operation": "validate({'name':'Al'})",
+    "package_name": "cerberus",
+    "package_version": "1.3.8",
+    "priority": "1",
+    "selected_for_harness": "yes",
+    "source_artifact": "rescue_results.csv",
+    "state_fields_suspected": "document;_errors",
+    "target_read_operation": "validator.errors"
+  },
+  "order_A": {
+    "results": [
+      {
+        "kind": "value",
+        "value": {}
+      }
+    ],
+    "state": {
+      "document": null
+    },
+    "steps": [
+      "construct BareValidator",
+      "validator.errors"
+    ]
+  },
+  "order_B": {
+    "observation": {
+      "kind": "value",
+      "value": false
+    },
+    "results": [
+      {
+        "kind": "value",
+        "value": {
+          "name": [
+            "min length is 3"
+          ]
+        }
+      }
+    ],
+    "state": {
+      "document": {
+        "name": "Al"
+      }
+    },
+    "steps": [
+      "construct BareValidator",
+      "validate({'name': 'Al'})",
+      "validator.errors"
+    ]
+  },
+  "record": {
+    "boundary_note": "validate populates errors read later",
+    "branch_changed": false,
+    "candidate_id": "re10_cerberus_Validator",
+    "class_name": "BareValidator",
+    "classification": "confirmed_output_divergence",
+    "constructed": true,
+    "exception_changed": false,
+    "failure_reason": "",
+    "fixture_family": "list_or_dict",
+    "observation_operation": "validate({'name':'Al'})",
+    "order_A_exception": "[]",
+    "order_A_output": "[{}]",
+    "order_A_state": "{\"document\": null}",
+    "order_A_steps": "construct BareValidator | validator.errors",
+    "order_B_exception": "[]",
+    "order_B_output": "[{\"name\": [\"min length is 3\"]}]",
+    "order_B_state": "{\"document\": {\"name\": \"Al\"}}",
+    "order_B_steps": "construct BareValidator | validate({'name': 'Al'}) | validator.errors",
+    "output_changed": true,
+    "package_name": "cerberus",
+    "package_version": "1.3.8",
+    "pair_type": "pair1",
+    "state_changed": true,
+    "target_read_operation": "validator.errors"
+  }
+}

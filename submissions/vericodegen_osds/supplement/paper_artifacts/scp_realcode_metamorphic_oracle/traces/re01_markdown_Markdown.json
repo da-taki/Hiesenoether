@@ -1,0 +1,92 @@
+{
+  "candidate_id": "re01_markdown_Markdown",
+  "diff": {
+    "branch_changed": false,
+    "classification": "confirmed_output_divergence",
+    "exception_changed": false,
+    "output_changed": true,
+    "state_changed": true
+  },
+  "metadata": {
+    "candidate_id": "re01_markdown_Markdown",
+    "class_name": "Markdown",
+    "construction_hint": "Markdown(output_format='html')",
+    "expected_boundary": "reference registry from prior convert changes later render",
+    "fixture_family": "string_text",
+    "module_path": "markdown/core.py",
+    "observation_operation": "convert link-def first",
+    "package_name": "markdown",
+    "package_version": "3.10.2",
+    "priority": "1",
+    "selected_for_harness": "yes",
+    "source_artifact": "rescue_results.csv",
+    "state_fields_suspected": "references",
+    "target_read_operation": "convert('[alpha][]')"
+  },
+  "order_A": {
+    "results": [
+      {
+        "kind": "value",
+        "value": "<p>[alpha][]</p>"
+      }
+    ],
+    "state": {
+      "references": {}
+    },
+    "steps": [
+      "construct Markdown",
+      "convert('[alpha][]')"
+    ]
+  },
+  "order_B": {
+    "observation": {
+      "kind": "value",
+      "value": ""
+    },
+    "results": [
+      {
+        "kind": "value",
+        "value": "<p><a href=\"https://example.invalid\">alpha</a></p>"
+      }
+    ],
+    "state": {
+      "references": {
+        "alpha": [
+          "https://example.invalid",
+          null
+        ]
+      }
+    },
+    "steps": [
+      "construct Markdown",
+      "convert('[alpha]: https://example.invalid')",
+      "convert('[alpha][]')"
+    ]
+  },
+  "record": {
+    "boundary_note": "reference registry from prior convert changes later render",
+    "branch_changed": false,
+    "candidate_id": "re01_markdown_Markdown",
+    "class_name": "Markdown",
+    "classification": "confirmed_output_divergence",
+    "constructed": true,
+    "exception_changed": false,
+    "failure_reason": "",
+    "fixture_family": "string_text",
+    "observation_operation": "convert link-def first",
+    "order_A_exception": "[]",
+    "order_A_output": "[\"<p>[alpha][]</p>\"]",
+    "order_A_state": "{\"references\": {}}",
+    "order_A_steps": "construct Markdown | convert('[alpha][]')",
+    "order_B_exception": "[]",
+    "order_B_output": "[\"<p><a href=\\\"https://example.invalid\\\">alpha</a></p>\"]",
+    "order_B_state": "{\"references\": {\"alpha\": [\"https://example.invalid\", null]}}",
+    "order_B_steps": "construct Markdown | convert('[alpha]: https://example.invalid') | convert('[alpha][]')",
+    "output_changed": true,
+    "package_name": "markdown",
+    "package_version": "3.10.2",
+    "pair_type": "pair1",
+    "state_changed": true,
+    "target_read_operation": "convert('[alpha][]')"
+  }
+}

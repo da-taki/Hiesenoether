@@ -1,0 +1,97 @@
+{
+  "candidate_id": "ext02_boltons_SpooledBytesIO",
+  "diff": {
+    "branch_changed": false,
+    "classification": "confirmed_output_divergence",
+    "exception_changed": false,
+    "output_changed": true,
+    "state_changed": true
+  },
+  "metadata": {
+    "candidate_id": "ext02_boltons_SpooledBytesIO",
+    "class_name": "SpooledBytesIO",
+    "construction_hint": "SpooledBytesIO()+write",
+    "expected_boundary": "byte cursor advances",
+    "fixture_family": "io_bytes",
+    "module_path": "boltons/ioutils.py",
+    "observation_operation": "read(3)",
+    "package_name": "boltons",
+    "package_version": "25.0.0",
+    "priority": "2",
+    "selected_for_harness": "yes",
+    "source_artifact": "source_snapshot",
+    "state_fields_suspected": "buffer position",
+    "target_read_operation": "read(3)"
+  },
+  "order_A": {
+    "results": [
+      {
+        "kind": "value",
+        "value": "b'alp'"
+      },
+      {
+        "kind": "value",
+        "value": "b'hab'"
+      }
+    ],
+    "state": {
+      "tell": 6
+    },
+    "steps": [
+      "construct",
+      "read(3)",
+      "read(3)"
+    ]
+  },
+  "order_B": {
+    "observation": {
+      "kind": "value",
+      "value": "b'alp'"
+    },
+    "results": [
+      {
+        "kind": "value",
+        "value": "b'hab'"
+      },
+      {
+        "kind": "value",
+        "value": "b'eta'"
+      }
+    ],
+    "state": {
+      "tell": 9
+    },
+    "steps": [
+      "construct",
+      "read(3)",
+      "read(3)",
+      "read(3)"
+    ]
+  },
+  "record": {
+    "boundary_note": "byte cursor advances",
+    "branch_changed": false,
+    "candidate_id": "ext02_boltons_SpooledBytesIO",
+    "class_name": "SpooledBytesIO",
+    "classification": "confirmed_output_divergence",
+    "constructed": true,
+    "exception_changed": false,
+    "failure_reason": "",
+    "fixture_family": "io_bytes",
+    "observation_operation": "read(3)",
+    "order_A_exception": "[]",
+    "order_A_output": "[\"b'alp'\", \"b'hab'\"]",
+    "order_A_state": "{\"tell\": 6}",
+    "order_A_steps": "construct | read(3) | read(3)",
+    "order_B_exception": "[]",
+    "order_B_output": "[\"b'hab'\", \"b'eta'\"]",
+    "order_B_state": "{\"tell\": 9}",
+    "order_B_steps": "construct | read(3) | read(3) | read(3)",
+    "output_changed": true,
+    "package_name": "boltons",
+    "package_version": "25.0.0",
+    "pair_type": "pair3",
+    "state_changed": true,
+    "target_read_operation": "read(3)"
+  }
+}

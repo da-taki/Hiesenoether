@@ -1,13 +1,14 @@
 {
-  "appendix_page_count": 2,
+  "appendix_page_count": 3,
+  "checklist_page_count": 7,
   "main_text_page_count": 6,
-  "main_text_page_limit": 9,
-  "official_template": "NeurIPS 2026 Formatting Instructions, neurips_2026.sty unchanged, dblblindworkshop option",
+  "main_text_page_limit": "4 to 8 pages",
+  "official_template": "VeriCodeGen CFP workshop template filenames: neurips_2026_vericode_workshop.tex and neurips_2026_vericode.sty",
   "other_noncompliant_outputs": 0,
   "prospective_outputs_audited": 42,
-  "references_page_count": 1,
+  "references_page_count": 2,
   "task_compliant_transformations": 23,
-  "total_pdf_pages": 8,
+  "total_pdf_pages": 15,
   "unchanged_outputs": 19,
   "verified_prospective_osds_divergences": 0
 }

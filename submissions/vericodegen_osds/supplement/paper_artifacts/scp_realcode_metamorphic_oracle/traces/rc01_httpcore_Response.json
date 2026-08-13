@@ -1,0 +1,90 @@
+{
+  "candidate_id": "rc01_httpcore_Response",
+  "diff": {
+    "branch_changed": true,
+    "classification": "confirmed_branch_divergence",
+    "exception_changed": false,
+    "output_changed": false,
+    "state_changed": true
+  },
+  "metadata": {
+    "candidate_id": "rc01_httpcore_Response",
+    "class_name": "Response",
+    "construction_hint": "httpcore.Response(200, content=[b'alpha', b'beta'])",
+    "expected_boundary": "read() materializes _content; content flips RuntimeError->value",
+    "fixture_family": "http_response",
+    "module_path": "httpcore/_models.py",
+    "observation_operation": "response.read()",
+    "package_name": "httpcore",
+    "package_version": "1.0.9",
+    "priority": "1",
+    "selected_for_harness": "yes",
+    "source_artifact": "real_case_results.csv",
+    "state_fields_suspected": "_content;_stream_consumed",
+    "target_read_operation": "response.content"
+  },
+  "order_A": {
+    "results": [
+      {
+        "kind": "exception",
+        "message": "Attempted to access 'response.content' on a streaming response. Call 'response.read()' first.",
+        "type": "RuntimeError"
+      }
+    ],
+    "state": {
+      "has__content": false,
+      "stream_consumed": false
+    },
+    "steps": [
+      "construct Response",
+      "response.content"
+    ]
+  },
+  "order_B": {
+    "observation": {
+      "kind": "value",
+      "value": "b'alphabeta'"
+    },
+    "results": [
+      {
+        "kind": "value",
+        "value": "alphabeta"
+      }
+    ],
+    "state": {
+      "has__content": true,
+      "stream_consumed": true
+    },
+    "steps": [
+      "construct Response",
+      "response.read()",
+      "response.content"
+    ]
+  },
+  "record": {
+    "boundary_note": "read() materializes _content; content flips RuntimeError->value",
+    "branch_changed": true,
+    "candidate_id": "rc01_httpcore_Response",
+    "class_name": "Response",
+    "classification": "confirmed_branch_divergence",
+    "constructed": true,
+    "exception_changed": false,
+    "failure_reason": "",
+    "fixture_family": "http_response",
+    "observation_operation": "response.read()",
+    "order_A_exception": "[\"RuntimeError: Attempted to access 'response.content' on a streaming response. Call 'response.read()' first.\"]",
+    "order_A_output": "[]",
+    "order_A_state": "{\"has__content\": false, \"stream_consumed\": false}",
+    "order_A_steps": "construct Response | response.content",
+    "order_B_exception": "[]",
+    "order_B_output": "[\"alphabeta\"]",
+    "order_B_state": "{\"has__content\": true, \"stream_consumed\": true}",
+    "order_B_steps": "construct Response | response.read() | response.content",
+    "output_changed": false,
+    "package_name": "httpcore",
+    "package_version": "1.0.9",
+    "pair_type": "pair1",
+    "state_changed": true,
+    "target_read_operation": "response.content"
+  }
+}

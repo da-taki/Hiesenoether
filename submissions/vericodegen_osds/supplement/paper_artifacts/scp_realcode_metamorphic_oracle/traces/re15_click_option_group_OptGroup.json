@@ -1,0 +1,91 @@
+{
+  "candidate_id": "re15_click_option_group_OptGroup",
+  "diff": {
+    "branch_changed": false,
+    "classification": "no_divergence",
+    "exception_changed": false,
+    "output_changed": false,
+    "state_changed": false
+  },
+  "metadata": {
+    "candidate_id": "re15_click_option_group_OptGroup",
+    "class_name": "_OptGroup",
+    "construction_hint": "optgroup + CliRunner",
+    "expected_boundary": "in-process decorator, no runtime divergence",
+    "fixture_family": "unknown",
+    "module_path": "src/click_option_group/_decorators.py",
+    "observation_operation": "call group decorator",
+    "package_name": "click-option-group",
+    "package_version": "0.5.9",
+    "priority": "3",
+    "selected_for_harness": "yes",
+    "source_artifact": "rescue_results.csv",
+    "state_fields_suspected": "decorators registry",
+    "target_read_operation": "build+invoke command"
+  },
+  "order_A": {
+    "results": [
+      {
+        "kind": "value",
+        "value": {
+          "exit_code": 1,
+          "output": "",
+          "params": [
+            "foo"
+          ]
+        }
+      }
+    ],
+    "state": {},
+    "steps": [
+      "build grouped command",
+      "invoke --foo x"
+    ]
+  },
+  "order_B": {
+    "results": [
+      {
+        "kind": "value",
+        "value": {
+          "exit_code": 1,
+          "output": "",
+          "params": [
+            "foo"
+          ]
+        }
+      }
+    ],
+    "state": {},
+    "steps": [
+      "call group decorator (observe)",
+      "build command",
+      "invoke --foo x"
+    ]
+  },
+  "record": {
+    "boundary_note": "in-process decorator, no runtime divergence",
+    "branch_changed": false,
+    "candidate_id": "re15_click_option_group_OptGroup",
+    "class_name": "_OptGroup",
+    "classification": "no_divergence",
+    "constructed": true,
+    "exception_changed": false,
+    "failure_reason": "",
+    "fixture_family": "unknown",
+    "observation_operation": "call group decorator",
+    "order_A_exception": "[]",
+    "order_A_output": "[{\"params\": [\"foo\"], \"exit_code\": 1, \"output\": \"\"}]",
+    "order_A_state": "{}",
+    "order_A_steps": "build grouped command | invoke --foo x",
+    "order_B_exception": "[]",
+    "order_B_output": "[{\"params\": [\"foo\"], \"exit_code\": 1, \"output\": \"\"}]",
+    "order_B_state": "{}",
+    "order_B_steps": "call group decorator (observe) | build command | invoke --foo x",
+    "output_changed": false,
+    "package_name": "click-option-group",
+    "package_version": "0.5.9",
+    "pair_type": "pair1",
+    "state_changed": false,
+    "target_read_operation": "build+invoke command"
+  }
+}

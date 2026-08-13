@@ -1,0 +1,104 @@
+{
+  "candidate_id": "re02_more_itertools_seekable",
+  "diff": {
+    "branch_changed": false,
+    "classification": "confirmed_output_divergence",
+    "exception_changed": false,
+    "output_changed": true,
+    "state_changed": true
+  },
+  "metadata": {
+    "candidate_id": "re02_more_itertools_seekable",
+    "class_name": "seekable",
+    "construction_hint": "seekable(iter(['a','b','c']))",
+    "expected_boundary": "cursor advance changes later next()",
+    "fixture_family": "iterator",
+    "module_path": "more_itertools/more.py",
+    "observation_operation": "next(it)",
+    "package_name": "more-itertools",
+    "package_version": "11.0.2",
+    "priority": "1",
+    "selected_for_harness": "yes",
+    "source_artifact": "rescue_results.csv",
+    "state_fields_suspected": "_index;_cache",
+    "target_read_operation": "next(it)"
+  },
+  "order_A": {
+    "results": [
+      {
+        "kind": "value",
+        "value": "a"
+      },
+      {
+        "kind": "value",
+        "value": "b"
+      }
+    ],
+    "state": {
+      "elements": [
+        "a",
+        "b"
+      ]
+    },
+    "steps": [
+      "construct",
+      "next(it)",
+      "next(it)"
+    ]
+  },
+  "order_B": {
+    "observation": {
+      "kind": "value",
+      "value": "a"
+    },
+    "results": [
+      {
+        "kind": "value",
+        "value": "b"
+      },
+      {
+        "kind": "value",
+        "value": "c"
+      }
+    ],
+    "state": {
+      "elements": [
+        "a",
+        "b",
+        "c"
+      ]
+    },
+    "steps": [
+      "construct",
+      "next(it)",
+      "next(it)",
+      "next(it)"
+    ]
+  },
+  "record": {
+    "boundary_note": "cursor advance changes later next()",
+    "branch_changed": false,
+    "candidate_id": "re02_more_itertools_seekable",
+    "class_name": "seekable",
+    "classification": "confirmed_output_divergence",
+    "constructed": true,
+    "exception_changed": false,
+    "failure_reason": "",
+    "fixture_family": "iterator",
+    "observation_operation": "next(it)",
+    "order_A_exception": "[]",
+    "order_A_output": "[\"a\", \"b\"]",
+    "order_A_state": "{\"elements\": [\"a\", \"b\"]}",
+    "order_A_steps": "construct | next(it) | next(it)",
+    "order_B_exception": "[]",
+    "order_B_output": "[\"b\", \"c\"]",
+    "order_B_state": "{\"elements\": [\"a\", \"b\", \"c\"]}",
+    "order_B_steps": "construct | next(it) | next(it) | next(it)",
+    "output_changed": true,
+    "package_name": "more-itertools",
+    "package_version": "11.0.2",
+    "pair_type": "pair3",
+    "state_changed": true,
+    "target_read_operation": "next(it)"
+  }
+}

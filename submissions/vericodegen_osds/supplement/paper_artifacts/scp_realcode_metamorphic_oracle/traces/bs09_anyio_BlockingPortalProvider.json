@@ -1,0 +1,91 @@
+{
+  "candidate_id": "bs09_anyio_BlockingPortalProvider",
+  "diff": {
+    "branch_changed": false,
+    "classification": "confirmed_output_divergence",
+    "exception_changed": false,
+    "output_changed": true,
+    "state_changed": true
+  },
+  "metadata": {
+    "candidate_id": "bs09_anyio_BlockingPortalProvider",
+    "class_name": "BlockingPortalProvider",
+    "construction_hint": "BlockingPortalProvider()",
+    "expected_boundary": "enter mutates lease counter (state-only)",
+    "fixture_family": "unknown",
+    "module_path": "anyio/from_thread.py",
+    "observation_operation": "__enter__()",
+    "package_name": "anyio",
+    "package_version": "4.13.0",
+    "priority": "2",
+    "selected_for_harness": "yes",
+    "source_artifact": "behavioral_sweep_results.csv",
+    "state_fields_suspected": "_leases;_portal",
+    "target_read_operation": "read _leases"
+  },
+  "order_A": {
+    "results": [
+      {
+        "kind": "value",
+        "value": {
+          "leases": 0
+        }
+      }
+    ],
+    "state": {
+      "leases": 0
+    },
+    "steps": [
+      "construct BlockingPortalProvider",
+      "read _leases"
+    ]
+  },
+  "order_B": {
+    "observation": {
+      "kind": "value",
+      "value": null
+    },
+    "results": [
+      {
+        "kind": "value",
+        "value": {
+          "leases": 1
+        }
+      }
+    ],
+    "state": {
+      "leases": 1
+    },
+    "steps": [
+      "construct BlockingPortalProvider",
+      "__enter__()",
+      "read _leases"
+    ]
+  },
+  "record": {
+    "boundary_note": "enter mutates lease counter (state-only)",
+    "branch_changed": false,
+    "candidate_id": "bs09_anyio_BlockingPortalProvider",
+    "class_name": "BlockingPortalProvider",
+    "classification": "confirmed_output_divergence",
+    "constructed": true,
+    "exception_changed": false,
+    "failure_reason": "",
+    "fixture_family": "unknown",
+    "observation_operation": "__enter__()",
+    "order_A_exception": "[]",
+    "order_A_output": "[{\"leases\": 0}]",
+    "order_A_state": "{\"leases\": 0}",
+    "order_A_steps": "construct BlockingPortalProvider | read _leases",
+    "order_B_exception": "[]",
+    "order_B_output": "[{\"leases\": 1}]",
+    "order_B_state": "{\"leases\": 1}",
+    "order_B_steps": "construct BlockingPortalProvider | __enter__() | read _leases",
+    "output_changed": true,
+    "package_name": "anyio",
+    "package_version": "4.13.0",
+    "pair_type": "pair1",
+    "state_changed": true,
+    "target_read_operation": "read _leases"
+  }
+}

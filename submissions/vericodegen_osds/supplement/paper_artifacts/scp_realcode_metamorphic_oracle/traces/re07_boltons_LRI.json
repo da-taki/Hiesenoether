@@ -1,0 +1,107 @@
+{
+  "candidate_id": "re07_boltons_LRI",
+  "diff": {
+    "branch_changed": false,
+    "classification": "confirmed_state_only_divergence",
+    "exception_changed": false,
+    "output_changed": false,
+    "state_changed": true
+  },
+  "metadata": {
+    "candidate_id": "re07_boltons_LRI",
+    "class_name": "LRI",
+    "construction_hint": "LRI(max_size=2)",
+    "expected_boundary": "access affects stats but not eviction order",
+    "fixture_family": "cache",
+    "module_path": "boltons/cacheutils.py",
+    "observation_operation": "__getitem__('a')",
+    "package_name": "boltons",
+    "package_version": "25.0.0",
+    "priority": "2",
+    "selected_for_harness": "yes",
+    "source_artifact": "rescue_results.csv",
+    "state_fields_suspected": "hit_count;miss_count",
+    "target_read_operation": "insert c; then items()"
+  },
+  "order_A": {
+    "results": [
+      {
+        "kind": "value",
+        "value": [
+          [
+            "b",
+            "B"
+          ],
+          [
+            "c",
+            "C"
+          ]
+        ]
+      }
+    ],
+    "state": {
+      "hit_count": 0,
+      "miss_count": 0
+    },
+    "steps": [
+      "construct LRI",
+      "insert c; then items()"
+    ]
+  },
+  "order_B": {
+    "observation": {
+      "kind": "value",
+      "value": "A"
+    },
+    "results": [
+      {
+        "kind": "value",
+        "value": [
+          [
+            "b",
+            "B"
+          ],
+          [
+            "c",
+            "C"
+          ]
+        ]
+      }
+    ],
+    "state": {
+      "hit_count": 1,
+      "miss_count": 0
+    },
+    "steps": [
+      "construct LRI",
+      "__getitem__('a')",
+      "insert c; then items()"
+    ]
+  },
+  "record": {
+    "boundary_note": "access affects stats but not eviction order",
+    "branch_changed": false,
+    "candidate_id": "re07_boltons_LRI",
+    "class_name": "LRI",
+    "classification": "confirmed_state_only_divergence",
+    "constructed": true,
+    "exception_changed": false,
+    "failure_reason": "",
+    "fixture_family": "cache",
+    "observation_operation": "__getitem__('a')",
+    "order_A_exception": "[]",
+    "order_A_output": "[[[\"b\", \"B\"], [\"c\", \"C\"]]]",
+    "order_A_state": "{\"hit_count\": 0, \"miss_count\": 0}",
+    "order_A_steps": "construct LRI | insert c; then items()",
+    "order_B_exception": "[]",
+    "order_B_output": "[[[\"b\", \"B\"], [\"c\", \"C\"]]]",
+    "order_B_state": "{\"hit_count\": 1, \"miss_count\": 0}",
+    "order_B_steps": "construct LRI | __getitem__('a') | insert c; then items()",
+    "output_changed": false,
+    "package_name": "boltons",
+    "package_version": "25.0.0",
+    "pair_type": "pair1",
+    "state_changed": true,
+    "target_read_operation": "insert c; then items()"
+  }
+}

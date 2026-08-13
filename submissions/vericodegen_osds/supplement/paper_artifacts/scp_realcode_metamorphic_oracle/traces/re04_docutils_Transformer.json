@@ -1,0 +1,95 @@
+{
+  "candidate_id": "re04_docutils_Transformer",
+  "diff": {
+    "branch_changed": false,
+    "classification": "confirmed_state_only_divergence",
+    "exception_changed": false,
+    "output_changed": false,
+    "state_changed": true
+  },
+  "metadata": {
+    "candidate_id": "re04_docutils_Transformer",
+    "class_name": "Transformer",
+    "construction_hint": "new_document + 2 Transforms",
+    "expected_boundary": "serial bookkeeping advances on priority string",
+    "fixture_family": "unknown",
+    "module_path": "docutils/transforms/__init__.py",
+    "observation_operation": "get_priority_string(10)",
+    "package_name": "docutils",
+    "package_version": "0.22.4",
+    "priority": "2",
+    "selected_for_harness": "yes",
+    "source_artifact": "rescue_results.csv",
+    "state_fields_suspected": "serialno;sorted",
+    "target_read_operation": "inspect transform priority queue"
+  },
+  "order_A": {
+    "results": [
+      {
+        "kind": "value",
+        "value": [
+          "010-001",
+          "005-002"
+        ]
+      }
+    ],
+    "state": {
+      "serialno": 2,
+      "sorted": false
+    },
+    "steps": [
+      "construct Transformer",
+      "inspect transform priority queue"
+    ]
+  },
+  "order_B": {
+    "observation": {
+      "kind": "value",
+      "value": "010-003"
+    },
+    "results": [
+      {
+        "kind": "value",
+        "value": [
+          "010-001",
+          "005-002"
+        ]
+      }
+    ],
+    "state": {
+      "serialno": 3,
+      "sorted": false
+    },
+    "steps": [
+      "construct Transformer",
+      "get_priority_string(10)",
+      "inspect transform priority queue"
+    ]
+  },
+  "record": {
+    "boundary_note": "serial bookkeeping advances on priority string",
+    "branch_changed": false,
+    "candidate_id": "re04_docutils_Transformer",
+    "class_name": "Transformer",
+    "classification": "confirmed_state_only_divergence",
+    "constructed": true,
+    "exception_changed": false,
+    "failure_reason": "",
+    "fixture_family": "unknown",
+    "observation_operation": "get_priority_string(10)",
+    "order_A_exception": "[]",
+    "order_A_output": "[[\"010-001\", \"005-002\"]]",
+    "order_A_state": "{\"serialno\": 2, \"sorted\": false}",
+    "order_A_steps": "construct Transformer | inspect transform priority queue",
+    "order_B_exception": "[]",
+    "order_B_output": "[[\"010-001\", \"005-002\"]]",
+    "order_B_state": "{\"serialno\": 3, \"sorted\": false}",
+    "order_B_steps": "construct Transformer | get_priority_string(10) | inspect transform priority queue",
+    "output_changed": false,
+    "package_name": "docutils",
+    "package_version": "0.22.4",
+    "pair_type": "pair1",
+    "state_changed": true,
+    "target_read_operation": "inspect transform priority queue"
+  }
+}

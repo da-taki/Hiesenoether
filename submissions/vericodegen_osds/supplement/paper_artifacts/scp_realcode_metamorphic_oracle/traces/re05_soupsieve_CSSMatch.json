@@ -1,0 +1,91 @@
+{
+  "candidate_id": "re05_soupsieve_CSSMatch",
+  "diff": {
+    "branch_changed": false,
+    "classification": "no_divergence",
+    "exception_changed": false,
+    "output_changed": false,
+    "state_changed": false
+  },
+  "metadata": {
+    "candidate_id": "re05_soupsieve_CSSMatch",
+    "class_name": "CSSMatch",
+    "construction_hint": "bs4 tree + compiled 'p.a'",
+    "expected_boundary": "selector caches (not triggered by simple selector)",
+    "fixture_family": "tree_or_html",
+    "module_path": "soupsieve/css_match.py",
+    "observation_operation": "match(first p)",
+    "package_name": "soupsieve",
+    "package_version": "2.8.3",
+    "priority": "2",
+    "selected_for_harness": "yes",
+    "source_artifact": "rescue_results.csv",
+    "state_fields_suspected": "cached_meta_lang",
+    "target_read_operation": "list(select())"
+  },
+  "order_A": {
+    "results": [
+      {
+        "kind": "value",
+        "value": [
+          "<p class=\"a\">x</p>"
+        ]
+      }
+    ],
+    "state": {
+      "cached_meta_lang": []
+    },
+    "steps": [
+      "construct CSSMatch",
+      "list(select())"
+    ]
+  },
+  "order_B": {
+    "observation": {
+      "kind": "value",
+      "value": true
+    },
+    "results": [
+      {
+        "kind": "value",
+        "value": [
+          "<p class=\"a\">x</p>"
+        ]
+      }
+    ],
+    "state": {
+      "cached_meta_lang": []
+    },
+    "steps": [
+      "construct CSSMatch",
+      "match(first p)",
+      "list(select())"
+    ]
+  },
+  "record": {
+    "boundary_note": "selector caches (not triggered by simple selector)",
+    "branch_changed": false,
+    "candidate_id": "re05_soupsieve_CSSMatch",
+    "class_name": "CSSMatch",
+    "classification": "no_divergence",
+    "constructed": true,
+    "exception_changed": false,
+    "failure_reason": "",
+    "fixture_family": "tree_or_html",
+    "observation_operation": "match(first p)",
+    "order_A_exception": "[]",
+    "order_A_output": "[[\"<p class=\\\"a\\\">x</p>\"]]",
+    "order_A_state": "{\"cached_meta_lang\": []}",
+    "order_A_steps": "construct CSSMatch | list(select())",
+    "order_B_exception": "[]",
+    "order_B_output": "[[\"<p class=\\\"a\\\">x</p>\"]]",
+    "order_B_state": "{\"cached_meta_lang\": []}",
+    "order_B_steps": "construct CSSMatch | match(first p) | list(select())",
+    "output_changed": false,
+    "package_name": "soupsieve",
+    "package_version": "2.8.3",
+    "pair_type": "pair1",
+    "state_changed": false,
+    "target_read_operation": "list(select())"
+  }
+}

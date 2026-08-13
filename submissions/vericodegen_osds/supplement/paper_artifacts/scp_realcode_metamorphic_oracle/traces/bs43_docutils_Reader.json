@@ -1,0 +1,91 @@
+{
+  "candidate_id": "bs43_docutils_Reader",
+  "diff": {
+    "branch_changed": false,
+    "classification": "no_divergence",
+    "exception_changed": false,
+    "output_changed": false,
+    "state_changed": false
+  },
+  "metadata": {
+    "candidate_id": "bs43_docutils_Reader",
+    "class_name": "Reader",
+    "construction_hint": "Reader()",
+    "expected_boundary": "no construction-time boundary",
+    "fixture_family": "unknown",
+    "module_path": "docutils/readers/__init__.py",
+    "observation_operation": "no-op observation",
+    "package_name": "docutils",
+    "package_version": "0.22.4",
+    "priority": "3",
+    "selected_for_harness": "yes",
+    "source_artifact": "behavioral_sweep_results.csv",
+    "state_fields_suspected": "parser;source",
+    "target_read_operation": "read .parser"
+  },
+  "order_A": {
+    "results": [
+      {
+        "kind": "value",
+        "value": {
+          "has_parser": false
+        }
+      }
+    ],
+    "state": {
+      "has_parser": false
+    },
+    "steps": [
+      "construct Reader",
+      "read .parser"
+    ]
+  },
+  "order_B": {
+    "observation": {
+      "kind": "value",
+      "value": null
+    },
+    "results": [
+      {
+        "kind": "value",
+        "value": {
+          "has_parser": false
+        }
+      }
+    ],
+    "state": {
+      "has_parser": false
+    },
+    "steps": [
+      "construct Reader",
+      "no-op observation",
+      "read .parser"
+    ]
+  },
+  "record": {
+    "boundary_note": "no construction-time boundary",
+    "branch_changed": false,
+    "candidate_id": "bs43_docutils_Reader",
+    "class_name": "Reader",
+    "classification": "no_divergence",
+    "constructed": true,
+    "exception_changed": false,
+    "failure_reason": "",
+    "fixture_family": "unknown",
+    "observation_operation": "no-op observation",
+    "order_A_exception": "[]",
+    "order_A_output": "[{\"has_parser\": false}]",
+    "order_A_state": "{\"has_parser\": false}",
+    "order_A_steps": "construct Reader | read .parser",
+    "order_B_exception": "[]",
+    "order_B_output": "[{\"has_parser\": false}]",
+    "order_B_state": "{\"has_parser\": false}",
+    "order_B_steps": "construct Reader | no-op observation | read .parser",
+    "output_changed": false,
+    "package_name": "docutils",
+    "package_version": "0.22.4",
+    "pair_type": "pair1",
+    "state_changed": false,
+    "target_read_operation": "read .parser"
+  }
+}
