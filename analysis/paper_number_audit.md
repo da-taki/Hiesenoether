@@ -200,3 +200,23 @@ Use these distinctions in the paper and appendix:
 - `environment_failure`, `oracle_issue`, `unclear`: retained as possible categories, with zero rows in the completed primary manual review.
 
 Keep hidden-observation and expected-access-sensitive outcomes separate. Count silent OSDS divergences only when ordinary smoke tests pass and OSDS-aware checks fail under manual confirmation.
+
+## Causal-Control Addendum
+
+Phase 2 causal controls were added after the Phase 1 audit commit. Source artifacts:
+
+- `experiments/agent_behavior_preservation/causal_controls/run_model_failure_causal_controls.py`
+- `analysis/model_failure_causal_controls.csv`
+- `analysis/model_failure_causal_controls.md`
+
+| Number or claim | Audited value | Source artifact |
+| --- | ---: | --- |
+| Verified primary-study model failures tested with causal controls | 5 | `analysis/model_failure_causal_controls.csv` |
+| Original failures reproduced under the original witness | 5/5 | `analysis/model_failure_causal_controls.csv` |
+| Ordinary tests passed in the original failure replay | 5/5 | `analysis/model_failure_causal_controls.csv` |
+| OSDS-aware checks failed in the original failure replay | 5/5 | `analysis/model_failure_causal_controls.csv` |
+| Mechanism-neutralizing controls with controlled OSDS pass | 5/5 | `analysis/model_failure_causal_controls.csv` |
+| `mechanism_neutralized_divergence_disappeared` causal status | 5/5 | `analysis/model_failure_causal_controls.csv` |
+
+The causal-control runner reads the exact generated candidate files from the frozen replay directories and checks their SHA-256 hashes against the recorded replay rows before running controls. It does not edit generated model patches. The pytest controls isolate the diagnostic logger from the captured handler hierarchy. The PyYAML control clears the `SafeRepresenter` identity cache after representer observations.
+
