@@ -33,4 +33,3 @@ For a fixed initial configuration $\cfg_0$, body sequence $\pi$, and cap $C$, le
 \]
 A transformation is OSDS-preserving for a witness when the baseline and candidate agree under the witness's OSDS relation. In the benchmark, this relation is implemented as a package-specific metamorphic oracle and then manually reviewed for access-induced attribution.
 
-We use two evidence roles. Hidden-observation rows contain accesses that look observational in the requested edit and reveal their effect only through later state. Expected-access-sensitive rows contain operations whose consumption or mutation should be visible from the code shape. The primary verified OSDS failures all occurred in hidden-observation rows.

@@ -9,17 +9,17 @@ Replay treats generated text as data. Raw responses are saved exactly, code is e
 \small
 \begin{tabular}{lrrrrrr}
 \toprule
-Model & Exec. & Pres. & Ord. bugs & Invalid & Ver. OSDS & Silent \\
+Model & Exec. & Pres. & Ord. bug & Invalid & OSDS fail & Silent OSDS \\
 \midrule
 gpt-5.6-sol & 26 & 23 & 3 & 0 & 0 & 0 \\
 gpt-5.6-terra & 24 & 18 & 4 & 2 & 2 & 2 \\
 gpt-5.6-luna & 24 & 17 & 4 & 2 & 3 & 3 \\
 \bottomrule
 \end{tabular}
-\caption{Primary frozen coding-agent results. All verified OSDS failures passed the benchmark ordinary checks and failed OSDS-aware evaluation.}
+\caption{Primary frozen coding-agent results. Exec. is executable outputs; Pres. means behavior preserved under the benchmark evaluation, not merely executable; Ord. bug means ordinary programming bug. Silent OSDS means a manually verified OSDS divergence for which the benchmark ordinary check passed.}
 \label{tab:primary}
 \end{table}
 
-The five verified OSDS failures are five model-task outcomes over two underlying package witnesses. Terra failed on two pytest instrumentation rows. Luna failed on those two pytest rows and one PyYAML caching/materialization row. Sol preserved the verified-OSDS rows on which Terra or Luna diverged. Expected-access-sensitive rows produced ordinary bugs or invalid patches, with no verified OSDS divergence.
+The benchmark includes hidden-observation rows, where an access looks observational in the requested edit and reveals its effect only through later state, and expected-access-sensitive rows, where consumption or mutation should be visible from the code shape. The five verified OSDS failures are five model-task outcomes over two underlying package witnesses. Terra failed on two pytest instrumentation rows. Luna failed on those two pytest rows and one PyYAML caching/materialization row. Sol preserved the verified-OSDS rows on which Terra or Luna diverged. Expected-access-sensitive rows produced ordinary bugs or invalid patches, with no verified OSDS divergence.
 
 Self-assessment was secondary. Across Sol, Terra, and Luna, there were zero false YES preservation claims on verified OSDS divergences. Conservative NO responses were common, so self-assessment should not replace execution replay.

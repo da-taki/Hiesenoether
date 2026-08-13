@@ -13,18 +13,19 @@ Generated instrumentation shape:
   logger.debug("diagnostic")
   with catching_logs(handler, level):
       result = subject(logger, handler)
+
+State flow:
+  inserted diagnostic access -> logging/handler state changes
+  -> later catching_logs observes changed state
+  -> caller-visible result differs
+
+Verification:
+  ordinary check PASS | OSDS preservation FAIL | neutralized replay PASS
 \end{verbatim}
-\caption{Compact pytest failure schema. The inserted log call looks like observation. In the verified Terra and Luna rows, it mutates logging/handler state that is read later. Ordinary benchmark checks passed; the OSDS oracle failed; isolating the diagnostic logger from the captured handler hierarchy removed the divergence for all four pytest rows.}
+\caption{Compact pytest failure schema. The inserted log call looks like observation. In the verified Terra and Luna rows, it mutates logging/handler state that is read later. The same generated candidates pass the ordinary benchmark check, fail OSDS preservation, and pass after the diagnostic logger is isolated from the captured handler hierarchy.}
 \label{fig:pytest-example}
 \end{figure}
 
 The example gives the intuition before the formal notation. The generated transformation did not crash, did not fail the ordinary smoke check, and did not look like a destructive update at the edit site. The divergence appeared only when the evaluation compared the later visible result across the access order that the witness exposes. In the causal-control replay, the exact generated files were reused. The only change was the witness environment: diagnostic logging was isolated from the handler hierarchy responsible for the latent mutation. Under that neutralized mechanism, the OSDS divergence disappeared.
-
-The state flow is compact:
-\begin{align*}
-\texttt{logger.debug} &\to \text{handler/logging state changes},\\
-&\to \texttt{catching\_logs} \text{ reads that state},\\
-&\to \text{caller-visible result changes}.
-\end{align*}
 
 This is a generated transformation failure, not a defect claim about pytest. It shows that a preservation checker for generated edits needs to model the latent state that observation-shaped accesses can affect.
