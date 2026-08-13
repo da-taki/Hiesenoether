@@ -1,0 +1,13 @@
+{
+  "baseline_failures": [],
+  "branch": "experiment/agent-behavior-preservation",
+  "git_commit": "f90a3a0a7cda1f6e43b0e0799dedf78e5fbcfefa",
+  "os": "Windows-11-10.0.26200-SP0",
+  "provider": "jsonl",
+  "python_executable": "C:\\Users\\Asus\\Desktop\\Profitlo Projects\\Hiesenoether\\experiments\\agent_behavior_preservation\\environment\\.venv\\Scripts\\python.exe",
+  "python_version": "3.14.4 (tags/v3.14.4:23116f9, Apr  7 2026, 14:10:54) [MSC v.1944 64 bit (AMD64)]",
+  "replay_path": "experiments\\agent_behavior_preservation\\external_collection\\responses\\gpt-5.6-sol__full_warned_exact.jsonl",
+  "run_id": "codex-gpt-5-6-sol-full-warned-exact-20260813T1430Z",
+  "task_count": 13,
+  "timestamp": "2026-08-13T00:20:23.893487+00:00"
+}

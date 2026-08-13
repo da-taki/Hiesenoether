@@ -1,0 +1,3 @@
+condition,yes_claims,no_claims,unclear_claims,correct_yes_claims,false_yes_claims,correct_no_claims_behavior_level,false_no_claims_behavior_preserved,silent_false_preservation_cases
+normal,3,10,0,3,0,1,9,0
+warned,4,9,0,4,0,2,7,0

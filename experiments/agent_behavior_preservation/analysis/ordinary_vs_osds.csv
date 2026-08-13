@@ -1,0 +1,3 @@
+condition,verified_semantic_divergences,ordinary_tests_caught_verified_semantic_divergences,ordinary_tests_missed_verified_semantic_divergences,osds_checks_caught_verified_semantic_divergences,osds_checks_missed_verified_semantic_divergences,ordinary_programming_bugs_caught_by_ordinary_tests,silent_semantic_divergences
+normal,0,0,0,0,0,1,0
+warned,0,0,0,0,0,2,0

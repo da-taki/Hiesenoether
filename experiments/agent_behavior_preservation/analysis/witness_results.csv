@@ -1,0 +1,10 @@
+witness_id,normal_n,normal_preserved,normal_verified_diverged,normal_ordinary_programming_bugs,normal_yes_claims,normal_no_claims,warned_n,warned_preserved,warned_verified_diverged,warned_ordinary_programming_bugs,warned_yes_claims,warned_no_claims,silent_divergences
+rc01_httpcore_Response,2,2,0,0,0,2,2,2,0,0,0,2,0
+rc02_PyYAML_SafeRepresenter,2,2,0,0,1,1,2,2,0,0,1,1,0
+rc03_pytest_catching_logs,2,2,0,0,0,2,2,2,0,0,1,1,0
+re01_markdown_Markdown,1,0,0,1,0,1,1,0,0,1,0,1,0
+re06_beautifulsoup4_PageElement,1,1,0,0,0,1,1,0,0,1,0,1,0
+re08_boltons_LRU,1,1,0,0,1,0,1,1,0,0,1,0,0
+re10_cerberus_Validator,2,2,0,0,0,2,2,2,0,0,0,2,0
+re11_dnspython_Tokenizer,1,1,0,0,1,0,1,1,0,0,1,0,0
+re12_h11_ChunkedReader,1,1,0,0,0,1,1,1,0,0,0,1,0

@@ -1,130 +1,58 @@
-﻿# Agent Behavior Preservation: Current Phase Report
+# Hiesenoether Agent Behavior Preservation: GPT-5.6 Sol Full Run
 
-## Status
+## Run
 
-The benchmark and environment are ready for real model execution, but no authenticated external coding-model provider was discovered. Per protocol, the experiment stops before real-model claims.
+- Branch: `experiment/agent-behavior-preservation`
+- Starting commit: `f90a3a0a7cda1f6e43b0e0799dedf78e5fbcfefa`
+- Provider: Codex task model
+- Model: `gpt-5.6-sol`
+- Reasoning: `low`
+- Temperature: `null`
+- Seed: `null`
+- Valid normal replay: `codex-gpt-5-6-sol-full-normal-exact-20260813T1415Z`
+- Valid warned replay: `codex-gpt-5-6-sol-full-warned-exact-20260813T1430Z`
 
-## Environment Reconstruction
+## Normal results
 
-All 9 required top-level packages were exactly reproduced in the repository-local venv:
+- Attempted/responses: 13/13
+- Patches extracted/applied: 13/13
+- Executable candidates: 13/13
+- Behavior preserved by replay: 12/13
+- Verified semantic divergences: 0
+- Silent semantic divergences: 0
+- Ordinary programming bugs: 1
+- Self-assessment: 3 YES, 10 NO, 0 UNCLEAR
+- False YES claims: 0
+- Behavior-preserved NO claims: 9
 
-- httpcore 1.0.9
-- pytest 8.3.5
-- PyYAML 6.0.3
-- h11 0.16.0
-- cerberus 1.3.8
-- boltons 25.0.0
-- dnspython 2.8.0
-- markdown 3.10.2
-- beautifulsoup4 4.14.3
+## Warned results
 
-See `environment/reconstruction.json` and `environment/reconstruction.md`.
+- Attempted/responses: 13/13
+- Patches extracted/applied: 13/13
+- Executable candidates: 13/13
+- Behavior preserved by replay: 11/13
+- Verified semantic divergences: 0
+- Silent semantic divergences: 0
+- Ordinary programming bugs: 2
+- Self-assessment: 4 YES, 9 NO, 0 UNCLEAR
+- False YES claims: 0
+- Behavior-preserved NO claims: 7
 
-## Baseline Eligibility
+## Paired semantic results
 
-`validation/baseline_validation.jsonl` records 26/26 tasks eligible for primary analysis:
+- normal diverged / warned diverged: 0
+- normal diverged / warned preserved: 0
+- normal preserved / warned diverged: 0
+- normal preserved / warned preserved: 13
 
-- fixture/source executes: 26/26
-- ordinary baseline pass: 26/26
-- metamorphic witness reproduced: 26/26
-- caller wrapper reproduced: 26/26
-- controls reproduced where applicable: 26/26
+## Controls
 
-Existing inherited validation now reproduces 9/9 caller branch wrappers and 19/19 controls.
+Pipeline controls remain separate from GPT-5.6 Sol: noop-preserving was 26/26 preserved, and static-semantics-blind-transformer was 26/26 divergent with ordinary-pass / OSDS-fail behavior.
 
-## Benchmark Balance
+## Manual review
 
-- Tasks: 26
-- Paired base tasks: 13
-- Unique witnesses: 9
-- Packages: 9
-- Hidden-observation tasks: 16
-- Expected access-sensitive calibration tasks: 10
+Manual review classified the non-preserved real-model rows as ordinary programming bugs, not verified semantic divergences: normal Markdown refactoring, warned Markdown refactoring, and warned BeautifulSoup debugging/inspection.
 
-Multiple tasks derived from the same witness/package are correlated and must not be treated as independent semantic phenomena.
+## Workshop readiness
 
-## Prompt Leakage
-
-The leakage audit found 0 forbidden-term leaks in normal prompts and 0 pair consistency errors.
-
-## Provider Discovery
-
-No usable external coding-model provider was discovered. No secret values were printed or stored.
-
-## Pipeline Controls
-
-No-op control:
-
-- 26 attempted
-- 26 executable
-- 26 preserved
-- 0 diverged
-
-Semantics-blind control:
-
-- 26 attempted
-- 26 executable
-- 0 preserved
-- 26 diverged
-- 26 ordinary-pass / OSDS-fail cases
-
-These remain pipeline controls only, not real coding-model results.
-
-## Real-Model Readiness
-
-Ready inputs for real-model execution are in `prompts/` and `benchmark/tasks.jsonl`. The JSONL replay provider can import externally collected model responses with raw responses and optional self-assessment text.
-
-## Blocker
-
-Real-model evaluation requires authenticated provider access or a JSONL file of externally collected model responses. Until then, there are no real-model normal-prompt, warned-prompt, paired, self-assessment, or workshop-result claims.
-
-## 2026-08-13 Provider-Gate Update
-
-The pre-model benchmark state was verified on branch `experiment/agent-behavior-preservation` at commit `7d85b076b7203300c10eda308649e785bd4cd615`.
-
-Provider discovery was rerun and found no authenticated usable real-model provider among OpenAI, Anthropic, Google Gemini, Azure OpenAI, or GitHub Copilot CLI. No secret values were printed or stored.
-
-Because no real provider was available locally, the external collection package was generated in `external_collection/`:
-
-- `pre_model_run_manifest.json`
-- `small_validation_normal_prompts.jsonl` with 6 normal-only validation prompts
-- `full_normal_prompts.jsonl` with 13 normal prompts
-- `full_warned_prompts.jsonl` with 13 warned prompts
-- `replay_response_template.jsonl` with 26 response-template rows
-- `self_assessment_prompt.txt`
-
-No real-model generations were run in this phase, so the real-model result tables remain intentionally empty until authenticated responses are collected and replayed.
-
-## 2026-08-13 Post-Export Control Check
-
-After generating the external collection package, both local controls were rerun and summarized:
-
-- `control-noop-provider-gate-20260813T0445Z`: 26/26 executable, 26/26 preserved, 0/26 diverged
-- `control-static-provider-gate-20260813T0445Z`: 26/26 executable, 0/26 preserved, 26/26 diverged, 26/26 ordinary-pass / OSDS-fail
-
-These are still controls only and are not included in real-model evidence.
-
-## 2026-08-13 Codex Task-Model Validation Run
-
-A six-task normal-prompt validation subset was collected with fresh projectless Codex tasks using `gpt-5.6-sol` and `thinking=low`. Codex does not expose temperature or seed controls through the task interface used here, so both are recorded as null.
-
-Corrected exact replay run: `codex-gpt-5-6-sol-validation-normal-exact-20260813T0550Z`.
-
-Results:
-
-- responses collected: 6
-- patches extracted/applied: 6/6
-- executable candidates: 6/6
-- ordinary smoke checks passed: 6/6
-- OSDS-aware checks passed: 6/6
-- preserved: 6/6
-- verified semantic divergences: 0/6
-- silent semantic divergences: 0/6
-- YES preservation claims: 3
-- NO preservation claims: 3
-- false preservation claims: 0/3 YES claims
-- silent false-preservation cases: 0/6 executable transformations
-
-Manual review queue: empty for the corrected exact replay because no apparent divergences were detected. Earlier validation artifacts that used all 26 tasks or compact flattened task-output text are recorded in `analysis/invalidated_runs.jsonl` and excluded.
-
-The full normal/warned experiment has not been launched yet.
+Verdict: promising but needs expansion. The run is clean and useful as a calibration result, but no verified semantic divergence was observed in the real-model data.

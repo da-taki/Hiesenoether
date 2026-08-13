@@ -1,0 +1,10 @@
+package,normal_n,normal_preserved,normal_verified_diverged,normal_ordinary_programming_bugs,normal_yes_claims,normal_no_claims,warned_n,warned_preserved,warned_verified_diverged,warned_ordinary_programming_bugs,warned_yes_claims,warned_no_claims,silent_divergences
+PyYAML,2,2,0,0,1,1,2,2,0,0,1,1,0
+beautifulsoup4,1,1,0,0,0,1,1,0,0,1,0,1,0
+boltons,1,1,0,0,1,0,1,1,0,0,1,0,0
+cerberus,2,2,0,0,0,2,2,2,0,0,0,2,0
+dnspython,1,1,0,0,1,0,1,1,0,0,1,0,0
+h11,1,1,0,0,0,1,1,1,0,0,0,1,0
+httpcore,2,2,0,0,0,2,2,2,0,0,0,2,0
+markdown,1,0,0,1,0,1,1,0,0,1,0,1,0
+pytest,2,2,0,0,0,2,2,2,0,0,1,1,0

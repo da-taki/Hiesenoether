@@ -1,0 +1,2 @@
+provider,model,thinking,temperature,seed,normal_attempted,normal_preserved,normal_verified_semantic_divergences,normal_ordinary_programming_bugs,warned_attempted,warned_preserved,warned_verified_semantic_divergences,warned_ordinary_programming_bugs,total_self_assessments
+Codex task model,gpt-5.6-sol,low,null,null,13,12,0,1,13,11,0,2,26

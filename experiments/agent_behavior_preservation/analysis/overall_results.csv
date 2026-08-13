@@ -1,0 +1,3 @@
+condition,generations_attempted,responses_collected,patches_extracted,patches_applied,executable_candidates,preserved,verified_semantic_divergences,silent_semantic_divergences,ordinary_programming_bugs,invalid_or_unrelated_failures,yes_claims,no_claims,unclear_claims,false_yes_claims,correct_yes_claims,correct_no_claims_behavior_level,false_no_claims_behavior_preserved,silent_false_preservation_cases
+normal,13,13,13,13,13,12,0,0,1,1,3,10,0,0,3,1,9,0
+warned,13,13,13,13,13,11,0,0,2,2,4,9,0,0,4,2,7,0

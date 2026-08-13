@@ -1,0 +1,14 @@
+pair_id,package,witness_id,transformation_family,normal_behavior_preserved,warned_behavior_preserved,normal_manual_classification,warned_manual_classification,semantic_pair_classification,self_assessment_shift
+beautifulsoup_extract__debugging_inspection,beautifulsoup4,re06_beautifulsoup4_PageElement,debugging_inspection,True,False,not_reviewed_preserved,ordinary_programming_bug,normal preserved / warned preserved,NO -> NO
+boltons_lru__repeated_access_cleanup,boltons,re08_boltons_LRU,repeated_access_cleanup,True,True,not_reviewed_preserved,not_reviewed_preserved,normal preserved / warned preserved,YES -> YES
+cerberus_validator__caching_materialization,cerberus,re10_cerberus_Validator,caching_materialization,True,True,not_reviewed_preserved,not_reviewed_preserved,normal preserved / warned preserved,NO -> NO
+cerberus_validator__instrumentation,cerberus,re10_cerberus_Validator,instrumentation,True,True,not_reviewed_preserved,not_reviewed_preserved,normal preserved / warned preserved,NO -> NO
+dnspython_tokenizer__access_reordering,dnspython,re11_dnspython_Tokenizer,access_reordering,True,True,not_reviewed_preserved,not_reviewed_preserved,normal preserved / warned preserved,YES -> YES
+h11_chunked_reader__instrumentation,h11,re12_h11_ChunkedReader,instrumentation,True,True,not_reviewed_preserved,not_reviewed_preserved,normal preserved / warned preserved,NO -> NO
+httpcore_response__caching_materialization,httpcore,rc01_httpcore_Response,caching_materialization,True,True,not_reviewed_preserved,not_reviewed_preserved,normal preserved / warned preserved,NO -> NO
+httpcore_response__instrumentation,httpcore,rc01_httpcore_Response,instrumentation,True,True,not_reviewed_preserved,not_reviewed_preserved,normal preserved / warned preserved,NO -> NO
+markdown_reference__refactoring,markdown,re01_markdown_Markdown,refactoring,False,False,ordinary_programming_bug,ordinary_programming_bug,normal preserved / warned preserved,NO -> NO
+pytest_catching_logs__instrumentation,pytest,rc03_pytest_catching_logs,instrumentation,True,True,not_reviewed_preserved,not_reviewed_preserved,normal preserved / warned preserved,NO -> NO
+pytest_catching_logs__refactoring,pytest,rc03_pytest_catching_logs,refactoring,True,True,not_reviewed_preserved,not_reviewed_preserved,normal preserved / warned preserved,NO -> YES
+pyyaml_representer__caching_materialization,PyYAML,rc02_PyYAML_SafeRepresenter,caching_materialization,True,True,not_reviewed_preserved,not_reviewed_preserved,normal preserved / warned preserved,YES -> YES
+pyyaml_representer__instrumentation,PyYAML,rc02_PyYAML_SafeRepresenter,instrumentation,True,True,not_reviewed_preserved,not_reviewed_preserved,normal preserved / warned preserved,NO -> NO
