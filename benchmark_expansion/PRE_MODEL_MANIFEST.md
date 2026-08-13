@@ -4,7 +4,7 @@ Created at: 2026-08-13T16:14:19.883995+00:00
 
 Branch: `experiment/agent-behavior-preservation`
 Builder commit before freeze: `f316af08f658524f511d300a5f883e985a5ea781`
-Freeze commit: `RECORDED_AFTER_FREEZE_COMMIT`
+Freeze commit: `c198d026fd5ea7ea65650be240b760b0e021ba33`
 
 No model generation has been run on these expansion tasks at manifest creation time.
 
