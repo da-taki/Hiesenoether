@@ -25,7 +25,7 @@ OpenReview's live venue metadata lists Submission Start: Jul 14 2026 12:00AM UTC
 - References: do not count toward the 8-page VeriCodeGen main-text limit.
 - Appendix: optional technical appendices may follow without a page limit.
 - Checklist: included after the technical appendices and does not count toward the 8-page VeriCodeGen main-text limit.
-- Final PDF SHA-256: 05a563158e35576c7ce5891f39f79fdf4a6f9f2241e3bc2c7b48bd786d7076fa.
+- Final PDF SHA-256: fb0a36de49e35331b8354ad8f0e380e5ff164b408ef7e87621706563d5d19d97.
 - Page counts from the final PDF: 6 main-text pages, 1 reference page, 2 technical-appendix pages, 8 checklist pages, 17 total pages.
 - Anonymity: double-blind anonymous submission. No author names, affiliations, acknowledgments, personal paths, or identifying repository links are included in the paper or supplement. The visible template placeholder text email is part of the anonymous workshop template header.
 - Supplementary material: allowed only in anonymized form. The supplement excludes secrets, tokens, virtual environments, caches, large package installs, and personal absolute paths.
